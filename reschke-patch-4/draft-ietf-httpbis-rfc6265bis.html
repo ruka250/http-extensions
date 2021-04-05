@@ -5,6 +5,8 @@
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
 <title>Cookies: HTTP State Management Mechanism</title>
+<meta content="Lily Chen" name="author">
+<meta content="Steven Englehardt" name="author">
 <meta content="Mike West" name="author">
 <meta content="John Wilander" name="author">
 <meta content="
@@ -16,11 +18,11 @@ infelicities that degrade their security and privacy, the Cookie and Set-Cookie
 header fields are widely used on the Internet. This document obsoletes RFC
 6265. 
     " name="description">
-<meta content="xml2rfc 3.5.0" name="generator">
+<meta content="xml2rfc 3.6.0" name="generator">
 <meta content="draft-ietf-httpbis-rfc6265bis" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.5.0
-    Python 3.8.7
+  xml2rfc 3.6.0
+    Python 3.8.8
     appdirs 1.4.4
     ConfigArgParse 1.2.3
     google-i18n-address 2.4.0
@@ -28,7 +30,7 @@ header fields are widely used on the Internet. This document obsoletes RFC
     intervaltree 3.1.0
     Jinja2 2.11.2
     kitchen 1.2.6
-    lxml 4.6.2
+    lxml 4.6.3
     pycountry 20.7.3
     pyflakes 2.2.0
     PyYAML 5.4.1
@@ -843,11 +845,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Cookies: HTTP State Management Mechanism</td>
-<td class="right">March 2021</td>
+<td class="right">April 2021</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">West &amp; Wilander</td>
-<td class="center">Expires 9 September 2021</td>
+<td class="left">Chen, et al.</td>
+<td class="center">Expires 7 October 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -863,18 +865,28 @@ address div.right {
 <a href="https://datatracker.ietf.org/doc/html/rfc6265" class="eref">6265</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-03-08" class="published">8 March 2021</time>
+<time datetime="2021-04-05" class="published">5 April 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-09-09">9 September 2021</time></dd>
+<dd class="expires"><time datetime="2021-10-07">7 October 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
+      <div class="author-name">L. Chen, <span class="editor">Ed.</span>
+</div>
+<div class="org">Google LLC</div>
+</div>
+<div class="author">
+      <div class="author-name">S. Englehardt, <span class="editor">Ed.</span>
+</div>
+<div class="org">Mozilla</div>
+</div>
+<div class="author">
       <div class="author-name">M. West, <span class="editor">Ed.</span>
 </div>
-<div class="org">Google, Inc</div>
+<div class="org">Google LLC</div>
 </div>
 <div class="author">
       <div class="author-name">J. Wilander, <span class="editor">Ed.</span>
@@ -923,7 +935,7 @@ code and issues list for this draft can be found at <a href="https://github.com/
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 September 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 October 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -963,271 +975,271 @@ code and issues list for this draft can be found at <a href="https://github.com/
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
+<nav class="toc"><ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-conventions" class="xref">Conventions</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-conformance-criteria" class="xref">Conformance Criteria</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-conventions" class="xref">Conventions</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-conformance-criteria" class="xref">Conformance Criteria</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1" class="keepWithNext"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-syntax-notation" class="xref">Syntax Notation</a><a href="#section-toc.1-1.2.2.2.1" class="pilcrow">¶</a></p>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1" class="keepWithNext"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-syntax-notation" class="xref">Syntax Notation</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-terminology" class="xref">Terminology</a><a href="#section-toc.1-1.2.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-overview" class="xref">Overview</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-examples" class="xref">Examples</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-terminology" class="xref">Terminology</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-server-requirements" class="xref">Server Requirements</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-set-cookie" class="xref">Set-Cookie</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="xref">4.1.1</a>.  <a href="#name-syntax" class="xref">Syntax</a><a href="#section-toc.1-1.4.2.1.2.1.1" class="pilcrow">¶</a></p>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-overview" class="xref">Overview</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-examples" class="xref">Examples</a></p>
 </li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.1.2.2">
-                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="xref">4.1.2</a>.  <a href="#name-semantics-non-normative" class="xref">Semantics (Non-Normative)</a><a href="#section-toc.1-1.4.2.1.2.2.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.1.2.3">
-                    <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="xref">4.1.3</a>.  <a href="#name-cookie-name-prefixes" class="xref">Cookie Name Prefixes</a><a href="#section-toc.1-1.4.2.1.2.3.1" class="pilcrow">¶</a></p>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-server-requirements" class="xref">Server Requirements</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-set-cookie" class="xref">Set-Cookie</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.1">
+                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="xref">4.1.1</a>.  <a href="#name-syntax" class="xref">Syntax</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.2">
+                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="xref">4.1.2</a>.  <a href="#name-semantics-non-normative" class="xref">Semantics (Non-Normative)</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.3">
+                    <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="xref">4.1.3</a>.  <a href="#name-cookie-name-prefixes" class="xref">Cookie Name Prefixes</a></p>
 </li>
                 </ul>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-cookie" class="xref">Cookie</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.4.2.2.2.1">
-                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="xref">4.2.1</a>.  <a href="#name-syntax-2" class="xref">Syntax</a><a href="#section-toc.1-1.4.2.2.2.1.1" class="pilcrow">¶</a></p>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-cookie" class="xref">Cookie</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="xref">4.2.1</a>.  <a href="#name-syntax-2" class="xref">Syntax</a></p>
 </li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.2.2.2">
-                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="xref">4.2.2</a>.  <a href="#name-semantics" class="xref">Semantics</a><a href="#section-toc.1-1.4.2.2.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                </ul>
-</li>
-            </ul>
-</li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-user-agent-requirements" class="xref">User Agent Requirements</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-subcomponent-algorithms" class="xref">Subcomponent Algorithms</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.5.2.1.2.1">
-                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="xref">5.1.1</a>.  <a href="#name-dates" class="xref">Dates</a><a href="#section-toc.1-1.5.2.1.2.1.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.1.2.2">
-                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="xref">5.1.2</a>.  <a href="#name-canonicalized-host-names" class="xref">Canonicalized Host Names</a><a href="#section-toc.1-1.5.2.1.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.1.2.3">
-                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="xref">5.1.3</a>.  <a href="#name-domain-matching" class="xref">Domain Matching</a><a href="#section-toc.1-1.5.2.1.2.3.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.1.2.4">
-                    <p id="section-toc.1-1.5.2.1.2.4.1"><a href="#section-5.1.4" class="xref">5.1.4</a>.  <a href="#name-paths-and-path-match" class="xref">Paths and Path-Match</a><a href="#section-toc.1-1.5.2.1.2.4.1" class="pilcrow">¶</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-same-site-and-cross-site-re" class="xref">"Same-site" and "cross-site" Requests</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.5.2.2.2.1">
-                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="xref">5.2.1</a>.  <a href="#name-document-based-requests" class="xref">Document-based requests</a><a href="#section-toc.1-1.5.2.2.2.1.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.2.2.2">
-                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="xref">5.2.2</a>.  <a href="#name-worker-based-requests" class="xref">Worker-based requests</a><a href="#section-toc.1-1.5.2.2.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-the-set-cookie-header" class="xref">The Set-Cookie Header</a><a href="#section-toc.1-1.5.2.3.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.1">
-                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="xref">5.3.1</a>.  <a href="#name-the-expires-attribute-2" class="xref">The Expires Attribute</a><a href="#section-toc.1-1.5.2.3.2.1.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.2">
-                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="xref">5.3.2</a>.  <a href="#name-the-max-age-attribute-2" class="xref">The Max-Age Attribute</a><a href="#section-toc.1-1.5.2.3.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.3">
-                    <p id="section-toc.1-1.5.2.3.2.3.1"><a href="#section-5.3.3" class="xref">5.3.3</a>.  <a href="#name-the-domain-attribute-2" class="xref">The Domain Attribute</a><a href="#section-toc.1-1.5.2.3.2.3.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.4">
-                    <p id="section-toc.1-1.5.2.3.2.4.1"><a href="#section-5.3.4" class="xref">5.3.4</a>.  <a href="#name-the-path-attribute-2" class="xref">The Path Attribute</a><a href="#section-toc.1-1.5.2.3.2.4.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.5">
-                    <p id="section-toc.1-1.5.2.3.2.5.1"><a href="#section-5.3.5" class="xref">5.3.5</a>.  <a href="#name-the-secure-attribute-2" class="xref">The Secure Attribute</a><a href="#section-toc.1-1.5.2.3.2.5.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.6">
-                    <p id="section-toc.1-1.5.2.3.2.6.1"><a href="#section-5.3.6" class="xref">5.3.6</a>.  <a href="#name-the-httponly-attribute-2" class="xref">The HttpOnly Attribute</a><a href="#section-toc.1-1.5.2.3.2.6.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3.2.7">
-                    <p id="section-toc.1-1.5.2.3.2.7.1"><a href="#section-5.3.7" class="xref">5.3.7</a>.  <a href="#name-the-samesite-attribute-2" class="xref">The SameSite Attribute</a><a href="#section-toc.1-1.5.2.3.2.7.1" class="pilcrow">¶</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-storage-model" class="xref">Storage Model</a><a href="#section-toc.1-1.5.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.5">
-                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="xref">5.5</a>.  <a href="#name-the-cookie-header" class="xref">The Cookie Header</a><a href="#section-toc.1-1.5.2.5.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-implementation-consideratio" class="xref">Implementation Considerations</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-limits" class="xref">Limits</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-application-programming-int" class="xref">Application Programming Interfaces</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-idna-dependency-and-migrati" class="xref">IDNA Dependency and Migration</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-privacy-considerations" class="xref">Privacy Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-third-party-cookies" class="xref">Third-Party Cookies</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-user-controls" class="xref">User Controls</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-expiration-dates" class="xref">Expiration Dates</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-overview-2" class="xref">Overview</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-ambient-authority" class="xref">Ambient Authority</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-clear-text" class="xref">Clear Text</a><a href="#section-toc.1-1.8.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.4">
-                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="xref">8.4</a>.  <a href="#name-session-identifiers" class="xref">Session Identifiers</a><a href="#section-toc.1-1.8.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.5">
-                <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="xref">8.5</a>.  <a href="#name-weak-confidentiality" class="xref">Weak Confidentiality</a><a href="#section-toc.1-1.8.2.5.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.6">
-                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="xref">8.6</a>.  <a href="#name-weak-integrity" class="xref">Weak Integrity</a><a href="#section-toc.1-1.8.2.6.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.7">
-                <p id="section-toc.1-1.8.2.7.1"><a href="#section-8.7" class="xref">8.7</a>.  <a href="#name-reliance-on-dns" class="xref">Reliance on DNS</a><a href="#section-toc.1-1.8.2.7.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.8">
-                <p id="section-toc.1-1.8.2.8.1"><a href="#section-8.8" class="xref">8.8</a>.  <a href="#name-samesite-cookies" class="xref">SameSite Cookies</a><a href="#section-toc.1-1.8.2.8.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.8.2.8.2.1">
-                    <p id="section-toc.1-1.8.2.8.2.1.1"><a href="#section-8.8.1" class="xref">8.8.1</a>.  <a href="#name-defense-in-depth" class="xref">Defense in depth</a><a href="#section-toc.1-1.8.2.8.2.1.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.8.2.2">
-                    <p id="section-toc.1-1.8.2.8.2.2.1"><a href="#section-8.8.2" class="xref">8.8.2</a>.  <a href="#name-top-level-navigations" class="xref">Top-level Navigations</a><a href="#section-toc.1-1.8.2.8.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.8.2.3">
-                    <p id="section-toc.1-1.8.2.8.2.3.1"><a href="#section-8.8.3" class="xref">8.8.3</a>.  <a href="#name-mashups-and-widgets" class="xref">Mashups and Widgets</a><a href="#section-toc.1-1.8.2.8.2.3.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.8.2.4">
-                    <p id="section-toc.1-1.8.2.8.2.4.1"><a href="#section-8.8.4" class="xref">8.8.4</a>.  <a href="#name-server-controlled" class="xref">Server-controlled</a><a href="#section-toc.1-1.8.2.8.2.4.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.8.2.8.2.5">
-                    <p id="section-toc.1-1.8.2.8.2.5.1"><a href="#section-8.8.5" class="xref">8.8.5</a>.  <a href="#name-reload-navigations" class="xref">Reload navigations</a><a href="#section-toc.1-1.8.2.8.2.5.1" class="pilcrow">¶</a></p>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="xref">4.2.2</a>.  <a href="#name-semantics" class="xref">Semantics</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-cookie-2" class="xref">Cookie</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-user-agent-requirements" class="xref">User Agent Requirements</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-subcomponent-algorithms" class="xref">Subcomponent Algorithms</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1.2.1">
+                    <p id="section-toc.1-1.5.2.1.2.1.1"><a href="#section-5.1.1" class="xref">5.1.1</a>.  <a href="#name-dates" class="xref">Dates</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-set-cookie-2" class="xref">Set-Cookie</a><a href="#section-toc.1-1.9.2.2.1" class="pilcrow">¶</a></p>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1.2.2">
+                    <p id="section-toc.1-1.5.2.1.2.2.1"><a href="#section-5.1.2" class="xref">5.1.2</a>.  <a href="#name-canonicalized-host-names" class="xref">Canonicalized Host Names</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.9.2.3">
-                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-cookie-attribute-registry" class="xref">Cookie Attribute Registry</a><a href="#section-toc.1-1.9.2.3.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.3.2.1">
-                    <p id="section-toc.1-1.9.2.3.2.1.1"><a href="#section-9.3.1" class="xref">9.3.1</a>.  <a href="#name-procedure" class="xref">Procedure</a><a href="#section-toc.1-1.9.2.3.2.1.1" class="pilcrow">¶</a></p>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1.2.3">
+                    <p id="section-toc.1-1.5.2.1.2.3.1"><a href="#section-5.1.3" class="xref">5.1.3</a>.  <a href="#name-domain-matching" class="xref">Domain Matching</a></p>
 </li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.9.2.3.2.2">
-                    <p id="section-toc.1-1.9.2.3.2.2.1"><a href="#section-9.3.2" class="xref">9.3.2</a>.  <a href="#name-registration" class="xref">Registration</a><a href="#section-toc.1-1.9.2.3.2.2.1" class="pilcrow">¶</a></p>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1.2.4">
+                    <p id="section-toc.1-1.5.2.1.2.4.1"><a href="#section-5.1.4" class="xref">5.1.4</a>.  <a href="#name-paths-and-path-match" class="xref">Paths and Path-Match</a></p>
+</li>
+                </ul>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-same-site-and-cross-site-re" class="xref">"Same-site" and "cross-site" Requests</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.5.2.2.2.1">
+                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="xref">5.2.1</a>.  <a href="#name-document-based-requests" class="xref">Document-based requests</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.2.2.2">
+                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="xref">5.2.2</a>.  <a href="#name-worker-based-requests" class="xref">Worker-based requests</a></p>
+</li>
+                </ul>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-the-set-cookie-header" class="xref">The Set-Cookie Header</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.1">
+                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="xref">5.3.1</a>.  <a href="#name-the-expires-attribute-2" class="xref">The Expires Attribute</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.2">
+                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="xref">5.3.2</a>.  <a href="#name-the-max-age-attribute-2" class="xref">The Max-Age Attribute</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.3">
+                    <p id="section-toc.1-1.5.2.3.2.3.1"><a href="#section-5.3.3" class="xref">5.3.3</a>.  <a href="#name-the-domain-attribute-2" class="xref">The Domain Attribute</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.4">
+                    <p id="section-toc.1-1.5.2.3.2.4.1"><a href="#section-5.3.4" class="xref">5.3.4</a>.  <a href="#name-the-path-attribute-2" class="xref">The Path Attribute</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.5">
+                    <p id="section-toc.1-1.5.2.3.2.5.1"><a href="#section-5.3.5" class="xref">5.3.5</a>.  <a href="#name-the-secure-attribute-2" class="xref">The Secure Attribute</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.6">
+                    <p id="section-toc.1-1.5.2.3.2.6.1"><a href="#section-5.3.6" class="xref">5.3.6</a>.  <a href="#name-the-httponly-attribute-2" class="xref">The HttpOnly Attribute</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.3.2.7">
+                    <p id="section-toc.1-1.5.2.3.2.7.1"><a href="#section-5.3.7" class="xref">5.3.7</a>.  <a href="#name-the-samesite-attribute-2" class="xref">The SameSite Attribute</a></p>
+</li>
+                </ul>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.4">
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-storage-model" class="xref">Storage Model</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.5">
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="xref">5.5</a>.  <a href="#name-the-cookie-header" class="xref">The Cookie Header</a></p>
+</li>
+            </ul>
+</li>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-implementation-consideratio" class="xref">Implementation Considerations</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-limits" class="xref">Limits</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-application-programming-int" class="xref">Application Programming Interfaces</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-idna-dependency-and-migrati" class="xref">IDNA Dependency and Migration</a></p>
+</li>
+            </ul>
+</li>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-privacy-considerations" class="xref">Privacy Considerations</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-third-party-cookies" class="xref">Third-Party Cookies</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-user-controls" class="xref">User Controls</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-expiration-dates" class="xref">Expiration Dates</a></p>
+</li>
+            </ul>
+</li>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-overview-2" class="xref">Overview</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-ambient-authority" class="xref">Ambient Authority</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-clear-text" class="xref">Clear Text</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="xref">8.4</a>.  <a href="#name-session-identifiers" class="xref">Session Identifiers</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.5">
+                <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="xref">8.5</a>.  <a href="#name-weak-confidentiality" class="xref">Weak Confidentiality</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.6">
+                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="xref">8.6</a>.  <a href="#name-weak-integrity" class="xref">Weak Integrity</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.7">
+                <p id="section-toc.1-1.8.2.7.1"><a href="#section-8.7" class="xref">8.7</a>.  <a href="#name-reliance-on-dns" class="xref">Reliance on DNS</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.8">
+                <p id="section-toc.1-1.8.2.8.1"><a href="#section-8.8" class="xref">8.8</a>.  <a href="#name-samesite-cookies" class="xref">SameSite Cookies</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.8.2.1">
+                    <p id="section-toc.1-1.8.2.8.2.1.1"><a href="#section-8.8.1" class="xref">8.8.1</a>.  <a href="#name-defense-in-depth" class="xref">Defense in depth</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.8.2.2">
+                    <p id="section-toc.1-1.8.2.8.2.2.1"><a href="#section-8.8.2" class="xref">8.8.2</a>.  <a href="#name-top-level-navigations" class="xref">Top-level Navigations</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.8.2.3">
+                    <p id="section-toc.1-1.8.2.8.2.3.1"><a href="#section-8.8.3" class="xref">8.8.3</a>.  <a href="#name-mashups-and-widgets" class="xref">Mashups and Widgets</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.8.2.4">
+                    <p id="section-toc.1-1.8.2.8.2.4.1"><a href="#section-8.8.4" class="xref">8.8.4</a>.  <a href="#name-server-controlled" class="xref">Server-controlled</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.8.2.5">
+                    <p id="section-toc.1-1.8.2.8.2.5.1"><a href="#section-8.8.5" class="xref">8.8.5</a>.  <a href="#name-reload-navigations" class="xref">Reload navigations</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.10.2.1.1" class="pilcrow">¶</a></p>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-cookie-2" class="xref">Cookie</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.10.2.2.1" class="pilcrow">¶</a></p>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-set-cookie-2" class="xref">Set-Cookie</a></p>
 </li>
-            </ul>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-cookie-attribute-registry" class="xref">Cookie Attribute Registry</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.9.2.3.2.1">
+                    <p id="section-toc.1-1.9.2.3.2.1.1"><a href="#section-9.3.1" class="xref">9.3.1</a>.  <a href="#name-procedure" class="xref">Procedure</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-changes" class="xref">Changes</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.11.2.1">
-                <p id="section-toc.1-1.11.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-draft-ietf-httpbis-rfc6265b" class="xref">draft-ietf-httpbis-rfc6265bis-00</a><a href="#section-toc.1-1.11.2.1.1" class="pilcrow">¶</a></p>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.3.2.2">
+                    <p id="section-toc.1-1.9.2.3.2.2.1"><a href="#section-9.3.2" class="xref">9.3.2</a>.  <a href="#name-registration" class="xref">Registration</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-a.2" class="xref">A.2</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bi" class="xref">draft-ietf-httpbis-rfc6265bis-01</a><a href="#section-toc.1-1.11.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.3">
-                <p id="section-toc.1-1.11.2.3.1"><a href="#section-a.3" class="xref">A.3</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis" class="xref">draft-ietf-httpbis-rfc6265bis-02</a><a href="#section-toc.1-1.11.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.4">
-                <p id="section-toc.1-1.11.2.4.1"><a href="#section-a.4" class="xref">A.4</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-" class="xref">draft-ietf-httpbis-rfc6265bis-03</a><a href="#section-toc.1-1.11.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.5">
-                <p id="section-toc.1-1.11.2.5.1"><a href="#section-a.5" class="xref">A.5</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-0" class="xref">draft-ietf-httpbis-rfc6265bis-04</a><a href="#section-toc.1-1.11.2.5.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.6">
-                <p id="section-toc.1-1.11.2.6.1"><a href="#section-a.6" class="xref">A.6</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-05" class="xref">draft-ietf-httpbis-rfc6265bis-05</a><a href="#section-toc.1-1.11.2.6.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.7">
-                <p id="section-toc.1-1.11.2.7.1"><a href="#section-a.7" class="xref">A.7</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-06" class="xref">draft-ietf-httpbis-rfc6265bis-06</a><a href="#section-toc.1-1.11.2.7.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.8">
-                <p id="section-toc.1-1.11.2.8.1"><a href="#section-a.8" class="xref">A.8</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-07" class="xref">draft-ietf-httpbis-rfc6265bis-07</a><a href="#section-toc.1-1.11.2.8.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.11.2.9">
-                <p id="section-toc.1-1.11.2.9.1"><a href="#section-a.9" class="xref">A.9</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-08" class="xref">draft-ietf-httpbis-rfc6265bis-08</a><a href="#section-toc.1-1.11.2.9.1" class="pilcrow">¶</a></p>
+                </ul>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-references" class="xref">References</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-          <li class="compact toc ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-changes" class="xref">Changes</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-draft-ietf-httpbis-rfc6265b" class="xref">draft-ietf-httpbis-rfc6265bis-00</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-a.2" class="xref">A.2</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bi" class="xref">draft-ietf-httpbis-rfc6265bis-01</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.3">
+                <p id="section-toc.1-1.11.2.3.1"><a href="#section-a.3" class="xref">A.3</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis" class="xref">draft-ietf-httpbis-rfc6265bis-02</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.4">
+                <p id="section-toc.1-1.11.2.4.1"><a href="#section-a.4" class="xref">A.4</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-" class="xref">draft-ietf-httpbis-rfc6265bis-03</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.5">
+                <p id="section-toc.1-1.11.2.5.1"><a href="#section-a.5" class="xref">A.5</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-0" class="xref">draft-ietf-httpbis-rfc6265bis-04</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.6">
+                <p id="section-toc.1-1.11.2.6.1"><a href="#section-a.6" class="xref">A.6</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-05" class="xref">draft-ietf-httpbis-rfc6265bis-05</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.7">
+                <p id="section-toc.1-1.11.2.7.1"><a href="#section-a.7" class="xref">A.7</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-06" class="xref">draft-ietf-httpbis-rfc6265bis-06</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.8">
+                <p id="section-toc.1-1.11.2.8.1"><a href="#section-a.8" class="xref">A.8</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-07" class="xref">draft-ietf-httpbis-rfc6265bis-07</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.9">
+                <p id="section-toc.1-1.11.2.9.1"><a href="#section-a.9" class="xref">A.9</a>.  <a href="#name-draft-ietf-httpbis-rfc6265bis-08" class="xref">draft-ietf-httpbis-rfc6265bis-08</a></p>
+</li>
+            </ul>
+</li>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
+</li>
+          <li class="toc ulEmpty compact" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1331,10 +1343,10 @@ only if they are equivalent under the i;ascii-casemap collation defined in
 <span>[<a href="#RFC4790" class="xref">RFC4790</a>]</span>.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
 <p id="section-2.3-5">The term string means a sequence of non-NUL octets.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
 <p id="section-2.3-6">The terms "active document", "ancestor browsing context", "browsing context",
-"dedicated worker", "Document", "WorkerGlobalScope", "sandboxed origin browsing
-context flag", "parent browsing context", "shared worker", "the worker's
-Documents", "nested browsing context", and "top-level browsing context" are
-defined in <span>[<a href="#HTML" class="xref">HTML</a>]</span>.<a href="#section-2.3-6" class="pilcrow">¶</a></p>
+"dedicated worker", "Document", "nested browsing context", "opaque origin",
+"parent browsing context", "sandboxed origin browsing context flag", "shared
+worker", "the worker's Documents", "top-level browsing context", and
+"WorkerGlobalScope" are defined in <span>[<a href="#HTML" class="xref">HTML</a>]</span>.<a href="#section-2.3-6" class="pilcrow">¶</a></p>
 <p id="section-2.3-7">"Service Workers" are defined in the Service Workers specification
 <span>[<a href="#SERVICE-WORKERS" class="xref">SERVICE-WORKERS</a>]</span>.<a href="#section-2.3-7" class="pilcrow">¶</a></p>
 <p id="section-2.3-8">The term "origin", the mechanism of deriving an origin from a URI, and the "the
@@ -2100,7 +2112,7 @@ in order to account for the "multiple-nested scenarios" described in Section 4
 of <span>[<a href="#RFC7034" class="xref">RFC7034</a>]</span>. A document's "site for cookies" is the top-level origin if and
 only if the top-level origin is same-site with the document's origin, and with
 each of the document's ancestor documents' origins. Otherwise its "site for
-cookies" is an origin set to a globally unique identifier.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+cookies" is an origin set to an opaque origin.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-4">Given a Document (<code>document</code>), the following algorithm returns its "site for
 cookies":<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.2.1-5">
@@ -2121,7 +2133,7 @@ ancestor browsing contexts' active documents.<a href="#section-5.2.1-5.3" class=
 browsing context flag is set, and <code>item</code>'s origin otherwise.<a href="#section-5.2.1-5.4.2.1" class="pilcrow">¶</a>
 </li>
                 <li id="section-5.2.1-5.4.2.2">If <code>origin</code> is not same-site with <code>top-origin</code>, return an origin set to
-a globally unique identifier.<a href="#section-5.2.1-5.4.2.2" class="pilcrow">¶</a>
+an opaque origin.<a href="#section-5.2.1-5.4.2.2" class="pilcrow">¶</a>
 </li>
               </ol>
 </li>
@@ -2153,9 +2165,9 @@ one document. Requests generated from a dedicated worker (via <code>importScript
 document's "site for cookies".<a href="#section-5.2.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.2.1-2">Shared workers may be bound to multiple documents at once. As it is quite
 possible for those documents to have distinct "site for cookies" values, the
-worker's "site for cookies" will be an origin set to a globally unique
-identifier in cases where the values are not all same-site with the worker's
-origin, and the worker's origin in cases where the values agree.<a href="#section-5.2.2.1-2" class="pilcrow">¶</a></p>
+worker's "site for cookies" will be an origin set to an opaque origin in cases
+where the values are not all same-site with the worker's origin, and the
+worker's origin in cases where the values agree.<a href="#section-5.2.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.2.2.1-3">Given a WorkerGlobalScope (<code>worker</code>), the following algorithm returns its "site
 for cookies":<a href="#section-5.2.2.1-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.2.2.1-4">
@@ -2168,7 +2180,7 @@ for cookies":<a href="#section-5.2.2.1-3" class="pilcrow">¶</a></p>
 in <a href="#document-requests" class="xref">Section 5.2.1</a>).<a href="#section-5.2.2.1-4.2.2.1" class="pilcrow">¶</a>
 </li>
                   <li id="section-5.2.2.1-4.2.2.2">If <code>document-site</code> is not same-site with <code>site</code>, return an origin
-set to a globally unique identifier.<a href="#section-5.2.2.1-4.2.2.2" class="pilcrow">¶</a>
+set to an opaque origin.<a href="#section-5.2.2.1-4.2.2.2" class="pilcrow">¶</a>
 </li>
                 </ol>
 </li>
@@ -2220,99 +2232,111 @@ set-cookie-string (defined below).<a href="#section-5.3-2" class="pilcrow">¶</a
 <p id="section-5.3-3">NOTE: The algorithm below is more permissive than the grammar in <a href="#sane-set-cookie" class="xref">Section 4.1</a>.
 For example, the algorithm strips leading and trailing whitespace from the
 cookie name and value (but maintains internal whitespace), whereas the grammar
-in <a href="#sane-set-cookie" class="xref">Section 4.1</a> forbids whitespace in these positions. User agents use this
-algorithm so as to interoperate with servers that do not follow the
-recommendations in <a href="#sane-profile" class="xref">Section 4</a>.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">A user agent MUST use an algorithm equivalent to the following algorithm to
-parse a set-cookie-string:<a href="#section-5.3-4" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-5">
-<li id="section-5.3-5.1">
-            <p id="section-5.3-5.1.1">If the set-cookie-string contains a %x3B (";") character:<a href="#section-5.3-5.1.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-5.1.2">
-<li id="section-5.3-5.1.2.1">The name-value-pair string consists of the characters up to, but not
+in <a href="#sane-set-cookie" class="xref">Section 4.1</a> forbids whitespace in these positions. In addition, the
+algorithm below accommodates some characters that are not cookie-octets
+according to the grammar in <a href="#sane-set-cookie" class="xref">Section 4.1</a>. User agents use this algorithm
+so as to interoperate with servers that do not follow the recommendations in
+<a href="#sane-profile" class="xref">Section 4</a>.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<p id="section-5.3-4">NOTE: As set-cookie-string may originate from a non-HTTP API, it is not
+guaranteed to be free of CTL characters, so this algorithm handles them
+explicitly.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-5">A user agent MUST use an algorithm equivalent to the following algorithm to
+parse a set-cookie-string:<a href="#section-5.3-5" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-6">
+<li id="section-5.3-6.1">If the set-cookie-string contains a %x0D (CR), %x0A (LF), or %x00 (NUL)
+octet, then set the set-cookie-string equal to all the characters of
+set-cookie-string up to, but not including, the first such octet.<a href="#section-5.3-6.1" class="pilcrow">¶</a>
+</li>
+          <li id="section-5.3-6.2">If the set-cookie-string contains a %x00-1F / %x7F (CTL) character:
+Abort these steps and ignore the set-cookie-string entirely.<a href="#section-5.3-6.2" class="pilcrow">¶</a>
+</li>
+          <li id="section-5.3-6.3">
+            <p id="section-5.3-6.3.1">If the set-cookie-string contains a %x3B (";") character:<a href="#section-5.3-6.3.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-6.3.2">
+<li id="section-5.3-6.3.2.1">The name-value-pair string consists of the characters up to, but not
 including, the first %x3B (";"), and the unparsed-attributes consist of
 the remainder of the set-cookie-string (including the %x3B (";") in
-question).<a href="#section-5.3-5.1.2.1" class="pilcrow">¶</a>
+question).<a href="#section-5.3-6.3.2.1" class="pilcrow">¶</a>
 </li>
             </ol>
-<p id="section-5.3-5.1.3">
-Otherwise:<a href="#section-5.3-5.1.3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-5.1.4">
-<li id="section-5.3-5.1.4.1">The name-value-pair string consists of all the characters contained in
+<p id="section-5.3-6.3.3">
+Otherwise:<a href="#section-5.3-6.3.3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-6.3.4">
+<li id="section-5.3-6.3.4.1">The name-value-pair string consists of all the characters contained in
 the set-cookie-string, and the unparsed-attributes is the empty
-string.<a href="#section-5.3-5.1.4.1" class="pilcrow">¶</a>
+string.<a href="#section-5.3-6.3.4.1" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
-          <li id="section-5.3-5.2">
-            <p id="section-5.3-5.2.1">If the name-value-pair string lacks a %x3D ("=") character, then the name
-string is empty, and the value string is the value of name-value-pair.<a href="#section-5.3-5.2.1" class="pilcrow">¶</a></p>
-<p id="section-5.3-5.2.2">
+          <li id="section-5.3-6.4">
+            <p id="section-5.3-6.4.1">If the name-value-pair string lacks a %x3D ("=") character, then the name
+string is empty, and the value string is the value of name-value-pair.<a href="#section-5.3-6.4.1" class="pilcrow">¶</a></p>
+<p id="section-5.3-6.4.2">
 Otherwise, the name string consists of the characters up to, but not
 including, the first %x3D ("=") character, and the (possibly empty) value
-string consists of the characters after the first %x3D ("=") character.<a href="#section-5.3-5.2.2" class="pilcrow">¶</a></p>
+string consists of the characters after the first %x3D ("=") character.<a href="#section-5.3-6.4.2" class="pilcrow">¶</a></p>
 </li>
-          <li id="section-5.3-5.3">Remove any leading or trailing WSP characters from the name string and the
-value string.<a href="#section-5.3-5.3" class="pilcrow">¶</a>
+          <li id="section-5.3-6.5">Remove any leading or trailing WSP characters from the name string and the
+value string.<a href="#section-5.3-6.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-5.4">The cookie-name is the name string, and the cookie-value is the value string.<a href="#section-5.3-5.4" class="pilcrow">¶</a>
+          <li id="section-5.3-6.6">The cookie-name is the name string, and the cookie-value is the value string.<a href="#section-5.3-6.6" class="pilcrow">¶</a>
 </li>
         </ol>
-<p id="section-5.3-6">The user agent MUST use an algorithm equivalent to the following algorithm to
-parse the unparsed-attributes:<a href="#section-5.3-6" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-7">
-<li id="section-5.3-7.1">If the unparsed-attributes string is empty, skip the rest of these steps.<a href="#section-5.3-7.1" class="pilcrow">¶</a>
+<p id="section-5.3-7">The user agent MUST use an algorithm equivalent to the following algorithm to
+parse the unparsed-attributes:<a href="#section-5.3-7" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-8">
+<li id="section-5.3-8.1">If the unparsed-attributes string is empty, skip the rest of these steps.<a href="#section-5.3-8.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-7.2">Discard the first character of the unparsed-attributes (which will be a
-%x3B (";") character).<a href="#section-5.3-7.2" class="pilcrow">¶</a>
+          <li id="section-5.3-8.2">Discard the first character of the unparsed-attributes (which will be a
+%x3B (";") character).<a href="#section-5.3-8.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-7.3">
-            <p id="section-5.3-7.3.1">If the remaining unparsed-attributes contains a %x3B (";") character:<a href="#section-5.3-7.3.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-7.3.2">
-<li id="section-5.3-7.3.2.1">Consume the characters of the unparsed-attributes up to, but not
-including, the first %x3B (";") character.<a href="#section-5.3-7.3.2.1" class="pilcrow">¶</a>
-</li>
-            </ol>
-<p id="section-5.3-7.3.3">
-Otherwise:<a href="#section-5.3-7.3.3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-7.3.4">
-<li id="section-5.3-7.3.4.1">Consume the remainder of the unparsed-attributes.<a href="#section-5.3-7.3.4.1" class="pilcrow">¶</a>
+          <li id="section-5.3-8.3">
+            <p id="section-5.3-8.3.1">If the remaining unparsed-attributes contains a %x3B (";") character:<a href="#section-5.3-8.3.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-8.3.2">
+<li id="section-5.3-8.3.2.1">Consume the characters of the unparsed-attributes up to, but not
+including, the first %x3B (";") character.<a href="#section-5.3-8.3.2.1" class="pilcrow">¶</a>
 </li>
             </ol>
-<p id="section-5.3-7.3.5">
-Let the cookie-av string be the characters consumed in this step.<a href="#section-5.3-7.3.5" class="pilcrow">¶</a></p>
+<p id="section-5.3-8.3.3">
+Otherwise:<a href="#section-5.3-8.3.3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-8.3.4">
+<li id="section-5.3-8.3.4.1">Consume the remainder of the unparsed-attributes.<a href="#section-5.3-8.3.4.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-7.4">
-            <p id="section-5.3-7.4.1">If the cookie-av string contains a %x3D ("=") character:<a href="#section-5.3-7.4.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-7.4.2">
-<li id="section-5.3-7.4.2.1">The (possibly empty) attribute-name string consists of the characters
+            </ol>
+<p id="section-5.3-8.3.5">
+Let the cookie-av string be the characters consumed in this step.<a href="#section-5.3-8.3.5" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-5.3-8.4">
+            <p id="section-5.3-8.4.1">If the cookie-av string contains a %x3D ("=") character:<a href="#section-5.3-8.4.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-8.4.2">
+<li id="section-5.3-8.4.2.1">The (possibly empty) attribute-name string consists of the characters
 up to, but not including, the first %x3D ("=") character, and the
 (possibly empty) attribute-value string consists of the characters
-after the first %x3D ("=") character.<a href="#section-5.3-7.4.2.1" class="pilcrow">¶</a>
+after the first %x3D ("=") character.<a href="#section-5.3-8.4.2.1" class="pilcrow">¶</a>
 </li>
             </ol>
-<p id="section-5.3-7.4.3">
-Otherwise:<a href="#section-5.3-7.4.3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.3-7.4.4">
-<li id="section-5.3-7.4.4.1">The attribute-name string consists of the entire cookie-av string,
-and the attribute-value string is empty.<a href="#section-5.3-7.4.4.1" class="pilcrow">¶</a>
+<p id="section-5.3-8.4.3">
+Otherwise:<a href="#section-5.3-8.4.3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.3-8.4.4">
+<li id="section-5.3-8.4.4.1">The attribute-name string consists of the entire cookie-av string,
+and the attribute-value string is empty.<a href="#section-5.3-8.4.4.1" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
-          <li id="section-5.3-7.5">Remove any leading or trailing WSP characters from the attribute-name
-string and the attribute-value string.<a href="#section-5.3-7.5" class="pilcrow">¶</a>
+          <li id="section-5.3-8.5">Remove any leading or trailing WSP characters from the attribute-name
+string and the attribute-value string.<a href="#section-5.3-8.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-7.6">Process the attribute-name and attribute-value according to the
+          <li id="section-5.3-8.6">Process the attribute-name and attribute-value according to the
 requirements in the following subsections. (Notice that attributes with
-unrecognized attribute-names are ignored.)<a href="#section-5.3-7.6" class="pilcrow">¶</a>
+unrecognized attribute-names are ignored.)<a href="#section-5.3-8.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.3-7.7">Return to Step 1 of this algorithm.<a href="#section-5.3-7.7" class="pilcrow">¶</a>
+          <li id="section-5.3-8.7">Return to Step 1 of this algorithm.<a href="#section-5.3-8.7" class="pilcrow">¶</a>
 </li>
         </ol>
-<p id="section-5.3-8">When the user agent finishes parsing the set-cookie-string, the user agent is
+<p id="section-5.3-9">When the user agent finishes parsing the set-cookie-string, the user agent is
 said to "receive a cookie" from the request-uri with name cookie-name,
 value cookie-value, and attributes cookie-attribute-list. (See <a href="#storage-model" class="xref">Section 5.4</a>
-for additional requirements triggered by receiving a cookie.)<a href="#section-5.3-8" class="pilcrow">¶</a></p>
+for additional requirements triggered by receiving a cookie.)<a href="#section-5.3-9" class="pilcrow">¶</a></p>
 <div id="the-expires-attribute">
 <section id="section-5.3.1">
           <h4 id="name-the-expires-attribute-2">
@@ -2530,230 +2554,233 @@ size.<a href="#section-5.4-3.1" class="pilcrow">¶</a>
           <li id="section-5.4-3.2">If cookie-name is empty and cookie-value is empty, abort these steps and
 ignore the cookie entirely.<a href="#section-5.4-3.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.3">Create a new cookie with name cookie-name, value cookie-value. Set the
-creation-time and the last-access-time to the current date and time.<a href="#section-5.4-3.3" class="pilcrow">¶</a>
+          <li id="section-5.4-3.3">If the cookie-name or the cookie-value contains a %x00-1F / %x7F (CTL)
+character, abort these steps and ignore the cookie entirely.<a href="#section-5.4-3.3" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.4">
-            <p id="section-5.4-3.4.1">If the cookie-attribute-list contains an attribute with an attribute-name
-of "Max-Age":<a href="#section-5.4-3.4.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.4.2">
-<li id="section-5.4-3.4.2.1">Set the cookie's persistent-flag to true.<a href="#section-5.4-3.4.2.1" class="pilcrow">¶</a>
-</li>
-              <li id="section-5.4-3.4.2.2">Set the cookie's expiry-time to attribute-value of the last
-attribute in the cookie-attribute-list with an attribute-name of
-"Max-Age".<a href="#section-5.4-3.4.2.2" class="pilcrow">¶</a>
-</li>
-            </ol>
-<p id="section-5.4-3.4.3">
-Otherwise, if the cookie-attribute-list contains an attribute with an
-attribute-name of "Expires" (and does not contain an attribute with an
-attribute-name of "Max-Age"):<a href="#section-5.4-3.4.3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.4.4">
-<li id="section-5.4-3.4.4.1">Set the cookie's persistent-flag to true.<a href="#section-5.4-3.4.4.1" class="pilcrow">¶</a>
-</li>
-              <li id="section-5.4-3.4.4.2">Set the cookie's expiry-time to attribute-value of the last
-attribute in the cookie-attribute-list with an attribute-name of
-"Expires".<a href="#section-5.4-3.4.4.2" class="pilcrow">¶</a>
-</li>
-            </ol>
-<p id="section-5.4-3.4.5">
-Otherwise:<a href="#section-5.4-3.4.5" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.4.6">
-<li id="section-5.4-3.4.6.1">Set the cookie's persistent-flag to false.<a href="#section-5.4-3.4.6.1" class="pilcrow">¶</a>
-</li>
-              <li id="section-5.4-3.4.6.2">Set the cookie's expiry-time to the latest representable date.<a href="#section-5.4-3.4.6.2" class="pilcrow">¶</a>
-</li>
-            </ol>
+          <li id="section-5.4-3.4">Create a new cookie with name cookie-name, value cookie-value. Set the
+creation-time and the last-access-time to the current date and time.<a href="#section-5.4-3.4" class="pilcrow">¶</a>
 </li>
           <li id="section-5.4-3.5">
-            <p id="section-5.4-3.5.1">If the cookie-attribute-list contains an attribute with an
-attribute-name of "Domain":<a href="#section-5.4-3.5.1" class="pilcrow">¶</a></p>
+            <p id="section-5.4-3.5.1">If the cookie-attribute-list contains an attribute with an attribute-name
+of "Max-Age":<a href="#section-5.4-3.5.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.5.2">
-<li id="section-5.4-3.5.2.1">Let the domain-attribute be the attribute-value of the last
+<li id="section-5.4-3.5.2.1">Set the cookie's persistent-flag to true.<a href="#section-5.4-3.5.2.1" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.5.2.2">Set the cookie's expiry-time to attribute-value of the last
 attribute in the cookie-attribute-list with an attribute-name of
-"Domain".<a href="#section-5.4-3.5.2.1" class="pilcrow">¶</a>
+"Max-Age".<a href="#section-5.4-3.5.2.2" class="pilcrow">¶</a>
 </li>
             </ol>
 <p id="section-5.4-3.5.3">
-Otherwise:<a href="#section-5.4-3.5.3" class="pilcrow">¶</a></p>
+Otherwise, if the cookie-attribute-list contains an attribute with an
+attribute-name of "Expires" (and does not contain an attribute with an
+attribute-name of "Max-Age"):<a href="#section-5.4-3.5.3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.5.4">
-<li id="section-5.4-3.5.4.1">Let the domain-attribute be the empty string.<a href="#section-5.4-3.5.4.1" class="pilcrow">¶</a>
+<li id="section-5.4-3.5.4.1">Set the cookie's persistent-flag to true.<a href="#section-5.4-3.5.4.1" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.5.4.2">Set the cookie's expiry-time to attribute-value of the last
+attribute in the cookie-attribute-list with an attribute-name of
+"Expires".<a href="#section-5.4-3.5.4.2" class="pilcrow">¶</a>
+</li>
+            </ol>
+<p id="section-5.4-3.5.5">
+Otherwise:<a href="#section-5.4-3.5.5" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.5.6">
+<li id="section-5.4-3.5.6.1">Set the cookie's persistent-flag to false.<a href="#section-5.4-3.5.6.1" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.5.6.2">Set the cookie's expiry-time to the latest representable date.<a href="#section-5.4-3.5.6.2" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
           <li id="section-5.4-3.6">
-            <p id="section-5.4-3.6.1">If the user agent is configured to reject "public suffixes" and the
-domain-attribute is a public suffix:<a href="#section-5.4-3.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.4-3.6.1">If the cookie-attribute-list contains an attribute with an
+attribute-name of "Domain":<a href="#section-5.4-3.6.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.6.2">
-<li id="section-5.4-3.6.2.1">
-                <p id="section-5.4-3.6.2.1.1">If the domain-attribute is identical to the canonicalized
-request-host:<a href="#section-5.4-3.6.2.1.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.6.2.1.2">
-<li id="section-5.4-3.6.2.1.2.1">Let the domain-attribute be the empty string.<a href="#section-5.4-3.6.2.1.2.1" class="pilcrow">¶</a>
-</li>
-                </ol>
-<p id="section-5.4-3.6.2.1.3">
-Otherwise:<a href="#section-5.4-3.6.2.1.3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.6.2.1.4">
-<li id="section-5.4-3.6.2.1.4.1">Ignore the cookie entirely and abort these steps.<a href="#section-5.4-3.6.2.1.4.1" class="pilcrow">¶</a>
-</li>
-                </ol>
+<li id="section-5.4-3.6.2.1">Let the domain-attribute be the attribute-value of the last
+attribute in the cookie-attribute-list with an attribute-name of
+"Domain".<a href="#section-5.4-3.6.2.1" class="pilcrow">¶</a>
 </li>
             </ol>
 <p id="section-5.4-3.6.3">
-NOTE: This step prevents <code>attacker.example</code> from disrupting the integrity of
-<code>site.example</code> by setting a cookie with a Domain attribute of "example".<a href="#section-5.4-3.6.3" class="pilcrow">¶</a></p>
+Otherwise:<a href="#section-5.4-3.6.3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.6.4">
+<li id="section-5.4-3.6.4.1">Let the domain-attribute be the empty string.<a href="#section-5.4-3.6.4.1" class="pilcrow">¶</a>
+</li>
+            </ol>
 </li>
           <li id="section-5.4-3.7">
-            <p id="section-5.4-3.7.1">If the domain-attribute is non-empty:<a href="#section-5.4-3.7.1" class="pilcrow">¶</a></p>
+            <p id="section-5.4-3.7.1">If the user agent is configured to reject "public suffixes" and the
+domain-attribute is a public suffix:<a href="#section-5.4-3.7.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.7.2">
 <li id="section-5.4-3.7.2.1">
-                <p id="section-5.4-3.7.2.1.1">If the canonicalized request-host does not domain-match the
-domain-attribute:<a href="#section-5.4-3.7.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-5.4-3.7.2.1.1">If the domain-attribute is identical to the canonicalized
+request-host:<a href="#section-5.4-3.7.2.1.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.7.2.1.2">
-<li id="section-5.4-3.7.2.1.2.1">Ignore the cookie entirely and abort these steps.<a href="#section-5.4-3.7.2.1.2.1" class="pilcrow">¶</a>
+<li id="section-5.4-3.7.2.1.2.1">Let the domain-attribute be the empty string.<a href="#section-5.4-3.7.2.1.2.1" class="pilcrow">¶</a>
 </li>
                 </ol>
 <p id="section-5.4-3.7.2.1.3">
 Otherwise:<a href="#section-5.4-3.7.2.1.3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.7.2.1.4">
-<li id="section-5.4-3.7.2.1.4.1">Set the cookie's host-only-flag to false.<a href="#section-5.4-3.7.2.1.4.1" class="pilcrow">¶</a>
-</li>
-                  <li id="section-5.4-3.7.2.1.4.2">Set the cookie's domain to the domain-attribute.<a href="#section-5.4-3.7.2.1.4.2" class="pilcrow">¶</a>
+<li id="section-5.4-3.7.2.1.4.1">Ignore the cookie entirely and abort these steps.<a href="#section-5.4-3.7.2.1.4.1" class="pilcrow">¶</a>
 </li>
                 </ol>
 </li>
             </ol>
 <p id="section-5.4-3.7.3">
-Otherwise:<a href="#section-5.4-3.7.3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.7.4">
-<li id="section-5.4-3.7.4.1">Set the cookie's host-only-flag to true.<a href="#section-5.4-3.7.4.1" class="pilcrow">¶</a>
+NOTE: This step prevents <code>attacker.example</code> from disrupting the integrity of
+<code>site.example</code> by setting a cookie with a Domain attribute of "example".<a href="#section-5.4-3.7.3" class="pilcrow">¶</a></p>
 </li>
-              <li id="section-5.4-3.7.4.2">Set the cookie's domain to the canonicalized request-host.<a href="#section-5.4-3.7.4.2" class="pilcrow">¶</a>
+          <li id="section-5.4-3.8">
+            <p id="section-5.4-3.8.1">If the domain-attribute is non-empty:<a href="#section-5.4-3.8.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.8.2">
+<li id="section-5.4-3.8.2.1">
+                <p id="section-5.4-3.8.2.1.1">If the canonicalized request-host does not domain-match the
+domain-attribute:<a href="#section-5.4-3.8.2.1.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.8.2.1.2">
+<li id="section-5.4-3.8.2.1.2.1">Ignore the cookie entirely and abort these steps.<a href="#section-5.4-3.8.2.1.2.1" class="pilcrow">¶</a>
+</li>
+                </ol>
+<p id="section-5.4-3.8.2.1.3">
+Otherwise:<a href="#section-5.4-3.8.2.1.3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.8.2.1.4">
+<li id="section-5.4-3.8.2.1.4.1">Set the cookie's host-only-flag to false.<a href="#section-5.4-3.8.2.1.4.1" class="pilcrow">¶</a>
+</li>
+                  <li id="section-5.4-3.8.2.1.4.2">Set the cookie's domain to the domain-attribute.<a href="#section-5.4-3.8.2.1.4.2" class="pilcrow">¶</a>
+</li>
+                </ol>
+</li>
+            </ol>
+<p id="section-5.4-3.8.3">
+Otherwise:<a href="#section-5.4-3.8.3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.8.4">
+<li id="section-5.4-3.8.4.1">Set the cookie's host-only-flag to true.<a href="#section-5.4-3.8.4.1" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.8.4.2">Set the cookie's domain to the canonicalized request-host.<a href="#section-5.4-3.8.4.2" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
-          <li id="section-5.4-3.8">If the cookie-attribute-list contains an attribute with an
+          <li id="section-5.4-3.9">If the cookie-attribute-list contains an attribute with an
 attribute-name of "Path", set the cookie's path to attribute-value of
 the last attribute in the cookie-attribute-list with an attribute-name
 of "Path". Otherwise, set the cookie's path to the default-path of the
-request-uri.<a href="#section-5.4-3.8" class="pilcrow">¶</a>
+request-uri.<a href="#section-5.4-3.9" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.9">If the cookie-attribute-list contains an attribute with an
+          <li id="section-5.4-3.10">If the cookie-attribute-list contains an attribute with an
 attribute-name of "Secure", set the cookie's secure-only-flag to true.
-Otherwise, set the cookie's secure-only-flag to false.<a href="#section-5.4-3.9" class="pilcrow">¶</a>
+Otherwise, set the cookie's secure-only-flag to false.<a href="#section-5.4-3.10" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.10">If the scheme component of the request-uri does not denote a "secure"
+          <li id="section-5.4-3.11">If the scheme component of the request-uri does not denote a "secure"
     protocol (as defined by the user agent), and the cookie's secure-only-flag
-    is true, then abort these steps and ignore the cookie entirely.<a href="#section-5.4-3.10" class="pilcrow">¶</a>
+    is true, then abort these steps and ignore the cookie entirely.<a href="#section-5.4-3.11" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.11">If the cookie-attribute-list contains an attribute with an
+          <li id="section-5.4-3.12">If the cookie-attribute-list contains an attribute with an
 attribute-name of "HttpOnly", set the cookie's http-only-flag to true.
-Otherwise, set the cookie's http-only-flag to false.<a href="#section-5.4-3.11" class="pilcrow">¶</a>
+Otherwise, set the cookie's http-only-flag to false.<a href="#section-5.4-3.12" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.12">If the cookie was received from a "non-HTTP" API and the cookie's
-http-only-flag is true, abort these steps and ignore the cookie entirely.<a href="#section-5.4-3.12" class="pilcrow">¶</a>
+          <li id="section-5.4-3.13">If the cookie was received from a "non-HTTP" API and the cookie's
+http-only-flag is true, abort these steps and ignore the cookie entirely.<a href="#section-5.4-3.13" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.13">
-            <p id="section-5.4-3.13.1">If the cookie's secure-only-flag is false, and the scheme component of
+          <li id="section-5.4-3.14">
+            <p id="section-5.4-3.14.1">If the cookie's secure-only-flag is false, and the scheme component of
 request-uri does not denote a "secure" protocol, then abort these steps and
 ignore the cookie entirely if the cookie store contains one or more cookies
-that meet all of the following criteria:<a href="#section-5.4-3.13.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.13.2">
-<li id="section-5.4-3.13.2.1">Their name matches the name of the newly-created cookie.<a href="#section-5.4-3.13.2.1" class="pilcrow">¶</a>
+that meet all of the following criteria:<a href="#section-5.4-3.14.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.14.2">
+<li id="section-5.4-3.14.2.1">Their name matches the name of the newly-created cookie.<a href="#section-5.4-3.14.2.1" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.13.2.2">Their secure-only-flag is true.<a href="#section-5.4-3.13.2.2" class="pilcrow">¶</a>
+              <li id="section-5.4-3.14.2.2">Their secure-only-flag is true.<a href="#section-5.4-3.14.2.2" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.13.2.3">Their domain domain-matches the domain of the newly-created cookie, or
-vice-versa.<a href="#section-5.4-3.13.2.3" class="pilcrow">¶</a>
+              <li id="section-5.4-3.14.2.3">Their domain domain-matches the domain of the newly-created cookie, or
+vice-versa.<a href="#section-5.4-3.14.2.3" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.13.2.4">The path of the newly-created cookie path-matches the path of the
-existing cookie.<a href="#section-5.4-3.13.2.4" class="pilcrow">¶</a>
+              <li id="section-5.4-3.14.2.4">The path of the newly-created cookie path-matches the path of the
+existing cookie.<a href="#section-5.4-3.14.2.4" class="pilcrow">¶</a>
 </li>
             </ol>
-<p id="section-5.4-3.13.3">
+<p id="section-5.4-3.14.3">
 Note: The path comparison is not symmetric, ensuring only that a
 newly-created, non-secure cookie does not overlay an existing secure
 cookie, providing some mitigation against cookie-fixing attacks. That is,
 given an existing secure cookie named 'a' with a path of '/login', a
 non-secure cookie named 'a' could be set for a path of '/' or '/foo', but
-not for a path of '/login' or '/login/en'.<a href="#section-5.4-3.13.3" class="pilcrow">¶</a></p>
+not for a path of '/login' or '/login/en'.<a href="#section-5.4-3.14.3" class="pilcrow">¶</a></p>
 </li>
-          <li id="section-5.4-3.14">If the cookie-attribute-list contains an attribute with an
+          <li id="section-5.4-3.15">If the cookie-attribute-list contains an attribute with an
 attribute-name of "SameSite", and an attribute-value of "Strict", "Lax", or
 "None", set the cookie's same-site-flag to the attribute-value of the last
 attribute in the cookie-attribute-list with an attribute-name of "SameSite".
-Otherwise, set the cookie's same-site-flag to "Default".<a href="#section-5.4-3.14" class="pilcrow">¶</a>
+Otherwise, set the cookie's same-site-flag to "Default".<a href="#section-5.4-3.15" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.15">
-            <p id="section-5.4-3.15.1">If the cookie's <code>same-site-flag</code> is not "None":<a href="#section-5.4-3.15.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.15.2">
-<li id="section-5.4-3.15.2.1">If the cookie was received from a "non-HTTP" API, and the API was called
+          <li id="section-5.4-3.16">
+            <p id="section-5.4-3.16.1">If the cookie's <code>same-site-flag</code> is not "None":<a href="#section-5.4-3.16.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.16.2">
+<li id="section-5.4-3.16.2.1">If the cookie was received from a "non-HTTP" API, and the API was called
 from a browsing context's active document whose "site for cookies" is
 not same-site with the top-level origin, then abort these steps and
-ignore the newly created cookie entirely.<a href="#section-5.4-3.15.2.1" class="pilcrow">¶</a>
+ignore the newly created cookie entirely.<a href="#section-5.4-3.16.2.1" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.15.2.2">If the cookie was received from a "same-site" request (as defined in
+              <li id="section-5.4-3.16.2.2">If the cookie was received from a "same-site" request (as defined in
 <a href="#same-site-requests" class="xref">Section 5.2</a>), skip the remaining substeps and continue
-processing the cookie.<a href="#section-5.4-3.15.2.2" class="pilcrow">¶</a>
+processing the cookie.<a href="#section-5.4-3.16.2.2" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.15.2.3">
-                <p id="section-5.4-3.15.2.3.1">If the cookie was received from a request which is navigating a
+              <li id="section-5.4-3.16.2.3">
+                <p id="section-5.4-3.16.2.3.1">If the cookie was received from a request which is navigating a
 top-level browsing context <span>[<a href="#HTML" class="xref">HTML</a>]</span> (e.g. if the request's "reserved
 client" is either <code>null</code> or an environment whose "target browsing
 context" is a top-level browing context), skip the remaining substeps
-and continue processing the cookie.<a href="#section-5.4-3.15.2.3.1" class="pilcrow">¶</a></p>
-<p id="section-5.4-3.15.2.3.2">
+and continue processing the cookie.<a href="#section-5.4-3.16.2.3.1" class="pilcrow">¶</a></p>
+<p id="section-5.4-3.16.2.3.2">
 Note: Top-level navigations can create a cookie with any <code>SameSite</code>
 value, even if the new cookie wouldn't have been sent along with
-the request had it already existed prior to the navigation.<a href="#section-5.4-3.15.2.3.2" class="pilcrow">¶</a></p>
+the request had it already existed prior to the navigation.<a href="#section-5.4-3.16.2.3.2" class="pilcrow">¶</a></p>
 </li>
-              <li id="section-5.4-3.15.2.4">Abort these steps and ignore the newly created cookie entirely.<a href="#section-5.4-3.15.2.4" class="pilcrow">¶</a>
+              <li id="section-5.4-3.16.2.4">Abort these steps and ignore the newly created cookie entirely.<a href="#section-5.4-3.16.2.4" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
-          <li id="section-5.4-3.16">If the cookie's "same-site-flag" is "None", abort these steps and ignore the
-cookie entirely unless the cookie's secure-only-flag is true.<a href="#section-5.4-3.16" class="pilcrow">¶</a>
+          <li id="section-5.4-3.17">If the cookie's "same-site-flag" is "None", abort these steps and ignore the
+cookie entirely unless the cookie's secure-only-flag is true.<a href="#section-5.4-3.17" class="pilcrow">¶</a>
 </li>
-          <li id="section-5.4-3.17">If the cookie-name begins with a case-sensitive match for the string
+          <li id="section-5.4-3.18">If the cookie-name begins with a case-sensitive match for the string
 "__Secure-", abort these steps and ignore the cookie entirely unless the
-cookie's secure-only-flag is true.<a href="#section-5.4-3.17" class="pilcrow">¶</a>
-</li>
-          <li id="section-5.4-3.18">
-            <p id="section-5.4-3.18.1">If the cookie-name begins with a case-sensitive match for the string
-"__Host-", abort these steps and ignore the cookie entirely unless the
-cookie meets all the following criteria:<a href="#section-5.4-3.18.1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.4-3.18.2">
-<li id="section-5.4-3.18.2.1">The cookie's secure-only-flag is true.<a href="#section-5.4-3.18.2.1" class="pilcrow">¶</a>
-</li>
-              <li id="section-5.4-3.18.2.2">The cookie's host-only-flag is true.<a href="#section-5.4-3.18.2.2" class="pilcrow">¶</a>
-</li>
-              <li id="section-5.4-3.18.2.3">The cookie-attribute-list contains an attribute with an attribute-name
-of "Path", and the cookie's path is <code>/</code>.<a href="#section-5.4-3.18.2.3" class="pilcrow">¶</a>
-</li>
-            </ol>
+cookie's secure-only-flag is true.<a href="#section-5.4-3.18" class="pilcrow">¶</a>
 </li>
           <li id="section-5.4-3.19">
-            <p id="section-5.4-3.19.1">If the cookie store contains a cookie with the same name, domain,
-host-only-flag, and path as the newly-created cookie:<a href="#section-5.4-3.19.1" class="pilcrow">¶</a></p>
+            <p id="section-5.4-3.19.1">If the cookie-name begins with a case-sensitive match for the string
+"__Host-", abort these steps and ignore the cookie entirely unless the
+cookie meets all the following criteria:<a href="#section-5.4-3.19.1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5.4-3.19.2">
-<li id="section-5.4-3.19.2.1">Let old-cookie be the existing cookie with the same name, domain,
-host-only-flag, and path as the newly-created cookie. (Notice that this
-algorithm maintains the invariant that there is at most one such
-cookie.)<a href="#section-5.4-3.19.2.1" class="pilcrow">¶</a>
+<li id="section-5.4-3.19.2.1">The cookie's secure-only-flag is true.<a href="#section-5.4-3.19.2.1" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.19.2.2">If the newly-created cookie was received from a "non-HTTP" API and the
-old-cookie's http-only-flag is true, abort these steps and ignore the
-newly created cookie entirely.<a href="#section-5.4-3.19.2.2" class="pilcrow">¶</a>
+              <li id="section-5.4-3.19.2.2">The cookie's host-only-flag is true.<a href="#section-5.4-3.19.2.2" class="pilcrow">¶</a>
 </li>
-              <li id="section-5.4-3.19.2.3">Update the creation-time of the newly-created cookie to match the
-creation-time of the old-cookie.<a href="#section-5.4-3.19.2.3" class="pilcrow">¶</a>
-</li>
-              <li id="section-5.4-3.19.2.4">Remove the old-cookie from the cookie store.<a href="#section-5.4-3.19.2.4" class="pilcrow">¶</a>
+              <li id="section-5.4-3.19.2.3">The cookie-attribute-list contains an attribute with an attribute-name
+of "Path", and the cookie's path is <code>/</code>.<a href="#section-5.4-3.19.2.3" class="pilcrow">¶</a>
 </li>
             </ol>
 </li>
-          <li id="section-5.4-3.20">Insert the newly-created cookie into the cookie store.<a href="#section-5.4-3.20" class="pilcrow">¶</a>
+          <li id="section-5.4-3.20">
+            <p id="section-5.4-3.20.1">If the cookie store contains a cookie with the same name, domain,
+host-only-flag, and path as the newly-created cookie:<a href="#section-5.4-3.20.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.4-3.20.2">
+<li id="section-5.4-3.20.2.1">Let old-cookie be the existing cookie with the same name, domain,
+host-only-flag, and path as the newly-created cookie. (Notice that this
+algorithm maintains the invariant that there is at most one such
+cookie.)<a href="#section-5.4-3.20.2.1" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.20.2.2">If the newly-created cookie was received from a "non-HTTP" API and the
+old-cookie's http-only-flag is true, abort these steps and ignore the
+newly created cookie entirely.<a href="#section-5.4-3.20.2.2" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.20.2.3">Update the creation-time of the newly-created cookie to match the
+creation-time of the old-cookie.<a href="#section-5.4-3.20.2.3" class="pilcrow">¶</a>
+</li>
+              <li id="section-5.4-3.20.2.4">Remove the old-cookie from the cookie store.<a href="#section-5.4-3.20.2.4" class="pilcrow">¶</a>
+</li>
+            </ol>
+</li>
+          <li id="section-5.4-3.21">Insert the newly-created cookie into the cookie store.<a href="#section-5.4-3.21" class="pilcrow">¶</a>
 </li>
         </ol>
 <p id="section-5.4-4">A cookie is "expired" if the cookie has an expiry date in the past.<a href="#section-5.4-4" class="pilcrow">¶</a></p>
@@ -3270,18 +3297,20 @@ developers carefully ensure that their cookie-based session management systems
 deal reasonably well with top-level navigations.<a href="#section-8.8.2-1" class="pilcrow">¶</a></p>
 <p id="section-8.8.2-2">Consider the scenario in which a user reads their email at MegaCorp Inc's
 webmail provider <code>https://site.example/</code>. They might expect that clicking on an
-emailed link to <code>https://projects.example/secret/project</code> would show them the secret
-project that they're authorized to see, but if <code>projects.example</code> has marked their
-session cookies as <code>SameSite</code>, then this cross-site navigation won't send them
-along with the request. <code>projects.example</code> will render a 404 error to avoid leaking
-secret information, and the user will be quite confused.<a href="#section-8.8.2-2" class="pilcrow">¶</a></p>
+emailed link to <code>https://projects.example/secret/project</code> would show them the
+secret project that they're authorized to see, but if <code>https://projects.example</code>
+has marked their session cookies as <code>SameSite=Strict</code>, then this cross-site
+navigation won't send them along with the request. <code>https://projects.example</code>
+will render a 404 error to avoid leaking secret information, and the user will
+be quite confused.<a href="#section-8.8.2-2" class="pilcrow">¶</a></p>
 <p id="section-8.8.2-3">Developers can avoid this confusion by adopting a session management system that
 relies on not one, but two cookies: one conceptually granting "read" access,
-another granting "write" access. The latter could be marked as <code>SameSite</code>, and
-its absence would prompt a reauthentication step before executing any
-non-idempotent action. The former could drop the <code>SameSite</code> attribute entirely,
-or choose the "Lax" version of enforcement, in order to allow users access to
-data via top-level navigation.<a href="#section-8.8.2-3" class="pilcrow">¶</a></p>
+another granting "write" access. The latter could be marked as <code>SameSite=Strict</code>,
+and its absence would prompt a reauthentication step before executing any
+non-idempotent action. The former could be marked as <code>SameSite=Lax</code>, in
+order to allow users access to data via top-level navigation, or
+<code>SameSite=None</code>, to permit access in all contexts (including cross-site
+embedded contexts).<a href="#section-8.8.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="mashups-and-widgets">
@@ -3289,15 +3318,15 @@ data via top-level navigation.<a href="#section-8.8.2-3" class="pilcrow">¶</a><
           <h4 id="name-mashups-and-widgets">
 <a href="#section-8.8.3" class="section-number selfRef">8.8.3. </a><a href="#name-mashups-and-widgets" class="section-name selfRef">Mashups and Widgets</a>
           </h4>
-<p id="section-8.8.3-1">The <code>SameSite</code> attribute is inappropriate for some important use-cases. In
-particular, note that content intended for embedding in a cross-site contexts
-(social networking widgets or commenting services, for instance) will not have
-access to same-site cookies. Cookies may be required for requests triggered in
-these cross-site contexts in order to provide seamless functionality that relies
-on a user's state.<a href="#section-8.8.3-1" class="pilcrow">¶</a></p>
+<p id="section-8.8.3-1">The <code>Lax</code> and <code>Strict</code> values for the <code>SameSite</code> attribute are inappropriate
+for some important use-cases. In particular, note that content intended for
+embedding in cross-site contexts (social networking widgets or commenting
+services, for instance) will not have access to same-site cookies. Cookies
+which are required in these situations should be marked with <code>SameSite=None</code>
+to allow access in cross-site contexts.<a href="#section-8.8.3-1" class="pilcrow">¶</a></p>
 <p id="section-8.8.3-2">Likewise, some forms of Single-Sign-On might require cookie-based authentication
 in a cross-site context; these mechanisms will not function as intended with
-same-site cookies.<a href="#section-8.8.3-2" class="pilcrow">¶</a></p>
+same-site cookies and will also require <code>SameSite=None</code>.<a href="#section-8.8.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="server-controlled">
@@ -3532,7 +3561,7 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="HTML">[HTML]</dt>
         <dd>
-<span class="refAuthor">Hickson, I.</span><span class="refAuthor">, Pieters, S.</span><span class="refAuthor">, van Kesteren, A.</span><span class="refAuthor">, Jägenstedt, P.</span><span class="refAuthor">, and D. Denicola</span>, <span class="refTitle">"HTML"</span>, <span>n.d.</span>, <span>&lt;<a href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a>&gt;</span>. </dd>
+<span class="refAuthor">Hickson, I.</span>, <span class="refAuthor">Pieters, S.</span>, <span class="refAuthor">van Kesteren, A.</span>, <span class="refAuthor">Jägenstedt, P.</span>, and <span class="refAuthor">D. Denicola</span>, <span class="refTitle">"HTML"</span>, <span>n.d.</span>, <span>&lt;<a href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1034">[RFC1034]</dt>
         <dd>
@@ -3553,11 +3582,11 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="RFC4790">[RFC4790]</dt>
         <dd>
-<span class="refAuthor">Newman, C.</span><span class="refAuthor">, Duerst, M.</span><span class="refAuthor">, and A. Gulbrandsen</span>, <span class="refTitle">"Internet Application Protocol Collation Registry"</span>, <span class="seriesInfo">RFC 4790</span>, <span class="seriesInfo">DOI 10.17487/RFC4790</span>, <time datetime="2007-03" class="refDate">March 2007</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4790">https://datatracker.ietf.org/doc/html/rfc4790</a>&gt;</span>. </dd>
+<span class="refAuthor">Newman, C.</span>, <span class="refAuthor">Duerst, M.</span>, and <span class="refAuthor">A. Gulbrandsen</span>, <span class="refTitle">"Internet Application Protocol Collation Registry"</span>, <span class="seriesInfo">RFC 4790</span>, <span class="seriesInfo">DOI 10.17487/RFC4790</span>, <time datetime="2007-03" class="refDate">March 2007</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4790">https://datatracker.ietf.org/doc/html/rfc4790</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5234">[RFC5234]</dt>
         <dd>
-<span class="refAuthor">Crocker, D., Ed.</span><span class="refAuthor"> and P. Overell</span>, <span class="refTitle">"Augmented BNF for Syntax Specifications: ABNF"</span>, <span class="seriesInfo">STD 68</span>, <span class="seriesInfo">RFC 5234</span>, <span class="seriesInfo">DOI 10.17487/RFC5234</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5234">https://datatracker.ietf.org/doc/html/rfc5234</a>&gt;</span>. </dd>
+<span class="refAuthor">Crocker, D., Ed.</span> and <span class="refAuthor">P. Overell</span>, <span class="refTitle">"Augmented BNF for Syntax Specifications: ABNF"</span>, <span class="seriesInfo">STD 68</span>, <span class="seriesInfo">RFC 5234</span>, <span class="seriesInfo">DOI 10.17487/RFC5234</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5234">https://datatracker.ietf.org/doc/html/rfc5234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5890">[RFC5890]</dt>
         <dd>
@@ -3569,15 +3598,15 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="RFC7230">[RFC7230]</dt>
         <dd>
-<span class="refAuthor">Fielding, R., Ed.</span><span class="refAuthor"> and J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span class="seriesInfo">RFC 7230</span>, <span class="seriesInfo">DOI 10.17487/RFC7230</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7230">https://datatracker.ietf.org/doc/html/rfc7230</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span class="seriesInfo">RFC 7230</span>, <span class="seriesInfo">DOI 10.17487/RFC7230</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7230">https://datatracker.ietf.org/doc/html/rfc7230</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7231">[RFC7231]</dt>
         <dd>
-<span class="refAuthor">Fielding, R., Ed.</span><span class="refAuthor"> and J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7231">https://datatracker.ietf.org/doc/html/rfc7231</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7231">https://datatracker.ietf.org/doc/html/rfc7231</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8126">[RFC8126]</dt>
         <dd>
-<span class="refAuthor">Cotton, M.</span><span class="refAuthor">, Leiba, B.</span><span class="refAuthor">, and T. Narten</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">BCP 26</span>, <span class="seriesInfo">RFC 8126</span>, <span class="seriesInfo">DOI 10.17487/RFC8126</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8126">https://datatracker.ietf.org/doc/html/rfc8126</a>&gt;</span>. </dd>
+<span class="refAuthor">Cotton, M.</span>, <span class="refAuthor">Leiba, B.</span>, and <span class="refAuthor">T. Narten</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">BCP 26</span>, <span class="seriesInfo">RFC 8126</span>, <span class="seriesInfo">DOI 10.17487/RFC8126</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8126">https://datatracker.ietf.org/doc/html/rfc8126</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SAMESITE">[SAMESITE]</dt>
         <dd>
@@ -3585,7 +3614,7 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="SERVICE-WORKERS">[SERVICE-WORKERS]</dt>
         <dd>
-<span class="refAuthor">Russell, A.</span><span class="refAuthor">, Song, J.</span><span class="refAuthor">, and J. Archibald</span>, <span class="refTitle">"Service Workers"</span>, <span>n.d.</span>, <span>&lt;<a href="http://www.w3.org/TR/service-workers/">http://www.w3.org/TR/service-workers/</a>&gt;</span>. </dd>
+<span class="refAuthor">Russell, A.</span>, <span class="refAuthor">Song, J.</span>, and <span class="refAuthor">J. Archibald</span>, <span class="refTitle">"Service Workers"</span>, <span>n.d.</span>, <span>&lt;<a href="http://www.w3.org/TR/service-workers/">http://www.w3.org/TR/service-workers/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="USASCII">[USASCII]</dt>
       <dd>
@@ -3600,15 +3629,15 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dl class="references">
 <dt id="Aggarwal2010">[Aggarwal2010]</dt>
         <dd>
-<span class="refAuthor">Aggarwal, G.</span><span class="refAuthor">, Burzstein, E.</span><span class="refAuthor">, Jackson, C.</span><span class="refAuthor">, and D. Boneh</span>, <span class="refTitle">"An Analysis of Private Browsing Modes in Modern Browsers"</span>, <time datetime="2010" class="refDate">2010</time>, <span>&lt;<a href="http://www.usenix.org/events/sec10/tech/full_papers/Aggarwal.pdf">http://www.usenix.org/events/sec10/tech/full_papers/Aggarwal.pdf</a>&gt;</span>. </dd>
+<span class="refAuthor">Aggarwal, G.</span>, <span class="refAuthor">Burzstein, E.</span>, <span class="refAuthor">Jackson, C.</span>, and <span class="refAuthor">D. Boneh</span>, <span class="refTitle">"An Analysis of Private Browsing Modes in Modern Browsers"</span>, <time datetime="2010" class="refDate">2010</time>, <span>&lt;<a href="http://www.usenix.org/events/sec10/tech/full_papers/Aggarwal.pdf">http://www.usenix.org/events/sec10/tech/full_papers/Aggarwal.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="app-isolation">[app-isolation]</dt>
         <dd>
-<span class="refAuthor">Chen, E.</span><span class="refAuthor">, Bau, J.</span><span class="refAuthor">, Reis, C.</span><span class="refAuthor">, Barth, A.</span><span class="refAuthor">, and C. Jackson</span>, <span class="refTitle">"App Isolation - Get the Security of Multiple Browsers with Just One"</span>, <time datetime="2011" class="refDate">2011</time>, <span>&lt;<a href="http://www.collinjackson.com/research/papers/appisolation.pdf">http://www.collinjackson.com/research/papers/appisolation.pdf</a>&gt;</span>. </dd>
+<span class="refAuthor">Chen, E.</span>, <span class="refAuthor">Bau, J.</span>, <span class="refAuthor">Reis, C.</span>, <span class="refAuthor">Barth, A.</span>, and <span class="refAuthor">C. Jackson</span>, <span class="refTitle">"App Isolation - Get the Security of Multiple Browsers with Just One"</span>, <time datetime="2011" class="refDate">2011</time>, <span>&lt;<a href="http://www.collinjackson.com/research/papers/appisolation.pdf">http://www.collinjackson.com/research/papers/appisolation.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="CSRF">[CSRF]</dt>
         <dd>
-<span class="refAuthor">Barth, A.</span><span class="refAuthor">, Jackson, C.</span><span class="refAuthor">, and J. Mitchell</span>, <span class="refTitle">"Robust Defenses for Cross-Site Request Forgery"</span>, <span class="seriesInfo">DOI 10.1145/1455770.1455782</span>, <span class="seriesInfo">ISBN 978-1-59593-810-7</span>, <span class="seriesInfo">ACM CCS '08: Proceedings of the 15th ACM conference on Computer and communications security (pages 75-88)</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="http://portal.acm.org/citation.cfm?id=1455770.1455782">http://portal.acm.org/citation.cfm?id=1455770.1455782</a>&gt;</span>. </dd>
+<span class="refAuthor">Barth, A.</span>, <span class="refAuthor">Jackson, C.</span>, and <span class="refAuthor">J. Mitchell</span>, <span class="refTitle">"Robust Defenses for Cross-Site Request Forgery"</span>, <span class="seriesInfo">DOI 10.1145/1455770.1455782</span>, <span class="seriesInfo">ISBN 978-1-59593-810-7</span>, <span class="seriesInfo">ACM CCS '08: Proceedings of the 15th ACM conference on Computer and communications security (pages 75-88)</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="http://portal.acm.org/citation.cfm?id=1455770.1455782">http://portal.acm.org/citation.cfm?id=1455770.1455782</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-httpbis-cookie-alone">[I-D.ietf-httpbis-cookie-alone]</dt>
         <dd>
@@ -3620,7 +3649,7 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="I-D.ietf-httpbis-cookie-same-site">[I-D.ietf-httpbis-cookie-same-site]</dt>
         <dd>
-<span class="refAuthor">West, M.</span><span class="refAuthor"> and M. Goodwin</span>, <span class="refTitle">"Same-Site Cookies"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cookie-same-site-00</span>, <time datetime="2016-06-20" class="refDate">20 June 2016</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site-00.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site-00.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">West, M.</span> and <span class="refAuthor">M. Goodwin</span>, <span class="refTitle">"Same-Site Cookies"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cookie-same-site-00</span>, <time datetime="2016-06-20" class="refDate">20 June 2016</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site-00.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cookie-same-site-00.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="prerendering">[prerendering]</dt>
         <dd>
@@ -3640,11 +3669,11 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="RFC3864">[RFC3864]</dt>
         <dd>
-<span class="refAuthor">Klyne, G.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Mogul</span>, <span class="refTitle">"Registration Procedures for Message Header Fields"</span>, <span class="seriesInfo">BCP 90</span>, <span class="seriesInfo">RFC 3864</span>, <span class="seriesInfo">DOI 10.17487/RFC3864</span>, <time datetime="2004-09" class="refDate">September 2004</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3864">https://datatracker.ietf.org/doc/html/rfc3864</a>&gt;</span>. </dd>
+<span class="refAuthor">Klyne, G.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Mogul</span>, <span class="refTitle">"Registration Procedures for Message Header Fields"</span>, <span class="seriesInfo">BCP 90</span>, <span class="seriesInfo">RFC 3864</span>, <span class="seriesInfo">DOI 10.17487/RFC3864</span>, <time datetime="2004-09" class="refDate">September 2004</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3864">https://datatracker.ietf.org/doc/html/rfc3864</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3986">[RFC3986]</dt>
         <dd>
-<span class="refAuthor">Berners-Lee, T.</span><span class="refAuthor">, Fielding, R.</span><span class="refAuthor">, and L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>&gt;</span>. </dd>
+<span class="refAuthor">Berners-Lee, T.</span>, <span class="refAuthor">Fielding, R.</span>, and <span class="refAuthor">L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4648">[RFC4648]</dt>
         <dd>
@@ -3652,7 +3681,7 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="RFC5895">[RFC5895]</dt>
         <dd>
-<span class="refAuthor">Resnick, P.</span><span class="refAuthor"> and P. Hoffman</span>, <span class="refTitle">"Mapping Characters for Internationalized Domain Names in Applications (IDNA) 2008"</span>, <span class="seriesInfo">RFC 5895</span>, <span class="seriesInfo">DOI 10.17487/RFC5895</span>, <time datetime="2010-09" class="refDate">September 2010</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5895">https://datatracker.ietf.org/doc/html/rfc5895</a>&gt;</span>. </dd>
+<span class="refAuthor">Resnick, P.</span> and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Mapping Characters for Internationalized Domain Names in Applications (IDNA) 2008"</span>, <span class="seriesInfo">RFC 5895</span>, <span class="seriesInfo">DOI 10.17487/RFC5895</span>, <time datetime="2010-09" class="refDate">September 2010</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5895">https://datatracker.ietf.org/doc/html/rfc5895</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6265">[RFC6265]</dt>
         <dd>
@@ -3660,11 +3689,11 @@ defined in CamelCase, but technically accepted case-insensitively.<a href="#sect
 <dd class="break"></dd>
 <dt id="RFC7034">[RFC7034]</dt>
         <dd>
-<span class="refAuthor">Ross, D.</span><span class="refAuthor"> and T. Gondrom</span>, <span class="refTitle">"HTTP Header Field X-Frame-Options"</span>, <span class="seriesInfo">RFC 7034</span>, <span class="seriesInfo">DOI 10.17487/RFC7034</span>, <time datetime="2013-10" class="refDate">October 2013</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7034">https://datatracker.ietf.org/doc/html/rfc7034</a>&gt;</span>. </dd>
+<span class="refAuthor">Ross, D.</span> and <span class="refAuthor">T. Gondrom</span>, <span class="refTitle">"HTTP Header Field X-Frame-Options"</span>, <span class="seriesInfo">RFC 7034</span>, <span class="seriesInfo">DOI 10.17487/RFC7034</span>, <time datetime="2013-10" class="refDate">October 2013</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7034">https://datatracker.ietf.org/doc/html/rfc7034</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="UTS46">[UTS46]</dt>
       <dd>
-<span class="refAuthor">Davis, M.</span><span class="refAuthor"> and M. Suignard</span>, <span class="refTitle">"Unicode IDNA Compatibility Processing"</span>, <span class="seriesInfo">UNICODE Unicode Technical Standards # 46</span>, <time datetime="2016-06" class="refDate">June 2016</time>, <span>&lt;<a href="http://unicode.org/reports/tr46/">http://unicode.org/reports/tr46/</a>&gt;</span>. </dd>
+<span class="refAuthor">Davis, M.</span> and <span class="refAuthor">M. Suignard</span>, <span class="refTitle">"Unicode IDNA Compatibility Processing"</span>, <span class="seriesInfo">UNICODE Unicode Technical Standards # 46</span>, <time datetime="2016-06" class="refDate">June 2016</time>, <span>&lt;<a href="http://unicode.org/reports/tr46/">http://unicode.org/reports/tr46/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -3874,6 +3903,13 @@ user interface elements:
           <li class="normal" id="section-a.9-1.2">Consider redirects when defining same-site:
 <a href="https://github.com/httpwg/http-extensions/pull/1348">https://github.com/httpwg/http-extensions/pull/1348</a><a href="#section-a.9-1.2" class="pilcrow">¶</a>
 </li>
+          <li class="normal" id="section-a.9-1.3">Align on using HTML terminology for origins:
+<a href="https://github.com/httpwg/http-extensions/pull/1416">https://github.com/httpwg/http-extensions/pull/1416</a><a href="#section-a.9-1.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-a.9-1.4">Modify cookie parsing and creation algorithms in <a href="#set-cookie" class="xref">Section 5.3</a> and
+<a href="#storage-model" class="xref">Section 5.4</a> to explicitly handle control characters:
+<a href="https://github.com/httpwg/http-extensions/pull/1420">https://github.com/httpwg/http-extensions/pull/1420</a><a href="#section-a.9-1.4" class="pilcrow">¶</a>
+</li>
         </ul>
 </section>
 </div>
@@ -3884,10 +3920,10 @@ user interface elements:
       <h2 id="name-acknowledgements">
 <a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<p id="section-appendix.b-1">RFC 6265 was written by Adam Barth. This document is a minor update of
-RFC 6265, adding small features, and aligning the specification with the
-reality of today's deployments. Here, we're standing upon the shoulders
-of a giant since the majority of the text is still Adam's.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
+<p id="section-appendix.b-1">RFC 6265 was written by Adam Barth. This document is an update of RFC 6265,
+adding features and aligning the specification with the reality of today's
+deployments. Here, we're standing upon the shoulders of a giant since the
+majority of the text is still Adam's.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
@@ -3896,8 +3932,24 @@ of a giant since the majority of the text is still Adam's.<a href="#section-appe
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Lily Chen (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">Google LLC</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:chlily@google.com" class="email">chlily@google.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Steven Englehardt (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">Mozilla</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:senglehardt@mozilla.com" class="email">senglehardt@mozilla.com</a>
+</div>
+</address>
+<address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Mike West (<span class="role">editor</span>)</span></div>
-<div dir="auto" class="left"><span class="org">Google, Inc</span></div>
+<div dir="auto" class="left"><span class="org">Google LLC</span></div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:mkwst@google.com" class="email">mkwst@google.com</a>
