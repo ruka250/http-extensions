@@ -6,8 +6,8 @@ HTTP                                                          J. Reschke
 Internet-Draft                                                greenbytes
 Updates: 5323 (if approved)                                  A. Malhotra
 Intended status: Standards Track                                        
-Expires: 2 October 2021                                       J.M. Snell
-                                                           31 March 2021
+Expires: 7 October 2021                                       J.M. Snell
+                                                            5 April 2021
 
 
                            HTTP SEARCH Method
@@ -28,7 +28,7 @@ Editorial Note
 
    Working Group information can be found at https://httpwg.org/; source
    code and issues list for this draft can be found at
-   https://github.com/httpwg/http-core.
+   https://github.com/httpwg/http-extensions/labels/safe-method-w-body.
 
 Status of This Memo
 
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 October 2021.
+   This Internet-Draft will expire on 7 October 2021.
 
 Copyright Notice
 
