@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                             31 March 2021
+Internet-Draft                                              6 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 2 October 2021
+Expires: 8 October 2021
 
 
                       Building Protocols with HTTP
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 October 2021.
+   This Internet-Draft will expire on 8 October 2021.
 
 Copyright Notice
 
@@ -172,7 +172,7 @@ Table of Contents
    This document contains best current practices for the specification
    of such applications.  Section 2 defines when it applies; Section 3
    surveys the properties of HTTP that are important to preserve, and
-   Section 4 conveys best practices for the specifying them.
+   Section 4 conveys best practices for specifying them.
 
    It is written primarily to guide IETF efforts to define application
    protocols using HTTP for deployment on the Internet, but might be
