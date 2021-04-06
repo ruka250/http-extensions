@@ -647,7 +647,7 @@ Table of Contents
    requests.  Additionally, some HTTP implementations limit the size of
    URLs they support -- although modern HTTP software has much more
    generous limits than previously (typically, considerably more than
-   8000 octets, as required by [I-D.ietf-httpbis-semantics].
+   8000 octets, as required by [I-D.ietf-httpbis-semantics]).
 
    In these cases, an application using HTTP might consider using POST
    to express queries in the request's content; doing so avoids encoding
