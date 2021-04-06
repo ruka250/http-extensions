@@ -175,7 +175,7 @@ Table of Contents
    HTTP permits and sometimes requires intermediaries to transform
    messages in a variety of ways.  This may result in a recipient
    receiving a message that is not bitwise equivalent to the message
-   that was oringally sent.  In such a case, the recipient will be
+   that was originally sent.  In such a case, the recipient will be
    unable to verify a signature over the raw bytes of the sender's HTTP
    message, as verifying digital signatures or MACs requires both signer
    and verifier to have the exact same signed content.  Since the raw
@@ -663,9 +663,10 @@ Table of Contents
    This example shows a canonicalized value for the parameters of a
    given signature:
 
-# NOTE: '\' line wrapping per RFC 8792
-("@request-target" "host" "date" "cache-control" "x-empty-header" "x-example"); \
-  keyid="test-key-a"; alg="rsa-pss-sha512"; created=1402170695; expires=1402170995
+   # NOTE: '\' line wrapping per RFC 8792
+   ("@request-target" "host" "date" "cache-control" "x-empty-header"
+     "x-example"); keyid="test-key-a"; alg="rsa-pss-sha512"; \
+     created=1402170695; expires=1402170995
 
    Note that an HTTP message could contain multiple signatures, but only
    the signature parameters used for the current signature are included.
@@ -699,10 +700,11 @@ Table of Contents
 
    The signature parameter value is defined as:
 
-# NOTE: '\' line wrapping per RFC 8792
-"@signature-params": ("@request-target" "host" "date" "cache-control" "x-empty-header" \
-   "x-example" "x-dictionary";key=b "x-dictionary";key=a "x-list";prefix=3);
-   \keyid="test-key-a"; alg="rsa-pss-sha512"; created=1402170695; expires=1402170995
+ # NOTE: '\' line wrapping per RFC 8792
+ "@signature-params": ("@request-target" "host" "date" "cache-control" \
+   "x-empty-header" "x-example" "x-dictionary";key=b \
+   "x-dictionary";key=a "x-list";prefix=3); keyid="test-key-a"; \
+   alg="rsa-pss-sha512"; created=1402170695; expires=1402170995
 
 2.5.  Creating the Signature Input String
 
@@ -767,21 +769,22 @@ Table of Contents
    For the non-normative example Signature metadata in Table 6, the
    corresponding Signature Input is:
 
-# NOTE: '\' line wrapping per RFC 8792
-"@request-target": get /foo
-"host": example.org
-"date": Tue, 07 Jun 2014 20:51:35 GMT
-"cache-control": max-age=60, must-revalidate
-"x-emptyheader":
-"x-example": Example header with some whitespace.
-"x-dictionary";key=b: 2
-"x-dictionary";key=a: 1
-"x-list";prefix=3: (a, b, c)
-"@signature-params": ("@request-target" "host" "date" "cache-control" "x-empty-header" "x-example" \
-  "x-dictionary";key=b "x-dictionary";key=b "x-list";prefix=3); keyid="test-key-a"; \
-  created=1402170695; expires=1402170995
+ # NOTE: '\' line wrapping per RFC 8792
+ "@request-target": get /foo
+ "host": example.org
+ "date": Tue, 07 Jun 2014 20:51:35 GMT
+ "cache-control": max-age=60, must-revalidate
+ "x-emptyheader":
+ "x-example": Example header with some whitespace.
+ "x-dictionary";key=b: 2
+ "x-dictionary";key=a: 1
+ "x-list";prefix=3: (a, b, c)
+ "@signature-params": ("@request-target" "host" "date" "cache-control" \
+   "x-empty-header" "x-example" "x-dictionary";key=b \
+   "x-dictionary";key=a "x-list";prefix=3); keyid="test-key-a"; \
+   created=1402170695; expires=1402170995
 
-           Figure 1: Non-normative example Signature Input
+            Figure 1: Non-normative example Signature Input
 
 3.  HTTP Message Signatures
 
@@ -1625,15 +1628,23 @@ Document History
 
    *  draft-ietf-httpbis-message-signatures
 
-      -  Since -02
+      -  -03
 
          o  Clarified signing and verification processes.
 
          o  Updated algorithm and key selection method.
 
+         o  Clearly defined core algorithm set.
+
          o  Defined JOSE signature mapping process.
 
          o  Removed legacy signature methods.
+
+         o  Define signature parameters separately from "signature"
+            object model.
+
+         o  Define serialization values for signature-input header based
+            on signature input.
 
       -  -02
 
