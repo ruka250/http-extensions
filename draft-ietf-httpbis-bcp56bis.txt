@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                              6 April 2021
+Internet-Draft                                              8 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 8 October 2021
+Expires: 10 October 2021
 
 
                       Building Protocols with HTTP
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 October 2021.
+   This Internet-Draft will expire on 10 October 2021.
 
 Copyright Notice
 
@@ -827,13 +827,13 @@ Table of Contents
    other method) to GET, to be compatible with browsers.  Generally,
    when a redirected request is made, its header fields are copied from
    the original request's.  However, they can be modified by various
-   mechanisms; e.g., sent Authorization ([I-D.ietf-httpbis-semantics])
-   and Cookie ([I-D.ietf-httpbis-rfc6265bis]) header fields will change
-   if the origin (and sometimes path) of the request changes.  An
-   application using HTTP should specify if any request header fields
-   that it defines need to be modified or removed upon a redirect;
-   however, this behaviour cannot be relied upon, since a generic client
-   (like a browser) will be unaware of such requirements.
+   mechanisms; e.g., sent Authorization ([I-D.ietf-httpbis-semantics],
+   Section 11) and Cookie ([I-D.ietf-httpbis-rfc6265bis]) header fields
+   will change if the origin (and sometimes path) of the request
+   changes.  An application using HTTP should specify if any request
+   header fields that it defines need to be modified or removed upon a
+   redirect; however, this behaviour cannot be relied upon, since a
+   generic client (like a browser) will be unaware of such requirements.
 
 4.7.  Specifying HTTP Header Fields
 
