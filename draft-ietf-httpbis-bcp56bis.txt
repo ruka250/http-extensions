@@ -460,8 +460,8 @@ Table of Contents
       required.
 
    *  Certificates - Applications using HTTP should specify that TLS
-      certificates are to be checked according to
-      [I-D.ietf-httpbis-semantics], Section 4.3.4 when HTTPS is used.
+      certificates are to be checked according to Section 4.3.4 of
+      [I-D.ietf-httpbis-semantics] when HTTPS is used.
 
    Applications using HTTP should not statically require HTTP features
    that are usually negotiated to be supported by clients.  For example,
