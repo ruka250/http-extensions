@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                              8 April 2021
+Internet-Draft                                             10 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 10 October 2021
+Expires: 12 October 2021
 
 
                       Building Protocols with HTTP
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 October 2021.
+   This Internet-Draft will expire on 12 October 2021.
 
 Copyright Notice
 
@@ -758,7 +758,7 @@ Table of Contents
 
    Applications using HTTP MUST NOT re-specify the semantics of HTTP
    status codes, even if it is only by copying their definition.  It is
-   RECOMMENDED they require specific reason phrases to be used; the
+   NOT RECOMMENDED they require specific reason phrases to be used; the
    reason phrase has no function in HTTP, is not guaranteed to be
    preserved by implementations, and is not carried at all in the HTTP/2
    [RFC7540] message format.
