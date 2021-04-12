@@ -4,8 +4,8 @@
 
 HTTP                                                       M. Nottingham
 Internet-Draft                                                    Fastly
-Intended status: Standards Track                           12 March 2021
-Expires: 13 September 2021
+Intended status: Standards Track                           12 April 2021
+Expires: 14 October 2021
 
 
               The Cache-Status HTTP Response Header Field
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2021.
+   This Internet-Draft will expire on 14 October 2021.
 
 Copyright Notice
 
@@ -78,7 +78,7 @@ Table of Contents
      2.7.  The key parameter
      2.8.  The detail parameter
    3.  Examples
-   4.  Defining New Proxy-Status Parameters
+   4.  Defining New Cache-Status Parameters
    5.  IANA Considerations
    6.  Security Considerations
    7.  References
@@ -306,13 +306,15 @@ Table of Contents
 
    Cache-Status: ExampleCache; fwd=uri-miss; collapsed=?0
 
-   Going through two layers of caching, both of which were hits, and the
-   second collapsed with other requests:
+   Going through two separate layers of caching, where the cache closest
+   to the origin responded to an earlier request with a stored response,
+   and a second cache stored that response and later reused it to
+   satisfy the current request:
 
-   Cache-Status: OriginCache; hit; ttl=1100; collapsed,
+   Cache-Status: OriginCache; hit; ttl=1100,
                  "CDN Company Here"; hit; ttl=545
 
-4.  Defining New Proxy-Status Parameters
+4.  Defining New Cache-Status Parameters
 
    New Cache-Status Parameters can be defined by registering them in the
    HTTP Cache-Status Parameters registry.

@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                             12 March 2021
+Internet-Draft                                             12 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 13 September 2021
+Expires: 14 October 2021
 
 
                       Building Protocols with HTTP
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2021.
+   This Internet-Draft will expire on 14 October 2021.
 
 Copyright Notice
 
@@ -90,24 +90,26 @@ Table of Contents
      4.6.  Using HTTP Status Codes
        4.6.1.  Redirection
      4.7.  Specifying HTTP Header Fields
-     4.8.  Defining Message Payloads
+     4.8.  Defining Message Content
      4.9.  Leveraging HTTP Caching
        4.9.1.  Freshness
        4.9.2.  Stale Responses
        4.9.3.  Caching and Application Semantics
        4.9.4.  Varying Content Based Upon the Request
      4.10. Handling Application State
-     4.11. Client Authentication
-     4.12. Co-Existing with Web Browsing
-     4.13. Maintaining Application Boundaries
-     4.14. Using Server Push
-     4.15. Allowing Versioning and Evolution
+     4.11. Making Multiple Requests
+     4.12. Client Authentication
+     4.13. Co-Existing with Web Browsing
+     4.14. Maintaining Application Boundaries
+     4.15. Using Server Push
+     4.16. Allowing Versioning and Evolution
    5.  IANA Considerations
    6.  Security Considerations
      6.1.  Privacy Considerations
    7.  References
      7.1.  Normative References
      7.2.  Informative References
+   Appendix A.  Changes from RFC 3205
    Author's Address
 
 1.  Introduction
@@ -145,10 +147,11 @@ Table of Contents
    limited deployment can become unsuitable.
 
    This is largely because implementations (both client and server) will
-   implement and evolve at different paces.  As a result, the designers
-   of such an HTTP-based API will need to more carefully consider how
-   extensibility of the service will be handled and how different
-   deployment requirements will be accommodated.
+   implement and evolve at different paces, and because deployments will
+   often have different features and versions available.  As a result,
+   the designers of such an HTTP-based API will need to more carefully
+   consider how extensibility of the service will be handled and how
+   different deployment requirements will be accommodated.
 
    More generally, an application protocol using HTTP faces a number of
    design decisions, including:
@@ -169,7 +172,7 @@ Table of Contents
    This document contains best current practices for the specification
    of such applications.  Section 2 defines when it applies; Section 3
    surveys the properties of HTTP that are important to preserve, and
-   Section 4 conveys best practices for the specifying them.
+   Section 4 conveys best practices for specifying them.
 
    It is written primarily to guide IETF efforts to define application
    protocols using HTTP for deployment on the Internet, but might be
@@ -200,10 +203,9 @@ Table of Contents
    *  updates or modifies the IANA registries defined for HTTP.
 
    Additionally, when a specification is using HTTP, all of the
-   requirements of the HTTP protocol suite are in force (including but
-   not limited to [I-D.ietf-httpbis-semantics],
-   [I-D.ietf-httpbis-cache], [I-D.ietf-httpbis-messaging], and
-   [RFC7540]).
+   requirements of the HTTP protocol suite are in force (in particular,
+   [I-D.ietf-httpbis-semantics], but also other specifications as
+   appropriate).
 
    Note that this document is intended to apply to applications, not
    generic extensions to HTTP, which follow the requirements in the
@@ -362,8 +364,7 @@ Table of Contents
    by implementations that are not controlled by the application; for
    example, proxies, CDNs, firewalls and so on.  Requiring a particular
    version of HTTP makes it difficult to use in these situations, and
-   harms interoperability for little reason (since HTTP's semantics are
-   stable between protocol versions).  Therefore, it is RECOMMENDED that
+   harms interoperability.  Therefore, it is RECOMMENDED that
    applications using HTTP not specify a minimum version of HTTP to be
    used.
 
@@ -388,7 +389,7 @@ Table of Contents
    Content-Length: 500
    Server: Bar/2.2
 
-   [payload here]
+   [content here]
 
 4.2.  Specifying Server Behaviour
 
@@ -459,11 +460,11 @@ Table of Contents
       required.
 
    *  Certificates - Applications using HTTP should specify that TLS
-      certificates are to be checked according to
-      [I-D.ietf-httpbis-semantics], Section 4.3.4 when HTTPS is used.
+      certificates are to be checked according to Section 4.3.4 of
+      [I-D.ietf-httpbis-semantics] when HTTPS is used.
 
-   Applications using HTTP MUST NOT require HTTP features that are
-   usually negotiated to be supported by clients.  For example,
+   Applications using HTTP should not statically require HTTP features
+   that are usually negotiated to be supported by clients.  For example,
    requiring that clients support responses with a certain content-
    coding ([I-D.ietf-httpbis-semantics], Section 8.4.1) instead of
    negotiating for it ([I-D.ietf-httpbis-semantics], Section 12.5.3)
@@ -595,7 +596,8 @@ Table of Contents
 
    If a non-default port is used, it needs to be reflected in the
    authority of all URLs for that resource; the only mechanism for
-   changing a default port is changing the scheme (see Section 4.4.2).
+   changing a default port is changing the URI scheme (see
+   Section 4.4.2).
 
    Using a port other than the default has privacy implications (i.e.,
    the protocol can now be distinguished from other traffic), as well as
@@ -645,7 +647,7 @@ Table of Contents
    requests.  Additionally, some HTTP implementations limit the size of
    URLs they support -- although modern HTTP software has much more
    generous limits than previously (typically, considerably more than
-   8000 octets, as required by [I-D.ietf-httpbis-semantics].
+   8000 octets, as required by [I-D.ietf-httpbis-semantics]).
 
    In these cases, an application using HTTP might consider using POST
    to express queries in the request's content; doing so avoids encoding
@@ -714,14 +716,15 @@ Table of Contents
    applications themselves.  However, applications can encounter a
    number of pitfalls in their use.
 
-   First, status codes are often generated by intermediaries, as well as
-   server and client implementations.  This can happen, for example,
-   when network errors are encountered, a captive portal is present,
-   when an implementation is overloaded, or it thinks it is under
-   attack.  As a result, if an application assigns specific semantics to
-   one of these status codes, a client can be misled about its state,
-   because the status code was generated by a generic component, not the
-   application itself.
+   First, status codes are often generated by components other the the
+   application itself.  This can happen, for example, when network
+   errors are encountered, a captive portal, proxy or Content Delivery
+   Network is present, when a server is overloaded, or it thinks it is
+   under attack.  They can even be generated by generic client software
+   when certain error conditions are encountered.  As a result, if an
+   application assigns specific semantics to one of these status codes,
+   a client can be misled about its state, because the status code was
+   generated by a generic component, not the application itself.
 
    Furthermore, mapping application errors to individual HTTP status
    codes one-to-one often leads to a situation where the finite space of
@@ -755,7 +758,7 @@ Table of Contents
 
    Applications using HTTP MUST NOT re-specify the semantics of HTTP
    status codes, even if it is only by copying their definition.  It is
-   RECOMMENDED they require specific reason phrases to be used; the
+   NOT RECOMMENDED they require specific reason phrases to be used; the
    reason phrase has no function in HTTP, is not guaranteed to be
    preserved by implementations, and is not carried at all in the HTTP/2
    [RFC7540] message format.
@@ -774,11 +777,11 @@ Table of Contents
 
 4.6.1.  Redirection
 
-   The 3xx series of status codes specified in
-   [I-D.ietf-httpbis-semantics], Section 15.4 direct the user agent to
-   another resource to satisfy the request.  The most common of these
-   are 301, 302, 307 and 308, all of which use the Location response
-   header field to indicate where the client should send the request to.
+   The 3xx series of status codes specified in Section 15.4 of
+   [I-D.ietf-httpbis-semantics] direct the user agent to another
+   resource to satisfy the request.  The most common of these are 301,
+   302, 307 and 308, all of which use the Location response header field
+   to indicate where the client should send the request to.
 
    There are two ways that this group of status codes differ:
 
@@ -814,18 +817,23 @@ Table of Contents
    automatically followed, it needs to explicitly specify the
    circumstances when this is required.
 
+   Redirects can be cached (when appropriate cache directives are
+   present), but beyond that they are not 'sticky' -- i.e., redirection
+   of a URI will not result in the client assuming that similar URIs
+   (e.g., with different query parameters) will also be redirected.
+
    Applications using HTTP are encouraged to specify that 301 and 302
    responses change the subsequent request method from POST (but no
    other method) to GET, to be compatible with browsers.  Generally,
    when a redirected request is made, its header fields are copied from
    the original request's.  However, they can be modified by various
-   mechanisms; e.g., sent Authorization ([I-D.ietf-httpbis-semantics])
-   and Cookie ([I-D.ietf-httpbis-rfc6265bis]) header fields will change
-   if the origin (and sometimes path) of the request changes.  An
-   application using HTTP should specify if any request header fields
-   that it defines need to be modified or removed upon a redirect;
-   however, this behaviour cannot be relied upon, since a generic client
-   (like a browser) will be unaware of such requirements.
+   mechanisms; e.g., sent Authorization ([I-D.ietf-httpbis-semantics],
+   Section 11) and Cookie ([I-D.ietf-httpbis-rfc6265bis]) header fields
+   will change if the origin (and sometimes path) of the request
+   changes.  An application using HTTP should specify if any request
+   header fields that it defines need to be modified or removed upon a
+   redirect; however, this behaviour cannot be relied upon, since a
+   generic client (like a browser) will be unaware of such requirements.
 
 4.7.  Specifying HTTP Header Fields
 
@@ -849,19 +857,19 @@ Table of Contents
    [I-D.ietf-httpbis-semantics].
 
    See [I-D.ietf-httpbis-semantics], Section 16.3.2 for guidelines to
-   consider when minting new header fields.
-   [I-D.ietf-httpbis-header-structure] provides a common structure for
-   new header fields, and avoids many issues in their parsing and
-   handling; it is RECOMMENDED that new header fields use it.
+   consider when minting new header fields.  [RFC8941] provides a common
+   structure for new header fields, and avoids many issues in their
+   parsing and handling; it is RECOMMENDED that new header fields use
+   it.
 
-   It is RECOMMENDED that header field names be short (even when HTTP/2
-   field compression is in effect, there is an overhead) but
-   appropriately specific.  In particular, if a header field is specific
-   to an application, an identifier for that application can form a
-   prefix to the header field name, separated by a "-".
+   It is RECOMMENDED that header field names be short (even when field
+   compression is used, there is an overhead) but appropriately
+   specific.  In particular, if a header field is specific to an
+   application, an identifier for that application can form a prefix to
+   the header field name, separated by a "-".
 
    For example, if the "example" application needs to create three
-   headers, they might be called "example-foo", "example-bar" and
+   header fields, they might be called "example-foo", "example-bar" and
    "example-baz".  Note that the primary motivation here is to avoid
    consuming more generic field names, not to reserve a portion of the
    namespace for the application; see [RFC6648] for related
@@ -873,16 +881,17 @@ Table of Contents
    that the "Location" header field has a special meaning in a certain
    context.
 
-   See Section 4.9 for the interaction between headers and HTTP caching;
-   in particular, request header fields that are used to "select" a
-   response have impact there, and need to be carefully considered.
+   See Section 4.9 for the interaction between header fields and HTTP
+   caching; in particular, request header fields that are used to
+   "select" a response have impact there, and need to be carefully
+   considered.
 
    See Section 4.10 for considerations regarding header fields that
    carry application state (e.g., Cookie).
 
-4.8.  Defining Message Payloads
+4.8.  Defining Message Content
 
-   There are many potential formats for payloads; for example, JSON
+   Common syntactic conventions for message contents include JSON
    [RFC8259], XML [XML], and CBOR [RFC7049].  Best practices for their
    use are out of scope for this document.
 
@@ -914,11 +923,16 @@ Table of Contents
    consider assigning a freshness lifetime.
 
    The most common method for specifying freshness is the max-age
-   response directive ([I-D.ietf-httpbis-cache], Section 5.2.2.9).  The
+   response directive ([I-D.ietf-httpbis-cache], Section 5.2.2.1).  The
    Expires header field ([I-D.ietf-httpbis-cache], Section 5.3) can also
    be used, but it is not necessary; all modern cache implementations
    support Cache-Control, and specifying freshness as a delta is usually
    more convenient and less error-prone.
+
+   It is not necessary to add the public response directive
+   ([I-D.ietf-httpbis-cache], Section 5.2.2.9) to cache most responses;
+   it is only necessary when it's desirable to store an authenticated
+   response.
 
    In some situations, responses without explicit cache freshness
    directives will be stored and served using a heuristic freshness
@@ -928,11 +942,12 @@ Table of Contents
    response explicitly uncacheable.
 
    If caching of a response is not desired, the appropriate response
-   directive is "Cache-Control: no-store".  This only need be sent in
-   situations where the response might be cached; see
-   [I-D.ietf-httpbis-cache], Section 3.  Note that "Cache-Control: no-
-   cache" allows a response to be stored, just not reused by a cache
-   without validation; it does not prevent caching (despite its name).
+   directive is "Cache-Control: no-store".  Other directives are not
+   necessary, and no-store only need be sent in situations where the
+   response might be cached; see [I-D.ietf-httpbis-cache], Section 3.
+   Note that "Cache-Control: no-cache" allows a response to be stored,
+   just not reused by a cache without validation; it does not prevent
+   caching (despite its name).
 
    For example, this response cannot be stored or reused by a cache:
 
@@ -978,11 +993,11 @@ Table of Contents
 4.9.4.  Varying Content Based Upon the Request
 
    If an application uses a request header field to change the
-   response's headers or content, authors should point out that this has
-   implications for caching; in general, such resources need to either
-   make their responses uncacheable (e.g., with the "no-store" cache-
-   control directive defined in [I-D.ietf-httpbis-cache],
-   Section 5.2.2.3) or send the Vary response header field
+   response's header fields or content, authors should point out that
+   this has implications for caching; in general, such resources need to
+   either make their responses uncacheable (e.g., with the "no-store"
+   cache-control directive defined in [I-D.ietf-httpbis-cache],
+   Section 5.2.2.5) or send the Vary response header field
    ([I-D.ietf-httpbis-semantics], Section 12.5.5) on all responses from
    that resource (including the "default" response).
 
@@ -1012,13 +1027,42 @@ Table of Contents
    Mitigations include using a request-specific token to assure the
    intent of the client.
 
+4.11.  Making Multiple Requests
+
+   Clients often need to send multiple requests to perform a task.
+
+   In HTTP/1, parallel requests are most often supported by opening
+   multiple connections.  Application performance can be impacted when
+   too many simultaneous connections are used, because connections'
+   congestion control will not be coordinated.  Furthermore, it can be
+   difficult for applications to decide when and to select which
+   connection to use to issue a given request, further impacting
+   performance.
+
+   HTTP/2 and HTTP/3 offer multiplexing to applications, removing the
+   need to use multiple connections.  However, application performance
+   can still be significantly affected by how the server chooses to
+   prioritize responses.  Depending on the application, it might be best
+   for the server to determine the priority of responses, or for the
+   client to hint its priorities to the server (see, e.g.,
+   [I-D.ietf-httpbis-priority]).
+
+   In all versions of HTTP, requests are made independently -- you can't
+   rely on the relative order of two requests to guarantee processing
+   order.  This is because they might be sent over a multiplexed
+   protocol by an intermediary, sent to different origin servers, or the
+   server might even perform processing in a different order.  If two
+   requests need strict ordering, the only reliable way to assure the
+   outcome is to issue the second request when the final response to the
+   first has begun.
+
    Applications MUST NOT make assumptions about the relationship between
    separate requests on a single transport connection; doing so breaks
    many of the assumptions of HTTP as a stateless protocol, and will
    cause problems in interoperability, security, operability and
    evolution.
 
-4.11.  Client Authentication
+4.12.  Client Authentication
 
    Applications can use HTTP authentication [I-D.ietf-httpbis-semantics]
    to identify clients.  The Basic authentication scheme [RFC7617] MUST
@@ -1037,7 +1081,7 @@ Table of Contents
    possible.  Mitigations include using a request-specific token to
    assure the intent of the client.
 
-4.12.  Co-Existing with Web Browsing
+4.13.  Co-Existing with Web Browsing
 
    Even if there is not an intent for an application to be used with a
    Web browser, its resources will remain available to browsers and
@@ -1114,7 +1158,7 @@ Table of Contents
    the abstraction that browsers use for HTTP; it enforces many of these
    best practices.
 
-4.13.  Maintaining Application Boundaries
+4.14.  Maintaining Application Boundaries
 
    Because the origin [RFC6454] is how many HTTP capabilities are
    scoped, applications also need to consider how deployments might
@@ -1148,7 +1192,7 @@ Table of Contents
    origin data to browsers will need to implement the CORS protocol; see
    [FETCH].
 
-4.14.  Using Server Push
+4.15.  Using Server Push
 
    HTTP/2 adds the ability for servers to "push" request/response pairs
    to clients in [RFC7540], Section 8.2.  While server push seems like a
@@ -1187,7 +1231,7 @@ Table of Contents
    requirements regarding authority in [RFC7540], Section 8.2, to avoid
    cross-origin push attacks.
 
-4.15.  Allowing Versioning and Evolution
+4.16.  Allowing Versioning and Evolution
 
    It's often necessary to introduce new features into application
    protocols, and change existing ones.
@@ -1217,13 +1261,13 @@ Table of Contents
    use of 'http' URLs, to provide authentication, integrity and
    confidentiality, as well as mitigate pervasive monitoring attacks.
 
-   Section 4.12 highlights the implications of Web browsers'
+   Section 4.13 highlights the implications of Web browsers'
    capabilities on applications that use HTTP.
 
-   Section 4.13 discusses the issues that arise when applications are
+   Section 4.14 discusses the issues that arise when applications are
    deployed on the same origin as Web sites (and other applications).
 
-   Section 4.14 highlights risks of using HTTP/2 server push in a manner
+   Section 4.15 highlights risks of using HTTP/2 server push in a manner
    other than specified.
 
    Applications that use HTTP in a manner that involves modification of
@@ -1274,16 +1318,6 @@ Table of Contents
    be avoided, the resulting system's security properties need be
    carefully scrutinised.
 
-   --- back
-
-   # Changes from RFC 3205
-
-   [RFC3205] captured the Best Current Practice in the early 2000's,
-   based on the concerns facing protocol designers at the time.  Use of
-   HTTP has changed considerably since then, and as a result this
-   document is substantially different.  As a result, the changes are
-   too numerous to list individually.
-
 7.  References
 
 7.1.  Normative References
@@ -1291,9 +1325,9 @@ Table of Contents
    [I-D.ietf-httpbis-semantics]
               Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
               Semantics", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-semantics-14, 12 January 2021,
+              httpbis-semantics-15, 30 March 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              semantics-14.txt>.
+              semantics-15.txt>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1309,25 +1343,6 @@ Table of Contents
               Negotiation Extension", RFC 7301, DOI 10.17487/RFC7301,
               July 2014,
               <https://datatracker.ietf.org/doc/html/rfc7301>.
-
-   [I-D.ietf-httpbis-cache]
-              Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
-              Caching", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-cache-14, 12 January 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              cache-14.txt>.
-
-   [I-D.ietf-httpbis-messaging]
-              Fielding, R. T., Nottingham, M., and J. Reschke,
-              "HTTP/1.1", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-messaging-14, 12 January 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              messaging-14.txt>.
-
-   [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
-              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7540>.
 
    [RFC8820]  Nottingham, M., "URI Design and Ownership", BCP 190,
               RFC 8820, DOI 10.17487/RFC8820, June 2020,
@@ -1390,6 +1405,13 @@ Table of Contents
               Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
               2014, <https://datatracker.ietf.org/doc/html/rfc7258>.
 
+   [I-D.ietf-httpbis-cache]
+              Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
+              Caching", Work in Progress, Internet-Draft, draft-ietf-
+              httpbis-cache-15, 30 March 2021,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              cache-15.txt>.
+
    [RFC6797]  Hodges, J., Jackson, C., and A. Barth, "HTTP Strict
               Transport Security (HSTS)", RFC 6797,
               DOI 10.17487/RFC6797, November 2012,
@@ -1427,12 +1449,14 @@ Table of Contents
               APIs", RFC 7807, DOI 10.17487/RFC7807, March 2016,
               <https://datatracker.ietf.org/doc/html/rfc7807>.
 
-   [I-D.ietf-httpbis-header-structure]
-              Nottingham, M. and P. Kamp, "Structured Field Values for
-              HTTP", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-header-structure-19, 3 June 2020,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              header-structure-19.txt>.
+   [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
+              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
+              DOI 10.17487/RFC7540, May 2015,
+              <https://datatracker.ietf.org/doc/html/rfc7540>.
+
+   [RFC8941]  Nottingham, M. and P-H. Kamp, "Structured Field Values for
+              HTTP", RFC 8941, DOI 10.17487/RFC8941, February 2021,
+              <https://datatracker.ietf.org/doc/html/rfc8941>.
 
    [XML]      Bray, T., Paoli, J., Sperberg-McQueen, M., Maler, E., and
               F. Yergeau, "Extensible Markup Language (XML) 1.0 (Fifth
@@ -1448,6 +1472,13 @@ Table of Contents
    [RFC5861]  Nottingham, M., "HTTP Cache-Control Extensions for Stale
               Content", RFC 5861, DOI 10.17487/RFC5861, May 2010,
               <https://datatracker.ietf.org/doc/html/rfc5861>.
+
+   [I-D.ietf-httpbis-priority]
+              Oku, K. and L. Pardue, "Extensible Prioritization Scheme
+              for HTTP", Work in Progress, Internet-Draft, draft-ietf-
+              httpbis-priority-03, 11 January 2021,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              priority-03.txt>.
 
    [RFC7617]  Reschke, J., "The 'Basic' HTTP Authentication Scheme",
               RFC 7617, DOI 10.17487/RFC7617, September 2015,
@@ -1480,6 +1511,14 @@ Table of Contents
    [RFC3205]  Moore, K., "On the use of HTTP as a Substrate", BCP 56,
               RFC 3205, DOI 10.17487/RFC3205, February 2002,
               <https://datatracker.ietf.org/doc/html/rfc3205>.
+
+Appendix A.  Changes from RFC 3205
+
+   [RFC3205] captured the Best Current Practice in the early 2000's,
+   based on the concerns facing protocol designers at the time.  Use of
+   HTTP has changed considerably since then, and as a result this
+   document is substantially different.  As a result, the changes are
+   too numerous to list individually.
 
 Author's Address
 

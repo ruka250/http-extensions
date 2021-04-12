@@ -2,11 +2,15 @@
 
 
 
-HTTP                                                        M. West, Ed.
-Internet-Draft                                               Google, Inc
-Obsoletes: 6265 (if approved)                           J. Wilander, Ed.
-Intended status: Standards Track                              Apple, Inc
-Expires: 13 September 2021                                 12 March 2021
+HTTP                                                        L. Chen, Ed.
+Internet-Draft                                                Google LLC
+Obsoletes: 6265 (if approved)                         S. Englehardt, Ed.
+Intended status: Standards Track                                 Mozilla
+Expires: 14 October 2021                                    M. West, Ed.
+                                                              Google LLC
+                                                        J. Wilander, Ed.
+                                                              Apple, Inc
+                                                           12 April 2021
 
 
                 Cookies: HTTP State Management Mechanism
@@ -50,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2021.
+   This Internet-Draft will expire on 14 October 2021.
 
 Copyright Notice
 
@@ -113,10 +117,7 @@ Table of Contents
        5.3.6.  The HttpOnly Attribute
        5.3.7.  The SameSite Attribute
      5.4.  Storage Model
-     5.5.  Retrieval Model
-       5.5.1.  The Cookie Header
-       5.5.2.  Non-HTTP APIs
-       5.5.3.  Retrieval Algorithm
+     5.5.  The Cookie Header
    6.  Implementation Considerations
      6.1.  Limits
      6.2.  Application Programming Interfaces
@@ -257,8 +258,8 @@ Table of Contents
    is receiving an HTTP response (i.e., the name of the host to which it
    sent the corresponding HTTP request).
 
-   The term request-uri refers to "target URI" as defined in Section 5.1
-   of [RFC7230].
+   The term request-uri refers to "request-target" as defined in
+   Section 5.3 of [RFC7230].
 
    Two sequences of octets are said to case-insensitively match each
    other if and only if they are equivalent under the i;ascii-casemap
@@ -267,10 +268,11 @@ Table of Contents
    The term string means a sequence of non-NUL octets.
 
    The terms "active document", "ancestor browsing context", "browsing
-   context", "dedicated worker", "Document", "WorkerGlobalScope",
-   "sandboxed origin browsing context flag", "parent browsing context",
-   "shared worker", "the worker's Documents", "nested browsing context",
-   and "top-level browsing context" are defined in [HTML].
+   context", "dedicated worker", "Document", "nested browsing context",
+   "opaque origin", "parent browsing context", "sandboxed origin
+   browsing context flag", "shared worker", "the worker's Documents",
+   "top-level browsing context", and "WorkerGlobalScope" are defined in
+   [HTML].
 
    "Service Workers" are defined in the Service Workers specification
    [SERVICE-WORKERS].
@@ -294,10 +296,6 @@ Table of Contents
    The term "request", as well as a request's "client", "current url",
    "method", "target browsing context", and "url list", are defined in
    [FETCH].
-
-   The term "non-HTTP APIs" refers to non-HTTP methods used to set and
-   retrieve cookies, such as a web browser API that exposes cookies to
-   scripts.
 
 3.  Overview
 
@@ -613,7 +611,8 @@ Table of Contents
 
    The HttpOnly attribute limits the scope of the cookie to HTTP
    requests.  In particular, the attribute instructs the user agent to
-   omit the cookie when providing access to cookies via non-HTTP APIs.
+   omit the cookie when providing access to cookies via "non-HTTP" APIs
+   (such as a web browser API that exposes cookies to scripts).
 
    Note that the HttpOnly attribute is independent of the Secure
    attribute: a cookie can have both the HttpOnly and the Secure
@@ -883,7 +882,11 @@ Table of Contents
    algorithm to compute the default-path of a cookie:
 
    1.  Let uri-path be the path portion of the request-uri if such a
-       portion exists (and empty otherwise).
+       portion exists (and empty otherwise).  For example, if the
+       request-uri contains just a path (and optional query string),
+       then the uri-path is that path (without the %x3F ("?") character
+       or query string), and if the request-uri contains a full
+       absoluteURI, the uri-path is the path component of that URI.
 
    2.  If the uri-path is empty or if the first character of the uri-
        path is not a %x2F ("/") character, output %x2F ("/") and skip
@@ -958,7 +961,7 @@ Table of Contents
    "site for cookies" is the top-level origin if and only if the top-
    level origin is same-site with the document's origin, and with each
    of the document's ancestor documents' origins.  Otherwise its "site
-   for cookies" is an origin set to a globally unique identifier.
+   for cookies" is an origin set to an opaque origin.
 
    Given a Document ("document"), the following algorithm returns its
    "site for cookies":
@@ -980,7 +983,7 @@ Table of Contents
            origin otherwise.
 
        2.  If "origin" is not same-site with "top-origin", return an
-           origin set to a globally unique identifier.
+           origin set to an opaque origin.
 
    5.  Return "top-origin".
 
@@ -1007,9 +1010,9 @@ Table of Contents
    Shared workers may be bound to multiple documents at once.  As it is
    quite possible for those documents to have distinct "site for
    cookies" values, the worker's "site for cookies" will be an origin
-   set to a globally unique identifier in cases where the values are not
-   all same-site with the worker's origin, and the worker's origin in
-   cases where the values agree.
+   set to an opaque origin in cases where the values are not all same-
+   site with the worker's origin, and the worker's origin in cases where
+   the values agree.
 
    Given a WorkerGlobalScope ("worker"), the following algorithm returns
    its "site for cookies":
@@ -1022,7 +1025,7 @@ Table of Contents
            defined in Section 5.2.1).
 
        2.  If "document-site" is not same-site with "site", return an
-           origin set to a globally unique identifier.
+           origin set to an opaque origin.
 
    3.  Return "site".
 
@@ -1063,14 +1066,28 @@ Table of Contents
    Section 4.1.  For example, the algorithm strips leading and trailing
    whitespace from the cookie name and value (but maintains internal
    whitespace), whereas the grammar in Section 4.1 forbids whitespace in
-   these positions.  User agents use this algorithm so as to
-   interoperate with servers that do not follow the recommendations in
-   Section 4.
+   these positions.  In addition, the algorithm below accommodates some
+   characters that are not cookie-octets according to the grammar in
+   Section 4.1.  User agents use this algorithm so as to interoperate
+   with servers that do not follow the recommendations in Section 4.
+
+   NOTE: As set-cookie-string may originate from a non-HTTP API, it is
+   not guaranteed to be free of CTL characters, so this algorithm
+   handles them explicitly.
 
    A user agent MUST use an algorithm equivalent to the following
    algorithm to parse a set-cookie-string:
 
-   1.  If the set-cookie-string contains a %x3B (";") character:
+   1.  If the set-cookie-string contains a %x0D (CR), %x0A (LF), or %x00
+       (NUL) octet, then set the set-cookie-string equal to all the
+       characters of set-cookie-string up to, but not including, the
+       first such octet.
+
+   2.  If the set-cookie-string contains a %x00-1F / %x7F (CTL)
+       character: Abort these steps and ignore the set-cookie-string
+       entirely.
+
+   3.  If the set-cookie-string contains a %x3B (";") character:
 
        1.  The name-value-pair string consists of the characters up to,
            but not including, the first %x3B (";"), and the unparsed-
@@ -1083,7 +1100,7 @@ Table of Contents
            contained in the set-cookie-string, and the unparsed-
            attributes is the empty string.
 
-   2.  If the name-value-pair string lacks a %x3D ("=") character, then
+   4.  If the name-value-pair string lacks a %x3D ("=") character, then
        the name string is empty, and the value string is the value of
        name-value-pair.
 
@@ -1092,10 +1109,10 @@ Table of Contents
        empty) value string consists of the characters after the first
        %x3D ("=") character.
 
-   3.  Remove any leading or trailing WSP characters from the name
+   5.  Remove any leading or trailing WSP characters from the name
        string and the value string.
 
-   4.  The cookie-name is the name string, and the cookie-value is the
+   6.  The cookie-name is the name string, and the cookie-value is the
        value string.
 
    The user agent MUST use an algorithm equivalent to the following
@@ -1315,11 +1332,15 @@ Table of Contents
    2.   If cookie-name is empty and cookie-value is empty, abort these
         steps and ignore the cookie entirely.
 
-   3.   Create a new cookie with name cookie-name, value cookie-value.
+   3.   If the cookie-name or the cookie-value contains a %x00-1F / %x7F
+        (CTL) character, abort these steps and ignore the cookie
+        entirely.
+
+   4.   Create a new cookie with name cookie-name, value cookie-value.
         Set the creation-time and the last-access-time to the current
         date and time.
 
-   4.   If the cookie-attribute-list contains an attribute with an
+   5.   If the cookie-attribute-list contains an attribute with an
         attribute-name of "Max-Age":
 
         1.  Set the cookie's persistent-flag to true.
@@ -1345,7 +1366,7 @@ Table of Contents
         2.  Set the cookie's expiry-time to the latest representable
             date.
 
-   5.   If the cookie-attribute-list contains an attribute with an
+   6.   If the cookie-attribute-list contains an attribute with an
         attribute-name of "Domain":
 
         1.  Let the domain-attribute be the attribute-value of the last
@@ -1356,7 +1377,7 @@ Table of Contents
 
         1.  Let the domain-attribute be the empty string.
 
-   6.   If the user agent is configured to reject "public suffixes" and
+   7.   If the user agent is configured to reject "public suffixes" and
         the domain-attribute is a public suffix:
 
         1.  If the domain-attribute is identical to the canonicalized
@@ -1372,7 +1393,7 @@ Table of Contents
         integrity of "site.example" by setting a cookie with a Domain
         attribute of "example".
 
-   7.   If the domain-attribute is non-empty:
+   8.   If the domain-attribute is non-empty:
 
         1.  If the canonicalized request-host does not domain-match the
             domain-attribute:
@@ -1391,30 +1412,30 @@ Table of Contents
 
         2.  Set the cookie's domain to the canonicalized request-host.
 
-   8.   If the cookie-attribute-list contains an attribute with an
+   9.   If the cookie-attribute-list contains an attribute with an
         attribute-name of "Path", set the cookie's path to attribute-
         value of the last attribute in the cookie-attribute-list with an
         attribute-name of "Path".  Otherwise, set the cookie's path to
         the default-path of the request-uri.
 
-   9.   If the cookie-attribute-list contains an attribute with an
+   10.  If the cookie-attribute-list contains an attribute with an
         attribute-name of "Secure", set the cookie's secure-only-flag to
         true.  Otherwise, set the cookie's secure-only-flag to false.
 
-   10.  If the scheme component of the request-uri does not denote a
+   11.  If the scheme component of the request-uri does not denote a
         "secure" protocol (as defined by the user agent), and the
         cookie's secure-only-flag is true, then abort these steps and
         ignore the cookie entirely.
 
-   11.  If the cookie-attribute-list contains an attribute with an
+   12.  If the cookie-attribute-list contains an attribute with an
         attribute-name of "HttpOnly", set the cookie's http-only-flag to
         true.  Otherwise, set the cookie's http-only-flag to false.
 
-   12.  If the cookie was received from a "non-HTTP" API and the
+   13.  If the cookie was received from a "non-HTTP" API and the
         cookie's http-only-flag is true, abort these steps and ignore
         the cookie entirely.
 
-   13.  If the cookie's secure-only-flag is false, and the scheme
+   14.  If the cookie's secure-only-flag is false, and the scheme
         component of request-uri does not denote a "secure" protocol,
         then abort these steps and ignore the cookie entirely if the
         cookie store contains one or more cookies that meet all of the
@@ -1438,14 +1459,14 @@ Table of Contents
         set for a path of '/' or '/foo', but not for a path of '/login'
         or '/login/en'.
 
-   14.  If the cookie-attribute-list contains an attribute with an
+   15.  If the cookie-attribute-list contains an attribute with an
         attribute-name of "SameSite", and an attribute-value of
         "Strict", "Lax", or "None", set the cookie's same-site-flag to
         the attribute-value of the last attribute in the cookie-
         attribute-list with an attribute-name of "SameSite".  Otherwise,
         set the cookie's same-site-flag to "Default".
 
-   15.  If the cookie's "same-site-flag" is not "None":
+   16.  If the cookie's "same-site-flag" is not "None":
 
         1.  If the cookie was received from a "non-HTTP" API, and the
             API was called from a browsing context's active document
@@ -1472,15 +1493,15 @@ Table of Contents
         4.  Abort these steps and ignore the newly created cookie
             entirely.
 
-   16.  If the cookie's "same-site-flag" is "None", abort these steps
+   17.  If the cookie's "same-site-flag" is "None", abort these steps
         and ignore the cookie entirely unless the cookie's secure-only-
         flag is true.
 
-   17.  If the cookie-name begins with a case-sensitive match for the
+   18.  If the cookie-name begins with a case-sensitive match for the
         string "__Secure-", abort these steps and ignore the cookie
         entirely unless the cookie's secure-only-flag is true.
 
-   18.  If the cookie-name begins with a case-sensitive match for the
+   19.  If the cookie-name begins with a case-sensitive match for the
         string "__Host-", abort these steps and ignore the cookie
         entirely unless the cookie meets all the following criteria:
 
@@ -1491,7 +1512,7 @@ Table of Contents
         3.  The cookie-attribute-list contains an attribute with an
             attribute-name of "Path", and the cookie's path is "/".
 
-   19.  If the cookie store contains a cookie with the same name,
+   20.  If the cookie store contains a cookie with the same name,
         domain, host-only-flag, and path as the newly-created cookie:
 
         1.  Let old-cookie be the existing cookie with the same name,
@@ -1508,7 +1529,7 @@ Table of Contents
 
         4.  Remove the old-cookie from the cookie store.
 
-   20.  Insert the newly-created cookie into the cookie store.
+   21.  Insert the newly-created cookie into the cookie store.
 
    A cookie is "expired" if the cookie has an expiry date in the past.
 
@@ -1543,14 +1564,7 @@ Table of Contents
    the user agent MUST remove from the cookie store all cookies with the
    persistent-flag set to false.
 
-5.5.  Retrieval Model
-
-   This section defines how cookies are retrieved from a cookie store in
-   the form of a cookie-string.  A cookie-string may be used to build a
-   Cookie header for an HTTP request, or may be returned from a "non-
-   HTTP" API that provides access to cookies.
-
-5.5.1.  The Cookie Header
+5.5.  The Cookie Header
 
    The user agent includes stored cookies in the Cookie HTTP request
    header.
@@ -1563,32 +1577,12 @@ Table of Contents
    "third-party" requests from setting cookies (see Section 7.1).
 
    If the user agent does attach a Cookie header field to an HTTP
-   request, the user agent MUST send the cookie-string as the value of
-   the header field.  The cookie-string is computed as defined in
-   Section 5.5.3, whereby the retrieval-uri is defined as the request-
-   uri and the same-site status is computed for the HTTP request as
-   defined in Section 5.2.
+   request, the user agent MUST send the cookie-string (defined below)
+   as the value of the header field.
 
-5.5.2.  Non-HTTP APIs
-
-   The user agent MAY implement "non-HTTP" APIs that can be used to
-   access stored cookies.
-
-   A user agent MAY return an empty cookie-string in certain contexts,
-   such as when retrieval occurs within a third-party context (see
-   Section 7.1).
-
-   If a user agent does return cookies for a given call to a "non-HTTP"
-   API with an associated Document, then the user agent MUST compute the
-   cookie-string following the algorithm defined in Section 5.5.3,
-   whereby the retrieval-uri is the associated Document's URL.  The
-   retrieval is same-site if the Document's "site for cookies" is same-
-   site with the top-level origin as defined in Section 5.2.1.
-
-5.5.3.  Retrieval Algorithm
-
-   Given a cookie store, a retrieval-uri, and the same-site status of
-   the retrieval-uri, the following algorithm returns a cookie-string.
+   The user agent MUST use an algorithm equivalent to the following
+   algorithm to compute the cookie-string from a cookie store and a
+   request-uri:
 
    1.  Let cookie-list be the set of cookies from the cookie store that
        meets all of the following requirements:
@@ -1596,18 +1590,16 @@ Table of Contents
        *  Either:
 
           -  The cookie's host-only-flag is true and the canonicalized
-             host of the retrieval-uri is identical to the cookie's
-             domain.
+             request-host is identical to the cookie's domain.
 
           Or:
 
           -  The cookie's host-only-flag is false and the canonicalized
-             host of the retrieval-uri domain-matches the cookie's
-             domain.
+             request-host domain-matches the cookie's domain.
 
-       *  The retrieval-uri's path path-matches the cookie's path.
+       *  The request-uri's path path-matches the cookie's path.
 
-       *  If the cookie's secure-only-flag is true, then the retrieval-
+       *  If the cookie's secure-only-flag is true, then the request-
           uri's scheme must denote a "secure" protocol (as defined by
           the user agent).
 
@@ -1619,21 +1611,18 @@ Table of Contents
 
        *  If the cookie's http-only-flag is true, then exclude the
           cookie if the cookie-string is being generated for a "non-
-          HTTP" API.
+          HTTP" API (as defined by the user agent).
 
-       *  If the cookie's same-site-flag is not "None" and the
-          retrieval's same-site status is "cross-site", then exclude the
-          cookie unless all of the following conditions are met:
+       *  If the cookie's same-site-flag is not "None", and the HTTP
+          request is cross-site (as defined in Section 5.2) then exclude
+          the cookie unless all of the following statements hold:
 
-          -  The retrieval is for a Cookie header in the HTTP request
-             associated with the retrieval-uri.
+          1.  The same-site-flag is "Lax" or "Default".
 
-          -  The same-site-flag is "Lax" or "Default".
+          2.  The HTTP request's method is "safe".
 
-          -  The HTTP request's method is "safe".
-
-          -  The HTTP request's target browsing context is a top-level
-             browsing context.
+          3.  The HTTP request's target browsing context is a top-level
+              browsing context.
 
    2.  The user agent SHOULD sort the cookie-list in the following
        order:
@@ -2026,33 +2015,36 @@ Table of Contents
    Inc's webmail provider "https://site.example/".  They might expect
    that clicking on an emailed link to "https://projects.example/secret/
    project" would show them the secret project that they're authorized
-   to see, but if "projects.example" has marked their session cookies as
-   "SameSite", then this cross-site navigation won't send them along
-   with the request. "projects.example" will render a 404 error to avoid
-   leaking secret information, and the user will be quite confused.
+   to see, but if "https://projects.example" has marked their session
+   cookies as "SameSite=Strict", then this cross-site navigation won't
+   send them along with the request. "https://projects.example" will
+   render a 404 error to avoid leaking secret information, and the user
+   will be quite confused.
 
    Developers can avoid this confusion by adopting a session management
    system that relies on not one, but two cookies: one conceptually
    granting "read" access, another granting "write" access.  The latter
-   could be marked as "SameSite", and its absence would prompt a
+   could be marked as "SameSite=Strict", and its absence would prompt a
    reauthentication step before executing any non-idempotent action.
-   The former could drop the "SameSite" attribute entirely, or choose
-   the "Lax" version of enforcement, in order to allow users access to
-   data via top-level navigation.
+   The former could be marked as "SameSite=Lax", in order to allow users
+   access to data via top-level navigation, or "SameSite=None", to
+   permit access in all contexts (including cross-site embedded
+   contexts).
 
 8.8.3.  Mashups and Widgets
 
-   The "SameSite" attribute is inappropriate for some important use-
-   cases.  In particular, note that content intended for embedding in a
-   cross-site contexts (social networking widgets or commenting
-   services, for instance) will not have access to same-site cookies.
-   Cookies may be required for requests triggered in these cross-site
-   contexts in order to provide seamless functionality that relies on a
-   user's state.
+   The "Lax" and "Strict" values for the "SameSite" attribute are
+   inappropriate for some important use-cases.  In particular, note that
+   content intended for embedding in cross-site contexts (social
+   networking widgets or commenting services, for instance) will not
+   have access to same-site cookies.  Cookies which are required in
+   these situations should be marked with "SameSite=None" to allow
+   access in cross-site contexts.
 
    Likewise, some forms of Single-Sign-On might require cookie-based
    authentication in a cross-site context; these mechanisms will not
-   function as intended with same-site cookies.
+   function as intended with same-site cookies and will also require
+   "SameSite=None".
 
 8.8.4.  Server-controlled
 
@@ -2115,7 +2107,7 @@ Table of Contents
 
    Author/Change controller:  IETF
 
-   Specification document:  this specification (Section 5.5.1)
+   Specification document:  this specification (Section 5.5)
 
 9.2.  Set-Cookie
 
@@ -2517,18 +2509,38 @@ A.9.  draft-ietf-httpbis-rfc6265bis-08
       https://github.com/httpwg/http-extensions/pull/1348
       (https://github.com/httpwg/http-extensions/pull/1348)
 
+   *  Align on using HTML terminology for origins:
+      https://github.com/httpwg/http-extensions/pull/1416
+      (https://github.com/httpwg/http-extensions/pull/1416)
+
+   *  Modify cookie parsing and creation algorithms in Section 5.3 and
+      Section 5.4 to explicitly handle control characters:
+      https://github.com/httpwg/http-extensions/pull/1420
+      (https://github.com/httpwg/http-extensions/pull/1420)
+
 Acknowledgements
 
-   RFC 6265 was written by Adam Barth.  This document is a minor update
-   of RFC 6265, adding small features, and aligning the specification
-   with the reality of today's deployments.  Here, we're standing upon
-   the shoulders of a giant since the majority of the text is still
-   Adam's.
+   RFC 6265 was written by Adam Barth.  This document is an update of
+   RFC 6265, adding features and aligning the specification with the
+   reality of today's deployments.  Here, we're standing upon the
+   shoulders of a giant since the majority of the text is still Adam's.
 
 Authors' Addresses
 
+   Lily Chen (editor)
+   Google LLC
+
+   Email: chlily@google.com
+
+
+   Steven Englehardt (editor)
+   Mozilla
+
+   Email: senglehardt@mozilla.com
+
+
    Mike West (editor)
-   Google, Inc
+   Google LLC
 
    Email: mkwst@google.com
    URI:   https://mikewest.org/
