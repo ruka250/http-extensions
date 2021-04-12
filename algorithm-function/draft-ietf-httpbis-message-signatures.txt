@@ -1654,6 +1654,13 @@ Document History
 
    *  draft-ietf-httpbis-message-signatures
 
+      -  Since -03
+
+         o  Moved signature component definitions up to intro.
+
+         o  Created formal function definitions for algorithms to
+            fulfill.
+
       -  -03
 
          o  Clarified signing and verification processes.

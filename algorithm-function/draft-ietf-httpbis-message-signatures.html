@@ -2911,64 +2911,73 @@ Jeffrey Yasskin.<a href="#section-appendix.c-2" class="pilcrow">¶</a></p>
           <p id="section-appendix.d-2.1.1">draft-ietf-httpbis-message-signatures<a href="#section-appendix.d-2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-appendix.d-2.1.2.1">
-              <p id="section-appendix.d-2.1.2.1.1">-03<a href="#section-appendix.d-2.1.2.1.1" class="pilcrow">¶</a></p>
+              <p id="section-appendix.d-2.1.2.1.1">Since -03<a href="#section-appendix.d-2.1.2.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-appendix.d-2.1.2.1.2.1">Clarified signing and verification processes.<a href="#section-appendix.d-2.1.2.1.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-appendix.d-2.1.2.1.2.1">Moved signature component definitions up to intro.<a href="#section-appendix.d-2.1.2.1.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.1.2.2">Updated algorithm and key selection method.<a href="#section-appendix.d-2.1.2.1.2.2" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.1.2.3">Clearly defined core algorithm set.<a href="#section-appendix.d-2.1.2.1.2.3" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.1.2.4">Defined JOSE signature mapping process.<a href="#section-appendix.d-2.1.2.1.2.4" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.1.2.5">Removed legacy signature methods.<a href="#section-appendix.d-2.1.2.1.2.5" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.1.2.6">Define signature parameters separately from "signature" object model.<a href="#section-appendix.d-2.1.2.1.2.6" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.1.2.7">Define serialization values for signature-input header based on signature input.<a href="#section-appendix.d-2.1.2.1.2.7" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.1.2.2">Created formal function definitions for algorithms to fulfill.<a href="#section-appendix.d-2.1.2.1.2.2" class="pilcrow">¶</a>
 </li>
               </ul>
 </li>
             <li class="normal" id="section-appendix.d-2.1.2.2">
-              <p id="section-appendix.d-2.1.2.2.1">-02<a href="#section-appendix.d-2.1.2.2.1" class="pilcrow">¶</a></p>
+              <p id="section-appendix.d-2.1.2.2.1">-03<a href="#section-appendix.d-2.1.2.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-appendix.d-2.1.2.2.2.1">Removed editorial comments on document sources.<a href="#section-appendix.d-2.1.2.2.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-appendix.d-2.1.2.2.2.1">Clarified signing and verification processes.<a href="#section-appendix.d-2.1.2.2.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.2">Removed in-document issues list in favor of tracked issues.<a href="#section-appendix.d-2.1.2.2.2.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.2.2.2">Updated algorithm and key selection method.<a href="#section-appendix.d-2.1.2.2.2.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.3">Replaced unstructured <code>Signature</code> header with <code>Signature-Input</code> and <code>Signature</code> Dictionary Structured Header Fields.<a href="#section-appendix.d-2.1.2.2.2.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.2.2.3">Clearly defined core algorithm set.<a href="#section-appendix.d-2.1.2.2.2.3" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.4">Defined content identifiers for individual Dictionary members, e.g., <code>"x-dictionary-field";key=member-name</code>.<a href="#section-appendix.d-2.1.2.2.2.4" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.2.2.4">Defined JOSE signature mapping process.<a href="#section-appendix.d-2.1.2.2.2.4" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.5">Defined content identifiers for first N members of a List, e.g., <code>"x-list-field":prefix=4</code>.<a href="#section-appendix.d-2.1.2.2.2.5" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.2.2.5">Removed legacy signature methods.<a href="#section-appendix.d-2.1.2.2.2.5" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.6">Fixed up examples.<a href="#section-appendix.d-2.1.2.2.2.6" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.2.2.6">Define signature parameters separately from "signature" object model.<a href="#section-appendix.d-2.1.2.2.2.6" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.7">Updated introduction now that it's adopted.<a href="#section-appendix.d-2.1.2.2.2.7" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.8">Defined specialty content identifiers and a means to extend them.<a href="#section-appendix.d-2.1.2.2.2.8" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.9">Required signature parameters to be included in signature.<a href="#section-appendix.d-2.1.2.2.2.9" class="pilcrow">¶</a>
-</li>
-                <li class="normal" id="section-appendix.d-2.1.2.2.2.10">Added guidance on backwards compatibility, detection, and use of signature methods.<a href="#section-appendix.d-2.1.2.2.2.10" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.2.2.7">Define serialization values for signature-input header based on signature input.<a href="#section-appendix.d-2.1.2.2.2.7" class="pilcrow">¶</a>
 </li>
               </ul>
 </li>
             <li class="normal" id="section-appendix.d-2.1.2.3">
-              <p id="section-appendix.d-2.1.2.3.1">-01<a href="#section-appendix.d-2.1.2.3.1" class="pilcrow">¶</a></p>
+              <p id="section-appendix.d-2.1.2.3.1">-02<a href="#section-appendix.d-2.1.2.3.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-appendix.d-2.1.2.3.2.1">Strengthened requirement for content identifiers for header fields to be lower-case (changed from SHOULD to MUST).<a href="#section-appendix.d-2.1.2.3.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-appendix.d-2.1.2.3.2.1">Removed editorial comments on document sources.<a href="#section-appendix.d-2.1.2.3.2.1" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.3.2.2">Added real example values for Creation Time and Expiration Time.<a href="#section-appendix.d-2.1.2.3.2.2" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.2">Removed in-document issues list in favor of tracked issues.<a href="#section-appendix.d-2.1.2.3.2.2" class="pilcrow">¶</a>
 </li>
-                <li class="normal" id="section-appendix.d-2.1.2.3.2.3">Minor editorial corrections and readability improvements.<a href="#section-appendix.d-2.1.2.3.2.3" class="pilcrow">¶</a>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.3">Replaced unstructured <code>Signature</code> header with <code>Signature-Input</code> and <code>Signature</code> Dictionary Structured Header Fields.<a href="#section-appendix.d-2.1.2.3.2.3" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.4">Defined content identifiers for individual Dictionary members, e.g., <code>"x-dictionary-field";key=member-name</code>.<a href="#section-appendix.d-2.1.2.3.2.4" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.5">Defined content identifiers for first N members of a List, e.g., <code>"x-list-field":prefix=4</code>.<a href="#section-appendix.d-2.1.2.3.2.5" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.6">Fixed up examples.<a href="#section-appendix.d-2.1.2.3.2.6" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.7">Updated introduction now that it's adopted.<a href="#section-appendix.d-2.1.2.3.2.7" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.8">Defined specialty content identifiers and a means to extend them.<a href="#section-appendix.d-2.1.2.3.2.8" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.9">Required signature parameters to be included in signature.<a href="#section-appendix.d-2.1.2.3.2.9" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.3.2.10">Added guidance on backwards compatibility, detection, and use of signature methods.<a href="#section-appendix.d-2.1.2.3.2.10" class="pilcrow">¶</a>
 </li>
               </ul>
 </li>
             <li class="normal" id="section-appendix.d-2.1.2.4">
-              <p id="section-appendix.d-2.1.2.4.1">-00<a href="#section-appendix.d-2.1.2.4.1" class="pilcrow">¶</a></p>
+              <p id="section-appendix.d-2.1.2.4.1">-01<a href="#section-appendix.d-2.1.2.4.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-appendix.d-2.1.2.4.2.1">Initialized from draft-richanna-http-message-signatures-00, following adoption by the working group.<a href="#section-appendix.d-2.1.2.4.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-appendix.d-2.1.2.4.2.1">Strengthened requirement for content identifiers for header fields to be lower-case (changed from SHOULD to MUST).<a href="#section-appendix.d-2.1.2.4.2.1" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.4.2.2">Added real example values for Creation Time and Expiration Time.<a href="#section-appendix.d-2.1.2.4.2.2" class="pilcrow">¶</a>
+</li>
+                <li class="normal" id="section-appendix.d-2.1.2.4.2.3">Minor editorial corrections and readability improvements.<a href="#section-appendix.d-2.1.2.4.2.3" class="pilcrow">¶</a>
+</li>
+              </ul>
+</li>
+            <li class="normal" id="section-appendix.d-2.1.2.5">
+              <p id="section-appendix.d-2.1.2.5.1">-00<a href="#section-appendix.d-2.1.2.5.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-appendix.d-2.1.2.5.2.1">Initialized from draft-richanna-http-message-signatures-00, following adoption by the working group.<a href="#section-appendix.d-2.1.2.5.2.1" class="pilcrow">¶</a>
 </li>
               </ul>
 </li>
