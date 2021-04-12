@@ -5,10 +5,10 @@
 HTTP                                                     A. Backman, Ed.
 Internet-Draft                                                    Amazon
 Intended status: Standards Track                               J. Richer
-Expires: 12 October 2021                             Bespoke Engineering
+Expires: 14 October 2021                             Bespoke Engineering
                                                                M. Sporny
                                                           Digital Bazaar
-                                                           10 April 2021
+                                                           12 April 2021
 
 
                          Signing HTTP Messages
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 October 2021.
+   This Internet-Draft will expire on 14 October 2021.
 
 Copyright Notice
 
@@ -1611,16 +1611,17 @@ Acknowledgements
    authors of that draft, Mark Cavage and Manu Sporny, for their work on
    that draft and their continuing contributions.
 
-   The editor would also like to thank the following individuals for
-   feedback on and implementations of the draft-cavage-http-signatures
-   draft (in alphabetical order): Mark Adamcin, Mark Allen, Paul
+   The editors would also like to thank the following individuals for
+   feedback, insight, and implementation of this draft and its
+   predecessors (in alphabetical order): Mark Adamcin, Mark Allen, Paul
    Annesley, Karl Boehlmark, Stephane Bortzmeyer, Sarven Capadisli, Liam
    Dennehy, ductm54, Stephen Farrell, Phillip Hallam-Baker, Eric Holmes,
-   Andrey Kislyuk, Adam Knight, Dave Lehn, Dave Longley, James H.
-   Manger, Ilari Liusvaara, Mark Nottingham, Yoav Nir, Adrian Palmer,
-   Lucas Pardue, Roberto Polli, Julian Reschke, Michael Richardson,
-   Wojciech Rygielski, Adam Scarr, Cory J.  Slep, Dirk Stein, Henry
-   Story, Lukasz Szewc, Chris Webber, and Jeffrey Yasskin
+   Andrey Kislyuk, Adam Knight, Dave Lehn, Dave Longley, Ilari
+   Liusvaara, James H.  Manger, Kathleen Moriarty, Mark Nottingham, Yoav
+   Nir, Adrian Palmer, Lucas Pardue, Roberto Polli, Julian Reschke,
+   Michael Richardson, Wojciech Rygielski, Adam Scarr, Cory J.  Slep,
+   Dirk Stein, Henry Story, Lukasz Szewc, Chris Webber, and Jeffrey
+   Yasskin.
 
 Document History
 
