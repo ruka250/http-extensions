@@ -847,7 +847,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Polli &amp; Pardue</td>
-<td class="center">Expires 14 October 2021</td>
+<td class="center">Expires 15 October 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -863,12 +863,12 @@ address div.right {
 <a href="https://datatracker.ietf.org/doc/html/rfc3230" class="eref">3230</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-04-12" class="published">12 April 2021</time>
+<time datetime="2021-04-13" class="published">13 April 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-10-14">14 October 2021</time></dd>
+<dd class="expires"><time datetime="2021-10-15">15 October 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -922,7 +922,7 @@ defined in draft-ietf-httpbis-semantics.<a href="#section-abstract-2" class="pil
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 October 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 October 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1326,7 +1326,7 @@ appear in all capitals, as shown here.<a href="#section-1.4-1" class="pilcrow">�
 <span>[<a href="#RFC7405" class="xref">RFC7405</a>]</span> along with the "#rule" extension defined in Section 5.6.1 of
 <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.4-2" class="pilcrow">¶</a></p>
 <p id="section-1.4-3">The definitions "representation", "selected representation", "representation
-data", "representation metadata", and "payload data" in this document are to be
+data", "representation metadata", and "content" in this document are to be
 interpreted as described in <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.4-3" class="pilcrow">¶</a></p>
 <p id="section-1.4-4">Algorithm names respect the casing used in their definition document (eg. SHA-1, CRC32c)
 whereas digest-algorithm tokens are quoted (eg. "sha", "crc32c").<a href="#section-1.4-4" class="pilcrow">¶</a></p>
@@ -1340,18 +1340,18 @@ whereas digest-algorithm tokens are quoted (eg. "sha", "crc32c").<a href="#secti
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-representation-digest" class="section-name selfRef">Representation Digest</a>
       </h2>
 <p id="section-2-1">The representation digest is an integrity mechanism for HTTP resources
-which uses a checksum  that is calculated independently of the payload data
+which uses a checksum  that is calculated independently of the content
 (see Section 6.4 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).
 It uses the representation data (see Section 8.1 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>),
-that can be fully or partially contained in the payload data, or not contained at all:<a href="#section-2-1" class="pilcrow">¶</a></p>
+that can be fully or partially contained in the content, or not contained at all:<a href="#section-2-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-2-2">
 <pre>
    representation-data := Content-Encoding( Content-Type( bits ) )
 </pre><a href="#section-2-2" class="pilcrow">¶</a>
 </div>
 <p id="section-2-3">This takes into account the effect of the HTTP semantics on the messages;
-for example, the payload data can be affected by Range Requests or methods such as HEAD,
-while the way the payload data is transferred "on the wire" is dependent on other
+for example, the content can be affected by Range Requests or methods such as HEAD,
+while the way the content is transferred "on the wire" is dependent on other
 transformations (e.g. transfer codings for HTTP/1.1 - see Section 6.1 of
 <span>[<a href="#HTTP11" class="xref">HTTP11</a>]</span>). To help illustrate how such things affect <code>Digest</code>,
 several examples are provided in <a href="#resource-representation" class="xref">Appendix A</a>.<a href="#section-2-3" class="pilcrow">¶</a></p>
@@ -1753,7 +1753,7 @@ requirements or guidance for user agents that experience such cases.<a href="#se
 <p id="section-10-1">The following examples demonstrate interactions where a server responds with a
 <code>Digest</code> field even though the client did not solicit one using
 <code>Want-Digest</code>.<a href="#section-10-1" class="pilcrow">¶</a></p>
-<p id="section-10-2">Some examples include JSON objects in the payload data.
+<p id="section-10-2">Some examples include JSON objects in the content.
 For presentation purposes, objects that fit completely within the line-length limits
 are presented on a single line using compact notation with no leading space.
 Objects that would exceed line-length limits are presented across multiple lines
@@ -1791,7 +1791,7 @@ Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
         <h3 id="name-server-returns-no-represent">
 <a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-server-returns-no-represent" class="section-name selfRef">Server Returns No Representation Data</a>
         </h3>
-<p id="section-10.2-1">Requests without payload data can still send a <code>Digest</code> field
+<p id="section-10.2-1">Requests without content can still send a <code>Digest</code> field
 applying the digest-algorithm to an empty representation.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
 <p id="section-10.2-2">The response <code>Digest</code> field-value is calculated over the JSON object
 <code>{"hello": "world"}</code>, which is not shown because there is no payload
@@ -1896,7 +1896,7 @@ iwiAeyJoZWxsbyI6ICJ3b3JsZCJ9Aw==
 <p id="section-10.5-1">The request <code>Digest</code> field-value is calculated on the enclosed payload.<a href="#section-10.5-1" class="pilcrow">¶</a></p>
 <p id="section-10.5-2">The response <code>Digest</code> field-value
 depends on the representation metadata header fields, including
-<code>Content-Encoding: br</code> even when the response does not contain payload data.<a href="#section-10.5-2" class="pilcrow">¶</a></p>
+<code>Content-Encoding: br</code> even when the response does not contain content.<a href="#section-10.5-2" class="pilcrow">¶</a></p>
 <p id="section-10.5-3">Request:<a href="#section-10.5-3" class="pilcrow">¶</a></p>
 <div id="section-10.5-4">
 <pre class="sourcecode lang-http-message">
@@ -2001,7 +2001,7 @@ Digest: id-sha-256=yxOAqEeoj+reqygSIsLpT0LhumrNkIds5uLKtmdLyYE=
 }
 </pre><a href="#section-10.7-6" class="pilcrow">¶</a>
 </div>
-<p id="section-10.7-7">Note that a <code>204 No Content</code> response without payload data but with the same
+<p id="section-10.7-7">Note that a <code>204 No Content</code> response without content but with the same
 <code>Digest</code> field-value would have been legitimate too.<a href="#section-10.7-7" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2087,7 +2087,7 @@ Digest: id-sha-256=yxOAqEeoj+reqygSIsLpT0LhumrNkIds5uLKtmdLyYE=
 }
 </pre><a href="#section-10.9-8" class="pilcrow">¶</a>
 </div>
-<p id="section-10.9-9">Note that a <code>204 No Content</code> response without payload data but with the same
+<p id="section-10.9-9">Note that a <code>204 No Content</code> response without content but with the same
 <code>Digest</code> field-value would have been legitimate too.<a href="#section-10.9-9" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2178,7 +2178,7 @@ Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
       </h2>
 <p id="section-11-1">The following examples demonstrate interactions where a client solicits a
 <code>Digest</code> using <code>Want-Digest</code>.<a href="#section-11-1" class="pilcrow">¶</a></p>
-<p id="section-11-2">Some examples include JSON objects in the payload data.
+<p id="section-11-2">Some examples include JSON objects in the content.
 For presentation purposes, objects that fit completely within the line-length limits
 are presented on a single line using compact notation with no leading space.
 Objects that would exceed line-length limits are presented across multiple lines
@@ -2374,7 +2374,7 @@ might affect signature validation.<a href="#section-12.6-6" class="pilcrow">¶</
         <h3 id="name-usage-in-trailer-fields">
 <a href="#section-12.7" class="section-number selfRef">12.7. </a><a href="#name-usage-in-trailer-fields" class="section-name selfRef">Usage in Trailer Fields</a>
         </h3>
-<p id="section-12.7-1">When <code>Digest</code> is used in trailer fields, the receiver gets the digest value after the payload data
+<p id="section-12.7-1">When <code>Digest</code> is used in trailer fields, the receiver gets the digest value after the content
 and may thus be tempted to process the data before validating the digest value.
 It is prefereable that data is only be processed after validating the Digest.<a href="#section-12.7-1" class="pilcrow">¶</a></p>
 <p id="section-12.7-2">If received in trailers, <code>Digest</code> MUST NOT be discarded;
@@ -2394,7 +2394,7 @@ For example, the use of the "id-sha-256" digest-algorithm
 in conjunction with the encrypted content-coding <span>[<a href="#RFC8188" class="xref">RFC8188</a>]</span>.<a href="#section-12.8-1" class="pilcrow">¶</a></p>
 <p id="section-12.8-2">The representation-data-digest of an encrypted payload can change between different messages
 depending on the encryption algorithm used; in those cases its value could not be used to provide
-a proof of integrity "at rest" unless the whole (e.g. encoded) payload data is persisted.<a href="#section-12.8-2" class="pilcrow">¶</a></p>
+a proof of integrity "at rest" unless the whole (e.g. encoded) content is persisted.<a href="#section-12.8-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="algorithm-agility">
@@ -2860,7 +2860,7 @@ Protocol (HTTP) Field Name Registry" <span>[<a href="#SEMANTICS" class="xref">SE
 <a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-resource-representation-and" class="section-name selfRef">Resource Representation and Representation-Data</a>
       </h2>
 <p id="section-appendix.a-1">The following examples show how representation metadata, payload transformations
-and method impacts on the message and payload data. When the payload data
+and method impacts on the message and content. When the content
 contains non-printable characters (eg. when it is compressed) it is shown as
 base64-encoded string.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
 <p id="section-appendix.a-2">A request with a JSON object without any content coding.<a href="#section-appendix.a-2" class="pilcrow">¶</a></p>
@@ -2887,7 +2887,7 @@ Content-Encoding: gzip
 H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
 </pre><a href="#section-appendix.a-7" class="pilcrow">¶</a>
 </div>
-<p id="section-appendix.a-8">Now the same payload data conveys a malformed JSON object.<a href="#section-appendix.a-8" class="pilcrow">¶</a></p>
+<p id="section-appendix.a-8">Now the same content conveys a malformed JSON object.<a href="#section-appendix.a-8" class="pilcrow">¶</a></p>
 <p id="section-appendix.a-9">Request:<a href="#section-appendix.a-9" class="pilcrow">¶</a></p>
 <div id="section-appendix.a-10">
 <pre class="sourcecode lang-http-message">
@@ -2898,7 +2898,7 @@ Content-Type: application/json
 H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
 </pre><a href="#section-appendix.a-10" class="pilcrow">¶</a>
 </div>
-<p id="section-appendix.a-11">A Range-Request alters the payload data, conveying a partial representation.<a href="#section-appendix.a-11" class="pilcrow">¶</a></p>
+<p id="section-appendix.a-11">A Range-Request alters the content, conveying a partial representation.<a href="#section-appendix.a-11" class="pilcrow">¶</a></p>
 <p id="section-appendix.a-12">Request:<a href="#section-appendix.a-12" class="pilcrow">¶</a></p>
 <div id="section-appendix.a-13">
 <pre class="sourcecode lang-http-message">
@@ -2919,7 +2919,7 @@ Content-Range: bytes 1-7/18
 iwgAla3RXA==
 </pre><a href="#section-appendix.a-15" class="pilcrow">¶</a>
 </div>
-<p id="section-appendix.a-16">Now the method too alters the payload data.<a href="#section-appendix.a-16" class="pilcrow">¶</a></p>
+<p id="section-appendix.a-16">Now the method too alters the content.<a href="#section-appendix.a-16" class="pilcrow">¶</a></p>
 <p id="section-appendix.a-17">Request:<a href="#section-appendix.a-17" class="pilcrow">¶</a></p>
 <div id="section-appendix.a-18">
 <pre class="sourcecode lang-http-message">
