@@ -5,10 +5,10 @@
 HTTP                                                     A. Backman, Ed.
 Internet-Draft                                                    Amazon
 Intended status: Standards Track                               J. Richer
-Expires: 14 October 2021                             Bespoke Engineering
+Expires: 15 October 2021                             Bespoke Engineering
                                                                M. Sporny
                                                           Digital Bazaar
-                                                           12 April 2021
+                                                           13 April 2021
 
 
                          Signing HTTP Messages
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 October 2021.
+   This Internet-Draft will expire on 15 October 2021.
 
 Copyright Notice
 
@@ -927,7 +927,9 @@ Table of Contents
        the verifier will dereference this to appropriate key material to
        use with the signature.  The verifier has to determine the
        trustworthiness of the key material for the context in which the
-       signature is presented.
+       signature is presented.  If a key is identified that the verifier
+       does not know, does not trust for this request, or does not match
+       something preconfigured, the verification MUST fail.
 
    3.  Determine the algorithm to apply for verification:
 
@@ -943,6 +945,13 @@ Table of Contents
            such as through an algorithm field on the key value itself,
            the verifier will use this algorithm.
 
+       4.  If the algorithm is specified in more that one location, such
+           as through static configuration and the algorithm signature
+           parameter, or the algorithm signature parameter and from the
+           key material itself, the resolved algorithms MUST be the
+           same.  If the algorithms are not the same, the verifier MUST
+           vail the verification.
+
    4.  Use the received HTTP message and the signature's metadata to
        recreate the signature input, using the process described in
        Section 2.5.  The value of the "@signature-params" input is the
@@ -951,11 +960,11 @@ Table of Contents
        including the signature's label from the SignatureInput header.
 
    5.  If the key material is appropriate for the algorithm, apply the
-       verification algorithm to the signature, signature input,
-       signature parameters, key material, and algorithm.  The results
-       of the verification algorithm function are the final results of
-       the signature verification.  Several algorithms are defined in
-       Section 3.3.
+       verification algorithm to the signature, recalculated signature
+       input, signature parameters, key material, and algorithm.  The
+       results of the verification algorithm function are the final
+       results of the signature verification.  Several algorithms are
+       defined in Section 3.3.
 
    If any of the above steps fail, the signature validation fails.
 
@@ -1005,11 +1014,11 @@ Table of Contents
 
    HTTP_SIGN (I, Ks)  ->  S
 
-   Each verification algorithm method takes as its input the signature
-   input string as a set of byte values ("I"), the verification key
-   material ("Kv"), and the presented signature to be verified as a set
-   of byte values ("S") and outputs the verification result ("V") as a
-   boolean:
+   Each verification algorithm method takes as its input the
+   recalculated signature input string as a set of byte values ("I"),
+   the verification key material ("Kv"), and the presented signature to
+   be verified as a set of byte values ("S") and outputs the
+   verification result ("V") as a boolean:
 
    HTTP_VERIFY (I, Kv, S) -> V
 
