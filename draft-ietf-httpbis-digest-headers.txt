@@ -6,7 +6,7 @@ HTTP                                                            R. Polli
 Internet-Draft                         Team Digitale, Italian Government
 Obsoletes: 3230 (if approved)                                  L. Pardue
 Intended status: Standards Track                              Cloudflare
-Expires: 15 October 2021                                   13 April 2021
+Expires: 16 October 2021                                   14 April 2021
 
 
                              Digest Headers
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 October 2021.
+   This Internet-Draft will expire on 16 October 2021.
 
 Copyright Notice
 
@@ -587,10 +587,12 @@ Table of Contents
    validation first because it does not always require a conversion into
    identity encoding.
 
-   There is a chance that a user agent supporting both mechanisms may
-   find one validates successfully while the other fails.  This document
-   specifies no requirements or guidance for user agents that experience
-   such cases.
+   A user agent supporting both mechanisms: - can legitimately ignore
+   "Digest" when using SRI, because Section 3 specifies that "a
+   recipient MAY ignore any or all of the representation-data-digests";
+   - enforce both "Digest" and SRI: in this case it can be useful to
+   provide enough information to identify whether the mismatch happened
+   at the "Digest" or the SRI level.
 
 10.  Examples of Unsolicited Digest
 
