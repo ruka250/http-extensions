@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                             14 April 2021
+Internet-Draft                                             19 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 16 October 2021
+Expires: 21 October 2021
 
 
                       Building Protocols with HTTP
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 October 2021.
+   This Internet-Draft will expire on 21 October 2021.
 
 Copyright Notice
 
@@ -456,8 +456,7 @@ Table of Contents
       expected to be handled; see Section 4.6.1.
 
    *  Cookies - Applications using HTTP should explicitly reference the
-      Cookie specification [I-D.ietf-httpbis-rfc6265bis] if they are
-      required.
+      Cookie specification [RFC6265] if they are required.
 
    *  Certificates - Applications using HTTP should specify that TLS
       certificates are to be checked according to Section 4.3.4 of
@@ -573,8 +572,7 @@ Table of Contents
    *  Features that rely upon the URL's origin [RFC6454], such as the
       Web's same-origin policy, will be impacted by a change of scheme.
 
-   *  HTTP-specific features such as cookies
-      [I-D.ietf-httpbis-rfc6265bis], authentication
+   *  HTTP-specific features such as cookies [RFC6265], authentication
       [I-D.ietf-httpbis-semantics], caching [I-D.ietf-httpbis-cache],
       HSTS [RFC6797], and CORS [FETCH] might or might not work
       correctly, depending on how they are defined and implemented.
@@ -828,12 +826,12 @@ Table of Contents
    when a redirected request is made, its header fields are copied from
    the original request's.  However, they can be modified by various
    mechanisms; e.g., sent Authorization ([I-D.ietf-httpbis-semantics],
-   Section 11) and Cookie ([I-D.ietf-httpbis-rfc6265bis]) header fields
-   will change if the origin (and sometimes path) of the request
-   changes.  An application using HTTP should specify if any request
-   header fields that it defines need to be modified or removed upon a
-   redirect; however, this behaviour cannot be relied upon, since a
-   generic client (like a browser) will be unaware of such requirements.
+   Section 11) and Cookie ([RFC6265]) header fields will change if the
+   origin (and sometimes path) of the request changes.  An application
+   using HTTP should specify if any request header fields that it
+   defines need to be modified or removed upon a redirect; however, this
+   behaviour cannot be relied upon, since a generic client (like a
+   browser) will be unaware of such requirements.
 
 4.7.  Specifying HTTP Header Fields
 
@@ -1017,9 +1015,8 @@ Table of Contents
 
 4.10.  Handling Application State
 
-   Applications can use stateful cookies [I-D.ietf-httpbis-rfc6265bis]
-   to identify a client and/or store client-specific data to
-   contextualise requests.
+   Applications can use stateful cookies [RFC6265] to identify a client
+   and/or store client-specific data to contextualise requests.
 
    When used, it is important to carefully specify the scoping and use
    of cookies; if the application exposes sensitive data or capabilities
@@ -1125,8 +1122,7 @@ Table of Contents
       in URLs from being leaked in the Referer request header field.
 
    *  Using the 'HttpOnly' flag on Cookies to assure that cookies are
-      not exposed to browser scripting languages
-      [I-D.ietf-httpbis-rfc6265bis].
+      not exposed to browser scripting languages [RFC6265].
 
    *  Avoiding use of compression on any sensitive information (e.g.,
       authentication tokens, passwords), as the scripting environment
@@ -1165,11 +1161,11 @@ Table of Contents
    interact with other applications (including Web browsing) on the same
    origin.
 
-   For example, if Cookies [I-D.ietf-httpbis-rfc6265bis] are used to
-   carry application state, they will be sent with all requests to the
-   origin by default, unless scoped by path, and the application might
-   receive cookies from other applications on the origin.  This can lead
-   to security issues, as well as collision in cookie names.
+   For example, if Cookies [RFC6265] are used to carry application
+   state, they will be sent with all requests to the origin by default,
+   unless scoped by path, and the application might receive cookies from
+   other applications on the origin.  This can lead to security issues,
+   as well as collision in cookie names.
 
    One solution to these issues is to require a dedicated hostname for
    the application, so that it has a unique origin.  However, it is
@@ -1394,12 +1390,9 @@ Table of Contents
               DOI 10.17487/RFC6570, March 2012,
               <https://datatracker.ietf.org/doc/html/rfc6570>.
 
-   [I-D.ietf-httpbis-rfc6265bis]
-              West, M. and J. Wilander, "Cookies: HTTP State Management
-              Mechanism", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-rfc6265bis-07, 7 December 2020,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              rfc6265bis-07.txt>.
+   [RFC6265]  Barth, A., "HTTP State Management Mechanism", RFC 6265,
+              DOI 10.17487/RFC6265, April 2011,
+              <https://datatracker.ietf.org/doc/html/rfc6265>.
 
    [RFC7258]  Farrell, S. and H. Tschofenig, "Pervasive Monitoring Is an
               Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
