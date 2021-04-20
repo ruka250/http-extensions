@@ -14,11 +14,11 @@ Expires: 22 October 2021
 
 Abstract
 
-   HTTP is often used as a substrate for other application protocols to
-   create HTTP-based APIs.  This document specifies best practices for
-   writing specifications that use HTTP to define new application
-   protocols, especially when they are defined for diverse
-   implementation and broad deployment (e.g., in standards efforts).
+   Applications often use HTTP as a substrate to create HTTP-based APIs.
+   This document specifies best practices for writing specifications
+   that use HTTP to define new application protocols, especially when
+   they are defined for diverse implementation and broad deployment
+   (e.g., in standards efforts).
 
 Note to Readers
 
@@ -114,10 +114,10 @@ Table of Contents
 
 1.  Introduction
 
-   HTTP [I-D.ietf-httpbis-semantics] is often used as a substrate for
-   applications other than Web browsing; this is sometimes referred to
-   as creating "HTTP-based APIs", "REST APIs" or just "HTTP APIs".  This
-   is done for a variety of reasons, including:
+   Applications other than Web browsing often use HTTP
+   [I-D.ietf-httpbis-semantics] as a substrate, a practice sometimes
+   referred to as creating "HTTP-based APIs", "REST APIs" or just "HTTP
+   APIs".  This is done for a variety of reasons, including:
 
    *  familiarity by implementers, specifiers, administrators,
       developers and users,
@@ -146,12 +146,13 @@ Table of Contents
    defined by standards efforts -- tools and practices intended for
    limited deployment can become unsuitable.
 
-   This is largely because implementations (both client and server) will
-   implement and evolve at different paces, and because deployments will
-   often have different features and versions available.  As a result,
-   the designers of such an HTTP-based API will need to more carefully
-   consider how extensibility of the service will be handled and how
-   different deployment requirements will be accommodated.
+   This mismatch is largely because the API's clients and servers will
+   implement and evolve at different paces, leading to a need for
+   deployments with different features and versions to co-exist.  As a
+   result, the designers of HTTP-based APIs intended for such
+   deployments need to more carefully consider how extensibility of the
+   service will be handled and how different deployment requirements
+   will be accommodated.
 
    More generally, an application protocol using HTTP faces a number of
    design decisions, including:
@@ -208,24 +209,22 @@ Table of Contents
    appropriate).
 
    Note that this document is intended to apply to applications, not
-   generic extensions to HTTP, which follow the requirements in the
-   relevant specification.  Furthermore, it is intended for applications
-   defined by IETF specifications, although other standards
-   organisations are encouraged to adhere to its requirements.
+   generic extensions to HTTP.  Furthermore, while it is intended for
+   IETF-specified applications, other standards organisations are
+   encouraged to adhere to its requirements.
 
 2.1.  Non-HTTP Protocols
 
-   A specification might not use HTTP according to the criteria above
-   and still define an application that relies upon HTTP in some manner.
-   For example, an application might wish to avoid re-specifying parts
-   of the message format, but change other aspects of the protocol's
-   operation; or, it might want to use a different set of methods.
+   An application can rely upon HTTP without meeting the criteria for
+   using it defined above.  For example, an application might wish to
+   avoid re-specifying parts of the message format, but change other
+   aspects of the protocol's operation; or, it might want to use a
+   different set of methods.
 
    Doing so brings more freedom to modify protocol operations, but loses
    at least a portion of the benefits outlined above, as most HTTP
-   implementations won't be easily adaptable to these changes, and as
-   the protocol diverges from HTTP, the benefit of mindshare will be
-   lost.
+   implementations won't be easily adaptable to these changes, and the
+   benefit of mindshare will be lost.
 
    Such specifications MUST NOT use HTTP's URI schemes, transport ports,
    ALPN protocol IDs or IANA registries; rather, they are encouraged to
@@ -233,9 +232,8 @@ Table of Contents
 
 3.  What's Important About HTTP
 
-   This section examines the characteristics of the HTTP protocol that
-   are important to consider when using HTTP to define an application
-   protocol.
+   This section examines the characteristics of HTTP that are important
+   to consider when using HTTP to define an application protocol.
 
 3.1.  Generic Semantics
 
@@ -243,15 +241,15 @@ Table of Contents
    protocol elements defined by HTTP are potentially applicable to every
    resource, not specific to a particular context.  Application-specific
    semantics are best expressed in message content and in header fields,
-   not status codes or methods -- although the latter do have generic
-   semantics that relate to application state.
+   not status codes or methods (although the latter do have generic
+   semantics that relate to application state).
 
    This generic/application-specific split allows a HTTP message to be
-   handled by software (e.g., HTTP servers, intermediaries, client
-   implementations, and caches) without understanding the specific
-   application.  It also allows people to leverage their knowledge of
-   HTTP semantics without special-casing them for a particular
-   application.
+   handled by common software (e.g., HTTP servers, intermediaries,
+   client implementations, and caches) without understanding the
+   specific application.  It also allows people to leverage their
+   knowledge of HTTP semantics without special-casing them for a
+   particular application.
 
    Therefore, applications that use HTTP MUST NOT re-define, refine or
    overlay the semantics of generic protocol elements such as methods,
@@ -354,14 +352,13 @@ Table of Contents
 
 4.1.  Specifying the Use of HTTP
 
-   When specifying the use of HTTP, an application should use
-   [I-D.ietf-httpbis-semantics] as the primary reference; it is not
-   necessary to reference all of the specifications in the HTTP suite
-   unless there are specific reasons to do so (e.g., a particular
-   feature is called out).
+   Specifications should use [I-D.ietf-httpbis-semantics] as the primary
+   reference for HTTP; it is not necessary to reference all of the
+   specifications in the HTTP suite unless there are specific reasons to
+   do so (e.g., a particular feature is called out).
 
-   Because it is a hop-by-hop protocol, a HTTP connection can be handled
-   by implementations that are not controlled by the application; for
+   Because HTTP is a hop-by-hop protocol, a connection can be handled by
+   implementations that are not controlled by the application; for
    example, proxies, CDNs, firewalls and so on.  Requiring a particular
    version of HTTP makes it difficult to use in these situations, and
    harms interoperability.  Therefore, it is RECOMMENDED that
@@ -393,8 +390,8 @@ Table of Contents
 
 4.2.  Specifying Server Behaviour
 
-   The most effective way to specify an application's server-side HTTP
-   behaviours is in terms of the following protocol elements:
+   The server-side behaviours of an application are most effectively
+   specified by defining the following protocol elements:
 
    *  Media types [RFC6838], often based upon a format convention such
       as JSON [RFC8259],
@@ -404,9 +401,9 @@ Table of Contents
    *  The behaviour of resources, as identified by link relations
       [RFC8288].
 
-   By composing these protocol elements, an application can define a set
-   of resources, identified by link relations, that implement specified
-   behaviours, including:
+   An application can define its operation by composing these protocol
+   elements to define a set of resources that are identified by link
+   relations and that implement specified behaviours, including:
 
    *  retrieval of their state using GET, in one or more formats
       identified by media type;
@@ -439,9 +436,9 @@ Table of Contents
 
 4.3.  Specifying Client Behaviour
 
-   In general, applications using HTTP ought to align their expectations
-   for client behaviour as closely as possible with that of Web
-   browsers, to avoid interoperability issues when they are used.
+   An application's expectations for client behaviour ought to be
+   closely aligned with those of Web browsers, to avoid interoperability
+   issues when they are used.
 
    One way to do this is to define it in terms of [FETCH], since that is
    the abstraction that browsers use for HTTP.
@@ -456,8 +453,7 @@ Table of Contents
       expected to be handled; see Section 4.6.1.
 
    *  Cookies - Applications using HTTP should explicitly reference the
-      Cookie specification [I-D.ietf-httpbis-rfc6265bis] if they are
-      required.
+      Cookie specification [RFC6265] if they are required.
 
    *  Certificates - Applications using HTTP should specify that TLS
       certificates are to be checked according to Section 4.3.4 of
@@ -474,11 +470,10 @@ Table of Contents
 
 4.4.  Specifying URLs
 
-   In HTTP, the server resources that clients interact with are
-   identified with URLs [RFC3986].  As [RFC8820] explains, parts of the
-   URL are designed to be under the control of the owner (also known as
-   the "authority") of that server, to give them the flexibility in
-   deployment.
+   In HTTP, the resources that clients interact with are identified with
+   URLs [RFC3986].  As [RFC8820] explains, parts of the URL are designed
+   to be under the control of the owner (also known as the "authority")
+   of that server, to give them the flexibility in deployment.
 
    This means that in most cases, specifications for applications that
    use HTTP won't contain its URLs; while it is common practice for a
@@ -573,8 +568,7 @@ Table of Contents
    *  Features that rely upon the URL's origin [RFC6454], such as the
       Web's same-origin policy, will be impacted by a change of scheme.
 
-   *  HTTP-specific features such as cookies
-      [I-D.ietf-httpbis-rfc6265bis], authentication
+   *  HTTP-specific features such as cookies [RFC6265], authentication
       [I-D.ietf-httpbis-semantics], caching [I-D.ietf-httpbis-cache],
       HSTS [RFC6797], and CORS [FETCH] might or might not work
       correctly, depending on how they are defined and implemented.
@@ -632,15 +626,13 @@ Table of Contents
    semantics allow caching, side-effect free linking and underlies many
    of the benefits of using HTTP.
 
-   A common use of GET is to perform queries, often using the query
-   component of the URL; this is a familiar pattern from Web browsing,
-   and the results can be cached, improving efficiency of an often
-   expensive process.
-
-   In some cases, however, GET might be unwieldy for expressing queries,
-   because of the limited syntax of the URI; in particular, if binary
-   data forms part of the query terms, it needs to be encoded to conform
-   to URI syntax.
+   Queries can be performed with GET, often using the query component of
+   the URL; this is a familiar pattern from Web browsing, and the
+   results can be cached, improving efficiency of an often expensive
+   process.  In some cases, however, GET might be unwieldy for
+   expressing queries, because of the limited syntax of the URI; in
+   particular, if binary data forms part of the query terms, it needs to
+   be encoded to conform to URI syntax.
 
    While this is not an issue for short queries, it can become one for
    larger query terms, or ones which need to sustain a high rate of
@@ -781,9 +773,10 @@ Table of Contents
    [I-D.ietf-httpbis-semantics] direct the user agent to another
    resource to satisfy the request.  The most common of these are 301,
    302, 307 and 308, all of which use the Location response header field
-   to indicate where the client should send the request to.
+   to indicate where the client should resend the request.
 
-   There are two ways that this group of status codes differ:
+   There are two ways that the members of this group of status codes
+   differ:
 
    *  Whether they are permanent or temporary.  Permanent redirects can
       be used to update links stored in the client (e.g., bookmarks),
@@ -828,12 +821,12 @@ Table of Contents
    when a redirected request is made, its header fields are copied from
    the original request's.  However, they can be modified by various
    mechanisms; e.g., sent Authorization ([I-D.ietf-httpbis-semantics],
-   Section 11) and Cookie ([I-D.ietf-httpbis-rfc6265bis]) header fields
-   will change if the origin (and sometimes path) of the request
-   changes.  An application using HTTP should specify if any request
-   header fields that it defines need to be modified or removed upon a
-   redirect; however, this behaviour cannot be relied upon, since a
-   generic client (like a browser) will be unaware of such requirements.
+   Section 11) and Cookie ([RFC6265]) header fields will change if the
+   origin (and sometimes path) of the request changes.  An application
+   using HTTP should specify if any request header fields that it
+   defines need to be modified or removed upon a redirect; however, this
+   behaviour cannot be relied upon, since a generic client (like a
+   browser) will be unaware of such requirements.
 
 4.7.  Specifying HTTP Header Fields
 
@@ -853,10 +846,10 @@ Table of Contents
    application-specific information in other places; e.g., the message
    content or the URL query string.
 
-   New header fields MUST be registered, as per
+   New header fields MUST be registered, as per Section 16.3 of
    [I-D.ietf-httpbis-semantics].
 
-   See [I-D.ietf-httpbis-semantics], Section 16.3.2 for guidelines to
+   See Section 16.3.2 of [I-D.ietf-httpbis-semantics] for guidelines to
    consider when minting new header fields.  [RFC8941] provides a common
    structure for new header fields, and avoids many issues in their
    parsing and handling; it is RECOMMENDED that new header fields use
@@ -964,13 +957,13 @@ Table of Contents
    the origin server; this can be useful for handling network issues.
 
    If doing so is not suitable for a given response, the origin should
-   use "Cache-Control: must-revalidate".  See [I-D.ietf-httpbis-cache],
-   Section 4.2.4, and also [RFC5861] for additional controls over stale
-   content.
+   use "Cache-Control: must-revalidate".  See Section 4.2.4 of
+   [I-D.ietf-httpbis-cache], and also [RFC5861] for additional controls
+   over stale content.
 
    Stale responses can be refreshed by assigning a validator, saving
    both transfer bandwidth and latency for large responses; see
-   [I-D.ietf-httpbis-semantics].
+   Section 13 of [I-D.ietf-httpbis-semantics].
 
 4.9.3.  Caching and Application Semantics
 
@@ -1017,9 +1010,8 @@ Table of Contents
 
 4.10.  Handling Application State
 
-   Applications can use stateful cookies [I-D.ietf-httpbis-rfc6265bis]
-   to identify a client and/or store client-specific data to
-   contextualise requests.
+   Applications can use stateful cookies [RFC6265] to identify a client
+   and/or store client-specific data to contextualise requests.
 
    When used, it is important to carefully specify the scoping and use
    of cookies; if the application exposes sensitive data or capabilities
@@ -1064,13 +1056,14 @@ Table of Contents
 
 4.12.  Client Authentication
 
-   Applications can use HTTP authentication [I-D.ietf-httpbis-semantics]
-   to identify clients.  The Basic authentication scheme [RFC7617] MUST
-   NOT be used unless the underlying transport is authenticated,
-   integrity-protected and confidential (e.g., as provided the "HTTPS"
-   URI scheme, or another using TLS).  The Digest scheme [RFC7616] MUST
-   NOT be used unless the underlying transport is similarly secure, or
-   the chosen hash algorithm is not "MD5".
+   Applications can use HTTP authentication Section 11 of
+   [I-D.ietf-httpbis-semantics] to identify clients.  The Basic
+   authentication scheme [RFC7617] MUST NOT be used unless the
+   underlying transport is authenticated, integrity-protected and
+   confidential (e.g., as provided the "HTTPS" URI scheme, or another
+   using TLS).  The Digest scheme [RFC7616] MUST NOT be used unless the
+   underlying transport is similarly secure, or the chosen hash
+   algorithm is not "MD5".
 
    With HTTPS, clients might also be authenticated using certificates
    [RFC5246].
@@ -1085,22 +1078,20 @@ Table of Contents
 
    Even if there is not an intent for an application to be used with a
    Web browser, its resources will remain available to browsers and
-   other HTTP clients.
-
-   This means that all such applications that use HTTP need to consider
-   how browsers will interact with them, particularly regarding
-   security.
+   other HTTP clients.  This means that all such applications that use
+   HTTP need to consider how browsers will interact with them,
+   particularly regarding security.
 
    For example, if an application's state can be changed using a POST
    request, a Web browser can easily be coaxed into cross-site request
    forgery (CSRF) from arbitrary Web sites.
 
-   Or, if content returned from the application's resources is under
-   control of an attacker (for example, part of the request is reflected
-   in the response, or the response contains external information that
-   might be under the control of the attacker), a cross-site scripting
-   (XSS) attack is possible, whereby an attacker can inject code into
-   the browser and access data and capabilities on that origin.
+   Or, if an attacker gains control of content returned from the
+   application's resources (for example, part of the request is
+   reflected in the response, or the response contains external
+   information that the attacker can change), they can inject code into
+   the browser and access data and capabilities as if they were the
+   origin -- a technique known as a cross-site scripting (XSS) attack.
 
    This is only a small sample of the kinds of issues that applications
    using HTTP must consider.  Generally, the best approach is to
@@ -1118,15 +1109,15 @@ Table of Contents
       interpreted as active content by a Web browser.
 
    *  Using Content-Security-Policy [CSP] to constrain the capabilities
-      of active content (such as HTML [HTML]), thereby mitigating Cross-
-      Site Scripting attacks.
+      of active content (i.e., that which can execute script, such as
+      HTML [HTML] and PDF), thereby mitigating Cross-Site Scripting
+      attacks.
 
    *  Using Referrer-Policy [REFERRER-POLICY] to prevent sensitive data
       in URLs from being leaked in the Referer request header field.
 
    *  Using the 'HttpOnly' flag on Cookies to assure that cookies are
-      not exposed to browser scripting languages
-      [I-D.ietf-httpbis-rfc6265bis].
+      not exposed to browser scripting languages [RFC6265].
 
    *  Avoiding use of compression on any sensitive information (e.g.,
       authentication tokens, passwords), as the scripting environment
@@ -1160,16 +1151,15 @@ Table of Contents
 
 4.14.  Maintaining Application Boundaries
 
-   Because the origin [RFC6454] is how many HTTP capabilities are
-   scoped, applications also need to consider how deployments might
-   interact with other applications (including Web browsing) on the same
-   origin.
+   Because many HTTP capabilities are scoped to the origin [RFC6454],
+   applications also need to consider how deployments might interact
+   with other applications (including Web browsing) on the same origin.
 
-   For example, if Cookies [I-D.ietf-httpbis-rfc6265bis] are used to
-   carry application state, they will be sent with all requests to the
-   origin by default, unless scoped by path, and the application might
-   receive cookies from other applications on the origin.  This can lead
-   to security issues, as well as collision in cookie names.
+   For example, if Cookies [RFC6265] are used to carry application
+   state, they will be sent with all requests to the origin by default
+   (unless scoped by path), and the application might receive cookies
+   from other applications on the origin.  This can lead to security
+   issues, as well as collision in cookie names.
 
    One solution to these issues is to require a dedicated hostname for
    the application, so that it has a unique origin.  However, it is
@@ -1334,37 +1324,10 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://datatracker.ietf.org/doc/html/rfc2119>.
 
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
-
-   [RFC7301]  Friedl, S., Popov, A., Langley, A., and E. Stephan,
-              "Transport Layer Security (TLS) Application-Layer Protocol
-              Negotiation Extension", RFC 7301, DOI 10.17487/RFC7301,
-              July 2014,
-              <https://datatracker.ietf.org/doc/html/rfc7301>.
-
-   [RFC8820]  Nottingham, M., "URI Design and Ownership", BCP 190,
-              RFC 8820, DOI 10.17487/RFC8820, June 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8820>.
-
-   [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
-              Specifications and Registration Procedures", BCP 13,
-              RFC 6838, DOI 10.17487/RFC6838, January 2013,
-              <https://datatracker.ietf.org/doc/html/rfc6838>.
-
-   [RFC8288]  Nottingham, M., "Web Linking", RFC 8288,
-              DOI 10.17487/RFC8288, October 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8288>.
-
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <https://datatracker.ietf.org/doc/html/rfc3986>.
-
-   [RFC8615]  Nottingham, M., "Well-Known Uniform Resource Identifiers
-              (URIs)", RFC 8615, DOI 10.17487/RFC8615, May 2019,
-              <https://datatracker.ietf.org/doc/html/rfc8615>.
 
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
               DOI 10.17487/RFC6454, December 2011,
@@ -1376,34 +1339,44 @@ Table of Contents
               DOI 10.17487/RFC6648, June 2012,
               <https://datatracker.ietf.org/doc/html/rfc6648>.
 
+   [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
+              Specifications and Registration Procedures", BCP 13,
+              RFC 6838, DOI 10.17487/RFC6838, January 2013,
+              <https://datatracker.ietf.org/doc/html/rfc6838>.
+
+   [RFC7301]  Friedl, S., Popov, A., Langley, A., and E. Stephan,
+              "Transport Layer Security (TLS) Application-Layer Protocol
+              Negotiation Extension", RFC 7301, DOI 10.17487/RFC7301,
+              July 2014,
+              <https://datatracker.ietf.org/doc/html/rfc7301>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
+
+   [RFC8288]  Nottingham, M., "Web Linking", RFC 8288,
+              DOI 10.17487/RFC8288, October 2017,
+              <https://datatracker.ietf.org/doc/html/rfc8288>.
+
+   [RFC8615]  Nottingham, M., "Well-Known Uniform Resource Identifiers
+              (URIs)", RFC 8615, DOI 10.17487/RFC8615, May 2019,
+              <https://datatracker.ietf.org/doc/html/rfc8615>.
+
+   [RFC8820]  Nottingham, M., "URI Design and Ownership", BCP 190,
+              RFC 8820, DOI 10.17487/RFC8820, June 2020,
+              <https://datatracker.ietf.org/doc/html/rfc8820>.
+
 7.2.  Informative References
 
-   [HTML]     WHATWG, "HTML - Living Standard", n.d.,
-              <https://html.spec.whatwg.org>.
+   [CSP]      West, M., "Content Security Policy Level 3", World Wide
+              Web Consortium WD WD-CSP3-20160913, 13 September 2016,
+              <https://www.w3.org/TR/2016/WD-CSP3-20160913>.
 
    [FETCH]    WHATWG, "Fetch - Living Standard", n.d.,
               <https://fetch.spec.whatwg.org>.
 
-   [RFC8259]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
-              Interchange Format", STD 90, RFC 8259,
-              DOI 10.17487/RFC8259, December 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8259>.
-
-   [RFC6570]  Gregorio, J., Fielding, R., Hadley, M., Nottingham, M.,
-              and D. Orchard, "URI Template", RFC 6570,
-              DOI 10.17487/RFC6570, March 2012,
-              <https://datatracker.ietf.org/doc/html/rfc6570>.
-
-   [I-D.ietf-httpbis-rfc6265bis]
-              West, M. and J. Wilander, "Cookies: HTTP State Management
-              Mechanism", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-rfc6265bis-07, 7 December 2020,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              rfc6265bis-07.txt>.
-
-   [RFC7258]  Farrell, S. and H. Tschofenig, "Pervasive Monitoring Is an
-              Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
-              2014, <https://datatracker.ietf.org/doc/html/rfc7258>.
+   [HTML]     WHATWG, "HTML - Living Standard", n.d.,
+              <https://html.spec.whatwg.org>.
 
    [I-D.ietf-httpbis-cache]
               Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
@@ -1412,24 +1385,22 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
               cache-15.txt>.
 
-   [RFC6797]  Hodges, J., Jackson, C., and A. Barth, "HTTP Strict
-              Transport Security (HSTS)", RFC 6797,
-              DOI 10.17487/RFC6797, November 2012,
-              <https://datatracker.ietf.org/doc/html/rfc6797>.
+   [I-D.ietf-httpbis-priority]
+              Oku, K. and L. Pardue, "Extensible Prioritization Scheme
+              for HTTP", Work in Progress, Internet-Draft, draft-ietf-
+              httpbis-priority-03, 11 January 2021,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              priority-03.txt>.
 
-   [SECCTXT]  West, M., "Secure Contexts", World Wide Web Consortium CR 
-              CR-secure-contexts-20160915, 15 September 2016,
-              <https://www.w3.org/TR/2016/CR-secure-contexts-20160915>.
+   [REFERRER-POLICY]
+              Eisinger, J. and E. Stark, "Referrer Policy", World Wide
+              Web Consortium CR CR-referrer-policy-20170126, 26 January
+              2017,
+              <https://www.w3.org/TR/2017/CR-referrer-policy-20170126>.
 
-   [RFC7595]  Thaler, D., Ed., Hansen, T., and T. Hardie, "Guidelines
-              and Registration Procedures for URI Schemes", BCP 35,
-              RFC 7595, DOI 10.17487/RFC7595, June 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7595>.
-
-   [RFC7605]  Touch, J., "Recommendations on Using Assigned Transport
-              Port Numbers", BCP 165, RFC 7605, DOI 10.17487/RFC7605,
-              August 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7605>.
+   [RFC3205]  Moore, K., "On the use of HTTP as a Substrate", BCP 56,
+              RFC 3205, DOI 10.17487/RFC3205, February 2002,
+              <https://datatracker.ietf.org/doc/html/rfc3205>.
 
    [RFC4791]  Daboo, C., Desruisseaux, B., and L. Dusseault,
               "Calendaring Extensions to WebDAV (CalDAV)", RFC 4791,
@@ -1441,76 +1412,92 @@ Table of Contents
               DOI 10.17487/RFC4918, June 2007,
               <https://datatracker.ietf.org/doc/html/rfc4918>.
 
+   [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
+              (TLS) Protocol Version 1.2", RFC 5246,
+              DOI 10.17487/RFC5246, August 2008,
+              <https://datatracker.ietf.org/doc/html/rfc5246>.
+
+   [RFC5861]  Nottingham, M., "HTTP Cache-Control Extensions for Stale
+              Content", RFC 5861, DOI 10.17487/RFC5861, May 2010,
+              <https://datatracker.ietf.org/doc/html/rfc5861>.
+
+   [RFC6265]  Barth, A., "HTTP State Management Mechanism", RFC 6265,
+              DOI 10.17487/RFC6265, April 2011,
+              <https://datatracker.ietf.org/doc/html/rfc6265>.
+
    [RFC6415]  Hammer-Lahav, E., Ed. and B. Cook, "Web Host Metadata",
               RFC 6415, DOI 10.17487/RFC6415, October 2011,
               <https://datatracker.ietf.org/doc/html/rfc6415>.
 
-   [RFC7807]  Nottingham, M. and E. Wilde, "Problem Details for HTTP
-              APIs", RFC 7807, DOI 10.17487/RFC7807, March 2016,
-              <https://datatracker.ietf.org/doc/html/rfc7807>.
+   [RFC6570]  Gregorio, J., Fielding, R., Hadley, M., Nottingham, M.,
+              and D. Orchard, "URI Template", RFC 6570,
+              DOI 10.17487/RFC6570, March 2012,
+              <https://datatracker.ietf.org/doc/html/rfc6570>.
 
-   [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
-              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7540>.
-
-   [RFC8941]  Nottingham, M. and P-H. Kamp, "Structured Field Values for
-              HTTP", RFC 8941, DOI 10.17487/RFC8941, February 2021,
-              <https://datatracker.ietf.org/doc/html/rfc8941>.
-
-   [XML]      Bray, T., Paoli, J., Sperberg-McQueen, M., Maler, E., and
-              F. Yergeau, "Extensible Markup Language (XML) 1.0 (Fifth
-              Edition)", World Wide Web Consortium Recommendation REC-
-              xml-20081126, 26 November 2008,
-              <https://www.w3.org/TR/2008/REC-xml-20081126>.
+   [RFC6797]  Hodges, J., Jackson, C., and A. Barth, "HTTP Strict
+              Transport Security (HSTS)", RFC 6797,
+              DOI 10.17487/RFC6797, November 2012,
+              <https://datatracker.ietf.org/doc/html/rfc6797>.
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013,
               <https://datatracker.ietf.org/doc/html/rfc7049>.
 
-   [RFC5861]  Nottingham, M., "HTTP Cache-Control Extensions for Stale
-              Content", RFC 5861, DOI 10.17487/RFC5861, May 2010,
-              <https://datatracker.ietf.org/doc/html/rfc5861>.
+   [RFC7258]  Farrell, S. and H. Tschofenig, "Pervasive Monitoring Is an
+              Attack", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May
+              2014, <https://datatracker.ietf.org/doc/html/rfc7258>.
 
-   [I-D.ietf-httpbis-priority]
-              Oku, K. and L. Pardue, "Extensible Prioritization Scheme
-              for HTTP", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-priority-03, 11 January 2021,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              priority-03.txt>.
+   [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
+              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
+              DOI 10.17487/RFC7540, May 2015,
+              <https://datatracker.ietf.org/doc/html/rfc7540>.
 
-   [RFC7617]  Reschke, J., "The 'Basic' HTTP Authentication Scheme",
-              RFC 7617, DOI 10.17487/RFC7617, September 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7617>.
+   [RFC7595]  Thaler, D., Ed., Hansen, T., and T. Hardie, "Guidelines
+              and Registration Procedures for URI Schemes", BCP 35,
+              RFC 7595, DOI 10.17487/RFC7595, June 2015,
+              <https://datatracker.ietf.org/doc/html/rfc7595>.
+
+   [RFC7605]  Touch, J., "Recommendations on Using Assigned Transport
+              Port Numbers", BCP 165, RFC 7605, DOI 10.17487/RFC7605,
+              August 2015,
+              <https://datatracker.ietf.org/doc/html/rfc7605>.
 
    [RFC7616]  Shekh-Yusef, R., Ed., Ahrens, D., and S. Bremer, "HTTP
               Digest Access Authentication", RFC 7616,
               DOI 10.17487/RFC7616, September 2015,
               <https://datatracker.ietf.org/doc/html/rfc7616>.
 
-   [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
-              (TLS) Protocol Version 1.2", RFC 5246,
-              DOI 10.17487/RFC5246, August 2008,
-              <https://datatracker.ietf.org/doc/html/rfc5246>.
+   [RFC7617]  Reschke, J., "The 'Basic' HTTP Authentication Scheme",
+              RFC 7617, DOI 10.17487/RFC7617, September 2015,
+              <https://datatracker.ietf.org/doc/html/rfc7617>.
 
-   [CSP]      West, M., "Content Security Policy Level 3", World Wide
-              Web Consortium WD WD-CSP3-20160913, 13 September 2016,
-              <https://www.w3.org/TR/2016/WD-CSP3-20160913>.
+   [RFC7807]  Nottingham, M. and E. Wilde, "Problem Details for HTTP
+              APIs", RFC 7807, DOI 10.17487/RFC7807, March 2016,
+              <https://datatracker.ietf.org/doc/html/rfc7807>.
 
-   [REFERRER-POLICY]
-              Eisinger, J. and E. Stark, "Referrer Policy", World Wide
-              Web Consortium CR CR-referrer-policy-20170126, 26 January
-              2017,
-              <https://www.w3.org/TR/2017/CR-referrer-policy-20170126>.
+   [RFC8259]  Bray, T., Ed., "The JavaScript Object Notation (JSON) Data
+              Interchange Format", STD 90, RFC 8259,
+              DOI 10.17487/RFC8259, December 2017,
+              <https://datatracker.ietf.org/doc/html/rfc8259>.
 
    [RFC8297]  Oku, K., "An HTTP Status Code for Indicating Hints",
               RFC 8297, DOI 10.17487/RFC8297, December 2017,
               <https://datatracker.ietf.org/doc/html/rfc8297>.
 
-   [RFC3205]  Moore, K., "On the use of HTTP as a Substrate", BCP 56,
-              RFC 3205, DOI 10.17487/RFC3205, February 2002,
-              <https://datatracker.ietf.org/doc/html/rfc3205>.
+   [RFC8941]  Nottingham, M. and P-H. Kamp, "Structured Field Values for
+              HTTP", RFC 8941, DOI 10.17487/RFC8941, February 2021,
+              <https://datatracker.ietf.org/doc/html/rfc8941>.
+
+   [SECCTXT]  West, M., "Secure Contexts", World Wide Web Consortium CR 
+              CR-secure-contexts-20160915, 15 September 2016,
+              <https://www.w3.org/TR/2016/CR-secure-contexts-20160915>.
+
+   [XML]      Bray, T., Paoli, J., Sperberg-McQueen, M., Maler, E., and
+              F. Yergeau, "Extensible Markup Language (XML) 1.0 (Fifth
+              Edition)", World Wide Web Consortium Recommendation REC-
+              xml-20081126, 26 November 2008,
+              <https://www.w3.org/TR/2008/REC-xml-20081126>.
 
 Appendix A.  Changes from RFC 3205
 
