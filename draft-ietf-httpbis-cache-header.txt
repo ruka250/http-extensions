@@ -4,8 +4,8 @@
 
 HTTP                                                       M. Nottingham
 Internet-Draft                                                    Fastly
-Intended status: Standards Track                           19 April 2021
-Expires: 21 October 2021
+Intended status: Standards Track                           21 April 2021
+Expires: 23 October 2021
 
 
               The Cache-Status HTTP Response Header Field
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 October 2021.
+   This Internet-Draft will expire on 23 October 2021.
 
 Copyright Notice
 
@@ -387,32 +387,32 @@ Table of Contents
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://datatracker.ietf.org/doc/html/rfc2119>.
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC8126]  Cotton, M., Leiba, B., and T. Narten, "Guidelines for
               Writing an IANA Considerations Section in RFCs", BCP 26,
               RFC 8126, DOI 10.17487/RFC8126, June 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8126>.
+              <https://www.rfc-editor.org/info/rfc8126>.
 
    [I-D.ietf-httpbis-header-structure]
               Nottingham, M. and P. Kamp, "Structured Field Values for
               HTTP", Work in Progress, Internet-Draft, draft-ietf-
               httpbis-header-structure-19, 3 June 2020,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              <https://www.ietf.org/archive/id/draft-ietf-httpbis-
               header-structure-19.txt>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
    [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234,
               DOI 10.17487/RFC5234, January 2008,
-              <https://datatracker.ietf.org/doc/html/rfc5234>.
+              <https://www.rfc-editor.org/info/rfc5234>.
 
    [RFC7405]  Kyzivat, P., "Case-Sensitive String Support in ABNF",
               RFC 7405, DOI 10.17487/RFC7405, December 2014,
-              <https://datatracker.ietf.org/doc/html/rfc7405>.
+              <https://www.rfc-editor.org/info/rfc7405>.
 
 7.2.  Informative References
 
