@@ -112,7 +112,7 @@ Table of Contents
    handling of the request corresponding to the response it occurs
    within.
 
-   Its value is a List [RFC8941], Section 3.1:
+   Its value is a List ([RFC8941], Section 3.1):
 
    Cache-Status   = sf-list
 
