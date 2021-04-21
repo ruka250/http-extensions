@@ -5,10 +5,10 @@
 HTTP                                                     A. Backman, Ed.
 Internet-Draft                                                    Amazon
 Intended status: Standards Track                               J. Richer
-Expires: 22 October 2021                             Bespoke Engineering
+Expires: 23 October 2021                             Bespoke Engineering
                                                                M. Sporny
                                                           Digital Bazaar
-                                                           20 April 2021
+                                                           21 April 2021
 
 
                          Signing HTTP Messages
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 October 2021.
+   This Internet-Draft will expire on 23 October 2021.
 
 Copyright Notice
 
@@ -332,7 +332,7 @@ Table of Contents
    HTTP messages.  Some examples use a single trailing backslash '' to
    indicate line wrapping for long values, as per [RFC8792].  The "\"
    character and leading spaces on wrapped lines are not part of the
-   value
+   value.
 
 1.5.  Application of HTTP Message Signatures
 
@@ -636,12 +636,18 @@ Table of Contents
 
    1.  Let the output be an empty string.
 
-   2.  Serialize the content identifiers of the covered content as an
+   2.  Determine an order for the content identifiers of the covered
+       content.  Once this order is chosen, it cannot be changed.
+
+   3.  Serialize the content identifiers of the covered content as an
        ordered "inner-list" according to Section 4.1.1.1 of [RFC8941]
        and append this to the output.
 
-   3.  Append the signature metadata as parameters according to
-       Section 4.1.1.2 of [RFC8941] in the any order, skipping fields
+   4.  Determine an order for signature metadata parameters.  Once this
+       order is chosen, it cannot be changed.
+
+   5.  Append the signature metadata as parameters according to
+       Section 4.1.1.2 of [RFC8941] in the chosen order, skipping fields
        that are not available or not used for this signature:
 
        *  "alg": The HTTP message signature algorithm from the HTTP
@@ -658,7 +664,7 @@ Table of Contents
 
        *  "nonce": A random unique value generated for this signature.
 
-   4.  The output contains the signature parameters value.
+   6.  The output contains the signature parameters value.
 
    Note that the "inner-list" serialization is used for the covered
    content value instead of the "sf-list" serialization in order to
@@ -673,7 +679,8 @@ Table of Contents
      created=1618884475;expires=1618884775
 
    Note that an HTTP message could contain multiple signatures, but only
-   the signature parameters used for the current signature are included.
+   the signature parameters used for the current signature are included
+   in this field.
 
 2.5.  Creating the Signature Input String
 
@@ -1329,22 +1336,22 @@ l6tucEVgKrU+5IIyDMBI85FExQeuBrNPALczjCdxne6LUoBcWBAk8NoRyjfd++DXIAjAZcf\
    Metadata Parameters Registry.  Each row in the table represents a
    distinct entry in the registry.
 
-          +=========+=========+================================+
-          | Name    | Status  | Reference(s)                   |
-          +=========+=========+================================+
-          | alg     | Active  | Section 2.4.2 of this document |
-          +---------+---------+--------------------------------+
-          | created | Active  | Section 2.4.2 of this document |
-          +---------+---------+--------------------------------+
-          | expires | Active  | Section 2.4.2 of this document |
-          +---------+---------+--------------------------------+
-          | keyid   | Active  | Section 2.4.2 of this document |
-          +---------+---------+--------------------------------+
-          | nonce   | Acrtive | Section 2.4.2 of this document |
-          +---------+---------+--------------------------------+
+           +=========+========+================================+
+           | Name    | Status | Reference(s)                   |
+           +=========+========+================================+
+           | alg     | Active | Section 2.4.2 of this document |
+           +---------+--------+--------------------------------+
+           | created | Active | Section 2.4.2 of this document |
+           +---------+--------+--------------------------------+
+           | expires | Active | Section 2.4.2 of this document |
+           +---------+--------+--------------------------------+
+           | keyid   | Active | Section 2.4.2 of this document |
+           +---------+--------+--------------------------------+
+           | nonce   | Active | Section 2.4.2 of this document |
+           +---------+--------+--------------------------------+
 
-             Table 5: Initial contents of the HTTP Signature
-                      Metadata Parameters Registry.
+              Table 5: Initial contents of the HTTP Signature
+                       Metadata Parameters Registry.
 
 5.3.  HTTP Signature Specialty Content Identifiers Registry
 
@@ -1717,7 +1724,7 @@ Document History
 
    *  draft-ietf-httpbis-message-signatures
 
-      -  Since -03
+      -  -04
 
          o  Moved signature component definitions up to intro.
 
