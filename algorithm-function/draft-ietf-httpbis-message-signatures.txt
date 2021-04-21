@@ -391,9 +391,9 @@ Table of Contents
    such a canonical form.
 
    Content identifiers are defined using production grammar defined by
-   [RFC8941], Section 4.  The content identifier is an "sf-string"
-   value.  The content identifier type MAY define parameters which are
-   included using the "parameters" rule.
+   RFC8941, Section 4 [RFC8941].  The content identifier is an "sf-
+   string" value.  The content identifier type MAY define parameters
+   which are included using the "parameters" rule.
 
    content-identifier = sf-string parameters
 
@@ -433,9 +433,9 @@ Table of Contents
    If value of the the HTTP header in question is a structured field
    ([RFC8941]), the content identifier MAY include the "sf" parameter.
    If this parameter is included, the HTTP header value MUST be
-   canonicalized using the rules specified in Section 4 of [RFC8941].
-   Note that this process will replace any optional whitespace with a
-   single space.
+   canonicalized using the rules specified in Section 4 of RFC8941
+   [RFC8941].  Note that this process will replace any optional
+   whitespace with a single space.
 
    The resulting string is used as the field value input in Section 2.1.
 
@@ -485,8 +485,8 @@ Table of Contents
 
    An individual member in the value of a Dictionary Structured Field is
    canonicalized by applying the serialization algorithm described in
-   Section 4.1.2 of [RFC8941] on a Dictionary containing only that
-   member.
+   Section 4.1.2 of RFC8941 [RFC8941] on a Dictionary containing only
+   that member.
 
 2.2.1.  Canonicalization Examples
 
@@ -520,7 +520,7 @@ Table of Contents
    the parameter "prefix" with the value of N as an integer.
 
    A list prefix value is canonicalized by applying the serialization
-   algorithm described in Section 4.1.1 of [RFC8941] on a List
+   algorithm described in Section 4.1.1 of RFC8941 [RFC8941] on a List
    containing only the first N members as specified in the list prefix,
    in the order they appear in the original List.
 
@@ -632,7 +632,7 @@ Table of Contents
    are defined:
 
    The signature parameters are serialized using the rules in Section 4
-   of [RFC8941] as follows:
+   of RFC8941 [RFC8941] as follows:
 
    1.  Let the output be an empty string.
 
@@ -640,15 +640,16 @@ Table of Contents
        content.  Once this order is chosen, it cannot be changed.
 
    3.  Serialize the content identifiers of the covered content as an
-       ordered "inner-list" according to Section 4.1.1.1 of [RFC8941]
-       and append this to the output.
+       ordered "inner-list" according to Section 4.1.1.1 of RFC8941
+       [RFC8941] and append this to the output.
 
    4.  Determine an order for signature metadata parameters.  Once this
        order is chosen, it cannot be changed.
 
    5.  Append the signature metadata as parameters according to
-       Section 4.1.1.2 of [RFC8941] in the chosen order, skipping fields
-       that are not available or not used for this signature:
+       Section 4.1.1.2 of RFC8941 [RFC8941] in the chosen order,
+       skipping fields that are not available or not used for this
+       signature:
 
        *  "alg": The HTTP message signature algorithm from the HTTP
           Message Signature Algorithm Registry, as an "sf-string" value.
