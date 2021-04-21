@@ -294,7 +294,7 @@ Table of Contents
       Signature may be verified multiple times, potentially by different
       entities.
 
-   The term "Unix time" is defined by [POSIX.1] section 4.16
+   The term "Unix time" is defined by [POSIX.1], Section 4.16
    (http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
    V1_chap04.html#tag_04_16).
 
@@ -325,14 +325,14 @@ Table of Contents
 
    *  A means of retrieving the key material used to verify the
       signature.  An application will usually use the "keyid" parameter
-      of the signature parameters Section 2.4.2 and define rules for
+      of the signature parameters (Section 2.4.2) and define rules for
       resolving a key from there, though the appropriate key could be
       known from other means.
 
    *  A means of determining the signature algorithm used to verify the
       signature content is appropriate for the key material.  For
       example, the process could use the "alg" parameter of the
-      signature parameters Section 2.4.2 to state the algorithm
+      signature parameters (Section 2.4.2) to state the algorithm
       explicitly, derive the algorithm from the key material, or use
       some pre-configured algorithm agreed upon by the signer and
       verifier.
@@ -364,9 +364,9 @@ Table of Contents
    such a canonical form.
 
    Content identifiers are defined using production grammar defined by
-   [RFC8941] section 4.  The content identifier is an "sf-string" value.
-   The content identifier type MAY define parameters which are included
-   using the "parameters" rule.
+   [RFC8941], Section 4.  The content identifier is an "sf-string"
+   value.  The content identifier type MAY define parameters which are
+   included using the "parameters" rule.
 
    content-identifier = sf-string parameters
 
@@ -404,11 +404,11 @@ Table of Contents
 2.1.1.  Canonicalized Structured HTTP Headers
 
    If value of the the HTTP header in question is a structured field
-   [RFC8941], the content identifier MAY include the "sf" parameter.  If
-   this parameter is included, the HTTP header value MUST be
-   canonicalized using the rules specified in [RFC8941] section 4.  Note
-   that this process will replace any optional whitespace with a single
-   space.
+   ([RFC8941]), the content identifier MAY include the "sf" parameter.
+   If this parameter is included, the HTTP header value MUST be
+   canonicalized using the rules specified in Section 4 of [RFC8941].
+   Note that this process will replace any optional whitespace with a
+   single space.
 
    The resulting string is used as the field value input in Section 2.1.
 
@@ -538,14 +538,14 @@ Table of Contents
    This specification defines the following specialty content
    identifiers:
 
-   @request-target  The target request endpoint.  Section 2.4.1
+   @request-target  The target request endpoint.  (Section 2.4.1)
 
    @signature-params  The signature metadata parameters for this
-      signature.  Section 2.4.2
+      signature.  (Section 2.4.2)
 
    Additional specialty content identifiers MAY be defined and
    registered in the HTTP Signatures Specialty Content Identifier
-   Registry.  Section 5.3
+   Registry.  (Section 5.3)
 
 2.4.1.  Request Target
 
@@ -606,11 +606,11 @@ Table of Contents
    are defined:
 
    Covered Content:
-      An ordered list of content identifiers for headers Section 2.1 and
-      specialty content Section 2.4 that indicates the metadata and
-      message content that is covered by the signature.  This list MUST
-      NOT include the "@signature-params" specialty content identifier
-      itself.
+      An ordered list of content identifiers for headers (Section 2.1)
+      and specialty content (Section 2.4) that indicates the metadata
+      and message content that is covered by the signature.  This list
+      MUST NOT include the "@signature-params" specialty content
+      identifier itself.
 
    Algorithm:
       An HTTP Signature Algorithm defined in the HTTP Signature
@@ -633,18 +633,18 @@ Table of Contents
       fails verification.  A signature's Expiration Time MAY be
       undefined, indicating that the signature does not expire.
 
-   The signature parameters are serialized using the rules in [RFC8941]
-   section 4 as follows:
+   The signature parameters are serialized using the rules in Section 4
+   of [RFC8941] as follows:
 
    1.  Let the output be an empty string.
 
    2.  Serialize the content identifiers of the covered content as an
-       ordered "inner-list" according to [RFC8941] section 4.1.1.1 and
-       append this to the output.
+       ordered "inner-list" according to Section 4.1.1.1 of [RFC8941]
+       and append this to the output.
 
    3.  Append the signature metadata as parameters according to
-       [RFC8941] section 4.1.1.2 in the any order, skipping fields that
-       are not available:
+       Section 4.1.1.2 of [RFC8941] in the any order, skipping fields
+       that are not available:
 
        *  "alg": Algorithm as an "sf-string" value.
 
@@ -727,11 +727,11 @@ Table of Contents
        3.  Append a single space "" ""
 
        4.  Append the covered content's canonicalized value, as defined
-           by the covered content type.  Section 2.1 and Section 2.4
+           by the covered content type.  (Section 2.1 and Section 2.4)
 
        5.  Append a single newline ""\\n""
 
-   3.  Append the signature parameters Section 2.4.2 as follows:
+   3.  Append the signature parameters (Section 2.4.2) as follows:
 
        1.  Append the identifier for the signature parameters serialized
            according to the "content-identifier" rule, ""@signature-
@@ -748,23 +748,31 @@ Table of Contents
 
    If covered content references an identifier that cannot be resolved
    to a value in the message, the implementation MUST produce an error.
-   Such situations are included but not limited to: * The signer or
-   verifier does not understand the content identifier. * The identifier
-   identifies a header field that is not present in the message or whose
-   value is malformed. * The identifier is a Dictionary member
-   identifier that references a header field that is not present in the
-   message, is not a Dictionary Structured Field, or whose value is
-   malformed. * The identifier is a List Prefix member identifier that
-   references a header field that is not present in the message, is not
-   a List Structured Field, or whose value is malformed. * The
-   identifier is a Dictionary member identifier that references a member
-   that is not present in the header field value, or whose value is
-   malformed.  E.g., the identifier is ""x-dictionary";key=c" and the
-   value of the "x-dictionary" header field is "a=1, b=2" * The
-   identifier is a List Prefix member identifier that specifies more
-   List members than are present the header field.  E.g., the identifier
-   is ""x-list";prefix=3" and the value of the "x-list" header field is
-   "(1, 2)".
+   Such situations are included but not limited to:
+
+   *  The signer or verifier does not understand the content identifier.
+
+   *  The identifier identifies a header field that is not present in
+      the message or whose value is malformed.
+
+   *  The identifier is a Dictionary member identifier that references a
+      header field that is not present in the message, is not a
+      Dictionary Structured Field, or whose value is malformed.
+
+   *  The identifier is a List Prefix member identifier that references
+      a header field that is not present in the message, is not a List
+      Structured Field, or whose value is malformed.
+
+   *  The identifier is a Dictionary member identifier that references a
+      member that is not present in the header field value, or whose
+      value is malformed.  E.g., the identifier is
+      ""x-dictionary";key=c" and the value of the "x-dictionary" header
+      field is "a=1, b=2"
+
+   *  The identifier is a List Prefix member identifier that specifies
+      more List members than are present the header field.  E.g., the
+      identifier is ""x-list";prefix=3" and the value of the "x-list"
+      header field is "(1, 2)".
 
    For the non-normative example Signature metadata in Table 6, the
    corresponding Signature Input is:
@@ -840,7 +848,7 @@ Table of Contents
           in the signature input.  This ensures that a signature always
           covers its own metadata.
 
-   5.  The signer creates the signature input string.  Section 2.5
+   5.  The signer creates the signature input string.  (Section 2.5)
 
    6.  The signer signs the signature input with the chosen signing
        algorithm using the key material chosen by the signer.  Several
@@ -908,7 +916,7 @@ Table of Contents
        meets the requirements described in this document, as well as any
        additional requirements defined by the application such as which
        contents are required to be covered by the signature.
-       Section 3.2.1
+       (Section 3.2.1)
 
    2.  Determine the verification key material for this signature.  If
        the key material is known through external means such as static
@@ -997,7 +1005,7 @@ Table of Contents
 
    To sign using this algorithm, the signer applies the "RSASSA-PSS-SIGN
    (K, M)" function [RFC8017] with the signer's private signing key
-   ("K") and the signature input string ("M") Section 2.5.  The hash
+   ("K") and the signature input string ("M") (Section 2.5).  The hash
    SHA-512 [RFC6234] is applied to the signature input string to create
    the digest content to which the digital signature is applied.  The
    resulting signed content ("S") is Base64-encoded as described in
@@ -1020,7 +1028,7 @@ Table of Contents
 
    To sign using this algorithm, the signer applies the "RSASSA-
    PKCS1-V1_5-SIGN (K, M)" function [RFC8017] to signer's private
-   signing key ("K") and the signature input string ("M") Section 2.5.
+   signing key ("K") and the signature input string ("M") (Section 2.5).
    The hash SHA-256 [RFC6234] is applied to the signature input string
    to create the digest content to which the digital signature is
    applied.  The resulting signed content ("S") is Base64-encoded as
@@ -1043,7 +1051,7 @@ Table of Contents
 
    To sign and verify using this algorithm, the signer applies the
    "HMAC" function [RFC2104] with the shared signing key ("K") and the
-   signature input string ("text") Section 2.5.  The hash function
+   signature input string ("text") (Section 2.5).  The hash function
    SHA-256 [RFC6234] is applied to the signature input string to create
    the digest content to which the HMAC is applied, giving the signature
    result.
@@ -1061,7 +1069,7 @@ Table of Contents
 
    To sign using this algorithm, the signer applies the "ECDSA"
    algorithm [FIPS186-4] using curve P-256 with signer's private signing
-   key and the signature input string Section 2.5.  The hash function
+   key and the signature input string (Section 2.5).  The hash function
    SHA-256 [RFC6234] is applied to the signature input string to create
    the digest content to which the digital signature is applied.  The
    resulting signed content is Base64-encoded as described in
@@ -1087,7 +1095,7 @@ Table of Contents
    hashing algorithms to apply for both signing and verification.
 
    For both signing and verification, the HTTP messages signature input
-   string Section 2.5 is used as the entire "JWS Signing Input".  The
+   string (Section 2.5) is used as the entire "JWS Signing Input".  The
    JWS Header defined in [RFC7517] is not used, nor is the input string
    first encoded in Base64 before applying the algorithm.
 
@@ -1238,7 +1246,7 @@ Table of Contents
       RSASSA-PSS using SHA-256
 
    Specification document(s):
-      [[This document]] Section 3.3.1
+      [[This document]], Section 3.3.1
 
 5.1.2.2.  rsa-v1_5-sha256
 
@@ -1252,7 +1260,7 @@ Table of Contents
       RSASSA-PKCS1-v1_5 using SHA-256
 
    Specification document(s):
-      [[This document]] Section 3.3.2
+      [[This document]], Section 3.3.2
 
 5.1.2.3.  hmac-sha256
 
@@ -1266,7 +1274,7 @@ Table of Contents
       HMAC using SHA-256
 
    Specification document(s):
-      [[This document]] Section 3.3.3
+      [[This document]], Section 3.3.3
 
 5.1.2.4.  ecdsa-p256-sha256
 
@@ -1280,7 +1288,7 @@ Table of Contents
       ECDSA using curve P-256 DSS and SHA-256
 
    Specification document(s):
-      [[This document]] Section 3.3.4
+      [[This document]], Section 3.3.4
 
 5.2.  HTTP Signature Metadata Parameters Registry
 
@@ -1376,13 +1384,13 @@ Table of Contents
    [HTTP2]    Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
-              <https://www.rfc-editor.org/info/rfc7540>.
+              <https://datatracker.ietf.org/doc/html/rfc7540>.
 
    [MESSAGING]
               Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing",
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
-              <https://www.rfc-editor.org/info/rfc7230>.
+              <https://datatracker.ietf.org/doc/html/rfc7230>.
 
    [POSIX.1]  "The Open Group Base Specifications Issue 7, 2018
               edition", 2018,
@@ -1391,68 +1399,68 @@ Table of Contents
    [RFC2104]  Krawczyk, H., Bellare, M., and R. Canetti, "HMAC: Keyed-
               Hashing for Message Authentication", RFC 2104,
               DOI 10.17487/RFC2104, February 1997,
-              <https://www.rfc-editor.org/info/rfc2104>.
+              <https://datatracker.ietf.org/doc/html/rfc2104>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+              <https://datatracker.ietf.org/doc/html/rfc2119>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
 
    [RFC8792]  Watsen, K., Auerswald, E., Farrel, A., and Q. Wu,
               "Handling Long Lines in Content of Internet-Drafts and
               RFCs", RFC 8792, DOI 10.17487/RFC8792, June 2020,
-              <https://www.rfc-editor.org/info/rfc8792>.
+              <https://datatracker.ietf.org/doc/html/rfc8792>.
 
    [RFC8941]  Nottingham, M. and P-H. Kamp, "Structured Field Values for
               HTTP", RFC 8941, DOI 10.17487/RFC8941, February 2021,
-              <https://www.rfc-editor.org/info/rfc8941>.
+              <https://datatracker.ietf.org/doc/html/rfc8941>.
 
    [SEMANTICS]
               Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
               DOI 10.17487/RFC7231, June 2014,
-              <https://www.rfc-editor.org/info/rfc7231>.
+              <https://datatracker.ietf.org/doc/html/rfc7231>.
 
 7.2.  Informative References
 
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
-              <https://www.rfc-editor.org/info/rfc4648>.
+              <https://datatracker.ietf.org/doc/html/rfc4648>.
 
    [RFC6234]  Eastlake 3rd, D. and T. Hansen, "US Secure Hash Algorithms
               (SHA and SHA-based HMAC and HKDF)", RFC 6234,
               DOI 10.17487/RFC6234, May 2011,
-              <https://www.rfc-editor.org/info/rfc6234>.
+              <https://datatracker.ietf.org/doc/html/rfc6234>.
 
    [RFC7239]  Petersson, A. and M. Nilsson, "Forwarded HTTP Extension",
               RFC 7239, DOI 10.17487/RFC7239, June 2014,
-              <https://www.rfc-editor.org/info/rfc7239>.
+              <https://datatracker.ietf.org/doc/html/rfc7239>.
 
    [RFC7517]  Jones, M., "JSON Web Key (JWK)", RFC 7517,
               DOI 10.17487/RFC7517, May 2015,
-              <https://www.rfc-editor.org/info/rfc7517>.
+              <https://datatracker.ietf.org/doc/html/rfc7517>.
 
    [RFC7518]  Jones, M., "JSON Web Algorithms (JWA)", RFC 7518,
               DOI 10.17487/RFC7518, May 2015,
-              <https://www.rfc-editor.org/info/rfc7518>.
+              <https://datatracker.ietf.org/doc/html/rfc7518>.
 
    [RFC8017]  Moriarty, K., Ed., Kaliski, B., Jonsson, J., and A. Rusch,
               "PKCS #1: RSA Cryptography Specifications Version 2.2",
               RFC 8017, DOI 10.17487/RFC8017, November 2016,
-              <https://www.rfc-editor.org/info/rfc8017>.
+              <https://datatracker.ietf.org/doc/html/rfc8017>.
 
    [RFC8126]  Cotton, M., Leiba, B., and T. Narten, "Guidelines for
               Writing an IANA Considerations Section in RFCs", BCP 26,
               RFC 8126, DOI 10.17487/RFC8126, June 2017,
-              <https://www.rfc-editor.org/info/rfc8126>.
+              <https://datatracker.ietf.org/doc/html/rfc8126>.
 
    [TLS]      Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/info/rfc8446>.
+              <https://datatracker.ietf.org/doc/html/rfc8446>.
 
    [WP-HTTP-Sig-Audit]
               "Security Considerations for HTTP Signatures", 2013,

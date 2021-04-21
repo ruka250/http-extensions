@@ -15,25 +15,25 @@ representation data.
 "representation", which makes it consistent with the HTTP Semantic and Context
 defined in draft-ietf-httpbis-semantics. 
     ' name="description">
-<meta content="xml2rfc 3.5.0" name="generator">
+<meta content="xml2rfc 3.7.0" name="generator">
 <meta content="Digest" name="keyword">
 <meta content="draft-ietf-httpbis-digest-headers" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.5.0
-    Python 3.9.1
+  xml2rfc 3.7.0
+    Python 3.8.8
     appdirs 1.4.4
-    ConfigArgParse 1.3
+    ConfigArgParse 1.2.3
     google-i18n-address 2.4.0
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 2.11.2
     kitchen 1.2.6
-    lxml 4.6.2
+    lxml 4.6.3
     pycountry 20.7.3
     pyflakes 2.2.0
     PyYAML 5.4.1
-    requests 2.25.0
-    setuptools 52.0.0
+    requests 2.25.1
+    setuptools 51.3.3
     six 1.15.0
 -->
 <link href="draft-ietf-httpbis-digest-headers.xml" rel="alternate" type="application/rfc+xml">
@@ -860,7 +860,7 @@ address div.right {
 <dd class="internet-draft">draft-ietf-httpbis-digest-headers</dd>
 <dt class="label-obsoletes">Obsoletes:</dt>
 <dd class="obsoletes">
-<a href="https://www.rfc-editor.org/rfc/rfc3230" class="eref">3230</a> (if approved)</dd>
+<a href="https://datatracker.ietf.org/doc/html/rfc3230" class="eref">3230</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2021-04-21" class="published">21 April 2021</time>
@@ -950,242 +950,242 @@ defined in draft-ietf-httpbis-semantics.<a href="#section-abstract-2" class="pil
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty compact toc">
-<li class="ulEmpty compact toc" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
+<nav class="toc"><ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-a-brief-history-of-http-int" class="xref">A Brief History of HTTP Integrity Fields</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-a-brief-history-of-http-int" class="xref">A Brief History of HTTP Integrity Fields</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.1.2.2">
-                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-this-proposal" class="xref">This Proposal</a><a href="#section-toc.1-1.1.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-this-proposal" class="xref">This Proposal</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.1.2.3">
-                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-goals" class="xref">Goals</a><a href="#section-toc.1-1.1.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-goals" class="xref">Goals</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.1.2.4">
-                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="xref">1.4</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a><a href="#section-toc.1-1.1.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="xref">1.4</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-representation-digest" class="xref">Representation Digest</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-representation-digest" class="xref">Representation Digest</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-the-digest-field" class="xref">The Digest Field</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-the-digest-field" class="xref">The Digest Field</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-the-want-digest-field" class="xref">The Want-Digest Field</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-the-want-digest-field" class="xref">The Want-Digest Field</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-digest-algorithm-values" class="xref">Digest Algorithm Values</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-digest-algorithm-values" class="xref">Digest Algorithm Values</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-use-of-digest-when-acting-o" class="xref">Use of Digest when acting on resources</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-use-of-digest-when-acting-o" class="xref">Use of Digest when acting on resources</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-digest-and-patch" class="xref">Digest and PATCH</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-digest-and-patch" class="xref">Digest and PATCH</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-deprecate-negotiation-of-co" class="xref">Deprecate Negotiation of Content-MD5</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-deprecate-negotiation-of-co" class="xref">Deprecate Negotiation of Content-MD5</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-obsolete-digest-field-param" class="xref">Obsolete Digest Field Parameters</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-obsolete-digest-field-param" class="xref">Obsolete Digest Field Parameters</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-relationship-to-subresource" class="xref">Relationship to Subresource Integrity (SRI)</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-relationship-to-subresource" class="xref">Relationship to Subresource Integrity (SRI)</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-supporting-both-sri-and-rep" class="xref">Supporting Both SRI and Representation Digest</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-supporting-both-sri-and-rep" class="xref">Supporting Both SRI and Representation Digest</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-examples-of-unsolicited-dig" class="xref">Examples of Unsolicited Digest</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-examples-of-unsolicited-dig" class="xref">Examples of Unsolicited Digest</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-server-returns-full-represe" class="xref">Server Returns Full Representation Data</a><a href="#section-toc.1-1.10.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-server-returns-full-represe" class="xref">Server Returns Full Representation Data</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-server-returns-no-represent" class="xref">Server Returns No Representation Data</a><a href="#section-toc.1-1.10.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-server-returns-no-represent" class="xref">Server Returns No Representation Data</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.3">
-                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="xref">10.3</a>.  <a href="#name-server-returns-partial-repr" class="xref">Server Returns Partial Representation Data</a><a href="#section-toc.1-1.10.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="xref">10.3</a>.  <a href="#name-server-returns-partial-repr" class="xref">Server Returns Partial Representation Data</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.4">
-                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="xref">10.4</a>.  <a href="#name-client-and-server-provide-f" class="xref">Client and Server Provide Full Representation Data</a><a href="#section-toc.1-1.10.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="xref">10.4</a>.  <a href="#name-client-and-server-provide-f" class="xref">Client and Server Provide Full Representation Data</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.5">
-                <p id="section-toc.1-1.10.2.5.1"><a href="#section-10.5" class="xref">10.5</a>.  <a href="#name-client-provides-full-repres" class="xref">Client Provides Full Representation Data, Server Provides No Representation Data</a><a href="#section-toc.1-1.10.2.5.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.5.1"><a href="#section-10.5" class="xref">10.5</a>.  <a href="#name-client-provides-full-repres" class="xref">Client Provides Full Representation Data, Server Provides No Representation Data</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.6">
-                <p id="section-toc.1-1.10.2.6.1"><a href="#section-10.6" class="xref">10.6</a>.  <a href="#name-client-and-server-provide-fu" class="xref">Client and Server Provide Full Representation Data, Client Uses id-sha-256.</a><a href="#section-toc.1-1.10.2.6.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.6.1"><a href="#section-10.6" class="xref">10.6</a>.  <a href="#name-client-and-server-provide-fu" class="xref">Client and Server Provide Full Representation Data, Client Uses id-sha-256.</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.7">
-                <p id="section-toc.1-1.10.2.7.1"><a href="#section-10.7" class="xref">10.7</a>.  <a href="#name-post-response-does-not-refe" class="xref">POST Response does not Reference the Request URI</a><a href="#section-toc.1-1.10.2.7.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.7.1"><a href="#section-10.7" class="xref">10.7</a>.  <a href="#name-post-response-does-not-refe" class="xref">POST Response does not Reference the Request URI</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.8">
-                <p id="section-toc.1-1.10.2.8.1"><a href="#section-10.8" class="xref">10.8</a>.  <a href="#name-post-response-describes-the" class="xref">POST Response Describes the Request Status</a><a href="#section-toc.1-1.10.2.8.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.8.1"><a href="#section-10.8" class="xref">10.8</a>.  <a href="#name-post-response-describes-the" class="xref">POST Response Describes the Request Status</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.9">
-                <p id="section-toc.1-1.10.2.9.1"><a href="#section-10.9" class="xref">10.9</a>.  <a href="#name-digest-with-patch" class="xref">Digest with PATCH</a><a href="#section-toc.1-1.10.2.9.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.9.1"><a href="#section-10.9" class="xref">10.9</a>.  <a href="#name-digest-with-patch" class="xref">Digest with PATCH</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.10">
-                <p id="section-toc.1-1.10.2.10.1"><a href="#section-10.10" class="xref">10.10</a>. <a href="#name-error-responses" class="xref">Error responses</a><a href="#section-toc.1-1.10.2.10.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.10.1"><a href="#section-10.10" class="xref">10.10</a>. <a href="#name-error-responses" class="xref">Error responses</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.10.2.11">
-                <p id="section-toc.1-1.10.2.11.1"><a href="#section-10.11" class="xref">10.11</a>. <a href="#name-use-with-trailer-fields-and" class="xref">Use with Trailer Fields and Transfer Coding</a><a href="#section-toc.1-1.10.2.11.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.10.2.11.1"><a href="#section-10.11" class="xref">10.11</a>. <a href="#name-use-with-trailer-fields-and" class="xref">Use with Trailer Fields and Transfer Coding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-examples-of-want-digest-sol" class="xref">Examples of Want-Digest Solicited Digest</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-examples-of-want-digest-sol" class="xref">Examples of Want-Digest Solicited Digest</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.11.2.1">
-                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="xref">11.1</a>.  <a href="#name-server-selects-clients-leas" class="xref">Server Selects Client's Least Preferred Algorithm</a><a href="#section-toc.1-1.11.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="xref">11.1</a>.  <a href="#name-server-selects-clients-leas" class="xref">Server Selects Client's Least Preferred Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="xref">11.2</a>.  <a href="#name-server-selects-algorithm-un" class="xref">Server Selects Algorithm Unsupported by Client</a><a href="#section-toc.1-1.11.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="xref">11.2</a>.  <a href="#name-server-selects-algorithm-un" class="xref">Server Selects Algorithm Unsupported by Client</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.11.2.3">
-                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="xref">11.3</a>.  <a href="#name-server-does-not-support-cli" class="xref">Server Does Not Support Client Algorithm and Returns an Error</a><a href="#section-toc.1-1.11.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="xref">11.3</a>.  <a href="#name-server-does-not-support-cli" class="xref">Server Does Not Support Client Algorithm and Returns an Error</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.1">
-                <p id="section-toc.1-1.12.2.1.1"><a href="#section-12.1" class="xref">12.1</a>.  <a href="#name-digest-does-not-protect-the" class="xref">Digest Does Not Protect the Full HTTP Message</a><a href="#section-toc.1-1.12.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.1.1"><a href="#section-12.1" class="xref">12.1</a>.  <a href="#name-digest-does-not-protect-the" class="xref">Digest Does Not Protect the Full HTTP Message</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.2">
-                <p id="section-toc.1-1.12.2.2.1"><a href="#section-12.2" class="xref">12.2</a>.  <a href="#name-broken-cryptographic-algori" class="xref">Broken Cryptographic Algorithms</a><a href="#section-toc.1-1.12.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.2.1"><a href="#section-12.2" class="xref">12.2</a>.  <a href="#name-broken-cryptographic-algori" class="xref">Broken Cryptographic Algorithms</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.3">
-                <p id="section-toc.1-1.12.2.3.1"><a href="#section-12.3" class="xref">12.3</a>.  <a href="#name-other-deprecated-algorithms" class="xref">Other Deprecated Algorithms</a><a href="#section-toc.1-1.12.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.3.1"><a href="#section-12.3" class="xref">12.3</a>.  <a href="#name-other-deprecated-algorithms" class="xref">Other Deprecated Algorithms</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.4">
-                <p id="section-toc.1-1.12.2.4.1"><a href="#section-12.4" class="xref">12.4</a>.  <a href="#name-digest-for-end-to-end-integ" class="xref">Digest for End-to-End Integrity</a><a href="#section-toc.1-1.12.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.4.1"><a href="#section-12.4" class="xref">12.4</a>.  <a href="#name-digest-for-end-to-end-integ" class="xref">Digest for End-to-End Integrity</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.5">
-                <p id="section-toc.1-1.12.2.5.1"><a href="#section-12.5" class="xref">12.5</a>.  <a href="#name-digest-and-content-location" class="xref">Digest and Content-Location in Responses</a><a href="#section-toc.1-1.12.2.5.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.5.1"><a href="#section-12.5" class="xref">12.5</a>.  <a href="#name-digest-and-content-location" class="xref">Digest and Content-Location in Responses</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.6">
-                <p id="section-toc.1-1.12.2.6.1"><a href="#section-12.6" class="xref">12.6</a>.  <a href="#name-usage-in-signatures" class="xref">Usage in Signatures</a><a href="#section-toc.1-1.12.2.6.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.6.1"><a href="#section-12.6" class="xref">12.6</a>.  <a href="#name-usage-in-signatures" class="xref">Usage in Signatures</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.7">
-                <p id="section-toc.1-1.12.2.7.1"><a href="#section-12.7" class="xref">12.7</a>.  <a href="#name-usage-in-trailer-fields" class="xref">Usage in Trailer Fields</a><a href="#section-toc.1-1.12.2.7.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.7.1"><a href="#section-12.7" class="xref">12.7</a>.  <a href="#name-usage-in-trailer-fields" class="xref">Usage in Trailer Fields</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.8">
-                <p id="section-toc.1-1.12.2.8.1"><a href="#section-12.8" class="xref">12.8</a>.  <a href="#name-usage-with-encryption" class="xref">Usage with Encryption</a><a href="#section-toc.1-1.12.2.8.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.8.1"><a href="#section-12.8" class="xref">12.8</a>.  <a href="#name-usage-with-encryption" class="xref">Usage with Encryption</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.9">
-                <p id="section-toc.1-1.12.2.9.1"><a href="#section-12.9" class="xref">12.9</a>.  <a href="#name-algorithm-agility" class="xref">Algorithm Agility</a><a href="#section-toc.1-1.12.2.9.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.9.1"><a href="#section-12.9" class="xref">12.9</a>.  <a href="#name-algorithm-agility" class="xref">Algorithm Agility</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.9.2.1">
-                    <p id="section-toc.1-1.12.2.9.2.1.1"><a href="#section-12.9.1" class="xref">12.9.1</a>.  <a href="#name-duplicate-digest-algorithm-" class="xref">Duplicate digest-algorithm in field value</a><a href="#section-toc.1-1.12.2.9.2.1.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.12.2.9.2.1.1"><a href="#section-12.9.1" class="xref">12.9.1</a>.  <a href="#name-duplicate-digest-algorithm-" class="xref">Duplicate digest-algorithm in field value</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.12.2.10">
-                <p id="section-toc.1-1.12.2.10.1"><a href="#section-12.10" class="xref">12.10</a>. <a href="#name-resource-exhaustion" class="xref">Resource exhaustion</a><a href="#section-toc.1-1.12.2.10.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.12.2.10.1"><a href="#section-12.10" class="xref">12.10</a>. <a href="#name-resource-exhaustion" class="xref">Resource exhaustion</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.1">
-                <p id="section-toc.1-1.13.2.1.1"><a href="#section-13.1" class="xref">13.1</a>.  <a href="#name-establish-the-http-digest-a" class="xref">Establish the HTTP Digest Algorithm Values Registry</a><a href="#section-toc.1-1.13.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.1.1"><a href="#section-13.1" class="xref">13.1</a>.  <a href="#name-establish-the-http-digest-a" class="xref">Establish the HTTP Digest Algorithm Values Registry</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.2">
-                <p id="section-toc.1-1.13.2.2.1"><a href="#section-13.2" class="xref">13.2</a>.  <a href="#name-the-status-field-in-the-htt" class="xref">The "status" Field in the HTTP Digest Algorithm Values Registry</a><a href="#section-toc.1-1.13.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.2.1"><a href="#section-13.2" class="xref">13.2</a>.  <a href="#name-the-status-field-in-the-htt" class="xref">The "status" Field in the HTTP Digest Algorithm Values Registry</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.3">
-                <p id="section-toc.1-1.13.2.3.1"><a href="#section-13.3" class="xref">13.3</a>.  <a href="#name-deprecate-md5-digest-algori" class="xref">Deprecate "MD5" Digest Algorithm</a><a href="#section-toc.1-1.13.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.3.1"><a href="#section-13.3" class="xref">13.3</a>.  <a href="#name-deprecate-md5-digest-algori" class="xref">Deprecate "MD5" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.4">
-                <p id="section-toc.1-1.13.2.4.1"><a href="#section-13.4" class="xref">13.4</a>.  <a href="#name-update-unixsum-digest-algor" class="xref">Update "UNIXsum" Digest Algorithm</a><a href="#section-toc.1-1.13.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.4.1"><a href="#section-13.4" class="xref">13.4</a>.  <a href="#name-update-unixsum-digest-algor" class="xref">Update "UNIXsum" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.5">
-                <p id="section-toc.1-1.13.2.5.1"><a href="#section-13.5" class="xref">13.5</a>.  <a href="#name-update-unixcksum-digest-alg" class="xref">Update "UNIXcksum" Digest Algorithm</a><a href="#section-toc.1-1.13.2.5.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.5.1"><a href="#section-13.5" class="xref">13.5</a>.  <a href="#name-update-unixcksum-digest-alg" class="xref">Update "UNIXcksum" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.6">
-                <p id="section-toc.1-1.13.2.6.1"><a href="#section-13.6" class="xref">13.6</a>.  <a href="#name-update-crc32c-digest-algori" class="xref">Update "CRC32c" Digest Algorithm</a><a href="#section-toc.1-1.13.2.6.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.6.1"><a href="#section-13.6" class="xref">13.6</a>.  <a href="#name-update-crc32c-digest-algori" class="xref">Update "CRC32c" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.7">
-                <p id="section-toc.1-1.13.2.7.1"><a href="#section-13.7" class="xref">13.7</a>.  <a href="#name-deprecate-sha-digest-algori" class="xref">Deprecate "SHA" Digest Algorithm</a><a href="#section-toc.1-1.13.2.7.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.7.1"><a href="#section-13.7" class="xref">13.7</a>.  <a href="#name-deprecate-sha-digest-algori" class="xref">Deprecate "SHA" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.8">
-                <p id="section-toc.1-1.13.2.8.1"><a href="#section-13.8" class="xref">13.8</a>.  <a href="#name-obsolete-adler32-digest-alg" class="xref">Obsolete "ADLER32" Digest Algorithm</a><a href="#section-toc.1-1.13.2.8.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.8.1"><a href="#section-13.8" class="xref">13.8</a>.  <a href="#name-obsolete-adler32-digest-alg" class="xref">Obsolete "ADLER32" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.9">
-                <p id="section-toc.1-1.13.2.9.1"><a href="#section-13.9" class="xref">13.9</a>.  <a href="#name-obsolete-contentmd5-token-i" class="xref">Obsolete "contentMD5" token in Digest Algorithm</a><a href="#section-toc.1-1.13.2.9.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.9.1"><a href="#section-13.9" class="xref">13.9</a>.  <a href="#name-obsolete-contentmd5-token-i" class="xref">Obsolete "contentMD5" token in Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.10">
-                <p id="section-toc.1-1.13.2.10.1"><a href="#section-13.10" class="xref">13.10</a>. <a href="#name-the-id-sha-256-digest-algor" class="xref">The "id-sha-256" Digest Algorithm</a><a href="#section-toc.1-1.13.2.10.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.10.1"><a href="#section-13.10" class="xref">13.10</a>. <a href="#name-the-id-sha-256-digest-algor" class="xref">The "id-sha-256" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.11">
-                <p id="section-toc.1-1.13.2.11.1"><a href="#section-13.11" class="xref">13.11</a>. <a href="#name-the-id-sha-512-digest-algor" class="xref">The "id-sha-512" Digest Algorithm</a><a href="#section-toc.1-1.13.2.11.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.11.1"><a href="#section-13.11" class="xref">13.11</a>. <a href="#name-the-id-sha-512-digest-algor" class="xref">The "id-sha-512" Digest Algorithm</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.12">
-                <p id="section-toc.1-1.13.2.12.1"><a href="#section-13.12" class="xref">13.12</a>. <a href="#name-changes-compared-to-rfc5843" class="xref">Changes Compared to RFC5843</a><a href="#section-toc.1-1.13.2.12.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.12.1"><a href="#section-13.12" class="xref">13.12</a>. <a href="#name-changes-compared-to-rfc5843" class="xref">Changes Compared to RFC5843</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.13">
-                <p id="section-toc.1-1.13.2.13.1"><a href="#section-13.13" class="xref">13.13</a>. <a href="#name-want-digest-field-registrat" class="xref">Want-Digest Field Registration</a><a href="#section-toc.1-1.13.2.13.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.13.1"><a href="#section-13.13" class="xref">13.13</a>. <a href="#name-want-digest-field-registrat" class="xref">Want-Digest Field Registration</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.13.2.14">
-                <p id="section-toc.1-1.13.2.14.1"><a href="#section-13.14" class="xref">13.14</a>. <a href="#name-digest-field-registration" class="xref">Digest Field Registration</a><a href="#section-toc.1-1.13.2.14.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.13.2.14.1"><a href="#section-13.14" class="xref">13.14</a>. <a href="#name-digest-field-registration" class="xref">Digest Field Registration</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#section-14" class="xref">14</a>. <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-14" class="xref">14</a>. <a href="#name-references" class="xref">References</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.14.2.1">
-                <p id="section-toc.1-1.14.2.1.1"><a href="#section-14.1" class="xref">14.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.14.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.1.1"><a href="#section-14.1" class="xref">14.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.14.2.2">
-                <p id="section-toc.1-1.14.2.2.1"><a href="#section-14.2" class="xref">14.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.14.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.2.1"><a href="#section-14.2" class="xref">14.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-resource-representation-and" class="xref">Resource Representation and Representation-Data</a><a href="#section-toc.1-1.15.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-resource-representation-and" class="xref">Resource Representation and Representation-Data</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-faq" class="xref">FAQ</a><a href="#section-toc.1-1.16.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.16">
+            <p id="section-toc.1-1.16.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-faq" class="xref">FAQ</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.17">
-            <p id="section-toc.1-1.17.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.17.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.17">
+            <p id="section-toc.1-1.17.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.18">
-            <p id="section-toc.1-1.18.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-code-samples" class="xref">Code Samples</a><a href="#section-toc.1-1.18.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.18">
+            <p id="section-toc.1-1.18.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-code-samples" class="xref">Code Samples</a></p>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.19">
-            <p id="section-toc.1-1.19.1"><a href="#section-appendix.e" class="xref"></a><a href="#name-changes" class="xref">Changes</a><a href="#section-toc.1-1.19.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.19">
+            <p id="section-toc.1-1.19.1"><a href="#section-appendix.e" class="xref"></a><a href="#name-changes" class="xref">Changes</a></p>
 <ul class="compact ulEmpty toc">
 <li class="compact ulEmpty toc" id="section-toc.1-1.19.2.1">
-                <p id="section-toc.1-1.19.2.1.1"><a href="#section-e.1" class="xref"></a><a href="#name-since-draft-ietf-httpbis-di" class="xref">Since draft-ietf-httpbis-digest-headers-04</a><a href="#section-toc.1-1.19.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.1.1"><a href="#section-e.1" class="xref"></a><a href="#name-since-draft-ietf-httpbis-di" class="xref">Since draft-ietf-httpbis-digest-headers-04</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.19.2.2">
-                <p id="section-toc.1-1.19.2.2.1"><a href="#section-e.2" class="xref"></a><a href="#name-since-draft-ietf-httpbis-dig" class="xref">Since draft-ietf-httpbis-digest-headers-03</a><a href="#section-toc.1-1.19.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.2.1"><a href="#section-e.2" class="xref"></a><a href="#name-since-draft-ietf-httpbis-dig" class="xref">Since draft-ietf-httpbis-digest-headers-03</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.19.2.3">
-                <p id="section-toc.1-1.19.2.3.1"><a href="#section-e.3" class="xref"></a><a href="#name-since-draft-ietf-httpbis-dige" class="xref">Since draft-ietf-httpbis-digest-headers-02</a><a href="#section-toc.1-1.19.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.3.1"><a href="#section-e.3" class="xref"></a><a href="#name-since-draft-ietf-httpbis-dige" class="xref">Since draft-ietf-httpbis-digest-headers-02</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.19.2.4">
-                <p id="section-toc.1-1.19.2.4.1"><a href="#section-e.4" class="xref"></a><a href="#name-since-draft-ietf-httpbis-diges" class="xref">Since draft-ietf-httpbis-digest-headers-01</a><a href="#section-toc.1-1.19.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.4.1"><a href="#section-e.4" class="xref"></a><a href="#name-since-draft-ietf-httpbis-diges" class="xref">Since draft-ietf-httpbis-digest-headers-01</a></p>
 </li>
               <li class="compact ulEmpty toc" id="section-toc.1-1.19.2.5">
-                <p id="section-toc.1-1.19.2.5.1"><a href="#section-e.5" class="xref"></a><a href="#name-since-draft-ietf-httpbis-digest" class="xref">Since draft-ietf-httpbis-digest-headers-00</a><a href="#section-toc.1-1.19.2.5.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.19.2.5.1"><a href="#section-e.5" class="xref"></a><a href="#name-since-draft-ietf-httpbis-digest" class="xref">Since draft-ietf-httpbis-digest-headers-00</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty compact toc" id="section-toc.1-1.20">
-            <p id="section-toc.1-1.20.1"><a href="#section-appendix.f" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.20.1" class="pilcrow">¶</a></p>
+          <li class="compact ulEmpty toc" id="section-toc.1-1.20">
+            <p id="section-toc.1-1.20.1"><a href="#section-appendix.f" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -2726,7 +2726,7 @@ Protocol (HTTP) Field Name Registry" <span>[<a href="#SEMANTICS" class="xref">SE
 <dd class="break"></dd>
 <dt id="IACR-2020-014">[IACR-2020-014]</dt>
         <dd>
-<span class="refAuthor">Leurent, G.</span><span class="refAuthor"> and T. Peyrin</span>, <span class="refTitle">"SHA-1 is a Shambles"</span>, <time datetime="2020-01-05" class="refDate">5 January 2020</time>, <span>&lt;<a href="https://eprint.iacr.org/2020/014.pdf">https://eprint.iacr.org/2020/014.pdf</a>&gt;</span>. </dd>
+<span class="refAuthor">Leurent, G.</span> and <span class="refAuthor">T. Peyrin</span>, <span class="refTitle">"SHA-1 is a Shambles"</span>, <time datetime="2020-01-05" class="refDate">5 January 2020</time>, <span>&lt;<a href="https://eprint.iacr.org/2020/014.pdf">https://eprint.iacr.org/2020/014.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NIST800-32">[NIST800-32]</dt>
         <dd>
@@ -2734,59 +2734,59 @@ Protocol (HTTP) Field Name Registry" <span>[<a href="#SEMANTICS" class="xref">SE
 <dd class="break"></dd>
 <dt id="RFC1321">[RFC1321]</dt>
         <dd>
-<span class="refAuthor">Rivest, R.</span>, <span class="refTitle">"The MD5 Message-Digest Algorithm"</span>, <span class="seriesInfo">RFC 1321</span>, <span class="seriesInfo">DOI 10.17487/RFC1321</span>, <time datetime="1992-04" class="refDate">April 1992</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1321">https://www.rfc-editor.org/info/rfc1321</a>&gt;</span>. </dd>
+<span class="refAuthor">Rivest, R.</span>, <span class="refTitle">"The MD5 Message-Digest Algorithm"</span>, <span class="seriesInfo">RFC 1321</span>, <span class="seriesInfo">DOI 10.17487/RFC1321</span>, <time datetime="1992-04" class="refDate">April 1992</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc1321">https://datatracker.ietf.org/doc/html/rfc1321</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC1950">[RFC1950]</dt>
         <dd>
-<span class="refAuthor">Deutsch, P.</span><span class="refAuthor"> and J-L. Gailly</span>, <span class="refTitle">"ZLIB Compressed Data Format Specification version 3.3"</span>, <span class="seriesInfo">RFC 1950</span>, <span class="seriesInfo">DOI 10.17487/RFC1950</span>, <time datetime="1996-05" class="refDate">May 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc1950">https://www.rfc-editor.org/info/rfc1950</a>&gt;</span>. </dd>
+<span class="refAuthor">Deutsch, P.</span> and <span class="refAuthor">J-L. Gailly</span>, <span class="refTitle">"ZLIB Compressed Data Format Specification version 3.3"</span>, <span class="seriesInfo">RFC 1950</span>, <span class="seriesInfo">DOI 10.17487/RFC1950</span>, <time datetime="1996-05" class="refDate">May 1996</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc1950">https://datatracker.ietf.org/doc/html/rfc1950</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3174">[RFC3174]</dt>
         <dd>
-<span class="refAuthor">Eastlake 3rd, D.</span><span class="refAuthor"> and P. Jones</span>, <span class="refTitle">"US Secure Hash Algorithm 1 (SHA1)"</span>, <span class="seriesInfo">RFC 3174</span>, <span class="seriesInfo">DOI 10.17487/RFC3174</span>, <time datetime="2001-09" class="refDate">September 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3174">https://www.rfc-editor.org/info/rfc3174</a>&gt;</span>. </dd>
+<span class="refAuthor">Eastlake 3rd, D.</span> and <span class="refAuthor">P. Jones</span>, <span class="refTitle">"US Secure Hash Algorithm 1 (SHA1)"</span>, <span class="seriesInfo">RFC 3174</span>, <span class="seriesInfo">DOI 10.17487/RFC3174</span>, <time datetime="2001-09" class="refDate">September 2001</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3174">https://datatracker.ietf.org/doc/html/rfc3174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3230">[RFC3230]</dt>
         <dd>
-<span class="refAuthor">Mogul, J.</span><span class="refAuthor"> and A. Van Hoff</span>, <span class="refTitle">"Instance Digests in HTTP"</span>, <span class="seriesInfo">RFC 3230</span>, <span class="seriesInfo">DOI 10.17487/RFC3230</span>, <time datetime="2002-01" class="refDate">January 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3230">https://www.rfc-editor.org/info/rfc3230</a>&gt;</span>. </dd>
+<span class="refAuthor">Mogul, J.</span> and <span class="refAuthor">A. Van Hoff</span>, <span class="refTitle">"Instance Digests in HTTP"</span>, <span class="seriesInfo">RFC 3230</span>, <span class="seriesInfo">DOI 10.17487/RFC3230</span>, <time datetime="2002-01" class="refDate">January 2002</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3230">https://datatracker.ietf.org/doc/html/rfc3230</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3309">[RFC3309]</dt>
         <dd>
-<span class="refAuthor">Stone, J.</span><span class="refAuthor">, Stewart, R.</span><span class="refAuthor">, and D. Otis</span>, <span class="refTitle">"Stream Control Transmission Protocol (SCTP) Checksum Change"</span>, <span class="seriesInfo">RFC 3309</span>, <span class="seriesInfo">DOI 10.17487/RFC3309</span>, <time datetime="2002-09" class="refDate">September 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3309">https://www.rfc-editor.org/info/rfc3309</a>&gt;</span>. </dd>
+<span class="refAuthor">Stone, J.</span>, <span class="refAuthor">Stewart, R.</span>, and <span class="refAuthor">D. Otis</span>, <span class="refTitle">"Stream Control Transmission Protocol (SCTP) Checksum Change"</span>, <span class="seriesInfo">RFC 3309</span>, <span class="seriesInfo">DOI 10.17487/RFC3309</span>, <time datetime="2002-09" class="refDate">September 2002</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3309">https://datatracker.ietf.org/doc/html/rfc3309</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4648">[RFC4648]</dt>
         <dd>
-<span class="refAuthor">Josefsson, S.</span>, <span class="refTitle">"The Base16, Base32, and Base64 Data Encodings"</span>, <span class="seriesInfo">RFC 4648</span>, <span class="seriesInfo">DOI 10.17487/RFC4648</span>, <time datetime="2006-10" class="refDate">October 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4648">https://www.rfc-editor.org/info/rfc4648</a>&gt;</span>. </dd>
+<span class="refAuthor">Josefsson, S.</span>, <span class="refTitle">"The Base16, Base32, and Base64 Data Encodings"</span>, <span class="seriesInfo">RFC 4648</span>, <span class="seriesInfo">DOI 10.17487/RFC4648</span>, <time datetime="2006-10" class="refDate">October 2006</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4648">https://datatracker.ietf.org/doc/html/rfc4648</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4960">[RFC4960]</dt>
         <dd>
-<span class="refAuthor">Stewart, R., Ed.</span>, <span class="refTitle">"Stream Control Transmission Protocol"</span>, <span class="seriesInfo">RFC 4960</span>, <span class="seriesInfo">DOI 10.17487/RFC4960</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4960">https://www.rfc-editor.org/info/rfc4960</a>&gt;</span>. </dd>
+<span class="refAuthor">Stewart, R., Ed.</span>, <span class="refTitle">"Stream Control Transmission Protocol"</span>, <span class="seriesInfo">RFC 4960</span>, <span class="seriesInfo">DOI 10.17487/RFC4960</span>, <time datetime="2007-09" class="refDate">September 2007</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4960">https://datatracker.ietf.org/doc/html/rfc4960</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5234">[RFC5234]</dt>
         <dd>
-<span class="refAuthor">Crocker, D., Ed.</span><span class="refAuthor"> and P. Overell</span>, <span class="refTitle">"Augmented BNF for Syntax Specifications: ABNF"</span>, <span class="seriesInfo">STD 68</span>, <span class="seriesInfo">RFC 5234</span>, <span class="seriesInfo">DOI 10.17487/RFC5234</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5234">https://www.rfc-editor.org/info/rfc5234</a>&gt;</span>. </dd>
+<span class="refAuthor">Crocker, D., Ed.</span> and <span class="refAuthor">P. Overell</span>, <span class="refTitle">"Augmented BNF for Syntax Specifications: ABNF"</span>, <span class="seriesInfo">STD 68</span>, <span class="seriesInfo">RFC 5234</span>, <span class="seriesInfo">DOI 10.17487/RFC5234</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5234">https://datatracker.ietf.org/doc/html/rfc5234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5843">[RFC5843]</dt>
         <dd>
-<span class="refAuthor">Bryan, A.</span>, <span class="refTitle">"Additional Hash Algorithms for HTTP Instance Digests"</span>, <span class="seriesInfo">RFC 5843</span>, <span class="seriesInfo">DOI 10.17487/RFC5843</span>, <time datetime="2010-04" class="refDate">April 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5843">https://www.rfc-editor.org/info/rfc5843</a>&gt;</span>. </dd>
+<span class="refAuthor">Bryan, A.</span>, <span class="refTitle">"Additional Hash Algorithms for HTTP Instance Digests"</span>, <span class="seriesInfo">RFC 5843</span>, <span class="seriesInfo">DOI 10.17487/RFC5843</span>, <time datetime="2010-04" class="refDate">April 2010</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5843">https://datatracker.ietf.org/doc/html/rfc5843</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6234">[RFC6234]</dt>
         <dd>
-<span class="refAuthor">Eastlake 3rd, D.</span><span class="refAuthor"> and T. Hansen</span>, <span class="refTitle">"US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)"</span>, <span class="seriesInfo">RFC 6234</span>, <span class="seriesInfo">DOI 10.17487/RFC6234</span>, <time datetime="2011-05" class="refDate">May 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6234">https://www.rfc-editor.org/info/rfc6234</a>&gt;</span>. </dd>
+<span class="refAuthor">Eastlake 3rd, D.</span> and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF)"</span>, <span class="seriesInfo">RFC 6234</span>, <span class="seriesInfo">DOI 10.17487/RFC6234</span>, <time datetime="2011-05" class="refDate">May 2011</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6234">https://datatracker.ietf.org/doc/html/rfc6234</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7405">[RFC7405]</dt>
         <dd>
-<span class="refAuthor">Kyzivat, P.</span>, <span class="refTitle">"Case-Sensitive String Support in ABNF"</span>, <span class="seriesInfo">RFC 7405</span>, <span class="seriesInfo">DOI 10.17487/RFC7405</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7405">https://www.rfc-editor.org/info/rfc7405</a>&gt;</span>. </dd>
+<span class="refAuthor">Kyzivat, P.</span>, <span class="refTitle">"Case-Sensitive String Support in ABNF"</span>, <span class="seriesInfo">RFC 7405</span>, <span class="seriesInfo">DOI 10.17487/RFC7405</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7405">https://datatracker.ietf.org/doc/html/rfc7405</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SEMANTICS">[SEMANTICS]</dt>
         <dd>
-<span class="refAuthor">Fielding, R. T.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-semantics-15.txt">https://www.ietf.org/archive/id/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="UNIX">[UNIX]</dt>
       <dd>
@@ -2801,55 +2801,55 @@ Protocol (HTTP) Field Name Registry" <span>[<a href="#SEMANTICS" class="xref">SE
 <dl class="references">
 <dt id="HTTP11">[HTTP11]</dt>
         <dd>
-<span class="refAuthor">Fielding, R. T.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP/1.1"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-messaging-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-messaging-15.txt">https://www.ietf.org/archive/id/draft-ietf-httpbis-messaging-15.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP/1.1"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-messaging-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-messaging-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-messaging-15.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-httpbis-header-structure">[I-D.ietf-httpbis-header-structure]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span><span class="refAuthor"> and P. Kamp</span>, <span class="refTitle">"Structured Field Values for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-header-structure-19</span>, <time datetime="2020-06-03" class="refDate">3 June 2020</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-header-structure-19.txt">https://www.ietf.org/archive/id/draft-ietf-httpbis-header-structure-19.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span> and <span class="refAuthor">P. Kamp</span>, <span class="refTitle">"Structured Field Values for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-header-structure-19</span>, <time datetime="2020-06-03" class="refDate">3 June 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-header-structure-19.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-header-structure-19.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.thomson-http-mice">[I-D.thomson-http-mice]</dt>
         <dd>
-<span class="refAuthor">Thomson, M.</span><span class="refAuthor"> and J. Yasskin</span>, <span class="refTitle">"Merkle Integrity Content Encoding"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-thomson-http-mice-03</span>, <time datetime="2018-08-13" class="refDate">13 August 2018</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-thomson-http-mice-03.txt">https://www.ietf.org/archive/id/draft-thomson-http-mice-03.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M.</span> and <span class="refAuthor">J. Yasskin</span>, <span class="refTitle">"Merkle Integrity Content Encoding"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-thomson-http-mice-03</span>, <time datetime="2018-08-13" class="refDate">13 August 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-thomson-http-mice-03.txt">https://datatracker.ietf.org/doc/html/draft-thomson-http-mice-03.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NO-MD5">[NO-MD5]</dt>
         <dd>
-<span class="refAuthor">Turner, S.</span><span class="refAuthor"> and L. Chen</span>, <span class="refTitle">"Updated Security Considerations for the MD5 Message-Digest and the HMAC-MD5 Algorithms"</span>, <span class="seriesInfo">RFC 6151</span>, <span class="seriesInfo">DOI 10.17487/RFC6151</span>, <time datetime="2011-03" class="refDate">March 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6151">https://www.rfc-editor.org/info/rfc6151</a>&gt;</span>. </dd>
+<span class="refAuthor">Turner, S.</span> and <span class="refAuthor">L. Chen</span>, <span class="refTitle">"Updated Security Considerations for the MD5 Message-Digest and the HMAC-MD5 Algorithms"</span>, <span class="seriesInfo">RFC 6151</span>, <span class="seriesInfo">DOI 10.17487/RFC6151</span>, <time datetime="2011-03" class="refDate">March 2011</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6151">https://datatracker.ietf.org/doc/html/rfc6151</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="NO-SHA1">[NO-SHA1]</dt>
         <dd>
-<span class="refAuthor">Polk, T.</span><span class="refAuthor">, Chen, L.</span><span class="refAuthor">, Turner, S.</span><span class="refAuthor">, and P. Hoffman</span>, <span class="refTitle">"Security Considerations for the SHA-0 and SHA-1 Message-Digest Algorithms"</span>, <span class="seriesInfo">RFC 6194</span>, <span class="seriesInfo">DOI 10.17487/RFC6194</span>, <time datetime="2011-03" class="refDate">March 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6194">https://www.rfc-editor.org/info/rfc6194</a>&gt;</span>. </dd>
+<span class="refAuthor">Polk, T.</span>, <span class="refAuthor">Chen, L.</span>, <span class="refAuthor">Turner, S.</span>, and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Security Considerations for the SHA-0 and SHA-1 Message-Digest Algorithms"</span>, <span class="seriesInfo">RFC 6194</span>, <span class="seriesInfo">DOI 10.17487/RFC6194</span>, <time datetime="2011-03" class="refDate">March 2011</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6194">https://datatracker.ietf.org/doc/html/rfc6194</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="PATCH">[PATCH]</dt>
         <dd>
-<span class="refAuthor">Dusseault, L.</span><span class="refAuthor"> and J. Snell</span>, <span class="refTitle">"PATCH Method for HTTP"</span>, <span class="seriesInfo">RFC 5789</span>, <span class="seriesInfo">DOI 10.17487/RFC5789</span>, <time datetime="2010-03" class="refDate">March 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5789">https://www.rfc-editor.org/info/rfc5789</a>&gt;</span>. </dd>
+<span class="refAuthor">Dusseault, L.</span> and <span class="refAuthor">J. Snell</span>, <span class="refTitle">"PATCH Method for HTTP"</span>, <span class="seriesInfo">RFC 5789</span>, <span class="seriesInfo">DOI 10.17487/RFC5789</span>, <time datetime="2010-03" class="refDate">March 2010</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5789">https://datatracker.ietf.org/doc/html/rfc5789</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2818">[RFC2818]</dt>
         <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"HTTP Over TLS"</span>, <span class="seriesInfo">RFC 2818</span>, <span class="seriesInfo">DOI 10.17487/RFC2818</span>, <time datetime="2000-05" class="refDate">May 2000</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2818">https://www.rfc-editor.org/info/rfc2818</a>&gt;</span>. </dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"HTTP Over TLS"</span>, <span class="seriesInfo">RFC 2818</span>, <span class="seriesInfo">DOI 10.17487/RFC2818</span>, <time datetime="2000-05" class="refDate">May 2000</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc2818">https://datatracker.ietf.org/doc/html/rfc2818</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7231">[RFC7231]</dt>
         <dd>
-<span class="refAuthor">Fielding, R., Ed.</span><span class="refAuthor"> and J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7231">https://www.rfc-editor.org/info/rfc7231</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7231">https://datatracker.ietf.org/doc/html/rfc7231</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7396">[RFC7396]</dt>
         <dd>
-<span class="refAuthor">Hoffman, P.</span><span class="refAuthor"> and J. Snell</span>, <span class="refTitle">"JSON Merge Patch"</span>, <span class="seriesInfo">RFC 7396</span>, <span class="seriesInfo">DOI 10.17487/RFC7396</span>, <time datetime="2014-10" class="refDate">October 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7396">https://www.rfc-editor.org/info/rfc7396</a>&gt;</span>. </dd>
+<span class="refAuthor">Hoffman, P.</span> and <span class="refAuthor">J. Snell</span>, <span class="refTitle">"JSON Merge Patch"</span>, <span class="seriesInfo">RFC 7396</span>, <span class="seriesInfo">DOI 10.17487/RFC7396</span>, <time datetime="2014-10" class="refDate">October 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7396">https://datatracker.ietf.org/doc/html/rfc7396</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7696">[RFC7696]</dt>
         <dd>
-<span class="refAuthor">Housley, R.</span>, <span class="refTitle">"Guidelines for Cryptographic Algorithm Agility and Selecting Mandatory-to-Implement Algorithms"</span>, <span class="seriesInfo">BCP 201</span>, <span class="seriesInfo">RFC 7696</span>, <span class="seriesInfo">DOI 10.17487/RFC7696</span>, <time datetime="2015-11" class="refDate">November 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7696">https://www.rfc-editor.org/info/rfc7696</a>&gt;</span>. </dd>
+<span class="refAuthor">Housley, R.</span>, <span class="refTitle">"Guidelines for Cryptographic Algorithm Agility and Selecting Mandatory-to-Implement Algorithms"</span>, <span class="seriesInfo">BCP 201</span>, <span class="seriesInfo">RFC 7696</span>, <span class="seriesInfo">DOI 10.17487/RFC7696</span>, <time datetime="2015-11" class="refDate">November 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7696">https://datatracker.ietf.org/doc/html/rfc7696</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7807">[RFC7807]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span><span class="refAuthor"> and E. Wilde</span>, <span class="refTitle">"Problem Details for HTTP APIs"</span>, <span class="seriesInfo">RFC 7807</span>, <span class="seriesInfo">DOI 10.17487/RFC7807</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7807">https://www.rfc-editor.org/info/rfc7807</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span> and <span class="refAuthor">E. Wilde</span>, <span class="refTitle">"Problem Details for HTTP APIs"</span>, <span class="seriesInfo">RFC 7807</span>, <span class="seriesInfo">DOI 10.17487/RFC7807</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7807">https://datatracker.ietf.org/doc/html/rfc7807</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8188">[RFC8188]</dt>
         <dd>
-<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Encrypted Content-Encoding for HTTP"</span>, <span class="seriesInfo">RFC 8188</span>, <span class="seriesInfo">DOI 10.17487/RFC8188</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8188">https://www.rfc-editor.org/info/rfc8188</a>&gt;</span>. </dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refTitle">"Encrypted Content-Encoding for HTTP"</span>, <span class="seriesInfo">RFC 8188</span>, <span class="seriesInfo">DOI 10.17487/RFC8188</span>, <time datetime="2017-06" class="refDate">June 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8188">https://datatracker.ietf.org/doc/html/rfc8188</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SRI">[SRI]</dt>
       <dd>
-<span class="refAuthor">Akhawe, D.</span><span class="refAuthor">, Braun, F.</span><span class="refAuthor">, Marier, F.</span><span class="refAuthor">, and J. Weinberger</span>, <span class="refTitle">"Subresource Integrity"</span>, <span class="seriesInfo">W3C Recommendation REC-SRI-20160623</span>, <time datetime="2016-06-23" class="refDate">23 June 2016</time>, <span>&lt;<a href="https://www.w3.org/TR/2016/REC-SRI-20160623/">https://www.w3.org/TR/2016/REC-SRI-20160623/</a>&gt;</span>. </dd>
+<span class="refAuthor">Akhawe, D.</span>, <span class="refAuthor">Braun, F.</span>, <span class="refAuthor">Marier, F.</span>, and <span class="refAuthor">J. Weinberger</span>, <span class="refTitle">"Subresource Integrity"</span>, <span class="seriesInfo">W3C Recommendation REC-SRI-20160623</span>, <time datetime="2016-06-23" class="refDate">23 June 2016</time>, <span>&lt;<a href="https://www.w3.org/TR/2016/REC-SRI-20160623/">https://www.w3.org/TR/2016/REC-SRI-20160623/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

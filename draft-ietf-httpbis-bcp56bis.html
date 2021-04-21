@@ -9,25 +9,25 @@
 <meta content="
        Applications often use HTTP as a substrate to create HTTP-based APIs. This document specifies best practices for writing specifications that use HTTP to define new application protocols, especially when they are defined for diverse implementation and broad deployment (e.g., in standards efforts). 
     " name="description">
-<meta content="xml2rfc 3.5.0" name="generator">
+<meta content="xml2rfc 3.7.0" name="generator">
 <meta content="HTTP API" name="keyword">
 <meta content="draft-ietf-httpbis-bcp56bis" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.5.0
-    Python 3.9.1
+  xml2rfc 3.7.0
+    Python 3.8.8
     appdirs 1.4.4
-    ConfigArgParse 1.3
+    ConfigArgParse 1.2.3
     google-i18n-address 2.4.0
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 2.11.2
     kitchen 1.2.6
-    lxml 4.6.2
+    lxml 4.6.3
     pycountry 20.7.3
     pyflakes 2.2.0
     PyYAML 5.4.1
-    requests 2.25.0
-    setuptools 52.0.0
+    requests 2.25.1
+    setuptools 51.3.3
     six 1.15.0
 -->
 <link href="draft-ietf-httpbis-bcp56bis.xml" rel="alternate" type="application/rfc+xml">
@@ -854,7 +854,7 @@ address div.right {
 <dd class="internet-draft">draft-ietf-httpbis-bcp56bis</dd>
 <dt class="label-obsoletes">Obsoletes:</dt>
 <dd class="obsoletes">
-<a href="https://www.rfc-editor.org/rfc/rfc3205" class="eref">3205</a> (if approved)</dd>
+<a href="https://datatracker.ietf.org/doc/html/rfc3205" class="eref">3205</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2021-04-21" class="published">21 April 2021</time>
@@ -931,155 +931,155 @@ address div.right {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+<nav class="toc"><ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-is-http-being-used" class="xref">Is HTTP Being Used?</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-non-http-protocols" class="xref">Non-HTTP Protocols</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-is-http-being-used" class="xref">Is HTTP Being Used?</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-non-http-protocols" class="xref">Non-HTTP Protocols</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-whats-important-about-http" class="xref">What's Important About HTTP</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-generic-semantics" class="xref">Generic Semantics</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-whats-important-about-http" class="xref">What's Important About HTTP</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-generic-semantics" class="xref">Generic Semantics</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-links" class="xref">Links</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-links" class="xref">Links</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-rich-functionality" class="xref">Rich Functionality</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-rich-functionality" class="xref">Rich Functionality</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-best-practices-for-specifyi" class="xref">Best Practices for Specifying the Use of HTTP</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-specifying-the-use-of-http" class="xref">Specifying the Use of HTTP</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-best-practices-for-specifyi" class="xref">Best Practices for Specifying the Use of HTTP</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-specifying-the-use-of-http" class="xref">Specifying the Use of HTTP</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-specifying-server-behaviour" class="xref">Specifying Server Behaviour</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-specifying-server-behaviour" class="xref">Specifying Server Behaviour</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-specifying-client-behaviour" class="xref">Specifying Client Behaviour</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-specifying-client-behaviour" class="xref">Specifying Client Behaviour</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-specifying-urls" class="xref">Specifying URLs</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4.2.1">
-                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-discovering-an-applications" class="xref">Discovering an Application's URLs</a><a href="#section-toc.1-1.4.2.4.2.1.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-specifying-urls" class="xref">Specifying URLs</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4.2.1">
+                    <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-discovering-an-applications" class="xref">Discovering an Application's URLs</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4.2.2">
-                    <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="xref">4.4.2</a>.  <a href="#name-considering-uri-schemes" class="xref">Considering URI Schemes</a><a href="#section-toc.1-1.4.2.4.2.2.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4.2.2">
+                    <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="xref">4.4.2</a>.  <a href="#name-considering-uri-schemes" class="xref">Considering URI Schemes</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4.2.3">
-                    <p id="section-toc.1-1.4.2.4.2.3.1"><a href="#section-4.4.3" class="xref">4.4.3</a>.  <a href="#name-transport-ports" class="xref">Transport Ports</a><a href="#section-toc.1-1.4.2.4.2.3.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4.2.3">
+                    <p id="section-toc.1-1.4.2.4.2.3.1"><a href="#section-4.4.3" class="xref">4.4.3</a>.  <a href="#name-transport-ports" class="xref">Transport Ports</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5">
-                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-using-http-methods" class="xref">Using HTTP Methods</a><a href="#section-toc.1-1.4.2.5.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.1">
-                    <p id="section-toc.1-1.4.2.5.2.1.1"><a href="#section-4.5.1" class="xref">4.5.1</a>.  <a href="#name-get" class="xref">GET</a><a href="#section-toc.1-1.4.2.5.2.1.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-using-http-methods" class="xref">Using HTTP Methods</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.1">
+                    <p id="section-toc.1-1.4.2.5.2.1.1"><a href="#section-4.5.1" class="xref">4.5.1</a>.  <a href="#name-get" class="xref">GET</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.2">
-                    <p id="section-toc.1-1.4.2.5.2.2.1"><a href="#section-4.5.2" class="xref">4.5.2</a>.  <a href="#name-options" class="xref">OPTIONS</a><a href="#section-toc.1-1.4.2.5.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                </ul>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.6">
-                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="xref">4.6</a>.  <a href="#name-using-http-status-codes" class="xref">Using HTTP Status Codes</a><a href="#section-toc.1-1.4.2.6.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.6.2.1">
-                    <p id="section-toc.1-1.4.2.6.2.1.1"><a href="#section-4.6.1" class="xref">4.6.1</a>.  <a href="#name-redirection" class="xref">Redirection</a><a href="#section-toc.1-1.4.2.6.2.1.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.2">
+                    <p id="section-toc.1-1.4.2.5.2.2.1"><a href="#section-4.5.2" class="xref">4.5.2</a>.  <a href="#name-options" class="xref">OPTIONS</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.7">
-                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="xref">4.7</a>.  <a href="#name-specifying-http-header-fiel" class="xref">Specifying HTTP Header Fields</a><a href="#section-toc.1-1.4.2.7.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.8">
-                <p id="section-toc.1-1.4.2.8.1"><a href="#section-4.8" class="xref">4.8</a>.  <a href="#name-defining-message-content" class="xref">Defining Message Content</a><a href="#section-toc.1-1.4.2.8.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.9">
-                <p id="section-toc.1-1.4.2.9.1"><a href="#section-4.9" class="xref">4.9</a>.  <a href="#name-leveraging-http-caching" class="xref">Leveraging HTTP Caching</a><a href="#section-toc.1-1.4.2.9.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.9.2.1">
-                    <p id="section-toc.1-1.4.2.9.2.1.1"><a href="#section-4.9.1" class="xref">4.9.1</a>.  <a href="#name-freshness" class="xref">Freshness</a><a href="#section-toc.1-1.4.2.9.2.1.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.9.2.2">
-                    <p id="section-toc.1-1.4.2.9.2.2.1"><a href="#section-4.9.2" class="xref">4.9.2</a>.  <a href="#name-stale-responses" class="xref">Stale Responses</a><a href="#section-toc.1-1.4.2.9.2.2.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.9.2.3">
-                    <p id="section-toc.1-1.4.2.9.2.3.1"><a href="#section-4.9.3" class="xref">4.9.3</a>.  <a href="#name-caching-and-application-sem" class="xref">Caching and Application Semantics</a><a href="#section-toc.1-1.4.2.9.2.3.1" class="pilcrow">¶</a></p>
-</li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.9.2.4">
-                    <p id="section-toc.1-1.4.2.9.2.4.1"><a href="#section-4.9.4" class="xref">4.9.4</a>.  <a href="#name-varying-content-based-upon-" class="xref">Varying Content Based Upon the Request</a><a href="#section-toc.1-1.4.2.9.2.4.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.6">
+                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="xref">4.6</a>.  <a href="#name-using-http-status-codes" class="xref">Using HTTP Status Codes</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.6.2.1">
+                    <p id="section-toc.1-1.4.2.6.2.1.1"><a href="#section-4.6.1" class="xref">4.6.1</a>.  <a href="#name-redirection" class="xref">Redirection</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.10">
-                <p id="section-toc.1-1.4.2.10.1"><a href="#section-4.10" class="xref">4.10</a>. <a href="#name-handling-application-state" class="xref">Handling Application State</a><a href="#section-toc.1-1.4.2.10.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.7">
+                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="xref">4.7</a>.  <a href="#name-specifying-http-header-fiel" class="xref">Specifying HTTP Header Fields</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.11">
-                <p id="section-toc.1-1.4.2.11.1"><a href="#section-4.11" class="xref">4.11</a>. <a href="#name-making-multiple-requests" class="xref">Making Multiple Requests</a><a href="#section-toc.1-1.4.2.11.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.8">
+                <p id="section-toc.1-1.4.2.8.1"><a href="#section-4.8" class="xref">4.8</a>.  <a href="#name-defining-message-content" class="xref">Defining Message Content</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.12">
-                <p id="section-toc.1-1.4.2.12.1"><a href="#section-4.12" class="xref">4.12</a>. <a href="#name-client-authentication" class="xref">Client Authentication</a><a href="#section-toc.1-1.4.2.12.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.9">
+                <p id="section-toc.1-1.4.2.9.1"><a href="#section-4.9" class="xref">4.9</a>.  <a href="#name-leveraging-http-caching" class="xref">Leveraging HTTP Caching</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.9.2.1">
+                    <p id="section-toc.1-1.4.2.9.2.1.1"><a href="#section-4.9.1" class="xref">4.9.1</a>.  <a href="#name-freshness" class="xref">Freshness</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.13">
-                <p id="section-toc.1-1.4.2.13.1"><a href="#section-4.13" class="xref">4.13</a>. <a href="#name-co-existing-with-web-browsi" class="xref">Co-Existing with Web Browsing</a><a href="#section-toc.1-1.4.2.13.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.9.2.2">
+                    <p id="section-toc.1-1.4.2.9.2.2.1"><a href="#section-4.9.2" class="xref">4.9.2</a>.  <a href="#name-stale-responses" class="xref">Stale Responses</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.14">
-                <p id="section-toc.1-1.4.2.14.1"><a href="#section-4.14" class="xref">4.14</a>. <a href="#name-maintaining-application-bou" class="xref">Maintaining Application Boundaries</a><a href="#section-toc.1-1.4.2.14.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.9.2.3">
+                    <p id="section-toc.1-1.4.2.9.2.3.1"><a href="#section-4.9.3" class="xref">4.9.3</a>.  <a href="#name-caching-and-application-sem" class="xref">Caching and Application Semantics</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.15">
-                <p id="section-toc.1-1.4.2.15.1"><a href="#section-4.15" class="xref">4.15</a>. <a href="#name-using-server-push" class="xref">Using Server Push</a><a href="#section-toc.1-1.4.2.15.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.9.2.4">
+                    <p id="section-toc.1-1.4.2.9.2.4.1"><a href="#section-4.9.4" class="xref">4.9.4</a>.  <a href="#name-varying-content-based-upon-" class="xref">Varying Content Based Upon the Request</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.16">
-                <p id="section-toc.1-1.4.2.16.1"><a href="#section-4.16" class="xref">4.16</a>. <a href="#name-allowing-versioning-and-evo" class="xref">Allowing Versioning and Evolution</a><a href="#section-toc.1-1.4.2.16.1" class="pilcrow">¶</a></p>
+                </ul>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.10">
+                <p id="section-toc.1-1.4.2.10.1"><a href="#section-4.10" class="xref">4.10</a>. <a href="#name-handling-application-state" class="xref">Handling Application State</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.11">
+                <p id="section-toc.1-1.4.2.11.1"><a href="#section-4.11" class="xref">4.11</a>. <a href="#name-making-multiple-requests" class="xref">Making Multiple Requests</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.12">
+                <p id="section-toc.1-1.4.2.12.1"><a href="#section-4.12" class="xref">4.12</a>. <a href="#name-client-authentication" class="xref">Client Authentication</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.13">
+                <p id="section-toc.1-1.4.2.13.1"><a href="#section-4.13" class="xref">4.13</a>. <a href="#name-co-existing-with-web-browsi" class="xref">Co-Existing with Web Browsing</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.14">
+                <p id="section-toc.1-1.4.2.14.1"><a href="#section-4.14" class="xref">4.14</a>. <a href="#name-maintaining-application-bou" class="xref">Maintaining Application Boundaries</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.15">
+                <p id="section-toc.1-1.4.2.15.1"><a href="#section-4.15" class="xref">4.15</a>. <a href="#name-using-server-push" class="xref">Using Server Push</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.16">
+                <p id="section-toc.1-1.4.2.16.1"><a href="#section-4.16" class="xref">4.16</a>. <a href="#name-allowing-versioning-and-evo" class="xref">Allowing Versioning and Evolution</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-privacy-considerations" class="xref">Privacy Considerations</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-privacy-considerations" class="xref">Privacy Considerations</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-changes-from-rfc-3205" class="xref">Changes from RFC 3205</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-changes-from-rfc-3205" class="xref">Changes from RFC 3205</a></p>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1707,7 +1707,7 @@ Referrer-Policy: no-referrer
         <h3 id="name-using-server-push">
 <a href="#section-4.15" class="section-number selfRef">4.15. </a><a href="#name-using-server-push" class="section-name selfRef">Using Server Push</a>
         </h3>
-<p id="section-4.15-1">HTTP/2 adds the ability for servers to "push" request/response pairs to clients in <span>[<a href="#RFC7540" class="xref">RFC7540</a>], <a href="https://tools.ietf.org/html/rfc7540#section-8.2" class="relref">Section 8.2</a></span>. While server push seems like a natural fit for many common application semantics (e.g., "fanout" and publish/subscribe), a few caveats should be noted:<a href="#section-4.15-1" class="pilcrow">¶</a></p>
+<p id="section-4.15-1">HTTP/2 adds the ability for servers to "push" request/response pairs to clients in <span>[<a href="#RFC7540" class="xref">RFC7540</a>], <a href="https://rfc-editor.org/rfc/rfc7540#section-8.2" class="relref">Section 8.2</a></span>. While server push seems like a natural fit for many common application semantics (e.g., "fanout" and publish/subscribe), a few caveats should be noted:<a href="#section-4.15-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.15-2.1">Server push is hop-by-hop; that is, it is not automatically forwarded by intermediaries. As a result, it might not work easily (or at all) with proxies, reverse proxies, and Content Delivery Networks.<a href="#section-4.15-2.1" class="pilcrow">¶</a>
 </li>
@@ -1723,7 +1723,7 @@ Referrer-Policy: no-referrer
 </li>
         </ul>
 <p id="section-4.15-3">Applications wishing to optimise cases where the client can perform work related to requests before the full response is available (e.g., fetching links for things likely to be contained within) might benefit from using the 103 (Early Hints) status code; see <span>[<a href="#RFC8297" class="xref">RFC8297</a>]</span>.<a href="#section-4.15-3" class="pilcrow">¶</a></p>
-<p id="section-4.15-4">Applications using server push directly need to enforce the requirements regarding authority in <span>[<a href="#RFC7540" class="xref">RFC7540</a>], <a href="https://tools.ietf.org/html/rfc7540#section-8.2" class="relref">Section 8.2</a></span>, to avoid cross-origin push attacks.<a href="#section-4.15-4" class="pilcrow">¶</a></p>
+<p id="section-4.15-4">Applications using server push directly need to enforce the requirements regarding authority in <span>[<a href="#RFC7540" class="xref">RFC7540</a>], <a href="https://rfc-editor.org/rfc/rfc7540#section-8.2" class="relref">Section 8.2</a></span>, to avoid cross-origin push attacks.<a href="#section-4.15-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="versioning">
@@ -1789,47 +1789,47 @@ Referrer-Policy: no-referrer
 <dl class="references">
 <dt id="I-D.ietf-httpbis-semantics">[I-D.ietf-httpbis-semantics]</dt>
         <dd>
-<span class="refAuthor">Fielding, R. T.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-semantics-15.txt">https://www.ietf.org/archive/id/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3986">[RFC3986]</dt>
         <dd>
-<span class="refAuthor">Berners-Lee, T.</span><span class="refAuthor">, Fielding, R.</span><span class="refAuthor">, and L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3986">https://www.rfc-editor.org/info/rfc3986</a>&gt;</span>. </dd>
+<span class="refAuthor">Berners-Lee, T.</span>, <span class="refAuthor">Fielding, R.</span>, and <span class="refAuthor">L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3986">https://datatracker.ietf.org/doc/html/rfc3986</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6454">[RFC6454]</dt>
         <dd>
-<span class="refAuthor">Barth, A.</span>, <span class="refTitle">"The Web Origin Concept"</span>, <span class="seriesInfo">RFC 6454</span>, <span class="seriesInfo">DOI 10.17487/RFC6454</span>, <time datetime="2011-12" class="refDate">December 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6454">https://www.rfc-editor.org/info/rfc6454</a>&gt;</span>. </dd>
+<span class="refAuthor">Barth, A.</span>, <span class="refTitle">"The Web Origin Concept"</span>, <span class="seriesInfo">RFC 6454</span>, <span class="seriesInfo">DOI 10.17487/RFC6454</span>, <time datetime="2011-12" class="refDate">December 2011</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6454">https://datatracker.ietf.org/doc/html/rfc6454</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6648">[RFC6648]</dt>
         <dd>
-<span class="refAuthor">Saint-Andre, P.</span><span class="refAuthor">, Crocker, D.</span><span class="refAuthor">, and M. Nottingham</span>, <span class="refTitle">"Deprecating the "X-" Prefix and Similar Constructs in Application Protocols"</span>, <span class="seriesInfo">BCP 178</span>, <span class="seriesInfo">RFC 6648</span>, <span class="seriesInfo">DOI 10.17487/RFC6648</span>, <time datetime="2012-06" class="refDate">June 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6648">https://www.rfc-editor.org/info/rfc6648</a>&gt;</span>. </dd>
+<span class="refAuthor">Saint-Andre, P.</span>, <span class="refAuthor">Crocker, D.</span>, and <span class="refAuthor">M. Nottingham</span>, <span class="refTitle">"Deprecating the "X-" Prefix and Similar Constructs in Application Protocols"</span>, <span class="seriesInfo">BCP 178</span>, <span class="seriesInfo">RFC 6648</span>, <span class="seriesInfo">DOI 10.17487/RFC6648</span>, <time datetime="2012-06" class="refDate">June 2012</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6648">https://datatracker.ietf.org/doc/html/rfc6648</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6838">[RFC6838]</dt>
         <dd>
-<span class="refAuthor">Freed, N.</span><span class="refAuthor">, Klensin, J.</span><span class="refAuthor">, and T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6838">https://www.rfc-editor.org/info/rfc6838</a>&gt;</span>. </dd>
+<span class="refAuthor">Freed, N.</span>, <span class="refAuthor">Klensin, J.</span>, and <span class="refAuthor">T. Hansen</span>, <span class="refTitle">"Media Type Specifications and Registration Procedures"</span>, <span class="seriesInfo">BCP 13</span>, <span class="seriesInfo">RFC 6838</span>, <span class="seriesInfo">DOI 10.17487/RFC6838</span>, <time datetime="2013-01" class="refDate">January 2013</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6838">https://datatracker.ietf.org/doc/html/rfc6838</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7301">[RFC7301]</dt>
         <dd>
-<span class="refAuthor">Friedl, S.</span><span class="refAuthor">, Popov, A.</span><span class="refAuthor">, Langley, A.</span><span class="refAuthor">, and E. Stephan</span>, <span class="refTitle">"Transport Layer Security (TLS) Application-Layer Protocol Negotiation Extension"</span>, <span class="seriesInfo">RFC 7301</span>, <span class="seriesInfo">DOI 10.17487/RFC7301</span>, <time datetime="2014-07" class="refDate">July 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7301">https://www.rfc-editor.org/info/rfc7301</a>&gt;</span>. </dd>
+<span class="refAuthor">Friedl, S.</span>, <span class="refAuthor">Popov, A.</span>, <span class="refAuthor">Langley, A.</span>, and <span class="refAuthor">E. Stephan</span>, <span class="refTitle">"Transport Layer Security (TLS) Application-Layer Protocol Negotiation Extension"</span>, <span class="seriesInfo">RFC 7301</span>, <span class="seriesInfo">DOI 10.17487/RFC7301</span>, <time datetime="2014-07" class="refDate">July 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7301">https://datatracker.ietf.org/doc/html/rfc7301</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8174">https://datatracker.ietf.org/doc/html/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8288">[RFC8288]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"Web Linking"</span>, <span class="seriesInfo">RFC 8288</span>, <span class="seriesInfo">DOI 10.17487/RFC8288</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8288">https://www.rfc-editor.org/info/rfc8288</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"Web Linking"</span>, <span class="seriesInfo">RFC 8288</span>, <span class="seriesInfo">DOI 10.17487/RFC8288</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8288">https://datatracker.ietf.org/doc/html/rfc8288</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8615">[RFC8615]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"Well-Known Uniform Resource Identifiers (URIs)"</span>, <span class="seriesInfo">RFC 8615</span>, <span class="seriesInfo">DOI 10.17487/RFC8615</span>, <time datetime="2019-05" class="refDate">May 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8615">https://www.rfc-editor.org/info/rfc8615</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"Well-Known Uniform Resource Identifiers (URIs)"</span>, <span class="seriesInfo">RFC 8615</span>, <span class="seriesInfo">DOI 10.17487/RFC8615</span>, <time datetime="2019-05" class="refDate">May 2019</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8615">https://datatracker.ietf.org/doc/html/rfc8615</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8820">[RFC8820]</dt>
       <dd>
-<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"URI Design and Ownership"</span>, <span class="seriesInfo">BCP 190</span>, <span class="seriesInfo">RFC 8820</span>, <span class="seriesInfo">DOI 10.17487/RFC8820</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8820">https://www.rfc-editor.org/info/rfc8820</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"URI Design and Ownership"</span>, <span class="seriesInfo">BCP 190</span>, <span class="seriesInfo">RFC 8820</span>, <span class="seriesInfo">DOI 10.17487/RFC8820</span>, <time datetime="2020-06" class="refDate">June 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8820">https://datatracker.ietf.org/doc/html/rfc8820</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1852,95 +1852,95 @@ Referrer-Policy: no-referrer
 <dd class="break"></dd>
 <dt id="I-D.ietf-httpbis-cache">[I-D.ietf-httpbis-cache]</dt>
         <dd>
-<span class="refAuthor">Fielding, R. T.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Caching"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cache-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-15.txt">https://www.ietf.org/archive/id/draft-ietf-httpbis-cache-15.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R. T.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">J. Reschke</span>, <span class="refTitle">"HTTP Caching"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cache-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cache-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cache-15.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-httpbis-priority">[I-D.ietf-httpbis-priority]</dt>
         <dd>
-<span class="refAuthor">Oku, K.</span><span class="refAuthor"> and L. Pardue</span>, <span class="refTitle">"Extensible Prioritization Scheme for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-priority-03</span>, <time datetime="2021-01-11" class="refDate">11 January 2021</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-httpbis-priority-03.txt">https://www.ietf.org/archive/id/draft-ietf-httpbis-priority-03.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Oku, K.</span> and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"Extensible Prioritization Scheme for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-priority-03</span>, <time datetime="2021-01-11" class="refDate">11 January 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-priority-03.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-priority-03.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="REFERRER-POLICY">[REFERRER-POLICY]</dt>
         <dd>
-<span class="refAuthor">Eisinger, J.</span><span class="refAuthor"> and E. Stark</span>, <span class="refTitle">"Referrer Policy"</span>, <span class="seriesInfo">World Wide Web Consortium CR CR-referrer-policy-20170126</span>, <time datetime="2017-01-26" class="refDate">26 January 2017</time>, <span>&lt;<a href="https://www.w3.org/TR/2017/CR-referrer-policy-20170126">https://www.w3.org/TR/2017/CR-referrer-policy-20170126</a>&gt;</span>. </dd>
+<span class="refAuthor">Eisinger, J.</span> and <span class="refAuthor">E. Stark</span>, <span class="refTitle">"Referrer Policy"</span>, <span class="seriesInfo">World Wide Web Consortium CR CR-referrer-policy-20170126</span>, <time datetime="2017-01-26" class="refDate">26 January 2017</time>, <span>&lt;<a href="https://www.w3.org/TR/2017/CR-referrer-policy-20170126">https://www.w3.org/TR/2017/CR-referrer-policy-20170126</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3205">[RFC3205]</dt>
         <dd>
-<span class="refAuthor">Moore, K.</span>, <span class="refTitle">"On the use of HTTP as a Substrate"</span>, <span class="seriesInfo">BCP 56</span>, <span class="seriesInfo">RFC 3205</span>, <span class="seriesInfo">DOI 10.17487/RFC3205</span>, <time datetime="2002-02" class="refDate">February 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3205">https://www.rfc-editor.org/info/rfc3205</a>&gt;</span>. </dd>
+<span class="refAuthor">Moore, K.</span>, <span class="refTitle">"On the use of HTTP as a Substrate"</span>, <span class="seriesInfo">BCP 56</span>, <span class="seriesInfo">RFC 3205</span>, <span class="seriesInfo">DOI 10.17487/RFC3205</span>, <time datetime="2002-02" class="refDate">February 2002</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3205">https://datatracker.ietf.org/doc/html/rfc3205</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4791">[RFC4791]</dt>
         <dd>
-<span class="refAuthor">Daboo, C.</span><span class="refAuthor">, Desruisseaux, B.</span><span class="refAuthor">, and L. Dusseault</span>, <span class="refTitle">"Calendaring Extensions to WebDAV (CalDAV)"</span>, <span class="seriesInfo">RFC 4791</span>, <span class="seriesInfo">DOI 10.17487/RFC4791</span>, <time datetime="2007-03" class="refDate">March 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4791">https://www.rfc-editor.org/info/rfc4791</a>&gt;</span>. </dd>
+<span class="refAuthor">Daboo, C.</span>, <span class="refAuthor">Desruisseaux, B.</span>, and <span class="refAuthor">L. Dusseault</span>, <span class="refTitle">"Calendaring Extensions to WebDAV (CalDAV)"</span>, <span class="seriesInfo">RFC 4791</span>, <span class="seriesInfo">DOI 10.17487/RFC4791</span>, <time datetime="2007-03" class="refDate">March 2007</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4791">https://datatracker.ietf.org/doc/html/rfc4791</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4918">[RFC4918]</dt>
         <dd>
-<span class="refAuthor">Dusseault, L., Ed.</span>, <span class="refTitle">"HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)"</span>, <span class="seriesInfo">RFC 4918</span>, <span class="seriesInfo">DOI 10.17487/RFC4918</span>, <time datetime="2007-06" class="refDate">June 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4918">https://www.rfc-editor.org/info/rfc4918</a>&gt;</span>. </dd>
+<span class="refAuthor">Dusseault, L., Ed.</span>, <span class="refTitle">"HTTP Extensions for Web Distributed Authoring and Versioning (WebDAV)"</span>, <span class="seriesInfo">RFC 4918</span>, <span class="seriesInfo">DOI 10.17487/RFC4918</span>, <time datetime="2007-06" class="refDate">June 2007</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4918">https://datatracker.ietf.org/doc/html/rfc4918</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5246">[RFC5246]</dt>
         <dd>
-<span class="refAuthor">Dierks, T.</span><span class="refAuthor"> and E. Rescorla</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.2"</span>, <span class="seriesInfo">RFC 5246</span>, <span class="seriesInfo">DOI 10.17487/RFC5246</span>, <time datetime="2008-08" class="refDate">August 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5246">https://www.rfc-editor.org/info/rfc5246</a>&gt;</span>. </dd>
+<span class="refAuthor">Dierks, T.</span> and <span class="refAuthor">E. Rescorla</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.2"</span>, <span class="seriesInfo">RFC 5246</span>, <span class="seriesInfo">DOI 10.17487/RFC5246</span>, <time datetime="2008-08" class="refDate">August 2008</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5246">https://datatracker.ietf.org/doc/html/rfc5246</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5861">[RFC5861]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"HTTP Cache-Control Extensions for Stale Content"</span>, <span class="seriesInfo">RFC 5861</span>, <span class="seriesInfo">DOI 10.17487/RFC5861</span>, <time datetime="2010-05" class="refDate">May 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5861">https://www.rfc-editor.org/info/rfc5861</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span>, <span class="refTitle">"HTTP Cache-Control Extensions for Stale Content"</span>, <span class="seriesInfo">RFC 5861</span>, <span class="seriesInfo">DOI 10.17487/RFC5861</span>, <time datetime="2010-05" class="refDate">May 2010</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5861">https://datatracker.ietf.org/doc/html/rfc5861</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6265">[RFC6265]</dt>
         <dd>
-<span class="refAuthor">Barth, A.</span>, <span class="refTitle">"HTTP State Management Mechanism"</span>, <span class="seriesInfo">RFC 6265</span>, <span class="seriesInfo">DOI 10.17487/RFC6265</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6265">https://www.rfc-editor.org/info/rfc6265</a>&gt;</span>. </dd>
+<span class="refAuthor">Barth, A.</span>, <span class="refTitle">"HTTP State Management Mechanism"</span>, <span class="seriesInfo">RFC 6265</span>, <span class="seriesInfo">DOI 10.17487/RFC6265</span>, <time datetime="2011-04" class="refDate">April 2011</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6265">https://datatracker.ietf.org/doc/html/rfc6265</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6415">[RFC6415]</dt>
         <dd>
-<span class="refAuthor">Hammer-Lahav, E., Ed.</span><span class="refAuthor"> and B. Cook</span>, <span class="refTitle">"Web Host Metadata"</span>, <span class="seriesInfo">RFC 6415</span>, <span class="seriesInfo">DOI 10.17487/RFC6415</span>, <time datetime="2011-10" class="refDate">October 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6415">https://www.rfc-editor.org/info/rfc6415</a>&gt;</span>. </dd>
+<span class="refAuthor">Hammer-Lahav, E., Ed.</span> and <span class="refAuthor">B. Cook</span>, <span class="refTitle">"Web Host Metadata"</span>, <span class="seriesInfo">RFC 6415</span>, <span class="seriesInfo">DOI 10.17487/RFC6415</span>, <time datetime="2011-10" class="refDate">October 2011</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6415">https://datatracker.ietf.org/doc/html/rfc6415</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6570">[RFC6570]</dt>
         <dd>
-<span class="refAuthor">Gregorio, J.</span><span class="refAuthor">, Fielding, R.</span><span class="refAuthor">, Hadley, M.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and D. Orchard</span>, <span class="refTitle">"URI Template"</span>, <span class="seriesInfo">RFC 6570</span>, <span class="seriesInfo">DOI 10.17487/RFC6570</span>, <time datetime="2012-03" class="refDate">March 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6570">https://www.rfc-editor.org/info/rfc6570</a>&gt;</span>. </dd>
+<span class="refAuthor">Gregorio, J.</span>, <span class="refAuthor">Fielding, R.</span>, <span class="refAuthor">Hadley, M.</span>, <span class="refAuthor">Nottingham, M.</span>, and <span class="refAuthor">D. Orchard</span>, <span class="refTitle">"URI Template"</span>, <span class="seriesInfo">RFC 6570</span>, <span class="seriesInfo">DOI 10.17487/RFC6570</span>, <time datetime="2012-03" class="refDate">March 2012</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6570">https://datatracker.ietf.org/doc/html/rfc6570</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6797">[RFC6797]</dt>
         <dd>
-<span class="refAuthor">Hodges, J.</span><span class="refAuthor">, Jackson, C.</span><span class="refAuthor">, and A. Barth</span>, <span class="refTitle">"HTTP Strict Transport Security (HSTS)"</span>, <span class="seriesInfo">RFC 6797</span>, <span class="seriesInfo">DOI 10.17487/RFC6797</span>, <time datetime="2012-11" class="refDate">November 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6797">https://www.rfc-editor.org/info/rfc6797</a>&gt;</span>. </dd>
+<span class="refAuthor">Hodges, J.</span>, <span class="refAuthor">Jackson, C.</span>, and <span class="refAuthor">A. Barth</span>, <span class="refTitle">"HTTP Strict Transport Security (HSTS)"</span>, <span class="seriesInfo">RFC 6797</span>, <span class="seriesInfo">DOI 10.17487/RFC6797</span>, <time datetime="2012-11" class="refDate">November 2012</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6797">https://datatracker.ietf.org/doc/html/rfc6797</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7049">[RFC7049]</dt>
         <dd>
-<span class="refAuthor">Bormann, C.</span><span class="refAuthor"> and P. Hoffman</span>, <span class="refTitle">"Concise Binary Object Representation (CBOR)"</span>, <span class="seriesInfo">RFC 7049</span>, <span class="seriesInfo">DOI 10.17487/RFC7049</span>, <time datetime="2013-10" class="refDate">October 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7049">https://www.rfc-editor.org/info/rfc7049</a>&gt;</span>. </dd>
+<span class="refAuthor">Bormann, C.</span> and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Concise Binary Object Representation (CBOR)"</span>, <span class="seriesInfo">RFC 7049</span>, <span class="seriesInfo">DOI 10.17487/RFC7049</span>, <time datetime="2013-10" class="refDate">October 2013</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7049">https://datatracker.ietf.org/doc/html/rfc7049</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7258">[RFC7258]</dt>
         <dd>
-<span class="refAuthor">Farrell, S.</span><span class="refAuthor"> and H. Tschofenig</span>, <span class="refTitle">"Pervasive Monitoring Is an Attack"</span>, <span class="seriesInfo">BCP 188</span>, <span class="seriesInfo">RFC 7258</span>, <span class="seriesInfo">DOI 10.17487/RFC7258</span>, <time datetime="2014-05" class="refDate">May 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7258">https://www.rfc-editor.org/info/rfc7258</a>&gt;</span>. </dd>
+<span class="refAuthor">Farrell, S.</span> and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"Pervasive Monitoring Is an Attack"</span>, <span class="seriesInfo">BCP 188</span>, <span class="seriesInfo">RFC 7258</span>, <span class="seriesInfo">DOI 10.17487/RFC7258</span>, <time datetime="2014-05" class="refDate">May 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7258">https://datatracker.ietf.org/doc/html/rfc7258</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7540">[RFC7540]</dt>
         <dd>
-<span class="refAuthor">Belshe, M.</span><span class="refAuthor">, Peon, R.</span><span class="refAuthor">, and M. Thomson, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 2 (HTTP/2)"</span>, <span class="seriesInfo">RFC 7540</span>, <span class="seriesInfo">DOI 10.17487/RFC7540</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7540">https://www.rfc-editor.org/info/rfc7540</a>&gt;</span>. </dd>
+<span class="refAuthor">Belshe, M.</span>, <span class="refAuthor">Peon, R.</span>, and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 2 (HTTP/2)"</span>, <span class="seriesInfo">RFC 7540</span>, <span class="seriesInfo">DOI 10.17487/RFC7540</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7540">https://datatracker.ietf.org/doc/html/rfc7540</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7595">[RFC7595]</dt>
         <dd>
-<span class="refAuthor">Thaler, D., Ed.</span><span class="refAuthor">, Hansen, T.</span><span class="refAuthor">, and T. Hardie</span>, <span class="refTitle">"Guidelines and Registration Procedures for URI Schemes"</span>, <span class="seriesInfo">BCP 35</span>, <span class="seriesInfo">RFC 7595</span>, <span class="seriesInfo">DOI 10.17487/RFC7595</span>, <time datetime="2015-06" class="refDate">June 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7595">https://www.rfc-editor.org/info/rfc7595</a>&gt;</span>. </dd>
+<span class="refAuthor">Thaler, D., Ed.</span>, <span class="refAuthor">Hansen, T.</span>, and <span class="refAuthor">T. Hardie</span>, <span class="refTitle">"Guidelines and Registration Procedures for URI Schemes"</span>, <span class="seriesInfo">BCP 35</span>, <span class="seriesInfo">RFC 7595</span>, <span class="seriesInfo">DOI 10.17487/RFC7595</span>, <time datetime="2015-06" class="refDate">June 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7595">https://datatracker.ietf.org/doc/html/rfc7595</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7605">[RFC7605]</dt>
         <dd>
-<span class="refAuthor">Touch, J.</span>, <span class="refTitle">"Recommendations on Using Assigned Transport Port Numbers"</span>, <span class="seriesInfo">BCP 165</span>, <span class="seriesInfo">RFC 7605</span>, <span class="seriesInfo">DOI 10.17487/RFC7605</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7605">https://www.rfc-editor.org/info/rfc7605</a>&gt;</span>. </dd>
+<span class="refAuthor">Touch, J.</span>, <span class="refTitle">"Recommendations on Using Assigned Transport Port Numbers"</span>, <span class="seriesInfo">BCP 165</span>, <span class="seriesInfo">RFC 7605</span>, <span class="seriesInfo">DOI 10.17487/RFC7605</span>, <time datetime="2015-08" class="refDate">August 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7605">https://datatracker.ietf.org/doc/html/rfc7605</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7616">[RFC7616]</dt>
         <dd>
-<span class="refAuthor">Shekh-Yusef, R., Ed.</span><span class="refAuthor">, Ahrens, D.</span><span class="refAuthor">, and S. Bremer</span>, <span class="refTitle">"HTTP Digest Access Authentication"</span>, <span class="seriesInfo">RFC 7616</span>, <span class="seriesInfo">DOI 10.17487/RFC7616</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7616">https://www.rfc-editor.org/info/rfc7616</a>&gt;</span>. </dd>
+<span class="refAuthor">Shekh-Yusef, R., Ed.</span>, <span class="refAuthor">Ahrens, D.</span>, and <span class="refAuthor">S. Bremer</span>, <span class="refTitle">"HTTP Digest Access Authentication"</span>, <span class="seriesInfo">RFC 7616</span>, <span class="seriesInfo">DOI 10.17487/RFC7616</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7616">https://datatracker.ietf.org/doc/html/rfc7616</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7617">[RFC7617]</dt>
         <dd>
-<span class="refAuthor">Reschke, J.</span>, <span class="refTitle">"The 'Basic' HTTP Authentication Scheme"</span>, <span class="seriesInfo">RFC 7617</span>, <span class="seriesInfo">DOI 10.17487/RFC7617</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7617">https://www.rfc-editor.org/info/rfc7617</a>&gt;</span>. </dd>
+<span class="refAuthor">Reschke, J.</span>, <span class="refTitle">"The 'Basic' HTTP Authentication Scheme"</span>, <span class="seriesInfo">RFC 7617</span>, <span class="seriesInfo">DOI 10.17487/RFC7617</span>, <time datetime="2015-09" class="refDate">September 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7617">https://datatracker.ietf.org/doc/html/rfc7617</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7807">[RFC7807]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span><span class="refAuthor"> and E. Wilde</span>, <span class="refTitle">"Problem Details for HTTP APIs"</span>, <span class="seriesInfo">RFC 7807</span>, <span class="seriesInfo">DOI 10.17487/RFC7807</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7807">https://www.rfc-editor.org/info/rfc7807</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span> and <span class="refAuthor">E. Wilde</span>, <span class="refTitle">"Problem Details for HTTP APIs"</span>, <span class="seriesInfo">RFC 7807</span>, <span class="seriesInfo">DOI 10.17487/RFC7807</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7807">https://datatracker.ietf.org/doc/html/rfc7807</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8259">[RFC8259]</dt>
         <dd>
-<span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8259">https://www.rfc-editor.org/info/rfc8259</a>&gt;</span>. </dd>
+<span class="refAuthor">Bray, T., Ed.</span>, <span class="refTitle">"The JavaScript Object Notation (JSON) Data Interchange Format"</span>, <span class="seriesInfo">STD 90</span>, <span class="seriesInfo">RFC 8259</span>, <span class="seriesInfo">DOI 10.17487/RFC8259</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8259">https://datatracker.ietf.org/doc/html/rfc8259</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8297">[RFC8297]</dt>
         <dd>
-<span class="refAuthor">Oku, K.</span>, <span class="refTitle">"An HTTP Status Code for Indicating Hints"</span>, <span class="seriesInfo">RFC 8297</span>, <span class="seriesInfo">DOI 10.17487/RFC8297</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8297">https://www.rfc-editor.org/info/rfc8297</a>&gt;</span>. </dd>
+<span class="refAuthor">Oku, K.</span>, <span class="refTitle">"An HTTP Status Code for Indicating Hints"</span>, <span class="seriesInfo">RFC 8297</span>, <span class="seriesInfo">DOI 10.17487/RFC8297</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8297">https://datatracker.ietf.org/doc/html/rfc8297</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8941">[RFC8941]</dt>
         <dd>
-<span class="refAuthor">Nottingham, M.</span><span class="refAuthor"> and P-H. Kamp</span>, <span class="refTitle">"Structured Field Values for HTTP"</span>, <span class="seriesInfo">RFC 8941</span>, <span class="seriesInfo">DOI 10.17487/RFC8941</span>, <time datetime="2021-02" class="refDate">February 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8941">https://www.rfc-editor.org/info/rfc8941</a>&gt;</span>. </dd>
+<span class="refAuthor">Nottingham, M.</span> and <span class="refAuthor">P-H. Kamp</span>, <span class="refTitle">"Structured Field Values for HTTP"</span>, <span class="seriesInfo">RFC 8941</span>, <span class="seriesInfo">DOI 10.17487/RFC8941</span>, <time datetime="2021-02" class="refDate">February 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8941">https://datatracker.ietf.org/doc/html/rfc8941</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SECCTXT">[SECCTXT]</dt>
         <dd>
@@ -1948,7 +1948,7 @@ Referrer-Policy: no-referrer
 <dd class="break"></dd>
 <dt id="XML">[XML]</dt>
       <dd>
-<span class="refAuthor">Bray, T.</span><span class="refAuthor">, Paoli, J.</span><span class="refAuthor">, Sperberg-McQueen, M.</span><span class="refAuthor">, Maler, E.</span><span class="refAuthor">, and F. Yergeau</span>, <span class="refTitle">"Extensible Markup Language (XML) 1.0 (Fifth Edition)"</span>, <span class="seriesInfo">World Wide Web Consortium Recommendation REC-xml-20081126</span>, <time datetime="2008-11-26" class="refDate">26 November 2008</time>, <span>&lt;<a href="https://www.w3.org/TR/2008/REC-xml-20081126">https://www.w3.org/TR/2008/REC-xml-20081126</a>&gt;</span>. </dd>
+<span class="refAuthor">Bray, T.</span>, <span class="refAuthor">Paoli, J.</span>, <span class="refAuthor">Sperberg-McQueen, M.</span>, <span class="refAuthor">Maler, E.</span>, and <span class="refAuthor">F. Yergeau</span>, <span class="refTitle">"Extensible Markup Language (XML) 1.0 (Fifth Edition)"</span>, <span class="seriesInfo">World Wide Web Consortium Recommendation REC-xml-20081126</span>, <time datetime="2008-11-26" class="refDate">26 November 2008</time>, <span>&lt;<a href="https://www.w3.org/TR/2008/REC-xml-20081126">https://www.w3.org/TR/2008/REC-xml-20081126</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

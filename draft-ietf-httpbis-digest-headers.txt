@@ -1386,66 +1386,66 @@ Table of Contents
 
    [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
               DOI 10.17487/RFC1321, April 1992,
-              <https://www.rfc-editor.org/info/rfc1321>.
+              <https://datatracker.ietf.org/doc/html/rfc1321>.
 
    [RFC1950]  Deutsch, P. and J-L. Gailly, "ZLIB Compressed Data Format
               Specification version 3.3", RFC 1950,
               DOI 10.17487/RFC1950, May 1996,
-              <https://www.rfc-editor.org/info/rfc1950>.
+              <https://datatracker.ietf.org/doc/html/rfc1950>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+              <https://datatracker.ietf.org/doc/html/rfc2119>.
 
    [RFC3174]  Eastlake 3rd, D. and P. Jones, "US Secure Hash Algorithm 1
               (SHA1)", RFC 3174, DOI 10.17487/RFC3174, September 2001,
-              <https://www.rfc-editor.org/info/rfc3174>.
+              <https://datatracker.ietf.org/doc/html/rfc3174>.
 
    [RFC3230]  Mogul, J. and A. Van Hoff, "Instance Digests in HTTP",
               RFC 3230, DOI 10.17487/RFC3230, January 2002,
-              <https://www.rfc-editor.org/info/rfc3230>.
+              <https://datatracker.ietf.org/doc/html/rfc3230>.
 
    [RFC3309]  Stone, J., Stewart, R., and D. Otis, "Stream Control
               Transmission Protocol (SCTP) Checksum Change", RFC 3309,
               DOI 10.17487/RFC3309, September 2002,
-              <https://www.rfc-editor.org/info/rfc3309>.
+              <https://datatracker.ietf.org/doc/html/rfc3309>.
 
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
-              <https://www.rfc-editor.org/info/rfc4648>.
+              <https://datatracker.ietf.org/doc/html/rfc4648>.
 
    [RFC4960]  Stewart, R., Ed., "Stream Control Transmission Protocol",
               RFC 4960, DOI 10.17487/RFC4960, September 2007,
-              <https://www.rfc-editor.org/info/rfc4960>.
+              <https://datatracker.ietf.org/doc/html/rfc4960>.
 
    [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234,
               DOI 10.17487/RFC5234, January 2008,
-              <https://www.rfc-editor.org/info/rfc5234>.
+              <https://datatracker.ietf.org/doc/html/rfc5234>.
 
    [RFC5843]  Bryan, A., "Additional Hash Algorithms for HTTP Instance
               Digests", RFC 5843, DOI 10.17487/RFC5843, April 2010,
-              <https://www.rfc-editor.org/info/rfc5843>.
+              <https://datatracker.ietf.org/doc/html/rfc5843>.
 
    [RFC6234]  Eastlake 3rd, D. and T. Hansen, "US Secure Hash Algorithms
               (SHA and SHA-based HMAC and HKDF)", RFC 6234,
               DOI 10.17487/RFC6234, May 2011,
-              <https://www.rfc-editor.org/info/rfc6234>.
+              <https://datatracker.ietf.org/doc/html/rfc6234>.
 
    [RFC7405]  Kyzivat, P., "Case-Sensitive String Support in ABNF",
               RFC 7405, DOI 10.17487/RFC7405, December 2014,
-              <https://www.rfc-editor.org/info/rfc7405>.
+              <https://datatracker.ietf.org/doc/html/rfc7405>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
 
    [SEMANTICS]
               Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
               Semantics", Work in Progress, Internet-Draft, draft-ietf-
               httpbis-semantics-15, 30 March 2021,
-              <https://www.ietf.org/archive/id/draft-ietf-httpbis-
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
               semantics-15.txt>.
 
    [UNIX]     The Open Group, "The Single UNIX Specification, Version 2
@@ -1456,62 +1456,62 @@ Table of Contents
    [HTTP11]   Fielding, R. T., Nottingham, M., and J. Reschke,
               "HTTP/1.1", Work in Progress, Internet-Draft, draft-ietf-
               httpbis-messaging-15, 30 March 2021,
-              <https://www.ietf.org/archive/id/draft-ietf-httpbis-
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
               messaging-15.txt>.
 
    [I-D.ietf-httpbis-header-structure]
               Nottingham, M. and P. Kamp, "Structured Field Values for
               HTTP", Work in Progress, Internet-Draft, draft-ietf-
               httpbis-header-structure-19, 3 June 2020,
-              <https://www.ietf.org/archive/id/draft-ietf-httpbis-
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
               header-structure-19.txt>.
 
    [I-D.thomson-http-mice]
               Thomson, M. and J. Yasskin, "Merkle Integrity Content
               Encoding", Work in Progress, Internet-Draft, draft-
               thomson-http-mice-03, 13 August 2018,
-              <https://www.ietf.org/archive/id/draft-thomson-http-mice-
-              03.txt>.
+              <https://datatracker.ietf.org/doc/html/draft-thomson-http-
+              mice-03.txt>.
 
    [NO-MD5]   Turner, S. and L. Chen, "Updated Security Considerations
               for the MD5 Message-Digest and the HMAC-MD5 Algorithms",
               RFC 6151, DOI 10.17487/RFC6151, March 2011,
-              <https://www.rfc-editor.org/info/rfc6151>.
+              <https://datatracker.ietf.org/doc/html/rfc6151>.
 
    [NO-SHA1]  Polk, T., Chen, L., Turner, S., and P. Hoffman, "Security
               Considerations for the SHA-0 and SHA-1 Message-Digest
               Algorithms", RFC 6194, DOI 10.17487/RFC6194, March 2011,
-              <https://www.rfc-editor.org/info/rfc6194>.
+              <https://datatracker.ietf.org/doc/html/rfc6194>.
 
    [PATCH]    Dusseault, L. and J. Snell, "PATCH Method for HTTP",
               RFC 5789, DOI 10.17487/RFC5789, March 2010,
-              <https://www.rfc-editor.org/info/rfc5789>.
+              <https://datatracker.ietf.org/doc/html/rfc5789>.
 
    [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
               DOI 10.17487/RFC2818, May 2000,
-              <https://www.rfc-editor.org/info/rfc2818>.
+              <https://datatracker.ietf.org/doc/html/rfc2818>.
 
    [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
               DOI 10.17487/RFC7231, June 2014,
-              <https://www.rfc-editor.org/info/rfc7231>.
+              <https://datatracker.ietf.org/doc/html/rfc7231>.
 
    [RFC7396]  Hoffman, P. and J. Snell, "JSON Merge Patch", RFC 7396,
               DOI 10.17487/RFC7396, October 2014,
-              <https://www.rfc-editor.org/info/rfc7396>.
+              <https://datatracker.ietf.org/doc/html/rfc7396>.
 
    [RFC7696]  Housley, R., "Guidelines for Cryptographic Algorithm
               Agility and Selecting Mandatory-to-Implement Algorithms",
               BCP 201, RFC 7696, DOI 10.17487/RFC7696, November 2015,
-              <https://www.rfc-editor.org/info/rfc7696>.
+              <https://datatracker.ietf.org/doc/html/rfc7696>.
 
    [RFC7807]  Nottingham, M. and E. Wilde, "Problem Details for HTTP
               APIs", RFC 7807, DOI 10.17487/RFC7807, March 2016,
-              <https://www.rfc-editor.org/info/rfc7807>.
+              <https://datatracker.ietf.org/doc/html/rfc7807>.
 
    [RFC8188]  Thomson, M., "Encrypted Content-Encoding for HTTP",
               RFC 8188, DOI 10.17487/RFC8188, June 2017,
-              <https://www.rfc-editor.org/info/rfc8188>.
+              <https://datatracker.ietf.org/doc/html/rfc8188>.
 
    [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
               "Subresource Integrity", W3C Recommendation REC-SRI-
