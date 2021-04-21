@@ -4,8 +4,8 @@
 
 HTTP                                                       M. Nottingham
 Internet-Draft                                                    Fastly
-Intended status: Standards Track                           14 April 2021
-Expires: 16 October 2021
+Intended status: Standards Track                           21 April 2021
+Expires: 23 October 2021
 
 
               The Cache-Status HTTP Response Header Field
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 October 2021.
+   This Internet-Draft will expire on 23 October 2021.
 
 Copyright Notice
 
@@ -104,8 +104,7 @@ Table of Contents
    14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   This document uses ABNF as defined in [RFC5234], along with the "%s"
-   extension for case sensitivity defined in [RFC7405].
+   This document uses ABNF as defined in [RFC5234].
 
 2.  The Cache-Status HTTP Response Header Field
 
@@ -113,7 +112,7 @@ Table of Contents
    handling of the request corresponding to the response it occurs
    within.
 
-   Its value is a List [I-D.ietf-httpbis-header-structure], Section 3.1:
+   Its value is a List [RFC8941], Section 3.1:
 
    Cache-Status   = sf-list
 
@@ -394,12 +393,9 @@ Table of Contents
               RFC 8126, DOI 10.17487/RFC8126, June 2017,
               <https://datatracker.ietf.org/doc/html/rfc8126>.
 
-   [I-D.ietf-httpbis-header-structure]
-              Nottingham, M. and P. Kamp, "Structured Field Values for
-              HTTP", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-header-structure-19, 3 June 2020,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              header-structure-19.txt>.
+   [RFC8941]  Nottingham, M. and P-H. Kamp, "Structured Field Values for
+              HTTP", RFC 8941, DOI 10.17487/RFC8941, February 2021,
+              <https://datatracker.ietf.org/doc/html/rfc8941>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -410,14 +406,10 @@ Table of Contents
               DOI 10.17487/RFC5234, January 2008,
               <https://datatracker.ietf.org/doc/html/rfc5234>.
 
-   [RFC7405]  Kyzivat, P., "Case-Sensitive String Support in ABNF",
-              RFC 7405, DOI 10.17487/RFC7405, December 2014,
-              <https://datatracker.ietf.org/doc/html/rfc7405>.
-
 7.2.  Informative References
 
    [ENTANGLE] Kettle, J., "Web Cache Entanglement: Novel Pathways to
-              Poisoning", n.d., <https://i.blackhat.com/USA-
+              Poisoning", 2020, <https://i.blackhat.com/USA-
               20/Wednesday/us-20-Kettle-Web-Cache-Entanglement-Novel-
               Pathways-To-Poisoning-wp.pdf>.
 
