@@ -224,7 +224,7 @@ Table of Contents
 2.1.  Proxy-Status Parameters
 
    This section lists parameters that can be used on the members of the
-   Proxy-Status field.  Unrecognised parameters SHOULD be ignored.
+   Proxy-Status field.  Unrecognised parameters MUST be ignored.
 
 2.1.1.  error
 
