@@ -152,10 +152,9 @@ Table of Contents
    14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   This specification uses Structured Fields
-   [I-D.ietf-httpbis-header-structure] to specify syntax and parsing.
-   The terms sf-list, sf-item, sf-string, sf-token, sf-integer and key
-   refer to the structured types defined therein.
+   This specification uses Structured Fields [RFC8941] to specify syntax
+   and parsing.  The terms sf-list, sf-item, sf-string, sf-token, sf-
+   integer and key refer to the structured types defined therein.
 
    Note that in this specification, "proxy" is used to indicate both
    forward and reverse proxies, otherwise known as gateways.  "Next hop"
@@ -168,7 +167,7 @@ Table of Contents
    additional information about its handling of a response and its
    associated request.
 
-   It is a List [I-D.ietf-httpbis-header-structure], Section 3.1:
+   It is a List ([RFC8941], Section 3.1):
 
    Proxy-Status   = sf-list
 
@@ -937,12 +936,9 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
 
-   [I-D.ietf-httpbis-header-structure]
-              Nottingham, M. and P. Kamp, "Structured Field Values for
-              HTTP", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-header-structure-19, 3 June 2020,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              header-structure-19.txt>.
+   [RFC8941]  Nottingham, M. and P-H. Kamp, "Structured Field Values for
+              HTTP", RFC 8941, DOI 10.17487/RFC8941, February 2021,
+              <https://datatracker.ietf.org/doc/html/rfc8941>.
 
    [RFC7301]  Friedl, S., Popov, A., Langley, A., and E. Stephan,
               "Transport Layer Security (TLS) Application-Layer Protocol
