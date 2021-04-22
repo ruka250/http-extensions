@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                             21 April 2021
+Internet-Draft                                             22 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 23 October 2021
+Expires: 24 October 2021
 
 
                       Building Protocols with HTTP
@@ -16,9 +16,10 @@ Abstract
 
    Applications often use HTTP as a substrate to create HTTP-based APIs.
    This document specifies best practices for writing specifications
-   that use HTTP to define new application protocols, especially when
-   they are defined for diverse implementation and broad deployment
-   (e.g., in standards efforts).
+   that use HTTP to define new application protocols.  It is written
+   primarily to guide IETF efforts to define application protocols using
+   HTTP for deployment on the Internet, but might be applicable in other
+   situations.
 
 Note to Readers
 
@@ -50,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 October 2021.
+   This Internet-Draft will expire on 24 October 2021.
 
 Copyright Notice
 
