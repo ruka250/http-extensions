@@ -140,9 +140,11 @@ Table of Contents
 
    To enable these uses, Section 2 defines a new HTTP response field to
    allow intermediaries to convey details of their handling of a
-   response, Section 2.1 enumerates the kind of information that can be
-   conveyed, and Section 2.3 defines a set of error types for use when a
-   proxy encounters an issue when obtaining a response for the request.
+   response.  Section 2.1 enumerates the information that can be added
+   to the field by intermediaries, which can be extended as per
+   Section 2.2.  Section 2.3 defines a set of error types for use when a
+   proxy encounters an issue when obtaining a response for the request;
+   these can likewise be extended as per Section 2.4.
 
 1.1.  Notational Conventions
 
