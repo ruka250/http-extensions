@@ -362,9 +362,8 @@ Table of Contents
    implementations that are not controlled by the application; for
    example, proxies, CDNs, firewalls and so on.  Requiring a particular
    version of HTTP makes it difficult to use in these situations, and
-   harms interoperability.  Therefore, it is RECOMMENDED that
-   applications using HTTP not specify a minimum version of HTTP to be
-   used.
+   harms interoperability.  Therefore, it is NOT RECOMMENDED that
+   applications using HTTP specify a minimum version of HTTP to be used.
 
    However, if an application's deployment would benefit from the use of
    a particular version of HTTP (for example, HTTP/2's multiplexing),
