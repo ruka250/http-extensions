@@ -1111,8 +1111,8 @@ q=foo&amp;limit=10&amp;sort=-published
 <p id="section-2-1">
       The SEARCH method is used to initiate a server-side search. Unlike
       the HTTP GET method, which requests that a server return a
-      representation of the resource identified by the effective
-      request URI (as defined by <span>[<a href="#RFC7230" class="xref">RFC7230</a>]</span>), the SEARCH
+      representation of the resource identified by the target URI
+      (as defined by <span><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-7.1" class="relref">Section 7.1</a> of [<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>), the SEARCH
       method is used to ask the server to perform a query operation
       (described by the request payload) over some set of data scoped to the
       effective request URI. The payload returned in response to a SEARCH
@@ -1122,7 +1122,7 @@ q=foo&amp;limit=10&amp;sort=-published
       The body payload of the request defines the query. Implementations MAY use
       a request body of any content type with the SEARCH method; however,
       for backwards compatibility with existing WebDAV implementations,
-      SEARCH requests that use the text/xml or application/xml content types
+      SEARCH requests that use the text/xml or application/xml media types
       MUST be processed per the requirements established by
       <span>[<a href="#RFC5323" class="xref">RFC5323</a>]</span>.
       <span class="cref" id="xml">This can be relaxed to XML with a document element in the "DAV:" namespace, or even to the two element names mentionbed in <span><a href="https://rfc-editor.org/rfc/rfc5323#section-2.2.2" class="relref">Section 2.2.2</a> of [<a href="#RFC5323" class="xref">RFC5323</a>]</span>.</span><a href="#section-2-2" class="pilcrow">¶</a></p>
@@ -1137,10 +1137,10 @@ q=foo&amp;limit=10&amp;sort=-published
       A successful response to a SEARCH request is expected to provide some
       indication as to the final disposition of the search operation. For
       instance, a successful search that yields no results can be represented
-      by a 204 No Content response. If the response includes a body payload,
-      the payload is expected to describe the results of the search operation.
+      by a 204 No Content response. If the response includes a content,
+      it is expected to describe the results of the search operation.
       In some cases, the server may choose to respond indirectly to the SEARCH
-      request by returning a 3xx Redirection with a Location header specifying
+      request by returning a 3xx Redirection with a Location header field specifying
       an alternate Request URI from which the search results can be retrieved
       using an HTTP GET request. Various non-normative examples of successful
       SEARCH responses are illustrated in <a href="#examples" class="xref">Section 4</a>.<a href="#section-2-4" class="pilcrow">¶</a></p>
@@ -1154,7 +1154,7 @@ q=foo&amp;limit=10&amp;sort=-published
       The semantics of the SEARCH method change to a "conditional SEARCH" if
       the request message includes an If-Modified-Since, If-Unmodified-
       Since, If-Match, If-None-Match, or If-Range header field
-      (<span>[<a href="#RFC7232" class="xref">RFC7232</a>]</span>).  A conditional SEARCH requests that the query
+      (<span>[<a href="#RFCHTTP" class="xref">RFCHTTP</a>], <a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-13" class="relref">Section 13</a></span>).  A conditional SEARCH requests that the query
       be performed only under the circumstances described by the conditional
       header field(s). It is important to note, however, that such conditions
       are evaluated against the state of the target resource itself as opposed
@@ -1169,18 +1169,18 @@ q=foo&amp;limit=10&amp;sort=-published
 <p id="section-3-1">
       The "Accept-Search" response header field MAY be used by a server to
       directly signal support for the SEARCH method while identifying
-      the specific query format Content-Type's that may be used.<a href="#section-3-1" class="pilcrow">¶</a></p>
+      the specific query format media types that may be used.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="section-3-2">
 <pre class="sourcecode lang-abnf">
 Accept-Search = 1#media-type
 </pre><a href="#section-3-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3-3">
-      The Accept-Search header specifies a comma-separated listing of media
+      The Accept-Search header field specifies a comma-separated listing of media
       types (with optional parameters) as defined by
-      <span>[<a href="#RFC7231" class="xref">RFC7231</a>], <a href="https://rfc-editor.org/rfc/rfc7231#section-3.1.1.1" class="relref">Section 3.1.1.1</a></span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
+      <span><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-8.3.1" class="relref">Section 8.3.1</a> of [<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">
-      The order of types listed by the Accept-Search header is insignificant.<a href="#section-3-4" class="pilcrow">¶</a></p>
+      The order of types listed by the Accept-Search header field is insignificant.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="examples">
@@ -1273,7 +1273,7 @@ Dubois, Camille, camille.dubois@example.net
 <p id="section-5-1">
       The SEARCH method is subject to the same general security
       considerations as all HTTP methods as described in
-      <span>[<a href="#RFC7231" class="xref">RFC7231</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+      <span>[<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-6">
       <h2 id="name-iana-considerations">
@@ -1282,7 +1282,7 @@ Dubois, Camille, camille.dubois@example.net
 <p id="section-6-1">
       IANA is requested to update the registration of the SEARCH method in the
       permanent registry at &lt;http://www.iana.org/assignments/http-methods&gt;
-      (see <span><a href="https://rfc-editor.org/rfc/rfc7231#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC7231" class="xref">RFC7231</a>]</span>).<a href="#section-6-1" class="pilcrow">¶</a></p>
+      (see <span><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-16.1.1" class="relref">Section 16.1.1</a> of [<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>).<a href="#section-6-1" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1318,17 +1318,9 @@ Dubois, Camille, camille.dubois@example.net
       <dd>
 <span class="refAuthor">Reschke, J., Ed.</span>, <span class="refAuthor">Reddy, S.</span>, <span class="refAuthor">Davis, J.</span>, and <span class="refAuthor">A. Babich</span>, <span class="refTitle">"Web Distributed Authoring and Versioning (WebDAV) SEARCH"</span>, <span class="seriesInfo">RFC 5323</span>, <span class="seriesInfo">DOI 10.17487/RFC5323</span>, <time datetime="2008-11" class="refDate">November 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5323">https://www.rfc-editor.org/info/rfc5323</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC7230">[RFC7230]</dt>
-      <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span class="seriesInfo">RFC 7230</span>, <span class="seriesInfo">DOI 10.17487/RFC7230</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7230">https://www.rfc-editor.org/info/rfc7230</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7231">[RFC7231]</dt>
-      <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7231">https://www.rfc-editor.org/info/rfc7231</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7232">[RFC7232]</dt>
+<dt id="RFCHTTP">[RFCHTTP]</dt>
     <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests"</span>, <span class="seriesInfo">RFC 7232</span>, <span class="seriesInfo">DOI 10.17487/RFC7232</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7232">https://www.rfc-editor.org/info/rfc7232</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1347,6 +1339,8 @@ Dubois, Camille, camille.dubois@example.net
         </h2>
 <ul class="normal">
 <li class="normal" id="section-a.1-1.1">In <a href="#field.accept-search" class="xref">Section 3</a>, adjust the grammar to just define the field value (<span><a href="https://github.com/httpwg/http-core/issues/1470">https://github.com/httpwg/http-core/issues/1470</a></span>)<a href="#section-a.1-1.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-a.1-1.2">Update to latest HTTP core spec, and adjust terminology accordingly (<span><a href="https://github.com/httpwg/http-core/issues/1473">https://github.com/httpwg/http-core/issues/1473</a></span>)<a href="#section-a.1-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
