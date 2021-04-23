@@ -6,8 +6,8 @@ HTTP                                                          J. Reschke
 Internet-Draft                                                greenbytes
 Updates: 5323 (if approved)                                  A. Malhotra
 Intended status: Standards Track                                        
-Expires: 24 October 2021                                      J.M. Snell
-                                                           22 April 2021
+Expires: 25 October 2021                                      J.M. Snell
+                                                           23 April 2021
 
 
                            HTTP SEARCH Method
@@ -30,6 +30,8 @@ Editorial Note
    code and issues list for this draft can be found at
    https://github.com/httpwg/http-extensions/labels/safe-method-w-body.
 
+   The changes in this draft are summarized in Appendix A.1.
+
 Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
@@ -45,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 October 2021.
+   This Internet-Draft will expire on 25 October 2021.
 
 Copyright Notice
 
@@ -72,6 +74,8 @@ Table of Contents
    5.  Security Considerations
    6.  IANA Considerations
    7.  Normative References
+   Appendix A.  Change Log
+     A.1.  Since draft-ietf-httpbis-safe-method-w-body-00
    Authors' Addresses
 
 1.  Introduction
@@ -339,6 +343,14 @@ Table of Contents
               Protocol (HTTP/1.1): Conditional Requests", RFC 7232,
               DOI 10.17487/RFC7232, June 2014,
               <https://www.rfc-editor.org/info/rfc7232>.
+
+Appendix A.  Change Log
+
+A.1.  Since draft-ietf-httpbis-safe-method-w-body-00
+
+   None yet.
+
+   This section is to be removed before publishing as an RFC.
 
 Authors' Addresses
 
