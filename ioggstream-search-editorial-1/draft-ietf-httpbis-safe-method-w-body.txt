@@ -170,9 +170,9 @@ Table of Contents
 
    The SEARCH method is used to initiate a server-side search.  Unlike
    the HTTP GET method, which requests that a server return a
-   representation of the resource identified by the effective request
-   URI (as defined by [RFC7230]), the SEARCH method is used to ask the
-   server to perform a query operation (described by the request
+   representation of the resource identified by the target URI (as
+   defined by Section 7.1 of [RFCHTTP]), the SEARCH method is used to
+   ask the server to perform a query operation (described by the request
    payload) over some set of data scoped to the effective request URI.
    The payload returned in response to a SEARCH cannot be assumed to be
    a representation of the resource identified by the effective request
@@ -216,12 +216,12 @@ Table of Contents
 
    The semantics of the SEARCH method change to a "conditional SEARCH"
    if the request message includes an If-Modified-Since, If-Unmodified-
-   Since, If-Match, If-None-Match, or If-Range header field ([RFC7232]).
-   A conditional SEARCH requests that the query be performed only under
-   the circumstances described by the conditional header field(s).  It
-   is important to note, however, that such conditions are evaluated
-   against the state of the target resource itself as opposed to the
-   collected results of the search operation.
+   Since, If-Match, If-None-Match, or If-Range header field ([RFCHTTP],
+   Section 13).  A conditional SEARCH requests that the query be
+   performed only under the circumstances described by the conditional
+   header field(s).  It is important to note, however, that such
+   conditions are evaluated against the state of the target resource
+   itself as opposed to the collected results of the search operation.
 
 3.  The "Accept-Search" Header Field
 
@@ -232,8 +232,8 @@ Table of Contents
    Accept-Search = 1#media-type
 
    The Accept-Search header field specifies a comma-separated listing of
-   media types (with optional parameters) as defined by [RFC7231],
-   Section 3.1.1.1.
+   media types (with optional parameters) as defined by Section 8.3.1 of
+   [RFCHTTP].
 
    The order of types listed by the Accept-Search header field is
    insignificant.
@@ -301,13 +301,13 @@ Table of Contents
 5.  Security Considerations
 
    The SEARCH method is subject to the same general security
-   considerations as all HTTP methods as described in [RFC7231].
+   considerations as all HTTP methods as described in [RFCHTTP].
 
 6.  IANA Considerations
 
    IANA is requested to update the registration of the SEARCH method in
    the permanent registry at <http://www.iana.org/assignments/http-
-   methods> (see Section 8.1 of [RFC7231]).
+   methods> (see Section 16.1.1 of [RFCHTTP]).
 
             +=============+======+============+===============+
             | Method Name | Safe | Idempotent | Specification |
@@ -329,29 +329,26 @@ Table of Contents
               SEARCH", RFC 5323, DOI 10.17487/RFC5323, November 2008,
               <https://www.rfc-editor.org/info/rfc5323>.
 
-   [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Message Syntax and Routing",
-              RFC 7230, DOI 10.17487/RFC7230, June 2014,
-              <https://www.rfc-editor.org/info/rfc7230>.
-
-   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
-              DOI 10.17487/RFC7231, June 2014,
-              <https://www.rfc-editor.org/info/rfc7231>.
-
-   [RFC7232]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Conditional Requests", RFC 7232,
-              DOI 10.17487/RFC7232, June 2014,
-              <https://www.rfc-editor.org/info/rfc7232>.
+   [RFCHTTP]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", Work in Progress, Internet-Draft,
+              draft-ietf-httpbis-semantics-15, 30 March 2021,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              semantics-15.txt>.
 
 Appendix A.  Change Log
+
+
+   // (see https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/622)
+
+   This section is to be removed before publishing as an RFC.
 
 A.1.  Since draft-ietf-httpbis-safe-method-w-body-00
 
    *  In Section 3, adjust the grammar to just define the field value
       (https://github.com/httpwg/http-core/issues/1470)
 
-   This section is to be removed before publishing as an RFC.
+   *  Update to latest HTTP core spec, and adjust terminology
+      accordingly (https://github.com/httpwg/http-core/issues/1473)
 
 Authors' Addresses
 

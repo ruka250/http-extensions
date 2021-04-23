@@ -955,45 +955,45 @@ address div.right {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="compact ulEmpty toc">
-<li class="compact ulEmpty toc" id="section-toc.1-1.1">
+<nav class="toc"><ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.2">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-search" class="xref">SEARCH</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.3">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-the-accept-search-header-fi" class="xref">The "Accept-Search" Header Field</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.4">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-examples" class="xref">Examples</a></p>
-<ul class="compact ulEmpty toc">
-<li class="compact ulEmpty toc" id="section-toc.1-1.4.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-simple-search-with-a-direct" class="xref">Simple SEARCH with a Direct Response</a></p>
 </li>
-              <li class="compact ulEmpty toc" id="section-toc.1-1.4.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-simple-search-with-indirect" class="xref">Simple SEARCH with indirect response (303 See Other)</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.5">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.6">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.7">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.8">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-change-log" class="xref">Change Log</a></p>
-<ul class="compact ulEmpty toc">
-<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-since-draft-ietf-httpbis-sa" class="xref">Since draft-ietf-httpbis-safe-method-w-body-00</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulEmpty toc" id="section-toc.1-1.9">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1111,8 +1111,8 @@ q=foo&amp;limit=10&amp;sort=-published
 <p id="section-2-1">
       The SEARCH method is used to initiate a server-side search. Unlike
       the HTTP GET method, which requests that a server return a
-      representation of the resource identified by the effective
-      request URI (as defined by <span>[<a href="#RFC7230" class="xref">RFC7230</a>]</span>), the SEARCH
+      representation of the resource identified by the target URI
+      (as defined by <span><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-7.1" class="relref">Section 7.1</a> of [<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>), the SEARCH
       method is used to ask the server to perform a query operation
       (described by the request payload) over some set of data scoped to the
       effective request URI. The payload returned in response to a SEARCH
@@ -1154,7 +1154,7 @@ q=foo&amp;limit=10&amp;sort=-published
       The semantics of the SEARCH method change to a "conditional SEARCH" if
       the request message includes an If-Modified-Since, If-Unmodified-
       Since, If-Match, If-None-Match, or If-Range header field
-      (<span>[<a href="#RFC7232" class="xref">RFC7232</a>]</span>).  A conditional SEARCH requests that the query
+      (<span>[<a href="#RFCHTTP" class="xref">RFCHTTP</a>], <a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-13" class="relref">Section 13</a></span>).  A conditional SEARCH requests that the query
       be performed only under the circumstances described by the conditional
       header field(s). It is important to note, however, that such conditions
       are evaluated against the state of the target resource itself as opposed
@@ -1178,7 +1178,7 @@ Accept-Search = 1#media-type
 <p id="section-3-3">
       The Accept-Search header field specifies a comma-separated listing of media
       types (with optional parameters) as defined by
-      <span>[<a href="#RFC7231" class="xref">RFC7231</a>], <a href="https://rfc-editor.org/rfc/rfc7231#section-3.1.1.1" class="relref">Section 3.1.1.1</a></span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
+      <span><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-8.3.1" class="relref">Section 8.3.1</a> of [<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">
       The order of types listed by the Accept-Search header field is insignificant.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
@@ -1273,7 +1273,7 @@ Dubois, Camille, camille.dubois@example.net
 <p id="section-5-1">
       The SEARCH method is subject to the same general security
       considerations as all HTTP methods as described in
-      <span>[<a href="#RFC7231" class="xref">RFC7231</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+      <span>[<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-6">
       <h2 id="name-iana-considerations">
@@ -1282,7 +1282,7 @@ Dubois, Camille, camille.dubois@example.net
 <p id="section-6-1">
       IANA is requested to update the registration of the SEARCH method in the
       permanent registry at &lt;http://www.iana.org/assignments/http-methods&gt;
-      (see <span><a href="https://rfc-editor.org/rfc/rfc7231#section-8.1" class="relref">Section 8.1</a> of [<a href="#RFC7231" class="xref">RFC7231</a>]</span>).<a href="#section-6-1" class="pilcrow">¶</a></p>
+      (see <span><a href="https://tools.ietf.org/html/draft-ietf-httpbis-semantics-15#section-16.1.1" class="relref">Section 16.1.1</a> of [<a href="#RFCHTTP" class="xref">RFCHTTP</a>]</span>).<a href="#section-6-1" class="pilcrow">¶</a></p>
 <table class="center" id="table-1">
         <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
 <thead>
@@ -1318,17 +1318,9 @@ Dubois, Camille, camille.dubois@example.net
       <dd>
 <span class="refAuthor">Reschke, J., Ed.</span>, <span class="refAuthor">Reddy, S.</span>, <span class="refAuthor">Davis, J.</span>, and <span class="refAuthor">A. Babich</span>, <span class="refTitle">"Web Distributed Authoring and Versioning (WebDAV) SEARCH"</span>, <span class="seriesInfo">RFC 5323</span>, <span class="seriesInfo">DOI 10.17487/RFC5323</span>, <time datetime="2008-11" class="refDate">November 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5323">https://www.rfc-editor.org/info/rfc5323</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC7230">[RFC7230]</dt>
-      <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span class="seriesInfo">RFC 7230</span>, <span class="seriesInfo">DOI 10.17487/RFC7230</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7230">https://www.rfc-editor.org/info/rfc7230</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7231">[RFC7231]</dt>
-      <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"</span>, <span class="seriesInfo">RFC 7231</span>, <span class="seriesInfo">DOI 10.17487/RFC7231</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7231">https://www.rfc-editor.org/info/rfc7231</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7232">[RFC7232]</dt>
+<dt id="RFCHTTP">[RFCHTTP]</dt>
     <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests"</span>, <span class="seriesInfo">RFC 7232</span>, <span class="seriesInfo">DOI 10.17487/RFC7232</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7232">https://www.rfc-editor.org/info/rfc7232</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1337,6 +1329,9 @@ Dubois, Camille, camille.dubois@example.net
       <h2 id="name-change-log">
 <a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
+<p id="section-appendix.a-1">
+  <span class="cref">(see <span><a href="https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/622">https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/622</a></span>)</span><a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
+<p id="section-appendix.a-2">This section is to be removed before publishing as an RFC.<a href="#section-appendix.a-2" class="pilcrow">¶</a></p>
 <div id="changes.since.00">
 <section id="section-a.1">
         <h2 id="name-since-draft-ietf-httpbis-sa">
@@ -1345,10 +1340,11 @@ Dubois, Camille, camille.dubois@example.net
 <ul class="normal">
 <li class="normal" id="section-a.1-1.1">In <a href="#field.accept-search" class="xref">Section 3</a>, adjust the grammar to just define the field value (<span><a href="https://github.com/httpwg/http-core/issues/1470">https://github.com/httpwg/http-core/issues/1470</a></span>)<a href="#section-a.1-1.1" class="pilcrow">¶</a>
 </li>
+          <li class="normal" id="section-a.1-1.2">Update to latest HTTP core spec, and adjust terminology accordingly (<span><a href="https://github.com/httpwg/http-core/issues/1473">https://github.com/httpwg/http-core/issues/1473</a></span>)<a href="#section-a.1-1.2" class="pilcrow">¶</a>
+</li>
         </ul>
 </section>
 </div>
-<p id="section-appendix.a-1">This section is to be removed before publishing as an RFC.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
