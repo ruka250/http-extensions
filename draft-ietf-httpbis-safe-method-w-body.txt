@@ -346,12 +346,15 @@ Table of Contents
 
 Appendix A.  Change Log
 
+
+   // (see https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/622)
+
+   This section is to be removed before publishing as an RFC.
+
 A.1.  Since draft-ietf-httpbis-safe-method-w-body-00
 
    *  In Section 3, adjust the grammar to just define the field value
       (https://github.com/httpwg/http-core/issues/1470)
-
-   This section is to be removed before publishing as an RFC.
 
 Authors' Addresses
 
