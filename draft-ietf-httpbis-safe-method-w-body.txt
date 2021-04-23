@@ -229,7 +229,7 @@ Table of Contents
    directly signal support for the SEARCH method while identifying the
    specific query format Content-Type's that may be used.
 
-   Accept-Search = "Accept-Search" ":" 1#media-type
+   Accept-Search = 1#media-type
 
    The Accept-Search header specifies a comma-separated listing of media
    types (with optional parameters) as defined by [RFC7231],
@@ -348,7 +348,8 @@ Appendix A.  Change Log
 
 A.1.  Since draft-ietf-httpbis-safe-method-w-body-00
 
-   None yet.
+   *  In Section 3, adjust the grammar to just define the field value
+      (https://github.com/httpwg/http-core/issues/1470)
 
    This section is to be removed before publishing as an RFC.
 
