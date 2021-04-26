@@ -4,9 +4,9 @@
 
 HTTP                                                            R. Polli
 Internet-Draft                         Team Digitale, Italian Government
-Intended status: Standards Track                               L. Pardue
-Expires: 28 October 2021                                      Cloudflare
-                                                           26 April 2021
+Obsoletes: 3230 (if approved)                                  L. Pardue
+Intended status: Standards Track                              Cloudflare
+Expires: 28 October 2021                                   26 April 2021
 
 
                              Digest Headers
@@ -110,6 +110,7 @@ Table of Contents
      12.8.  Usage with Encryption
      12.9.  Algorithm Agility
        12.9.1.  Duplicate digest-algorithm in field value
+     12.10. Resource exhaustion
    13. IANA Considerations
      13.1.  Establish the HTTP Digest Algorithm Values Registry
      13.2.  The "status" Field in the HTTP Digest Algorithm Values
@@ -134,6 +135,7 @@ Table of Contents
    Acknowledgements
    Code Samples
    Changes
+     Since draft-ietf-httpbis-digest-headers-04
      Since draft-ietf-httpbis-digest-headers-03
      Since draft-ietf-httpbis-digest-headers-02
      Since draft-ietf-httpbis-digest-headers-01
@@ -190,7 +192,7 @@ Table of Contents
 
    This document defines the "Digest" request and response header and
    trailer field.  At a high level the value contains a checksum,
-   computed over "selected representation data" (Section 8;
+   computed over "selected representation data" (Section 3.2;
    [SEMANTICS]), that the recipient can use to validate integrity.
    "Digest" supports algorithm agility.  The "Want-Digest" field allows
    endpoints to express interest in "Digest" and preference of
@@ -223,7 +225,7 @@ Table of Contents
    it is tied to the "Content-Encoding" and "Content-Type" header
    fields.  Therefore, a given resource may have multiple different
    digest values.  To allow both parties to exchange a Digest of a
-   representation with no content codings (see Section 8.5.1 of
+   representation with no content codings (see Section 8.4.1 of
    [SEMANTICS]) two more digest-algorithms are added ("id-sha-256" and
    "id-sha-512").
 
@@ -249,8 +251,8 @@ Table of Contents
    Section 5.6.1 of [SEMANTICS].
 
    The definitions "representation", "selected representation",
-   "representation data", "representation metadata", and "payload data"
-   in this document are to be interpreted as described in [SEMANTICS].
+   "representation data", "representation metadata", and "content" in
+   this document are to be interpreted as described in [SEMANTICS].
 
    Algorithm names respect the casing used in their definition document
    (eg.  SHA-1, CRC32c) whereas digest-algorithm tokens are quoted (eg.
@@ -260,28 +262,31 @@ Table of Contents
 
    The representation digest is an integrity mechanism for HTTP
    resources which uses a checksum that is calculated independently of
-   the payload data (see Section 6.4 of [SEMANTICS]).  It uses the
-   representation data (see Section 8.2 of [SEMANTICS]), that can be
-   fully or partially contained in the payload data, or not contained at
-   all:
+   the content (see Section 6.4 of [SEMANTICS]).  It uses the
+   representation data (see Section 8.1 of [SEMANTICS]), that can be
+   fully or partially contained in the content, or not contained at all:
 
       representation-data := Content-Encoding( Content-Type( bits ) )
 
    This takes into account the effect of the HTTP semantics on the
-   messages; for example, the payload data can be affected by Range
-   Requests or methods such as HEAD, while the way the payload data is
-   transferred "on the wire" is dependent on other transformations (e.g.
-   transfer codings for HTTP/1.1 - see Section 6.1 of [HTTP11]).  To
-   help illustrate how such things affect "Digest", several examples are
+   messages; for example, the content can be affected by Range Requests
+   or methods such as HEAD, while the way the content is transferred "on
+   the wire" is dependent on other transformations (e.g. transfer
+   codings for HTTP/1.1 - see Section 6.1 of [HTTP11]).  To help
+   illustrate how such things affect "Digest", several examples are
    provided in Appendix A.
 
    A representation digest consists of the value of a checksum computed
-   on the entire selected "representation data" (see Section 8 of
+   on the entire selected "representation data" (see Section 8.1 of
    [SEMANTICS]) of a resource identified according to Section 6.4.2 of
    [SEMANTICS] together with an indication of the algorithm used:
 
       representation-data-digest = digest-algorithm "="
                                    <encoded digest output>
+
+   When a message has no representation data it is still possible to
+   assert that no representation data was sent computing the
+   representation digest on an empty string (see Section 12.6).
 
    The checksum is computed using one of the digest-algorithms listed in
    Section 5 and then encoded in the associated format.
@@ -304,7 +309,7 @@ Table of Contents
    Digest: id-sha-512=WZDPaVn/7XgHaAy8pmojAkGWoRx2UFChF41A2svX+TaPm
                       AbwAgBWnrIiYllu7BNNyealdVLvRwE\nmTHWXvJwew==
 
-   The relationship between "Content-Location" (see Section 8.8 of
+   The relationship between "Content-Location" (see Section 8.7 of
    [SEMANTICS]) and "Digest" is demonstrated in Section 10.7.  A
    comprehensive set of examples showing the impacts of representation
    metadata, payload transformations and HTTP methods on Digest is
@@ -375,9 +380,13 @@ Table of Contents
    below.
 
    Some digest-algorithms, although registered, rely on vulnerable
-   algorithms: the "md5" digest-algorithm MUST NOT be used due to
-   collision attacks [CMU-836068] and the "sha" digest-algorithm MUST
-   NOT be used due to collision attacks [IACR-2020-014].
+   algorithms and MUST not be used:
+
+   *  "md5", see [CMU-836068] and [NO-MD5];
+
+   *  "sha", see [IACR-2020-014] and [NO-SHA1].
+
+   See the references above for further information.
 
    sha-256
       *  Description: The SHA-256 algorithm [RFC6234].  The output of
@@ -399,7 +408,8 @@ Table of Contents
       *  Description: The MD5 algorithm, as specified in [RFC1321].  The
          output of this algorithm is encoded using the base64 encoding
          [RFC4648].  This digest-algorithm MUST NOT be used as it's now
-         vulnerable to collision attacks [CMU-836068].
+         vulnerable to collision attacks.  See [NO-MD5] and
+         [CMU-836068].
 
       *  Reference: [RFC1321], [RFC4648], this document.
 
@@ -409,7 +419,7 @@ Table of Contents
       *  Description: The SHA-1 algorithm [RFC3174].  The output of this
          algorithm is encoded using the base64 encoding [RFC4648].  This
          digest-algorithm MUST NOT be used as it's now vulnerable to
-         collision attacks [IACR-2020-014].
+         collision attacks.  See [NO-SHA1] and [IACR-2020-014].
 
       *  Reference: [RFC3174], [RFC6234], [RFC4648], this document.
 
@@ -550,16 +560,6 @@ Table of Contents
    and digest value which is similar to "representation-data-digest"
    (see Section 2).  The major differences are in serialization format.
 
-   The SRI digest value is calculated over the identity encoding of the
-   resource, not the selected representation (as specified for
-   "representation-data-digest" in this document).  Section 3.4.5 of
-   [SRI] describes the benefit of the identity approach - the SRI
-   "integrity" attribute can contain multiple algorithm-value pairs
-   where each applies to a different identity encoded payload.  This
-   allows for protection of distinct resources sharing a URL.  However,
-   this is a contrast to the design of representation digests, where
-   multiple "Digest" field-values all protect the same representation.
-
    SRI does not specify handling of partial representation data (e.g.
    Range requests).  In contrast, this document specifies handling in
    terms that are fully compatible with core HTTP concepts (an example
@@ -586,10 +586,12 @@ Table of Contents
    validation first because it does not always require a conversion into
    identity encoding.
 
-   There is a chance that a user agent supporting both mechanisms may
-   find one validates successfully while the other fails.  This document
-   specifies no requirements or guidance for user agents that experience
-   such cases.
+   A user agent supporting both mechanisms: - can legitimately ignore
+   "Digest" when using SRI, because Section 3 specifies that "a
+   recipient MAY ignore any or all of the representation-data-digests";
+   - enforce both "Digest" and SRI: in this case it can be useful to
+   provide enough information to identify whether the mismatch happened
+   at the "Digest" or the SRI level.
 
 10.  Examples of Unsolicited Digest
 
@@ -597,12 +599,12 @@ Table of Contents
    responds with a "Digest" field even though the client did not solicit
    one using "Want-Digest".
 
-   Some examples include JSON objects in the payload data.  For
-   presentation purposes, objects that fit completely within the line-
-   length limits are presented on a single line using compact notation
-   with no leading space.  Objects that would exceed line-length limits
-   are presented across multiple lines (one line per key-value pair)
-   with 2 spaced of leading indentation.
+   Some examples include JSON objects in the content.  For presentation
+   purposes, objects that fit completely within the line-length limits
+   are presented on a single line using compact notation with no leading
+   space.  Objects that would exceed line-length limits are presented
+   across multiple lines (one line per key-value pair) with 2 spaced of
+   leading indentation.
 
    "Digest" is media-type agnostic and does not provide canonicalization
    algorithms for specific formats.  Examples of "Digest" are calculated
@@ -625,27 +627,23 @@ Table of Contents
 
 10.2.  Server Returns No Representation Data
 
-   Requests without payload data can still send a "Digest" field
-   applying the digest-algorithm to an empty representation.
+   In this example, a HEAD request is used to retrieve the checksum of a
+   resource.
 
    The response "Digest" field-value is calculated over the JSON object
    "{"hello": "world"}", which is not shown because there is no payload
    data.
 
-   In this example there is no content coding applied, so the "sha-256"
-   and the "id-sha-256" digest-values in the response would be the same.
-
    Request:
 
    HEAD /items/123 HTTP/1.1
    Host: foo.example
-   Digest: sha-256=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
 
    Response:
 
    HTTP/1.1 200 OK
    Content-Type: application/json
-   Digest: id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
+   Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
 10.3.  Server Returns Partial Representation Data
 
@@ -697,6 +695,7 @@ Table of Contents
    Content-Type: application/json
    Content-Location: /items/123
    Content-Encoding: br
+   Content-Length: 22
    Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=
 
    iwiAeyJoZWxsbyI6ICJ3b3JsZCJ9Aw==
@@ -709,7 +708,7 @@ Table of Contents
 
    The response "Digest" field-value depends on the representation
    metadata header fields, including "Content-Encoding: br" even when
-   the response does not contain payload data.
+   the response does not contain content.
 
    Request:
 
@@ -758,6 +757,7 @@ Table of Contents
    HTTP/1.1 200 OK
    Content-Type: application/json
    Content-Encoding: br
+   Content-Location: /items/123
    Digest: sha-256=4REjxQ4yrqUVicfSKYNO/cF9zNj5ANbzgDZt3/h3Qxo=,
            id-sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
 
@@ -796,8 +796,8 @@ Table of Contents
      "title": "New Title"
    }
 
-   Note that a "204 No Content" response without payload data but with
-   the same "Digest" field-value would have been legitimate too.
+   Note that a "204 No Content" response without content but with the
+   same "Digest" field-value would have been legitimate too.
 
 10.8.  POST Response Describes the Request Status
 
@@ -872,8 +872,8 @@ Table of Contents
      "title": "New Title"
    }
 
-   Note that a "204 No Content" response without payload data but with
-   the same "Digest" field-value would have been legitimate too.
+   Note that a "204 No Content" response without content but with the
+   same "Digest" field-value would have been legitimate too.
 
 10.10.  Error responses
 
@@ -946,12 +946,12 @@ Table of Contents
    The following examples demonstrate interactions where a client
    solicits a "Digest" using "Want-Digest".
 
-   Some examples include JSON objects in the payload data.  For
-   presentation purposes, objects that fit completely within the line-
-   length limits are presented on a single line using compact notation
-   with no leading space.  Objects that would exceed line-length limits
-   are presented across multiple lines (one line per key-value pair)
-   with 2 spaced of leading indentation.
+   Some examples include JSON objects in the content.  For presentation
+   purposes, objects that fit completely within the line-length limits
+   are presented on a single line using compact notation with no leading
+   space.  Objects that would exceed line-length limits are presented
+   across multiple lines (one line per key-value pair) with 2 spaced of
+   leading indentation.
 
    "Digest" is media-type agnostic and does not provide canonicalization
    algorithms for specific formats.  Examples of "Digest" are calculated
@@ -1104,9 +1104,9 @@ Table of Contents
 12.7.  Usage in Trailer Fields
 
    When "Digest" is used in trailer fields, the receiver gets the digest
-   value after the payload data and may thus be tempted to process the
-   data before validating the digest value.  It is prefereable that data
-   is only be processed after validating the Digest.
+   value after the content and may thus be tempted to process the data
+   before validating the digest value.  It is prefereable that data is
+   only be processed after validating the Digest.
 
    If received in trailers, "Digest" MUST NOT be discarded; instead, it
    MAY be merged in the header section (See Section 6.5.1 of
@@ -1126,8 +1126,8 @@ Table of Contents
    The representation-data-digest of an encrypted payload can change
    between different messages depending on the encryption algorithm
    used; in those cases its value could not be used to provide a proof
-   of integrity "at rest" unless the whole (e.g. encoded) payload data
-   is persisted.
+   of integrity "at rest" unless the whole (e.g. encoded) content is
+   persisted.
 
 12.9.  Algorithm Agility
 
@@ -1164,6 +1164,12 @@ Table of Contents
    decision.  Endpoints might select all, some or none of the values for
    checksum comparison and, based on the intersection of those results,
    conditionally pass or fail digest validation.
+
+12.10.  Resource exhaustion
+
+   "Digest" validation consumes computational resources.  In order to
+   avoid resource exhaustion, implementations can restrict validation of
+   the algorithm types, number of validations, or the size of content.
 
 13.  IANA Considerations
 
@@ -1466,6 +1472,16 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-thomson-http-
               mice-03.txt>.
 
+   [NO-MD5]   Turner, S. and L. Chen, "Updated Security Considerations
+              for the MD5 Message-Digest and the HMAC-MD5 Algorithms",
+              RFC 6151, DOI 10.17487/RFC6151, March 2011,
+              <https://datatracker.ietf.org/doc/html/rfc6151>.
+
+   [NO-SHA1]  Polk, T., Chen, L., Turner, S., and P. Hoffman, "Security
+              Considerations for the SHA-0 and SHA-1 Message-Digest
+              Algorithms", RFC 6194, DOI 10.17487/RFC6194, March 2011,
+              <https://datatracker.ietf.org/doc/html/rfc6194>.
+
    [PATCH]    Dusseault, L. and J. Snell, "PATCH Method for HTTP",
               RFC 5789, DOI 10.17487/RFC5789, March 2010,
               <https://datatracker.ietf.org/doc/html/rfc5789>.
@@ -1504,9 +1520,9 @@ Table of Contents
 Appendix A.  Resource Representation and Representation-Data
 
    The following examples show how representation metadata, payload
-   transformations and method impacts on the message and payload data.
-   When the payload data contains non-printable characters (eg. when it
-   is compressed) it is shown as base64-encoded string.
+   transformations and method impacts on the message and content.  When
+   the content contains non-printable characters (eg. when it is
+   compressed) it is shown as base64-encoded string.
 
    A request with a JSON object without any content coding.
 
@@ -1529,7 +1545,7 @@ Appendix A.  Resource Representation and Representation-Data
 
    H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
 
-   Now the same payload data conveys a malformed JSON object.
+   Now the same content conveys a malformed JSON object.
 
    Request:
 
@@ -1539,7 +1555,7 @@ Appendix A.  Resource Representation and Representation-Data
 
    H4sIAItWyFwC/6tWSlSyUlAypANQqgUAREcqfG0AAAA=
 
-   A Range-Request alters the payload data, conveying a partial
+   A Range-Request alters the content, conveying a partial
    representation.
 
    Request:
@@ -1557,7 +1573,7 @@ Appendix A.  Resource Representation and Representation-Data
 
    iwgAla3RXA==
 
-   Now the method too alters the payload data.
+   Now the method too alters the content.
 
    Request:
 
@@ -1722,6 +1738,20 @@ Code Samples
 Changes
 
    _RFC Editor: Please remove this section before publication._
+
+Since draft-ietf-httpbis-digest-headers-04
+
+   *  Improve SRI section #1354
+
+   *  About duplicate digest-algorithms #1221
+
+   *  Improve security considerations #852
+
+   *  md5 and sha deprecation references #1392
+
+   *  Obsolete 3230 #1395
+
+   *  Editorial #1362
 
 Since draft-ietf-httpbis-digest-headers-03
 
