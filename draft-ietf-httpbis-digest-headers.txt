@@ -6,7 +6,7 @@ HTTP                                                            R. Polli
 Internet-Draft                         Team Digitale, Italian Government
 Obsoletes: 3230 (if approved)                                  L. Pardue
 Intended status: Standards Track                              Cloudflare
-Expires: 25 October 2021                                   23 April 2021
+Expires: 28 October 2021                                   26 April 2021
 
 
                              Digest Headers
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2021.
+   This Internet-Draft will expire on 28 October 2021.
 
 Copyright Notice
 
@@ -299,9 +299,9 @@ Table of Contents
 
 3.  The Digest Field
 
-   The "Digest" field contains a list of one or more representation
-   digest values as defined in Section 2.  It can be used in both
-   requests and responses.
+   The "Digest" field contains a comma-separated list of one or more
+   representation digest values as defined in Section 2.  It can be used
+   in both requests and responses.
 
       Digest = 1#representation-data-digest
 
@@ -336,22 +336,24 @@ Table of Contents
    algorithm, or even knowing that the recipient will ignore it.
 
    "Digest" can be sent in a trailer section.  When an incremental
-   digest-algorithms is used, the sender and the receiver can
-   dynamically compute the digest value while streaming the content.
+   digest-algorithm is used, the sender and the receiver can dynamically
+   compute the digest value while streaming the content.
 
 4.  The Want-Digest Field
 
    The "Want-Digest" field indicates the sender's desire to receive a
    representation digest on messages associated with the request URI and
-   representation metadata.
+   representation metadata.  It can be used in both requests and
+   responses.
 
       Want-Digest = 1#want-digest-value
       want-digest-value = digest-algorithm [ ";" "q" "=" qvalue]
       qvalue = ( "0"  [ "."  0*1DIGIT ] ) /
                ( "1"  [ "."  0*1( "0" ) ] )
 
-   If a digest-algorithm is not accompanied by a "qvalue", it is treated
-   as if its associated "qvalue" were 1.0.
+   If a digest-algorithm is not accompanied by a "qvalue" (see
+   Section 12.4.2 of[SEMANTICS]), it is treated as if its associated
+   "qvalue" were 1.0.
 
    The sender is willing to accept a digest-algorithm if and only if it
    is listed in a "Want-Digest" field of a message, and its "qvalue" is
@@ -1384,9 +1386,7 @@ Table of Contents
               2001, <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/
               nistspecialpublication800-32.pdf>.
 
-   [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
-              DOI 10.17487/RFC1321, April 1992,
-              <https://datatracker.ietf.org/doc/html/rfc1321>.
+   [RFC1321]  "*** BROKEN REFERENCE ***".
 
    [RFC1950]  Deutsch, P. and J-L. Gailly, "ZLIB Compressed Data Format
               Specification version 3.3", RFC 1950,

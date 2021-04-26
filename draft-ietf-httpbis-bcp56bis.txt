@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                             23 April 2021
+Internet-Draft                                             26 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 25 October 2021
+Expires: 28 October 2021
 
 
                       Building Protocols with HTTP
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 October 2021.
+   This Internet-Draft will expire on 28 October 2021.
 
 Copyright Notice
 
