@@ -125,9 +125,10 @@ Table of Contents
      11.9.  Obsolete "contentMD5" token in Digest Algorithm
      11.10. The "id-sha-256" Digest Algorithm
      11.11. The "id-sha-512" Digest Algorithm
-     11.12. Changes Compared to RFC5843
-     11.13. Want-Digest Field Registration
-     11.14. Digest Field Registration
+     11.12. Changes Compared to RFC3230
+     11.13. Changes Compared to RFC5843
+     11.14. Want-Digest Field Registration
+     11.15. Digest Field Registration
    12. References
      12.1.  Normative References
      12.2.  Informative References
@@ -1306,7 +1307,12 @@ Table of Contents
 
    *  Status: As specified in Section 5.
 
-11.12.  Changes Compared to RFC5843
+11.12.  Changes Compared to RFC3230
+
+   The "contentMD5" digest-algorithm token defined in Section 5 of
+   [RFC3230] is removed from the HTTP Digest Algorithm Values Registry.
+
+11.13.  Changes Compared to RFC5843
 
    The digest-algorithm values for "MD5", "SHA", "SHA-256", "SHA-512",
    "UNIXcksum", "UNIXsum", "ADLER32" and "CRC32c" have been updated to
@@ -1324,7 +1330,7 @@ Table of Contents
    The "id-sha-256" and "id-sha-512" algorithms have been added to the
    registry.
 
-11.13.  Want-Digest Field Registration
+11.14.  Want-Digest Field Registration
 
    This section registers the "Want-Digest" field in the "Hypertext
    Transfer Protocol (HTTP) Field Name Registry" [SEMANTICS].
@@ -1335,7 +1341,7 @@ Table of Contents
 
    Specification document(s): Section 4 of this document
 
-11.14.  Digest Field Registration
+11.15.  Digest Field Registration
 
    This section registers the "Digest" field in the "Hypertext Transfer
    Protocol (HTTP) Field Name Registry" [SEMANTICS].
@@ -1599,9 +1605,8 @@ Appendix B.  Changes from RFC3230
 
 B.1.  Deprecate Negotiation of Content-MD5
 
-   This RFC deprecates the negotiation of Content-MD5 as it has been
-   obsoleted by [RFC7231].  The "contentMD5" token defined in Section 5
-   of [RFC3230] MUST NOT be used as a digest-algorithm.
+   This RFC deprecates the negotiation of "Content-MD5" as it has been
+   obsoleted by [RFC7231].
 
 B.2.  Obsolete Digest Field Parameters
 
