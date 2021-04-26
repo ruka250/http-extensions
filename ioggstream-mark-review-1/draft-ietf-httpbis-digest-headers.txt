@@ -160,9 +160,9 @@ Table of Contents
    integrity when reconstructing a representation fetched using
    different HTTP connections.
 
-   This document defines a mechanism that acts on HTTP representation
+   This document defines a mechanism that acts on HTTP representation-
    data.  It can be combined with other mechanisms that protect
-   representation metadata, such as digital signatures, in order to
+   representation-metadata, such as digital signatures, in order to
    protect the desired parts of an HTTP exchange in whole or in part.
 
 1.1.  A Brief History of HTTP Integrity Fields
@@ -451,7 +451,7 @@ Table of Contents
    algorithms are defined:
 
    id-sha-512
-      *  Description: The sha-512 digest of the representation data of
+      *  Description: The sha-512 digest of the representation-data of
          the resource when no content coding is applied
 
       *  Reference: [RFC6234], [RFC4648], this document.
@@ -459,7 +459,7 @@ Table of Contents
       *  Status: standard
 
    id-sha-256
-      *  Description: The sha-256 digest of the representation data of
+      *  Description: The sha-256 digest of the representation-data of
          the resource when no content coding is applied
 
       *  Reference: [RFC6234], [RFC4648], this document.
@@ -477,7 +477,7 @@ Table of Contents
    representation, including its metadata, refers to that action.
 
    In these requests the representation digest MUST be computed on the
-   representation data of that action.  This is the only possible choice
+   representation-data of that action.  This is the only possible choice
    because representation digest requires complete representation
    metadata (see Section 2).
 
@@ -876,7 +876,7 @@ Table of Contents
 
 10.10.  Error responses
 
-   In error responses, the representation data does not necessarily
+   In error responses, the representation-data does not necessarily
    refer to the target resource.  Instead, it refers to the
    representation of the error.
 
