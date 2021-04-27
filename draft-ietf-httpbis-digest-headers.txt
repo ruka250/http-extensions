@@ -6,7 +6,7 @@ HTTP                                                            R. Polli
 Internet-Draft                         Team Digitale, Italian Government
 Obsoletes: 3230 (if approved)                                  L. Pardue
 Intended status: Standards Track                              Cloudflare
-Expires: 28 October 2021                                   26 April 2021
+Expires: 29 October 2021                                   27 April 2021
 
 
                              Digest Headers
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2021.
+   This Internet-Draft will expire on 29 October 2021.
 
 Copyright Notice
 
@@ -375,15 +375,15 @@ Table of Contents
 
       digest-algorithm = token
 
-   All digest-algorithm values are case-insensitive but lower case is
-   preferred.
+   All digest-algorithm token values are case-insensitive but lower case
+   is preferred; digest-algorithm token values MUST be compared in a
+   case-insensitive fashion.
 
-   The Internet Assigned Numbers Authority (IANA) acts as a registry for
-   digest-algorithm values.  The registry contains the tokens listed
-   below.
+   The Internet Assigned Numbers Authority (IANA) maintains a registry
+   for digest-algorithm values.  The registry is initialized with the
+   tokens listed below.
 
-   Some digest-algorithms, although registered, rely on vulnerable
-   algorithms and MUST not be used:
+   Deprecated digest algorithms MUST NOT be used:
 
    *  "md5", see [CMU-836068] and [NO-MD5];
 
@@ -410,9 +410,8 @@ Table of Contents
    md5
       *  Description: The MD5 algorithm, as specified in [RFC1321].  The
          output of this algorithm is encoded using the base64 encoding
-         [RFC4648].  This digest-algorithm MUST NOT be used as it's now
-         vulnerable to collision attacks.  See [NO-MD5] and
-         [CMU-836068].
+         [RFC4648].  This digest-algorithm is now vulnerable to
+         collision attacks.  See [NO-MD5] and [CMU-836068].
 
       *  Reference: [RFC1321], [RFC4648], this document.
 
@@ -421,8 +420,8 @@ Table of Contents
    sha
       *  Description: The SHA-1 algorithm [RFC3174].  The output of this
          algorithm is encoded using the base64 encoding [RFC4648].  This
-         digest-algorithm MUST NOT be used as it's now vulnerable to
-         collision attacks.  See [NO-SHA1] and [IACR-2020-014].
+         digest-algorithm is now vulnerable to collision attacks.  See
+         [NO-SHA1] and [IACR-2020-014].
 
       *  Reference: [RFC3174], [RFC6234], [RFC4648], this document.
 
@@ -1386,7 +1385,9 @@ Table of Contents
               2001, <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/
               nistspecialpublication800-32.pdf>.
 
-   [RFC1321]  "*** BROKEN REFERENCE ***".
+   [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
+              DOI 10.17487/RFC1321, April 1992,
+              <https://datatracker.ietf.org/doc/html/rfc1321>.
 
    [RFC1950]  Deutsch, P. and J-L. Gailly, "ZLIB Compressed Data Format
               Specification version 3.3", RFC 1950,
