@@ -4,8 +4,8 @@
 
 HTTP                                                       M. Nottingham
 Internet-Draft                                                    Fastly
-Intended status: Standards Track                           27 April 2021
-Expires: 29 October 2021
+Intended status: Standards Track                           28 April 2021
+Expires: 30 October 2021
 
 
               The Cache-Status HTTP Response Header Field
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 October 2021.
+   This Internet-Draft will expire on 30 October 2021.
 
 Copyright Notice
 

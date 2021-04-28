@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                             27 April 2021
+Internet-Draft                                             28 April 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 29 October 2021
+Expires: 30 October 2021
 
 
                       Building Protocols with HTTP
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 October 2021.
+   This Internet-Draft will expire on 30 October 2021.
 
 Copyright Notice
 
@@ -801,6 +801,10 @@ Table of Contents
           +-----------------------------+-----------+-----------+
 
                                   Table 1
+
+   The 303 See Other status code can be used to inform the client that
+   the result of an operation is available at a different location using
+   GET.
 
    As noted in [I-D.ietf-httpbis-semantics], a user agent is allowed to
    automatically follow a 3xx redirect that has a Location response
