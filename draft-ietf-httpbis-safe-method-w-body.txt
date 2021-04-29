@@ -187,7 +187,7 @@ Table of Contents
    application/xml media types MUST be processed per the requirements
    established by [RFC5323].
    // This can be relaxed to XML with a document element in the "DAV:"
-   // namespace, or even to the two element names mentionbed in
+   // namespace, or even to the two element names mentioned in
    // Section 2.2.2 of [RFC5323].
 
    SEARCH requests are both safe and idempotent with regards to the
