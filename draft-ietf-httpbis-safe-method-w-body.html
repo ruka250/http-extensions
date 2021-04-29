@@ -955,45 +955,45 @@ address div.right {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-search" class="xref">SEARCH</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-the-accept-search-header-fi" class="xref">The "Accept-Search" Header Field</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-examples" class="xref">Examples</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-simple-search-with-a-direct" class="xref">Simple SEARCH with a Direct Response</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2">
+              <li class="toc compact ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-simple-search-with-indirect" class="xref">Simple SEARCH with indirect response (303 See Other)</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-change-log" class="xref">Change Log</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
+<ul class="toc compact ulEmpty">
+<li class="toc compact ulEmpty" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-since-draft-ietf-httpbis-sa" class="xref">Since draft-ietf-httpbis-safe-method-w-body-00</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
+          <li class="toc compact ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1098,9 +1098,11 @@ q=foo&amp;limit=10&amp;sort=-published
       of the request URI. Unlike POST, however the semantics of the SEARCH
       method are specifically defined.<a href="#section-1-12" class="pilcrow">¶</a></p>
 <p id="section-1-13">
-      In this document, the key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
-      "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"
-      are to be  interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span>.<a href="#section-1-13" class="pilcrow">¶</a></p>
+      The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+      "MAY", and "OPTIONAL" in this document are to be interpreted as
+      described in BCP 14 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="xref">RFC8174</a>]</span> when, and only when, they
+      appear in all capitals, as shown here.<a href="#section-1-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="search">
@@ -1119,11 +1121,11 @@ q=foo&amp;limit=10&amp;sort=-published
       cannot be assumed to be a representation of the resource identified by
       the effective request URI.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">
-      The body payload of the request defines the query. Implementations MAY use
+      The body payload of the request defines the query. Implementations <span class="bcp14">MAY</span> use
       a request body of any content type with the SEARCH method; however,
       for backwards compatibility with existing WebDAV implementations,
       SEARCH requests that use the text/xml or application/xml media types
-      MUST be processed per the requirements established by
+      <span class="bcp14">MUST</span> be processed per the requirements established by
       <span>[<a href="#RFC5323" class="xref">RFC5323</a>]</span>.
       <span class="cref" id="xml">This can be relaxed to XML with a document element in the "DAV:" namespace, or even to the two element names mentionbed in <span><a href="https://rfc-editor.org/rfc/rfc5323#section-2.2.2" class="relref">Section 2.2.2</a> of [<a href="#RFC5323" class="xref">RFC5323</a>]</span>.</span><a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">
@@ -1147,7 +1149,7 @@ q=foo&amp;limit=10&amp;sort=-published
 <p id="section-2-5">
       The response to a SEARCH request is not cacheable. It ought to be noted,
       however, that because SEARCH requests are safe and idempotent, responses
-      to a SEARCH MUST NOT invalidate previously cached responses to other
+      to a SEARCH <span class="bcp14">MUST NOT</span> invalidate previously cached responses to other
       requests directed at the same effective request URI.
       <span class="cref" id="cache">By default, that is. We need to figure out under which conditions we can make the result cacheable.</span><a href="#section-2-5" class="pilcrow">¶</a></p>
 <p id="section-2-6">
@@ -1167,7 +1169,7 @@ q=foo&amp;limit=10&amp;sort=-published
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-the-accept-search-header-fi" class="section-name selfRef">The "Accept-Search" Header Field</a>
       </h2>
 <p id="section-3-1">
-      The "Accept-Search" response header field MAY be used by a server to
+      The "Accept-Search" response header field <span class="bcp14">MAY</span> be used by a server to
       directly signal support for the SEARCH method while identifying
       the specific query format media types that may be used.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="section-3-2">
@@ -1318,6 +1320,10 @@ Dubois, Camille, camille.dubois@example.net
       <dd>
 <span class="refAuthor">Reschke, J., Ed.</span>, <span class="refAuthor">Reddy, S.</span>, <span class="refAuthor">Davis, J.</span>, and <span class="refAuthor">A. Babich</span>, <span class="refTitle">"Web Distributed Authoring and Versioning (WebDAV) SEARCH"</span>, <span class="seriesInfo">RFC 5323</span>, <span class="seriesInfo">DOI 10.17487/RFC5323</span>, <time datetime="2008-11" class="refDate">November 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5323">https://www.rfc-editor.org/info/rfc5323</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+      <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFCHTTP">[RFCHTTP]</dt>
     <dd>
 <span class="refAuthor">Fielding, R., Ed.</span>, <span class="refAuthor">Nottingham, M., Ed.</span>, and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-15</span>, <time datetime="2021-03-30" class="refDate">30 March 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-semantics-15.txt</a>&gt;</span>. </dd>
@@ -1341,6 +1347,8 @@ Dubois, Camille, camille.dubois@example.net
 <li class="normal" id="section-a.1-1.1">In <a href="#field.accept-search" class="xref">Section 3</a>, adjust the grammar to just define the field value (<span><a href="https://github.com/httpwg/http-core/issues/1470">https://github.com/httpwg/http-core/issues/1470</a></span>)<a href="#section-a.1-1.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-a.1-1.2">Update to latest HTTP core spec, and adjust terminology accordingly (<span><a href="https://github.com/httpwg/http-core/issues/1473">https://github.com/httpwg/http-core/issues/1473</a></span>)<a href="#section-a.1-1.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-a.1-1.3">Reference RFC 8174 and markup bcp14 terms (<span><a href="https://github.com/httpwg/http-core/issues/1497">https://github.com/httpwg/http-core/issues/1497</a></span>)<a href="#section-a.1-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
