@@ -356,6 +356,9 @@ A.1.  Since draft-ietf-httpbis-safe-method-w-body-00
    *  Update to latest HTTP core spec, and adjust terminology
       accordingly (https://github.com/httpwg/http-core/issues/1473)
 
+   *  Reference RFC 8174 and markup bcp14 terms
+      (https://github.com/httpwg/http-core/issues/1497)
+
 Authors' Addresses
 
    Julian Reschke
