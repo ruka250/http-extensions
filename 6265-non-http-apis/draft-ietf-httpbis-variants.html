@@ -9,11 +9,11 @@
 <meta content='
        This specification introduces an alternative way to select a HTTP response from a cache based upon its request headers, using the HTTP "Variants" and "Variant-Key" response header fields. Its aim is to make HTTP proactive content negotiation more cache-friendly. 
     ' name="description">
-<meta content="xml2rfc 3.6.0" name="generator">
+<meta content="xml2rfc 3.7.0" name="generator">
 <meta content="content negotiation" name="keyword">
 <meta content="draft-ietf-httpbis-variants" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.6.0
+  xml2rfc 3.7.0
     Python 3.8.8
     appdirs 1.4.4
     ConfigArgParse 1.2.3
@@ -22,7 +22,7 @@
     intervaltree 3.1.0
     Jinja2 2.11.2
     kitchen 1.2.6
-    lxml 4.6.2
+    lxml 4.6.3
     pycountry 20.7.3
     pyflakes 2.2.0
     PyYAML 5.4.1
@@ -82,11 +82,17 @@ body {
   color: var(--title-color);
 }
 #title {
-  padding: 1em 0 0.2em;
   font-size: 32px;
   line-height: 40px;
   clear: both;
 }
+#title, #rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+#rfcnum + #title {
+  margin: 0.2em 0;
+}
+
 h1, h2, h3 {
   font-size: 22px;
   line-height: 27px;
@@ -837,11 +843,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">HTTP Representation Variants</td>
-<td class="right">March 2021</td>
+<td class="right">May 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Nottingham</td>
-<td class="center">Expires 2 October 2021</td>
+<td class="center">Expires 5 November 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -857,12 +863,12 @@ address div.right {
 <a href="https://datatracker.ietf.org/doc/html/rfc7234" class="eref">7234</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-03-31" class="published">31 March 2021</time>
+<time datetime="2021-05-04" class="published">4 May 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-10-02">2 October 2021</time></dd>
+<dd class="expires"><time datetime="2021-11-05">5 November 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -907,7 +913,7 @@ for this draft can be found at <a href="https://github.com/httpwg/http-extension
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 October 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 November 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
