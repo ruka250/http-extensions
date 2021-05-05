@@ -253,7 +253,7 @@ Table of Contents
    sent the corresponding HTTP request).
 
    The term request-uri refers to "request target" as defined in
-   Section 6.1.1 of [HTTPSEM].
+   Section 7.1 of [HTTPSEM].
 
    Two sequences of octets are said to case-insensitively match each
    other if and only if they are equivalent under the i;ascii-casemap
@@ -275,7 +275,7 @@ Table of Contents
    [RFC6454].
 
    "Safe" HTTP methods include "GET", "HEAD", "OPTIONS", and "TRACE", as
-   defined in Section 8.2.1 of [HTTPSEM].
+   defined in Section 9.2.1 of [HTTPSEM].
 
    A domain's "public suffix" is the portion of a domain that is
    controlled by a public registry, such as "com", "co.uk", and
