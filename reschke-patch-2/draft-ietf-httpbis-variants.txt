@@ -171,7 +171,7 @@ Table of Contents
    Content-Type: text/html
    Content-Language: en
    Vary: Accept-Language
-   Variants: Accept-Language;de;en;jp
+   Variants: accept-language;de;en;jp
    Variant-Key: en
    Transfer-Encoding: chunked
 
@@ -236,7 +236,7 @@ Table of Contents
 
    So, given this example header field:
 
-   Variants: Accept-Encoding=(gzip)
+   Variants: accept-encoding=(gzip)
 
    a recipient can infer that the only content-coding available for that
    resource is "gzip" (along with the "identity" non-encoding; see
@@ -251,15 +251,15 @@ Table of Contents
 
    A more complex example:
 
-   Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
+   Variants: accept-encoding=(gzip br), accept-language=(en fr)
 
    Here, recipients can infer that two content-codings in addition to
    "identity" are available, as well as two content languages.  Note
    that, as with all Structured Header dictionaries, they might occur in
    the same header field or separately, like this:
 
-   Variants: Accept-Encoding=(gzip brotli)
-   Variants: Accept-Language=(en fr)
+   Variants: accept-encoding=(gzip brotli)
+   Variants: accept-language=(en fr)
 
    The ordering of available-values is significant, as it might be used
    by the header's algorithm for selecting a response (in this example,
@@ -339,7 +339,7 @@ Table of Contents
 
    For example:
 
-   Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
+   Variants: accept-encoding=(gzip br), accept-language=(en fr)
    Variant-Key: (gzip fr)
 
    This header pair indicates that the representation has a "gzip"
@@ -348,7 +348,7 @@ Table of Contents
    If the response can be used to satisfy more than one request, they
    can be listed in additional members.  For example:
 
-   Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
+   Variants: accept-encoding=(gzip br), accept-language=(en fr)
    Variant-Key: (gzip fr), ("identity" fr)
 
    indicates that this response can be used for requests whose Accept-
@@ -360,7 +360,7 @@ Table of Contents
    present MUST correspond to the request that caused that response to
    be generated.  For example:
 
-   Variants: Accept-Encoding=(gzip br), Accept-Language=(en fr)
+   Variants: accept-encoding=(gzip br), accept-language=(en fr)
    Variant-Key: (gzip fr), (identity fr), (br fr oops)
 
    is treated as if the Variant-Key header were completely absent, which

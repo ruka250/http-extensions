@@ -81,6 +81,7 @@ Table of Contents
      3.1.  Urgency
      3.2.  Incremental
      3.3.  Defining New Parameters
+       3.3.1.  Registration
    4.  The Priority HTTP Header Field
    5.  Reprioritization
    6.  The PRIORITY_UPDATE Frame
@@ -102,12 +103,13 @@ Table of Contents
    Appendix A.  Acknowledgements
    Appendix B.  Change Log
      B.1.  Since draft-ietf-httpbis-priority-01
-     B.2.  Since draft-ietf-httpbis-priority-00
-     B.3.  Since draft-kazuho-httpbis-priority-04
-     B.4.  Since draft-kazuho-httpbis-priority-03
-     B.5.  Since draft-kazuho-httpbis-priority-02
-     B.6.  Since draft-kazuho-httpbis-priority-01
-     B.7.  Since draft-kazuho-httpbis-priority-00
+     B.2.  Since draft-ietf-httpbis-priority-01
+     B.3.  Since draft-ietf-httpbis-priority-00
+     B.4.  Since draft-kazuho-httpbis-priority-04
+     B.5.  Since draft-kazuho-httpbis-priority-03
+     B.6.  Since draft-kazuho-httpbis-priority-02
+     B.7.  Since draft-kazuho-httpbis-priority-01
+     B.8.  Since draft-kazuho-httpbis-priority-00
    Authors' Addresses
 
 1.  Introduction
@@ -353,10 +355,13 @@ Table of Contents
 
 3.3.  Defining New Parameters
 
-   When attempting to extend priorities, care must be taken to ensure
-   any use of existing parameters leaves them either unchanged or
-   modified in a way that is backwards compatible for peers that are
-   unaware of the extended meaning.
+   When attempting to define new parameters, care must be taken so that
+   they do not adversely interfere with prioritization performed by
+   existing endpoints or intermediaries that do not understand the newly
+   defined parameter.  Since unknown parameters are ignored, new
+   parameters should not change the interpretation of or modify the
+   predefined parameters in a way that is not backwards compatible or
+   fallback safe.
 
    For example, if there is a need to provide more granularity than
    eight urgency levels, it would be possible to subdivide the range
@@ -367,6 +372,41 @@ Table of Contents
    Alternatively, the urgency can be augmented.  For example, a
    graphical user agent could send a "visible" parameter to indicate if
    the resource being requested is within the viewport.
+
+   Generic parameters are preferred over vendor-specific, application-
+   specific or deployment-specific values.  If a generic value cannot be
+   agreed upon in the community, the parameter's name should be
+   correspondingly specific (e.g., with a prefix that identifies the
+   vendor, application or deployment).
+
+3.3.1.  Registration
+
+   New Priority parameters can be defined by registering them in the
+   HTTP Priority Parameters Registry.
+
+   Registration requests are reviewed and approved by a Designated
+   Expert, as per [RFC8126], Section 4.5.  A specification document is
+   appreciated, but not required.
+
+   The Expert(s) should consider the following factors when evaluating
+   requests:
+
+   *  Community feedback
+
+   *  If the parameters are sufficiently well-defined and adhere to the
+      guidance provided in Section 3.3.
+
+   Registration requests should use the following template:
+
+   *  Name: [a name for the Priority Parameter that matches key]
+
+   *  Description: [a description of the parameter semantics and value]
+
+   *  Reference: [to a specification defining this parameter]
+
+   See the registry at https://iana.org/assignments/http-priority
+   (https://iana.org/assignments/http-priority) for details on where to
+   send registration requests.
 
 4.  The Priority HTTP Header Field
 
@@ -427,21 +467,21 @@ Table of Contents
    H3_FRAME_ERROR.
 
    A client MAY send a PRIORITY_UPDATE frame before the stream that it
-   references is open.  Furthermore, HTTP/3 offers no guaranteed
-   ordering across streams, which could cause the frame to be received
-   earlier than intended.  Either case leads to a race condition where a
-   server receives a PRIORITY_UPDATE frame that references a request
-   stream that is yet to be opened.  To solve this condition, for the
-   purposes of scheduling, the most recently received PRIORITY_UPDATE
-   frame can be considered as the most up-to-date information that
-   overrides any other signal.  Servers SHOULD buffer the most recently
-   received PRIORITY_UPDATE frame and apply it once the referenced
-   stream is opened.  Holding PRIORITY_UPDATE frames for each stream
-   requires server resources, which can can be bound by local
-   implementation policy.  (TODO: consider resolving #1261, and adding
-   more text about bounds).  Although there is no limit to the number
-   PRIORITY_UPDATES that can be sent, storing only the most recently
-   received frame limits resource commitment.
+   references is open (except for HTTP/2 push streams; see Section 6.1).
+   Furthermore, HTTP/3 offers no guaranteed ordering across streams,
+   which could cause the frame to be received earlier than intended.
+   Either case leads to a race condition where a server receives a
+   PRIORITY_UPDATE frame that references a request stream that is yet to
+   be opened.  To solve this condition, for the purposes of scheduling,
+   the most recently received PRIORITY_UPDATE frame can be considered as
+   the most up-to-date information that overrides any other signal.
+   Servers SHOULD buffer the most recently received PRIORITY_UPDATE
+   frame and apply it once the referenced stream is opened.  Holding
+   PRIORITY_UPDATE frames for each stream requires server resources,
+   which can can be bound by local implementation policy.  Although
+   there is no limit to the number of PRIORITY_UPDATES that can be sent,
+   storing only the most recently received frame limits resource
+   commitment.
 
 6.1.  HTTP/2 PRIORITY_UPDATE Frame
 
@@ -478,10 +518,26 @@ Table of Contents
    Priority Field Value:  The priority update value in ASCII text,
       encoded using Structured Fields.
 
-   The Prioritized Stream ID MUST be within the stream limit.  If a
-   server receives a PRIORITY_UPDATE with a Prioritized Stream ID that
-   is beyond the stream limits, this SHOULD be treated as a connection
-   error of type PROTOCOL_ERROR.
+   When the PRIORITY_UPDATE frame applies to a request stream, clients
+   SHOULD provide a Prioritized Stream ID that refers to a stream in the
+   "open", "half-closed (local)", or "idle" state.  Servers can discard
+   frames where the Prioritized Stream ID refers to a stream in the
+   "half-closed (local)" or "closed" state.  The number of streams which
+   have been prioritized but remain in the "idle" state plus the number
+   of active streams (those in the "open" or either "half-closed" state;
+   see section 5.1.2 of [RFC7540]) MUST NOT exceed the value of the
+   SETTINGS_MAX_CONCURRENT_STREAMS parameter.  Servers that receive such
+   a PRIORITY_UPDATE MUST respond with a connection error of type
+   PROTOCOL_ERROR.
+
+   When the PRIORITY_UPDATE frame applies to a push stream, clients
+   SHOULD provide a Prioritized Stream ID that refers to a stream in the
+   "reserved (remote)" or "half-closed (local)" state.  Servers can
+   discard frames where the Prioritized Stream ID refers to a stream in
+   the "closed" state.  Clients MUST NOT provide a Prioritized Stream ID
+   that refers to a push stream in the "idle" state.  Servers that
+   receive a PRIORITY_UPDATE for a push stream in the "idle" state MUST
+   respond with a connection error of type PROTOCOL_ERROR.
 
    If a PRIORITY_UPDATE frame is received with a Prioritized Stream ID
    of 0x0, the recipient MUST respond with a connection error of type
@@ -652,6 +708,27 @@ Table of Contents
    server might pre-emptively send responses of a particular incremental
    type based on other information such as content size.
 
+   Optimal scheduling of server push is difficult, especially when
+   pushed resources contend with active concurrent requests.  Servers
+   can consider many factors when scheduling, such as the type or size
+   of resource being pushed, the priority of the request that triggered
+   the push, the count of active concurrent responses, the priority of
+   other active concurrent responses, etc.  There is no general guidance
+   on the best way to apply these.  A server that is too simple could
+   easily push at too high a priority and block client requests, or push
+   at too low a priority and delay the response, negating intended goals
+   of server push.
+
+   Priority signals are a factor for server push scheduling.  The
+   concept of parameter value defaults applies slightly differently
+   because there is no explicit client-signalled initial priority.  A
+   server can apply priority signals provided in an origin response; see
+   the merging guidance given in Section 7.  In the absence of origin
+   signals, applying default parameter values could be suboptimal.  How
+   ever a server decides to schedule a pushed response, it can signal
+   the intended priority to the client by including the Priority field
+   in a PUSH_PROMISE or HEADERS frame.
+
 10.  Fairness
 
    As a general guideline, a server SHOULD NOT use priority information
@@ -663,11 +740,6 @@ Table of Contents
    The remainder of this section discusses scenarios where unfairness is
    problematic and presents possible mitigations, or where unfairness is
    desirable.
-
-   TODO: Discuss if we should add a signal that mitigates this issue.
-   For example, we might add a SETTINGS parameter that indicates the
-   next hop that the connection is NOT coalesced (see
-   https://github.com/kazuho/draft-kazuho-httpbis-priority/issues/99).
 
 10.1.  Coalescing Intermediaries
 
@@ -837,6 +909,12 @@ Table of Contents
 
    Specification:  This document
 
+   Upon publication, please create the HTTP Priority Parameters registry
+   at https://iana.org/assignments/http-priority
+   (https://iana.org/assignments/http-priority) and populate it with the
+   types defined in Section 3; see Section 3.3.1 for its associated
+   procedures.
+
 14.  References
 
 14.1.  Normative References
@@ -869,6 +947,11 @@ Table of Contents
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
               <https://datatracker.ietf.org/doc/html/rfc7540>.
+
+   [RFC8126]  Cotton, M., Leiba, B., and T. Narten, "Guidelines for
+              Writing an IANA Considerations Section in RFCs", BCP 26,
+              RFC 8126, DOI 10.17487/RFC8126, June 2017,
+              <https://datatracker.ietf.org/doc/html/rfc8126>.
 
    [STRUCTURED-FIELDS]
               Nottingham, M. and P. Kamp, "Structured Field Values for
@@ -938,6 +1021,16 @@ Appendix B.  Change Log
 
 B.1.  Since draft-ietf-httpbis-priority-01
 
+   *  Describe considerations for server push prioritisation (#1056,
+      #1345)
+
+   *  Define HTTP/2 PRIORITY_UPDATE ID limits in HTTP/2 terms (#1261,
+      #1344)
+
+   *  Add a Parameters registry (#1371)
+
+B.2.  Since draft-ietf-httpbis-priority-01
+
    *  PRIORITY_UPDATE frame changes (#1096, #1079, #1167, #1262, #1267,
       #1271)
 
@@ -947,14 +1040,14 @@ B.1.  Since draft-ietf-httpbis-priority-01
    *  Remove specific instructions related to intermediary fairness
       (#1022, #1264)
 
-B.2.  Since draft-ietf-httpbis-priority-00
+B.3.  Since draft-ietf-httpbis-priority-00
 
    *  Move text around (#1217, #1218)
 
    *  Editorial change to the default urgency.  The value is 3, which
       was always the intent of previous changes.
 
-B.3.  Since draft-kazuho-httpbis-priority-04
+B.4.  Since draft-kazuho-httpbis-priority-04
 
    *  Minimize semantics of Urgency levels (#1023, #1026)
 
@@ -969,7 +1062,7 @@ B.3.  Since draft-kazuho-httpbis-priority-04
 
    *  Removed outdated Consideration (#118)
 
-B.4.  Since draft-kazuho-httpbis-priority-03
+B.5.  Since draft-kazuho-httpbis-priority-03
 
    *  Changed numbering from "[-1,6]" to "[0,7]" (#78)
 
@@ -980,7 +1073,7 @@ B.4.  Since draft-kazuho-httpbis-priority-03
 
    *  Expand on considerations (#105, #107, #109, #110, #111, #113)
 
-B.5.  Since draft-kazuho-httpbis-priority-02
+B.6.  Since draft-kazuho-httpbis-priority-02
 
    *  Consolidation of the problem statement (#61, #73)
 
@@ -990,11 +1083,11 @@ B.5.  Since draft-kazuho-httpbis-priority-02
 
    *  Explain fairness issue and mitigations (#56)
 
-B.6.  Since draft-kazuho-httpbis-priority-01
+B.7.  Since draft-kazuho-httpbis-priority-01
 
    *  Explain how reprioritization might be supported.
 
-B.7.  Since draft-kazuho-httpbis-priority-00
+B.8.  Since draft-kazuho-httpbis-priority-00
 
    *  Expand urgency levels from 3 to 8.
 
