@@ -6,11 +6,11 @@ HTTP                                                        L. Chen, Ed.
 Internet-Draft                                                Google LLC
 Obsoletes: 6265 (if approved)                         S. Englehardt, Ed.
 Intended status: Standards Track                                 Mozilla
-Expires: 6 November 2021                                    M. West, Ed.
+Expires: 7 November 2021                                    M. West, Ed.
                                                               Google LLC
                                                         J. Wilander, Ed.
                                                               Apple, Inc
-                                                              5 May 2021
+                                                              6 May 2021
 
 
                 Cookies: HTTP State Management Mechanism
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 November 2021.
+   This Internet-Draft will expire on 7 November 2021.
 
 Copyright Notice
 
@@ -1291,7 +1291,7 @@ Table of Contents
    cookies along with cross-site requests if and only if they are top-
    level navigations which use a "safe" (in the [HTTPSEM] sense) HTTP
    method.  (Note that a request's method may be changed from POST to
-   GET for some redirects (see sections 15.4.2 and 15.4.3 of [HTTPSEM]);
+   GET for some redirects (see Sections 15.4.2 and 15.4.3 of [HTTPSEM]);
    in these cases, a request's "safe"ness is determined based on the
    method of the current redirect hop.)
 
