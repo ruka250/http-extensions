@@ -6,7 +6,7 @@ HTTP                                                        M. West, Ed.
 Internet-Draft                                               Google, Inc
 Obsoletes: 6265 (if approved)                           J. Wilander, Ed.
 Intended status: Standards Track                              Apple, Inc
-Expires: 5 November 2021                                      4 May 2021
+Expires: 19 November 2021                                    18 May 2021
 
 
                 Cookies: HTTP State Management Mechanism
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 November 2021.
+   This Internet-Draft will expire on 19 November 2021.
 
 Copyright Notice
 
@@ -1546,11 +1546,13 @@ Table of Contents
 5.5.  Retrieval Model
 
    This section defines how cookies are retrieved from a cookie store in
-   the form of a cookie-string.  A "retrieval " is any event which
+   the form of a cookie-string.  A "retrieval" is any event which
    requires generating a cookie-string.  For example, a retrieval may
    occur in order to build a Cookie header for an HTTP request, or may
    be required in order to return a cookie-string from a call to a "non-
-   HTTP" API that provides access to cookies.
+   HTTP" API that provides access to cookies.  A retrieval has an
+   associated URI, same-site status, and type, which are defined below
+   depending on the type of retrieval.
 
 5.5.1.  The Cookie Header
 
@@ -1566,10 +1568,10 @@ Table of Contents
 
    If the user agent does attach a Cookie header field to an HTTP
    request, the user agent MUST compute the cookie-string following the
-   algorithm defined in Section 5.5.3, indicating that the retrieval is
-   for an HTTP request.  The retrieval-uri is defined as the request-uri
-   and the same-site status of the retrieval is computed for the HTTP
-   request as defined in Section 5.2.
+   algorithm defined in Section 5.5.3, where the retrieval's URI is the
+   request-uri, the retrieval's same-site status is computed for the
+   HTTP request as defined in Section 5.2, and the retrieval's type is
+   "HTTP".
 
 5.5.2.  Non-HTTP APIs
 
@@ -1582,18 +1584,17 @@ Table of Contents
 
    If a user agent does return cookies for a given call to a "non-HTTP"
    API with an associated Document, then the user agent MUST compute the
-   cookie-string following the algorithm defined in Section 5.5.3,
-   indicating that the retrieval is from a "non-HTTP" API.  The
-   retrieval-uri is the associated Document's cookie URL [COOKIE-URL],
-   and the retrieval is same-site if the Document's "site for cookies"
-   is same-site with the top-level origin as defined in Section 5.2.1.
+   cookie-string following the algorithm defined in Section 5.5.3, where
+   the retrieval's URI is defined by the caller (see
+   [DOM-DOCUMENT-COOKIE]), the retrieval's same-site status is "same-
+   site" if the Document's "site for cookies" is same-site with the top-
+   level origin as defined in Section 5.2.1 (otherwise it is "cross-
+   site"), and the retrieval's type is "non-HTTP".
 
 5.5.3.  Retrieval Algorithm
 
-   The following algorithm returns a cookie-string from a given cookie
-   store.  Callers of this algorithm MUST provide a retrieval-uri,
-   indicate the same-site status of the retrieval, and indicate whether
-   the retrieval is for an HTTP request or from a "non-HTTP" API.
+   Given a cookie store and a retrieval, the following algorithm returns
+   a cookie-string from a given cookie store.
 
    1.  Let cookie-list be the set of cookies from the cookie store that
        meets all of the following requirements:
@@ -1601,19 +1602,19 @@ Table of Contents
        *  Either:
 
           -  The cookie's host-only-flag is true and the canonicalized
-             host of the retrieval-uri is identical to the cookie's
+             host of the retrieval's URI is identical to the cookie's
              domain.
 
           Or:
 
           -  The cookie's host-only-flag is false and the canonicalized
-             host of the retrieval-uri domain-matches the cookie's
+             host of the retrieval's URI domain-matches the cookie's
              domain.
 
-       *  The retrieval-uri's path path-matches the cookie's path.
+       *  The retrieval's URI's path path-matches the cookie's path.
 
-       *  If the cookie's secure-only-flag is true, then the retrieval-
-          uri's scheme must denote a "secure" protocol (as defined by
+       *  If the cookie's secure-only-flag is true, then the retrieval's
+          URI's scheme must denote a "secure" protocol (as defined by
           the user agent).
 
           NOTE: The notion of a "secure" protocol is not defined by this
@@ -1623,21 +1624,21 @@ Table of Contents
           be a scheme that denotes a secure protocol.
 
        *  If the cookie's http-only-flag is true, then exclude the
-          cookie if the retrieval is for a "non-HTTP" API.
+          cookie if the retrieval's type is "non-HTTP".
 
        *  If the cookie's same-site-flag is not "None" and the
           retrieval's same-site status is "cross-site", then exclude the
           cookie unless all of the following conditions are met:
 
-          -  The retrieval is for a Cookie header in the HTTP request
-             associated with the retrieval-uri.
+          -  The retrieval's type is "HTTP".
 
           -  The same-site-flag is "Lax" or "Default".
 
-          -  The HTTP request's method is "safe".
+          -  The HTTP request associated with the retrieval uses a
+             "safe" method.
 
-          -  The HTTP request's target browsing context is a top-level
-             browsing context.
+          -  The target browsing context of the HTTP request associated
+             with the retrieval is a top-level browsing context.
 
    2.  The user agent SHOULD sort the cookie-list in the following
        order:
@@ -2184,9 +2185,9 @@ Table of Contents
 
 10.1.  Normative References
 
-   [COOKIE-URL]
-              WHATWG, "HTML - Living Standard", 4 May 2021,
-              <https://html.spec.whatwg.org/#cookie-url>.
+   [DOM-DOCUMENT-COOKIE]
+              WHATWG, "HTML - Living Standard", 18 May 2021,
+              <https://html.spec.whatwg.org/#dom-document-cookie>.
 
    [FETCH]    van Kesteren, A., "Fetch", n.d.,
               <https://fetch.spec.whatwg.org/>.
