@@ -3,10 +3,10 @@
 
 
 HTTP                                                       M. Nottingham
-Internet-Draft                                               18 May 2021
+Internet-Draft                                               20 May 2021
 Obsoletes: 3205 (if approved)                                           
 Intended status: Best Current Practice                                  
-Expires: 19 November 2021
+Expires: 21 November 2021
 
 
                       Building Protocols with HTTP
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 November 2021.
+   This Internet-Draft will expire on 21 November 2021.
 
 Copyright Notice
 
@@ -1372,9 +1372,7 @@ Table of Contents
 
 7.2.  Informative References
 
-   [CSP]      West, M., "Content Security Policy Level 3", World Wide
-              Web Consortium WD WD-CSP3-20160913, 13 September 2016,
-              <https://www.w3.org/TR/2016/WD-CSP3-20160913>.
+   [CSP]      "*** BROKEN REFERENCE ***".
 
    [FETCH]    WHATWG, "Fetch - Living Standard", n.d.,
               <https://fetch.spec.whatwg.org>.
