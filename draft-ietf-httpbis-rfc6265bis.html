@@ -1183,6 +1183,9 @@ code and issues list for this draft can be found at <a href="https://github.com/
                   <li class="toc compact ulEmpty" id="section-toc.1-1.8.2.8.2.5">
                     <p id="section-toc.1-1.8.2.8.2.5.1"><a href="#section-8.8.5" class="xref">8.8.5</a>.  <a href="#name-reload-navigations" class="xref">Reload navigations</a></p>
 </li>
+                  <li class="toc compact ulEmpty" id="section-toc.1-1.8.2.8.2.6">
+                    <p id="section-toc.1-1.8.2.8.2.6.1"><a href="#section-8.8.6" class="xref">8.8.6</a>.  <a href="#name-top-level-requests-with-uns" class="xref">Top-level requests with "unsafe" methods</a></p>
+</li>
                 </ul>
 </li>
             </ul>
@@ -2543,6 +2546,52 @@ that described in <a href="#top-level-navigations" class="xref">Section 8.8.2</a
 completely.<a href="#section-5.3.7.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="lax-allowing-unsafe">
+<section id="section-5.3.7.2">
+            <h5 id="name-lax-allowing-unsafe-enforce">
+<a href="#section-5.3.7.2" class="section-number selfRef">5.3.7.2. </a><a href="#name-lax-allowing-unsafe-enforce" class="section-name selfRef">"Lax-Allowing-Unsafe" enforcement</a>
+            </h5>
+<p id="section-5.3.7.2-1">As discussed in <a href="#unsafe-top-level-requests" class="xref">Section 8.8.6</a>, compatibility concerns may
+necessitate the use of a "Lax-allowing-unsafe" enforcement mode that allows
+cookies to be sent with a cross-site HTTP request if and only if it is a
+top-level request, regardless of request method. That is, the
+"Lax-allowing-unsafe" enforcement mode waives the requirement for the HTTP
+request's method to be "safe" in the <code>SameSite</code> enforcement step of the
+retrieval algorithm in <a href="#retrieval-algorithm" class="xref">Section 5.5.3</a>. (All cookies, regardless of
+<code>SameSite</code> enforcement mode, may be set for top-level navigations, regardless of
+HTTP request method, as specified in <a href="#storage-model" class="xref">Section 5.4</a>.)<a href="#section-5.3.7.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.3.7.2-2">"Lax-allowing-unsafe" is not a distinct value of the <code>SameSite</code> attribute.
+Rather, user agents MAY apply "Lax-allowing-unsafe" enforcement only to cookies
+that did not explicitly specify a <code>SameSite</code> attribute (i.e., those whose
+same-site-flag was set to "Default" by default). To limit the scope of this
+compatibility mode, user agents which apply "Lax-allowing-unsafe" enforcement
+SHOULD restrict the enforcement to cookies which were created recently.
+Deployment experience has shown a cookie age of 2 minutes or less to be a
+reasonable limit.<a href="#section-5.3.7.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.3.7.2-3">If the user agent uses "Lax-allowing-unsafe" enforcement, it MUST apply the
+following modification to the retrieval algorithm defined in
+<a href="#retrieval-algorithm" class="xref">Section 5.5.3</a>:<a href="#section-5.3.7.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.3.7.2-4">Replace the condition in the penultimate bullet point of step 1 of the retrieval
+algorithm reading<a href="#section-5.3.7.2-4" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-5.3.7.2-5">
+<pre>
+ * The HTTP request associated with the retrieval uses a "safe" method.
+</pre><a href="#section-5.3.7.2-5" class="pilcrow">¶</a>
+</div>
+<p id="section-5.3.7.2-6">with<a href="#section-5.3.7.2-6" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-5.3.7.2-7">
+<pre>
+ * At least one of the following is true:
+
+   1.  The HTTP request associated with the retrieval uses a "safe" method.
+
+   2.  The cookie's same-site-flag is "Default" and the amount of time
+       elapsed since the cookie's creation-time is at most a duration of the
+       user agent's choosing.
+</pre><a href="#section-5.3.7.2-7" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -3432,6 +3481,34 @@ cookie would defeat the purpose of withholding it in the first place, as the
 reload navigation triggered through the user interface may replay the original
 (potentially malicious) request. Thus, the reload request should be considered
 cross-site, like the request that initially navigated to the page.<a href="#section-8.8.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="unsafe-top-level-requests">
+<section id="section-8.8.6">
+          <h4 id="name-top-level-requests-with-uns">
+<a href="#section-8.8.6" class="section-number selfRef">8.8.6. </a><a href="#name-top-level-requests-with-uns" class="section-name selfRef">Top-level requests with "unsafe" methods</a>
+          </h4>
+<p id="section-8.8.6-1">The "Lax" enforcement mode described in <a href="#strict-lax" class="xref">Section 5.3.7.1</a> allows a cookie to be
+sent with a cross-site HTTP request if and only if it is a top-level navigation
+with a "safe" HTTP method. Implementation experience shows that this is
+difficult to apply as the default behavior, as some sites may rely on cookies
+not explicitly specifying a <code>SameSite</code> attribute being included on top-level
+cross-site requests with "unsafe" HTTP methods (as was the case prior to the
+introduction of the <code>SameSite</code> attribute).<a href="#section-8.8.6-1" class="pilcrow">¶</a></p>
+<p id="section-8.8.6-2">For example, a login flow may involve a cross-site top-level <code>POST</code> request to
+an endpoint which expects a cookie with login information. For such a cookie,
+"Lax" enforcement is not appropriate, as it would cause the cookie to be
+excluded due to the unsafe HTTP request method. On the other hand, "None"
+enforcement would allow the cookie to be sent with all cross-site requests,
+which may not be desirable due to the cookie's sensitive contents.<a href="#section-8.8.6-2" class="pilcrow">¶</a></p>
+<p id="section-8.8.6-3">The "Lax-allowing-unsafe" enforcement mode described in <a href="#lax-allowing-unsafe" class="xref">Section 5.3.7.2</a>
+retains some of the protections of "Lax" enforcement (as compared to "None")
+while still allowing cookies to be sent cross-site with unsafe top-level
+requests.<a href="#section-8.8.6-3" class="pilcrow">¶</a></p>
+<p id="section-8.8.6-4">As a more permissive variant of "Lax" mode, "Lax-allowing-unsafe" mode
+necessarily provides fewer protections against CSRF. Ultimately, the provision
+of such an enforcement mode should be seen as a temporary, transitional measure
+to ease adoption of "Lax" enforcement by default.<a href="#section-8.8.6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
