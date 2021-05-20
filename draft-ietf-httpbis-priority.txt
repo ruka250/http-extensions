@@ -5,8 +5,8 @@
 HTTP                                                              K. Oku
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                               L. Pardue
-Expires: 18 November 2021                                     Cloudflare
-                                                             17 May 2021
+Expires: 21 November 2021                                     Cloudflare
+                                                             20 May 2021
 
 
                Extensible Prioritization Scheme for HTTP
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 November 2021.
+   This Internet-Draft will expire on 21 November 2021.
 
 Copyright Notice
 
