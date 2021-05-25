@@ -6,11 +6,11 @@ HTTP                                                        L. Chen, Ed.
 Internet-Draft                                                Google LLC
 Obsoletes: 6265 (if approved)                         S. Englehardt, Ed.
 Intended status: Standards Track                                 Mozilla
-Expires: 28 October 2021                                    M. West, Ed.
+Expires: 26 November 2021                                   M. West, Ed.
                                                               Google LLC
                                                         J. Wilander, Ed.
                                                               Apple, Inc
-                                                           26 April 2021
+                                                             25 May 2021
 
 
                 Cookies: HTTP State Management Mechanism
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2021.
+   This Internet-Draft will expire on 26 November 2021.
 
 Copyright Notice
 
@@ -117,7 +117,10 @@ Table of Contents
        5.3.6.  The HttpOnly Attribute
        5.3.7.  The SameSite Attribute
      5.4.  Storage Model
-     5.5.  The Cookie Header
+     5.5.  Retrieval Model
+       5.5.1.  The Cookie Header
+       5.5.2.  Non-HTTP APIs
+       5.5.3.  Retrieval Algorithm
    6.  Implementation Considerations
      6.1.  Limits
      6.2.  Application Programming Interfaces
@@ -140,6 +143,7 @@ Table of Contents
        8.8.3.  Mashups and Widgets
        8.8.4.  Server-controlled
        8.8.5.  Reload navigations
+       8.8.6.  Top-level requests with "unsafe" methods
    9.  IANA Considerations
      9.1.  Cookie
      9.2.  Set-Cookie
@@ -245,21 +249,21 @@ Table of Contents
    [USASCII] character), and WSP (whitespace).
 
    The OWS (optional whitespace) and BWS (bad whitespace) rules are
-   defined in Section 3.2.3 of [RFC7230].
+   defined in Section 5.6.3 of [HTTPSEM].
 
 2.3.  Terminology
 
    The terms "user agent", "client", "server", "proxy", and "origin
    server" have the same meaning as in the HTTP/1.1 specification
-   ([RFC7230], Section 2).
+   ([HTTPSEM], Section 3).
 
    The request-host is the name of the host, as known by the user agent,
    to which the user agent is sending an HTTP request or from which it
    is receiving an HTTP response (i.e., the name of the host to which it
    sent the corresponding HTTP request).
 
-   The term request-uri refers to "request-target" as defined in
-   Section 5.3 of [RFC7230].
+   The term request-uri refers to "target URI" as defined in Section 7.1
+   of [HTTPSEM].
 
    Two sequences of octets are said to case-insensitively match each
    other if and only if they are equivalent under the i;ascii-casemap
@@ -282,7 +286,7 @@ Table of Contents
    [RFC6454].
 
    "Safe" HTTP methods include "GET", "HEAD", "OPTIONS", and "TRACE", as
-   defined in Section 4.2.1 of [RFC7231].
+   defined in Section 9.2.1 of [HTTPSEM].
 
    A domain's "public suffix" is the portion of a domain that is
    controlled by a public registry, such as "com", "co.uk", and
@@ -296,6 +300,10 @@ Table of Contents
    The term "request", as well as a request's "client", "current url",
    "method", "target browsing context", and "url list", are defined in
    [FETCH].
+
+   The term "non-HTTP APIs" refers to non-HTTP mechanisms used to set
+   and retrieve cookies, such as a web browser API that exposes cookies
+   to scripts.
 
 3.  Overview
 
@@ -321,7 +329,7 @@ Table of Contents
 
    Origin servers SHOULD NOT fold multiple Set-Cookie header fields into
    a single header field.  The usual mechanism for folding HTTP headers
-   fields (i.e., as defined in Section 3.2.2 of [RFC7230]) might change
+   fields (i.e., as defined in Section 5.3 of [HTTPSEM]) might change
    the semantics of the Set-Cookie header field because the %x2C (",")
    character is used by Set-Cookie in a way that conflicts with such
    folding.
@@ -414,13 +422,12 @@ Table of Contents
 
 4.1.1.  Syntax
 
-   Informally, the Set-Cookie response header contains the header name
-   "Set-Cookie" followed by a ":" and a cookie.  Each cookie begins with
-   a name-value-pair, followed by zero or more attribute-value pairs.
-   Servers SHOULD NOT send Set-Cookie headers that fail to conform to
-   the following grammar:
+   Informally, the Set-Cookie response header contains a cookie, which
+   begins with a name-value-pair, followed by zero or more attribute-
+   value pairs.  Servers SHOULD NOT send Set-Cookie headers that fail to
+   conform to the following grammar:
 
-   set-cookie-header = "Set-Cookie:" SP BWS set-cookie-string
+   set-cookie        = set-cookie-string
    set-cookie-string = BWS cookie-pair *( BWS ";" OWS cookie-av )
    cookie-pair       = cookie-name BWS "=" BWS cookie-value
    cookie-name       = 1*cookie-octet
@@ -436,7 +443,7 @@ Table of Contents
                        samesite-av / extension-av
    expires-av        = "Expires" BWS "=" BWS sane-cookie-date
    sane-cookie-date  =
-       <IMF-fixdate, defined in [RFC7231], Section 7.1.1.1>
+       <IMF-fixdate, defined in [HTTPSEM], Section 5.6.7>
    max-age-av        = "Max-Age" BWS "=" BWS non-zero-digit *DIGIT
                          ; In practice, both expires-av and max-age-av
                          ; are limited to dates representable by the
@@ -611,8 +618,7 @@ Table of Contents
 
    The HttpOnly attribute limits the scope of the cookie to HTTP
    requests.  In particular, the attribute instructs the user agent to
-   omit the cookie when providing access to cookies via "non-HTTP" APIs
-   (such as a web browser API that exposes cookies to scripts).
+   omit the cookie when providing access to cookies via non-HTTP APIs.
 
    Note that the HttpOnly attribute is independent of the Secure
    attribute: a cookie can have both the HttpOnly and the Secure
@@ -713,7 +719,7 @@ Table of Contents
    Section 5), the user agent will send a Cookie header that conforms to
    the following grammar:
 
-   cookie-header = "Cookie:" SP cookie-string
+   cookie        = cookie-string
    cookie-string = cookie-pair *( ";" SP cookie-pair )
 
 4.2.2.  Semantics
@@ -882,11 +888,7 @@ Table of Contents
    algorithm to compute the default-path of a cookie:
 
    1.  Let uri-path be the path portion of the request-uri if such a
-       portion exists (and empty otherwise).  For example, if the
-       request-uri contains just a path (and optional query string),
-       then the uri-path is that path (without the %x3F ("?") character
-       or query string), and if the request-uri contains a full
-       absoluteURI, the uri-path is the path component of that URI.
+       portion exists (and empty otherwise).
 
    2.  If the uri-path is empty or if the first character of the uri-
        path is not a %x2F ("/") character, output %x2F ("/") and skip
@@ -1290,9 +1292,9 @@ Table of Contents
    CSRF attacks, developers may set the "SameSite" attribute in a "Lax"
    enforcement mode that carves out an exception which sends same-site
    cookies along with cross-site requests if and only if they are top-
-   level navigations which use a "safe" (in the [RFC7231] sense) HTTP
+   level navigations which use a "safe" (in the [HTTPSEM] sense) HTTP
    method.  (Note that a request's method may be changed from POST to
-   GET for some redirects (see sections 6.4.2 and 6.4.3 of [RFC7231]);
+   GET for some redirects (see Sections 15.4.2 and 15.4.3 of [HTTPSEM]);
    in these cases, a request's "safe"ness is determined based on the
    method of the current redirect hop.)
 
@@ -1312,6 +1314,48 @@ Table of Contents
    When possible, developers should use a session management mechanism
    such as that described in Section 8.8.2 to mitigate the risk of CSRF
    more completely.
+
+5.3.7.2.  "Lax-Allowing-Unsafe" enforcement
+
+   As discussed in Section 8.8.6, compatibility concerns may necessitate
+   the use of a "Lax-allowing-unsafe" enforcement mode that allows
+   cookies to be sent with a cross-site HTTP request if and only if it
+   is a top-level request, regardless of request method.  That is, the
+   "Lax-allowing-unsafe" enforcement mode waives the requirement for the
+   HTTP request's method to be "safe" in the "SameSite" enforcement step
+   of the retrieval algorithm in Section 5.5.3.  (All cookies,
+   regardless of "SameSite" enforcement mode, may be set for top-level
+   navigations, regardless of HTTP request method, as specified in
+   Section 5.4.)
+
+   "Lax-allowing-unsafe" is not a distinct value of the "SameSite"
+   attribute.  Rather, user agents MAY apply "Lax-allowing-unsafe"
+   enforcement only to cookies that did not explicitly specify a
+   "SameSite" attribute (i.e., those whose same-site-flag was set to
+   "Default" by default).  To limit the scope of this compatibility
+   mode, user agents which apply "Lax-allowing-unsafe" enforcement
+   SHOULD restrict the enforcement to cookies which were created
+   recently.  Deployment experience has shown a cookie age of 2 minutes
+   or less to be a reasonable limit.
+
+   If the user agent uses "Lax-allowing-unsafe" enforcement, it MUST
+   apply the following modification to the retrieval algorithm defined
+   in Section 5.5.3:
+
+   Replace the condition in the penultimate bullet point of step 1 of
+   the retrieval algorithm reading
+
+  * The HTTP request associated with the retrieval uses a "safe" method.
+
+   with
+
+ * At least one of the following is true:
+
+   1.  The HTTP request associated with the retrieval uses a "safe" method.
+
+   2.  The cookie's same-site-flag is "Default" and the amount of time
+       elapsed since the cookie's creation-time is at most a duration of the
+       user agent's choosing.
 
 5.4.  Storage Model
 
@@ -1564,7 +1608,18 @@ Table of Contents
    the user agent MUST remove from the cookie store all cookies with the
    persistent-flag set to false.
 
-5.5.  The Cookie Header
+5.5.  Retrieval Model
+
+   This section defines how cookies are retrieved from a cookie store in
+   the form of a cookie-string.  A "retrieval" is any event which
+   requires generating a cookie-string.  For example, a retrieval may
+   occur in order to build a Cookie header for an HTTP request, or may
+   be required in order to return a cookie-string from a call to a "non-
+   HTTP" API that provides access to cookies.  A retrieval has an
+   associated URI, same-site status, and type, which are defined below
+   depending on the type of retrieval.
+
+5.5.1.  The Cookie Header
 
    The user agent includes stored cookies in the Cookie HTTP request
    header.
@@ -1577,12 +1632,34 @@ Table of Contents
    "third-party" requests from setting cookies (see Section 7.1).
 
    If the user agent does attach a Cookie header field to an HTTP
-   request, the user agent MUST send the cookie-string (defined below)
-   as the value of the header field.
+   request, the user agent MUST compute the cookie-string following the
+   algorithm defined in Section 5.5.3, where the retrieval's URI is the
+   request-uri, the retrieval's same-site status is computed for the
+   HTTP request as defined in Section 5.2, and the retrieval's type is
+   "HTTP".
 
-   The user agent MUST use an algorithm equivalent to the following
-   algorithm to compute the cookie-string from a cookie store and a
-   request-uri:
+5.5.2.  Non-HTTP APIs
+
+   The user agent MAY implement "non-HTTP" APIs that can be used to
+   access stored cookies.
+
+   A user agent MAY return an empty cookie-string in certain contexts,
+   such as when a retrieval occurs within a third-party context (see
+   Section 7.1).
+
+   If a user agent does return cookies for a given call to a "non-HTTP"
+   API with an associated Document, then the user agent MUST compute the
+   cookie-string following the algorithm defined in Section 5.5.3, where
+   the retrieval's URI is defined by the caller (see
+   [DOM-DOCUMENT-COOKIE]), the retrieval's same-site status is "same-
+   site" if the Document's "site for cookies" is same-site with the top-
+   level origin as defined in Section 5.2.1 (otherwise it is "cross-
+   site"), and the retrieval's type is "non-HTTP".
+
+5.5.3.  Retrieval Algorithm
+
+   Given a cookie store and a retrieval, the following algorithm returns
+   a cookie-string from a given cookie store.
 
    1.  Let cookie-list be the set of cookies from the cookie store that
        meets all of the following requirements:
@@ -1590,17 +1667,19 @@ Table of Contents
        *  Either:
 
           -  The cookie's host-only-flag is true and the canonicalized
-             request-host is identical to the cookie's domain.
+             host of the retrieval's URI is identical to the cookie's
+             domain.
 
           Or:
 
           -  The cookie's host-only-flag is false and the canonicalized
-             request-host domain-matches the cookie's domain.
+             host of the retrieval's URI domain-matches the cookie's
+             domain.
 
-       *  The request-uri's path path-matches the cookie's path.
+       *  The retrieval's URI's path path-matches the cookie's path.
 
-       *  If the cookie's secure-only-flag is true, then the request-
-          uri's scheme must denote a "secure" protocol (as defined by
+       *  If the cookie's secure-only-flag is true, then the retrieval's
+          URI's scheme must denote a "secure" protocol (as defined by
           the user agent).
 
           NOTE: The notion of a "secure" protocol is not defined by this
@@ -1610,19 +1689,21 @@ Table of Contents
           be a scheme that denotes a secure protocol.
 
        *  If the cookie's http-only-flag is true, then exclude the
-          cookie if the cookie-string is being generated for a "non-
-          HTTP" API (as defined by the user agent).
+          cookie if the retrieval's type is "non-HTTP".
 
-       *  If the cookie's same-site-flag is not "None", and the HTTP
-          request is cross-site (as defined in Section 5.2) then exclude
-          the cookie unless all of the following statements hold:
+       *  If the cookie's same-site-flag is not "None" and the
+          retrieval's same-site status is "cross-site", then exclude the
+          cookie unless all of the following conditions are met:
 
-          1.  The same-site-flag is "Lax" or "Default".
+          -  The retrieval's type is "HTTP".
 
-          2.  The HTTP request's method is "safe".
+          -  The same-site-flag is "Lax" or "Default".
 
-          3.  The HTTP request's target browsing context is a top-level
-              browsing context.
+          -  The HTTP request associated with the retrieval uses a
+             "safe" method.
+
+          -  The target browsing context of the HTTP request associated
+             with the retrieval is a top-level browsing context.
 
    2.  The user agent SHOULD sort the cookie-list in the following
        order:
@@ -2092,6 +2173,36 @@ Table of Contents
    malicious) request.  Thus, the reload request should be considered
    cross-site, like the request that initially navigated to the page.
 
+8.8.6.  Top-level requests with "unsafe" methods
+
+   The "Lax" enforcement mode described in Section 5.3.7.1 allows a
+   cookie to be sent with a cross-site HTTP request if and only if it is
+   a top-level navigation with a "safe" HTTP method.  Implementation
+   experience shows that this is difficult to apply as the default
+   behavior, as some sites may rely on cookies not explicitly specifying
+   a "SameSite" attribute being included on top-level cross-site
+   requests with "unsafe" HTTP methods (as was the case prior to the
+   introduction of the "SameSite" attribute).
+
+   For example, a login flow may involve a cross-site top-level "POST"
+   request to an endpoint which expects a cookie with login information.
+   For such a cookie, "Lax" enforcement is not appropriate, as it would
+   cause the cookie to be excluded due to the unsafe HTTP request
+   method.  On the other hand, "None" enforcement would allow the cookie
+   to be sent with all cross-site requests, which may not be desirable
+   due to the cookie's sensitive contents.
+
+   The "Lax-allowing-unsafe" enforcement mode described in
+   Section 5.3.7.2 retains some of the protections of "Lax" enforcement
+   (as compared to "None") while still allowing cookies to be sent
+   cross-site with unsafe top-level requests.
+
+   As a more permissive variant of "Lax" mode, "Lax-allowing-unsafe"
+   mode necessarily provides fewer protections against CSRF.
+   Ultimately, the provision of such an enforcement mode should be seen
+   as a temporary, transitional measure to ease adoption of "Lax"
+   enforcement by default.
+
 9.  IANA Considerations
 
 9.1.  Cookie
@@ -2107,7 +2218,7 @@ Table of Contents
 
    Author/Change controller:  IETF
 
-   Specification document:  this specification (Section 5.5)
+   Specification document:  this specification (Section 5.5.1)
 
 9.2.  Set-Cookie
 
@@ -2172,12 +2283,22 @@ Table of Contents
 
 10.1.  Normative References
 
+   [DOM-DOCUMENT-COOKIE]
+              WHATWG, "HTML - Living Standard", 18 May 2021,
+              <https://html.spec.whatwg.org/#dom-document-cookie>.
+
    [FETCH]    van Kesteren, A., "Fetch", n.d.,
               <https://fetch.spec.whatwg.org/>.
 
    [HTML]     Hickson, I., Pieters, S., van Kesteren, A., Jägenstedt,
               P., and D. Denicola, "HTML", n.d.,
               <https://html.spec.whatwg.org/>.
+
+   [HTTPSEM]  Fielding, R. T., Nottingham, M., and J. Reschke, "HTTP
+              Semantics", Work in Progress, Internet-Draft, draft-ietf-
+              httpbis-semantics-15, 30 March 2021,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
+              semantics-15.txt>.
 
    [RFC1034]  Mockapetris, P., "Domain names - concepts and facilities",
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
@@ -2217,16 +2338,6 @@ Table of Contents
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
               DOI 10.17487/RFC6454, December 2011,
               <https://datatracker.ietf.org/doc/html/rfc6454>.
-
-   [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Message Syntax and Routing",
-              RFC 7230, DOI 10.17487/RFC7230, June 2014,
-              <https://datatracker.ietf.org/doc/html/rfc7230>.
-
-   [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
-              Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
-              DOI 10.17487/RFC7231, June 2014,
-              <https://datatracker.ietf.org/doc/html/rfc7231>.
 
    [RFC8126]  Cotton, M., Leiba, B., and T. Narten, "Guidelines for
               Writing an IANA Considerations Section in RFCs", BCP 26,
