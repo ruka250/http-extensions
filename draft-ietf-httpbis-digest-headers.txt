@@ -131,8 +131,8 @@ Table of Contents
      14.1.  Normative References
      14.2.  Informative References
    Appendix A.  Resource Representation and Representation-Data
-   Appendix B.  FAQ
    Acknowledgements
+   FAQ
    Code Samples
    Changes
      Since draft-ietf-httpbis-digest-headers-04
@@ -1613,7 +1613,17 @@ Appendix A.  Resource Representation and Representation-Data
 
    {"id": "123", "author": "Camilleri"}
 
-Appendix B.  FAQ
+Acknowledgements
+
+   The vast majority of this document is inherited from [RFC3230], so
+   thanks to J.  Mogul and A.  Van Hoff for their great work.  The
+   original idea of refreshing this document arose from an interesting
+   discussion with M.  Nottingham, J.  Yasskin and M.  Thomson when
+   reviewing the MICE content coding.
+
+FAQ
+
+   _RFC Editor: Please remove this section before publication._
 
    1.  Why remove all references to content-md5?
 
@@ -1676,14 +1686,6 @@ Appendix B.  FAQ
        trailers, for example an incremental digest-algorithm.  A
        document defining such a digest-algorithm is best positioned to
        describe how it is used.
-
-Acknowledgements
-
-   The vast majority of this document is inherited from [RFC3230], so
-   thanks to J.  Mogul and A.  Van Hoff for their great work.  The
-   original idea of refreshing this document arose from an interesting
-   discussion with M.  Nottingham, J.  Yasskin and M.  Thomson when
-   reviewing the MICE content coding.
 
 Code Samples
 
