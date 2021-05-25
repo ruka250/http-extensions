@@ -7,14 +7,12 @@
 <title>Digest Headers</title>
 <meta content="Roberto Polli" name="author">
 <meta content="Lucas Pardue" name="author">
-<meta content='
-       This document defines the HTTP Digest and Want-Digest fields, thus allowing
+<meta content="
+       This document defines the HTTP Digest and Want-Digest fields, which allows
 client and server to negotiate an integrity checksum of the exchanged resource
 representation data. 
-       This document obsoletes RFC 3230. It replaces the term "instance" with
-"representation", which makes it consistent with the HTTP Semantic and Context
-defined in draft-ietf-httpbis-semantics. 
-    ' name="description">
+       This document obsoletes RFC 3230. 
+    " name="description">
 <meta content="xml2rfc 3.7.0" name="generator">
 <meta content="Digest" name="keyword">
 <meta content="draft-ietf-httpbis-digest-headers" name="ietf.draft">
@@ -891,12 +889,10 @@ address div.right {
 <h1 id="title">Digest Headers</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines the HTTP Digest and Want-Digest fields, thus allowing
+<p id="section-abstract-1">This document defines the HTTP Digest and Want-Digest fields, which allows
 client and server to negotiate an integrity checksum of the exchanged resource
 representation data.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This document obsoletes RFC 3230. It replaces the term "instance" with
-"representation", which makes it consistent with the HTTP Semantic and Context
-defined in draft-ietf-httpbis-semantics.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This document obsoletes RFC 3230.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note" id="section-note.1">
       <h2 id="name-note-to-readers">
@@ -961,16 +957,13 @@ defined in draft-ietf-httpbis-semantics.<a href="#section-abstract-2" class="pil
             <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
 <ul class="compact toc ulEmpty">
 <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-a-brief-history-of-http-int" class="xref">A Brief History of HTTP Integrity Fields</a></p>
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-document-structure" class="xref">Document Structure</a></p>
 </li>
               <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.2">
-                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-this-proposal" class="xref">This Proposal</a></p>
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-concept-overview" class="xref">Concept Overview</a></p>
 </li>
               <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.3">
-                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-goals" class="xref">Goals</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.4">
-                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="xref">1.4</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a></p>
+                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a></p>
 </li>
             </ul>
 </li>
@@ -1154,10 +1147,10 @@ defined in draft-ietf-httpbis-semantics.<a href="#section-abstract-2" class="pil
             <p id="section-toc.1-1.15.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-resource-representation-and" class="xref">Resource Representation and Representation-Data</a></p>
 </li>
           <li class="compact toc ulEmpty" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-faq" class="xref">FAQ</a></p>
+            <p id="section-toc.1-1.16.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
 </li>
           <li class="compact toc ulEmpty" id="section-toc.1-1.17">
-            <p id="section-toc.1-1.17.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
+            <p id="section-toc.1-1.17.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-faq" class="xref">FAQ</a></p>
 </li>
           <li class="compact toc ulEmpty" id="section-toc.1-1.18">
             <p id="section-toc.1-1.18.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-code-samples" class="xref">Code Samples</a></p>
@@ -1194,142 +1187,120 @@ defined in draft-ietf-httpbis-semantics.<a href="#section-abstract-2" class="pil
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The core specification of HTTP does not define a means to protect the integrity
-of resources. When HTTP messages are transferred between endpoints, the protocol
-might choose to make use of features of the lower layer in order to provide some
-integrity protection; for instance TCP checksums or TLS records <span>[<a href="#RFC2818" class="xref">RFC2818</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">However, there are cases where relying on this alone is insufficient. An
-HTTP-level integrity mechanism that operates independent of transfer can be used
-to detect programming errors and/or corruption of data in flight or at rest, be used across
-multiple hops in order to provide end-to-end integrity guarantees, can aid fault
-diagnosis across hops and system boundaries, and can be used to validate
-integrity when reconstructing a resource fetched using different HTTP
+<p id="section-1-1">HTTP does not define a means to protect the integrity of representations. When
+HTTP messages are transferred between endpoints, the protocol might choose to
+make use of features of the lower layer in order to provide some integrity
+protection; for instance TCP checksums or TLS records <span>[<a href="#RFC2818" class="xref">RFC2818</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">This document defines the Digest HTTP integrity mechanism that acts on
+representation data. It operates independent of transport integrity, offering
+the potential to detect programming errors and corruption of data in flight or
+at rest. It can be used across multiple hops in order to provide end-to-end
+integrity guarantees, which can aid fault diagnosis when resources are
+transferred across hops and system boundaries. Finally, it can be used to
+validate integrity when reconstructing a resource fetched using different HTTP
 connections.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document defines a mechanism that acts on HTTP representation-data. It can
-be combined with other mechanisms that protect representation-metadata, such as
-digital signatures, in order to protect the desired parts of an HTTP exchange in
-whole or in part.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<div id="history">
+<p id="section-1-3">This document obsoletes <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<div id="document-structure">
 <section id="section-1.1">
-        <h3 id="name-a-brief-history-of-http-int">
-<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-a-brief-history-of-http-int" class="section-name selfRef">A Brief History of HTTP Integrity Fields</a>
+        <h3 id="name-document-structure">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-document-structure" class="section-name selfRef">Document Structure</a>
         </h3>
-<p id="section-1.1-1">The Content-MD5 header field was originally introduced to provide integrity, but
-HTTP/1.1 (<span>[<a href="#RFC7231" class="xref">RFC7231</a>]</span>, Appendix B) obsoleted it:<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-1.1-2.1">The Content-MD5 header field has been removed because it was
-inconsistently implemented with respect to partial responses.<a href="#section-1.1-2.1" class="pilcrow">¶</a>
+<p id="section-1.1-1">This document describes Digest integrity for HTTP and is structured as follows:<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1.1-2.1">
+            <a href="#representation-digest" class="xref">Section 2</a> describes concepts related to representation
+digests,<a href="#section-1.1-2.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.2">
+            <a href="#digest" class="xref">Section 3</a> defines the Digest request and response header and trailer field,<a href="#section-1.1-2.2" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.3">
+            <a href="#want-digest" class="xref">Section 4</a> defines the Want-Digest request and response header and
+trailer field,<a href="#section-1.1-2.3" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.4">
+            <a href="#algorithms" class="xref">Section 5</a> and <a href="#deprecate-contentMD5" class="xref">Section 7</a> describe algorithms and their
+relation to Digest,<a href="#section-1.1-2.4" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.5">
+            <a href="#acting-on-resources" class="xref">Section 6</a> details computing representation digests,<a href="#section-1.1-2.5" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.6">
+            <a href="#obsolete-parameters" class="xref">Section 8</a> obsoletes Digest field parameters,<a href="#section-1.1-2.6" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.7">
+            <a href="#sri" class="xref">Section 9</a> describes the relationship between Digest and Subresource Integrity,
+and<a href="#section-1.1-2.7" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-1.1-2.8">
+            <a href="#examples-unsolicited" class="xref">Section 10</a> and <a href="#examples-solicited" class="xref">Section 11</a> provide examples of using
+Digest and Want-Digest.<a href="#section-1.1-2.8" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-1.1-3"><span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> provided a more flexible solution introducing the concept of
-"instance", and the fields <code>Digest</code> and <code>Want-Digest</code>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="this-proposal">
+<div id="concept-overview">
 <section id="section-1.2">
-        <h3 id="name-this-proposal">
-<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-this-proposal" class="section-name selfRef">This Proposal</a>
+        <h3 id="name-concept-overview">
+<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-concept-overview" class="section-name selfRef">Concept Overview</a>
         </h3>
-<p id="section-1.2-1">The concept of <code>selected representation</code> defined in Section 3.2 of
-<span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span> makes <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> definitions inconsistent with
-current HTTP semantics. This document updates the <code>Digest</code> and <code>Want-Digest</code>
-field definitions to align with <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span> concepts.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<p id="section-1.2-2">Basing <code>Digest</code> on the selected representation makes it straightforward to
-apply it to use-cases where the transferred data does require some sort of
+<p id="section-1.2-1">This document defines the <code>Digest</code> request and response header and trailer
+field. At a high level the value contains a checksum, computed over
+<code>selected representation data</code>
+(Section 3.2; <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>),
+that the recipient can use to validate integrity. <code>Digest</code> supports
+algorithm agility. The <code>Want-Digest</code> field allows endpoints to express interest
+in <code>Digest</code> and preference of algorithms.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
+<p id="section-1.2-2">Basing <code>Digest</code> on the selected representation makes it straightforward to apply
+it to use-cases where the transferred data requires some sort of
 manipulation to be considered a representation, or conveys a partial
-representation of a resource eg. Range Requests (see Section 14.2 of
+representation of a resource, for example Range Requests (see Section 14.2 of
 <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-1.2-2" class="pilcrow">¶</a></p>
-<p id="section-1.2-3">This document replaces <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> to better align with <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span> and to
-provide more detailed description of <code>Digest</code> usage in request and response
-cases. Changes are intended to be semantically compatible with existing
+<p id="section-1.2-3">Historically, the Content-MD5 header field provided an HTTP integrity mechanism
+but HTTP/1.1 (<span>[<a href="#RFC7231" class="xref">RFC7231</a>]</span>, Appendix B) obsoleted it due to inconsistent handling
+of partial responses. <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> defined the concept of "instance" digests and a
+more flexible integrity scheme to help address issues with Content-MD5. It first
+introduced the <code>Digest</code> and <code>Want-Digest</code> fields. HTTP terminology has evolved
+since <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> was published. The concept of "instance" has been superseded by
+<code>selected representation</code>.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+<p id="section-1.2-4">This document replaces <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span>. The <code>Digest</code> and <code>Want-Digest</code> field
+definitions are updated to align with the terms and notational conventions in
+<span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>. Changes are intended to be semantically compatible with existing
 implementations but note that negotiation of <code>Content-MD5</code> is deprecated
 <a href="#deprecate-contentMD5" class="xref">Section 7</a>, <code>Digest</code> field parameters are obsoleted
-<a href="#obsolete-parameters" class="xref">Section 8</a>, "md5" and "sha" digest-algorithms are obsoleted
-and the "adler32" algorithm is deprecated.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
-<p id="section-1.2-4">The value of <code>Digest</code> is calculated on selected representation, which is tied to
-the value contained in any <code>Content-Encoding</code> or <code>Content-Type</code> header fields.
-Therefore, a given resource may have multiple different digest values.<a href="#section-1.2-4" class="pilcrow">¶</a></p>
-<p id="section-1.2-5">To allow both parties to exchange a Digest of a representation with no content
-codings (see Section 8.4.1 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>) two more digest-algorithms
-are added ("id-sha-256" and "id-sha-512").<a href="#section-1.2-5" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="goals">
-<section id="section-1.3">
-        <h3 id="name-goals">
-<a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-goals" class="section-name selfRef">Goals</a>
-        </h3>
-<p id="section-1.3-1">The goals of this proposal are:<a href="#section-1.3-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-1.3-2">
-<li id="section-1.3-2.1">Digest coverage for either the resource's <code>representation data</code> or
-<code>selected representation data</code> communicated via HTTP.<a href="#section-1.3-2.1" class="pilcrow">¶</a>
-</li>
-          <li id="section-1.3-2.2">Support for multiple digest-algorithms.<a href="#section-1.3-2.2" class="pilcrow">¶</a>
-</li>
-          <li id="section-1.3-2.3">Negotiation of the use of digests.<a href="#section-1.3-2.3" class="pilcrow">¶</a>
-</li>
-        </ol>
-<p id="section-1.3-3">The goals do not include:<a href="#section-1.3-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-1.3-4">
-          <dt id="section-1.3-4.1">
-HTTP message integrity:  </dt>
-          <dd style="margin-left: 1.5em" id="section-1.3-4.2">
-            <p id="section-1.3-4.2.1">Digest mechanisms do not cover the full HTTP message
-nor its semantic, as representation metadata is not included in the
-checksum.<a href="#section-1.3-4.2.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.3-4.3">
-HTTP field integrity:  </dt>
-          <dd style="margin-left: 1.5em" id="section-1.3-4.4">
-            <p id="section-1.3-4.4.1">Digest mechanisms cover only representation and selected
-representation data, and do not protect the integrity of associated
-representation metadata or other message fields.<a href="#section-1.3-4.4.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.3-4.5">
-Authentication:  </dt>
-          <dd style="margin-left: 1.5em" id="section-1.3-4.6">
-            <p id="section-1.3-4.6.1">Digest mechanisms do not support authentication
-of the source of a digest, message or anything else. These mechanisms,
-therefore, are not a sufficient defense against many kinds of malicious
-attacks.<a href="#section-1.3-4.6.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.3-4.7">
-Privacy:  </dt>
-          <dd style="margin-left: 1.5em" id="section-1.3-4.8">
-            <p id="section-1.3-4.8.1">Digest mechanisms do not provide message privacy.<a href="#section-1.3-4.8.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-1.3-4.9">
-Authorization:  </dt>
-          <dd style="margin-left: 1.5em" id="section-1.3-4.10">
-            <p id="section-1.3-4.10.1">Digest mechanisms do not support authorization
-or other kinds of access controls.<a href="#section-1.3-4.10.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-</dl>
+<a href="#obsolete-parameters" class="xref">Section 8</a>, "md5" and "sha" digest-algorithms are obsoleted,
+and the "adler32" algorithm is deprecated.<a href="#section-1.2-4" class="pilcrow">¶</a></p>
+<p id="section-1.2-5">Calculating the value of <code>Digest</code> using selected representation means it is tied
+to the <code>Content-Encoding</code> and <code>Content-Type</code> header fields. Therefore, a given
+resource may have multiple different digest values. To allow both parties to
+exchange a Digest of a representation with no content codings (see Section 8.4.1
+of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>) two more digest-algorithms are added ("id-sha-256" and
+"id-sha-512").<a href="#section-1.2-5" class="pilcrow">¶</a></p>
+<p id="section-1.2-6"><code>Digest</code> is used for representation integrity. It does not provide integrity for
+HTTP messages or fields. However, it can be combined with other mechanisms that
+protect representation metadata, such as digital signatures, in order to protect
+the phases of an HTTP exchange in whole or in part.<a href="#section-1.2-6" class="pilcrow">¶</a></p>
+<p id="section-1.2-7"><code>Digest</code> does not define means for authentication, authorization or privacy.<a href="#section-1.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="notational-conventions">
-<section id="section-1.4">
+<section id="section-1.3">
         <h3 id="name-notational-conventions">
-<a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-notational-conventions" class="section-name selfRef">Notational Conventions</a>
+<a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-notational-conventions" class="section-name selfRef">Notational Conventions</a>
         </h3>
-<p id="section-1.4-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+<p id="section-1.3-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
 "MAY", and "OPTIONAL" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="xref">RFC8174</a>]</span> when, and only when, they
-appear in all capitals, as shown here.<a href="#section-1.4-1" class="pilcrow">¶</a></p>
-<p id="section-1.4-2">This document uses the Augmented BNF defined in <span>[<a href="#RFC5234" class="xref">RFC5234</a>]</span> and updated by
+appear in all capitals, as shown here.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
+<p id="section-1.3-2">This document uses the Augmented BNF defined in <span>[<a href="#RFC5234" class="xref">RFC5234</a>]</span> and updated by
 <span>[<a href="#RFC7405" class="xref">RFC7405</a>]</span> along with the "#rule" extension defined in Section 5.6.1 of
-<span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.4-2" class="pilcrow">¶</a></p>
-<p id="section-1.4-3">The definitions "representation", "selected representation", "representation
+<span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.3-2" class="pilcrow">¶</a></p>
+<p id="section-1.3-3">The definitions "representation", "selected representation", "representation
 data", "representation metadata", and "content" in this document are to be
-interpreted as described in <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.4-3" class="pilcrow">¶</a></p>
-<p id="section-1.4-4">Algorithm names respect the casing used in their definition document (eg. SHA-1, CRC32c)
-whereas digest-algorithm tokens are quoted (eg. "sha", "crc32c").<a href="#section-1.4-4" class="pilcrow">¶</a></p>
+interpreted as described in <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.3-3" class="pilcrow">¶</a></p>
+<p id="section-1.3-4">Algorithm names respect the casing used in their definition document (eg. SHA-1, CRC32c)
+whereas digest-algorithm tokens are quoted (eg. "sha", "crc32c").<a href="#section-1.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1343,40 +1314,29 @@ whereas digest-algorithm tokens are quoted (eg. "sha", "crc32c").<a href="#secti
 which uses a checksum  that is calculated independently of the content
 (see Section 6.4 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).
 It uses the representation data (see Section 8.1 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>),
-that can be fully or partially contained in the content, or not contained at all:<a href="#section-2-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-2-2">
-<pre>
-   representation-data := Content-Encoding( Content-Type( bits ) )
-</pre><a href="#section-2-2" class="pilcrow">¶</a>
-</div>
-<p id="section-2-3">This takes into account the effect of the HTTP semantics on the messages;
+that can be fully or partially contained in the content, or not contained at all.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">This takes into account the effect of the HTTP semantics on the messages;
 for example, the content can be affected by Range Requests or methods such as HEAD,
 while the way the content is transferred "on the wire" is dependent on other
 transformations (e.g. transfer codings for HTTP/1.1 - see Section 6.1 of
 <span>[<a href="#HTTP11" class="xref">HTTP11</a>]</span>). To help illustrate how such things affect <code>Digest</code>,
-several examples are provided in <a href="#resource-representation" class="xref">Appendix A</a>.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">A representation digest consists of
+several examples are provided in <a href="#resource-representation" class="xref">Appendix A</a>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">A representation digest consists of
 the value of a checksum computed on the entire selected <code>representation data</code>
 (see Section 8.1 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>) of a resource identified according to Section 6.4.2 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>
-together with an indication of the algorithm used:<a href="#section-2-4" class="pilcrow">¶</a></p>
-<div id="section-2-5">
+together with an indication of the algorithm used:<a href="#section-2-3" class="pilcrow">¶</a></p>
+<div id="section-2-4">
 <pre class="sourcecode lang-abnf">
    representation-data-digest = digest-algorithm "="
                                 &lt;encoded digest output&gt;
-</pre><a href="#section-2-5" class="pilcrow">¶</a>
+</pre><a href="#section-2-4" class="pilcrow">¶</a>
 </div>
-<p id="section-2-6">When a message has no representation data
+<p id="section-2-5">When a message has no representation data
 it is still possible to assert that no representation data was sent
 computing the representation digest on an empty string
-(see <a href="#usage-in-signatures" class="xref">Section 12.3</a>).<a href="#section-2-6" class="pilcrow">¶</a></p>
-<p id="section-2-7">The checksum is computed using one of the digest-algorithms listed in <a href="#algorithms" class="xref">Section 5</a>
-and then encoded in the associated format.<a href="#section-2-7" class="pilcrow">¶</a></p>
-<p id="section-2-8">The example below shows the  "sha-256" digest-algorithm that uses base64 encoding.<a href="#section-2-8" class="pilcrow">¶</a></p>
-<div id="section-2-9">
-<pre class="sourcecode lang-example">
-   sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=
-</pre><a href="#section-2-9" class="pilcrow">¶</a>
-</div>
+(see <a href="#usage-in-signatures" class="xref">Section 12.3</a>).<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">The checksum is computed using one of the digest-algorithms listed in <a href="#algorithms" class="xref">Section 5</a>
+and then encoded in the associated format.<a href="#section-2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digest">
@@ -1421,9 +1381,12 @@ validation instead of verifying every received representation-data-digest.<a hre
 <p id="section-3-9">A sender MAY send a representation-data-digest using a digest-algorithm without
 knowing whether the recipient supports the digest-algorithm, or even knowing
 that the recipient will ignore it.<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10"><code>Digest</code> can be sent in a trailer section. When an incremental digest-algorithm
+<p id="section-3-10"><code>Digest</code> can be sent in a trailer section.
+In this case,
+<code>Digest</code> MAY be merged in to the header section (See Section 6.5.1 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-3-10" class="pilcrow">¶</a></p>
+<p id="section-3-11">When an incremental digest-algorithm
 is used, the sender and the receiver can dynamically compute the digest value
-while streaming the content.<a href="#section-3-10" class="pilcrow">¶</a></p>
+while streaming the content.<a href="#section-3-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="want-digest">
@@ -1468,13 +1431,13 @@ Want-Digest: sha-512;q=0.3, sha-256;q=1, unixsum;q=0
    digest-algorithm = token
 </pre><a href="#section-5-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5-3">All digest-algorithm values are case-insensitive
-but lower case is preferred.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">The Internet Assigned Numbers Authority (IANA) acts as a registry for
+<p id="section-5-3">All digest-algorithm token values are case-insensitive
+but lower case is preferred;
+digest-algorithm token values MUST be compared in a case-insensitive fashion.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">The Internet Assigned Numbers Authority (IANA) maintains a registry for
 digest-algorithm values.
-The registry contains the tokens listed below.<a href="#section-5-4" class="pilcrow">¶</a></p>
-<p id="section-5-5">Some digest-algorithms, although registered, rely on vulnerable algorithms
-and MUST not be used:<a href="#section-5-5" class="pilcrow">¶</a></p>
+The registry is initialized with the tokens listed below.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">Deprecated digest algorithms MUST NOT be used:<a href="#section-5-5" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5-6.1">"md5", see <span>[<a href="#CMU-836068" class="xref">CMU-836068</a>]</span> and <span>[<a href="#NO-MD5" class="xref">NO-MD5</a>]</span>;<a href="#section-5-6.1" class="pilcrow">¶</a>
 </li>
@@ -1518,7 +1481,7 @@ md5  </dt>
 <li class="normal" id="section-5-8.6.1.1">Description: The MD5 algorithm, as specified in <span>[<a href="#RFC1321" class="xref">RFC1321</a>]</span>.
 The output of this algorithm is encoded using the
 base64 encoding  <span>[<a href="#RFC4648" class="xref">RFC4648</a>]</span>.
-This digest-algorithm MUST NOT be used as it's now vulnerable
+This digest-algorithm is now vulnerable
 to collision attacks. See <span>[<a href="#NO-MD5" class="xref">NO-MD5</a>]</span> and <span>[<a href="#CMU-836068" class="xref">CMU-836068</a>]</span>.<a href="#section-5-8.6.1.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-5-8.6.1.2">Reference: <span>[<a href="#RFC1321" class="xref">RFC1321</a>]</span>, <span>[<a href="#RFC4648" class="xref">RFC4648</a>]</span>, this document.<a href="#section-5-8.6.1.2" class="pilcrow">¶</a>
@@ -1534,7 +1497,7 @@ sha  </dt>
           <ul class="normal">
 <li class="normal" id="section-5-8.8.1.1">Description:  The SHA-1 algorithm <span>[<a href="#RFC3174" class="xref">RFC3174</a>]</span>.  The output of this
 algorithm is encoded using the base64 encoding  <span>[<a href="#RFC4648" class="xref">RFC4648</a>]</span>.
-This digest-algorithm MUST NOT be used as it's now vulnerable
+This digest-algorithm is now vulnerable
 to collision attacks. See <span>[<a href="#NO-SHA1" class="xref">NO-SHA1</a>]</span> and <span>[<a href="#IACR-2020-014" class="xref">IACR-2020-014</a>]</span>.<a href="#section-5-8.8.1.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-5-8.8.1.2">Reference: <span>[<a href="#RFC3174" class="xref">RFC3174</a>]</span>, <span>[<a href="#RFC6234" class="xref">RFC6234</a>]</span>, <span>[<a href="#RFC4648" class="xref">RFC4648</a>]</span>, this document.<a href="#section-5-8.8.1.2" class="pilcrow">¶</a>
@@ -1698,7 +1661,7 @@ validation behavior.<a href="#section-8-2" class="pilcrow">¶</a></p>
 representation-data-digest, in such a way as to mitigate security risks related to its computation.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="relationship-to-subresource-integrity-sri">
+<div id="sri">
 <section id="section-9">
       <h2 id="name-relationship-to-subresource">
 <a href="#section-9" class="section-number selfRef">9. </a><a href="#name-relationship-to-subresource" class="section-name selfRef">Relationship to Subresource Integrity (SRI)</a>
@@ -2349,11 +2312,12 @@ might affect signature validation.<a href="#section-12.3-6" class="pilcrow">¶</
         <h3 id="name-usage-in-trailer-fields">
 <a href="#section-12.4" class="section-number selfRef">12.4. </a><a href="#name-usage-in-trailer-fields" class="section-name selfRef">Usage in Trailer Fields</a>
         </h3>
-<p id="section-12.4-1">When <code>Digest</code> is used in trailer fields, the receiver gets the digest value after the content
+<p id="section-12.4-1">Before sending <code>Digest</code> in a trailer section, the sender
+should consider that intermediaries are explicitly allowed to drop any trailer
+(see Section 6.5.2 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-12.4-1" class="pilcrow">¶</a></p>
+<p id="section-12.4-2">When <code>Digest</code> is used in trailer fields, the receiver gets the digest value after the content
 and may thus be tempted to process the data before validating the digest value.
-It is prefereable that data is only be processed after validating the Digest.<a href="#section-12.4-1" class="pilcrow">¶</a></p>
-<p id="section-12.4-2">If received in trailers, <code>Digest</code> MUST NOT be discarded;
-instead, it MAY be merged in the header section (See Section 6.5.1 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-12.4-2" class="pilcrow">¶</a></p>
+It is preferable that data is only be processed after validating the Digest.<a href="#section-12.4-2" class="pilcrow">¶</a></p>
 <p id="section-12.4-3">Not every digest-algorithm is suitable for use in the trailer section, some may require to pre-process
 the whole payload before sending a message (eg. see <span>[<a href="#I-D.thomson-http-mice" class="xref">I-D.thomson-http-mice</a>]</span>).<a href="#section-12.4-3" class="pilcrow">¶</a></p>
 </section>
@@ -2727,10 +2691,6 @@ Protocol (HTTP) Field Name Registry" <span>[<a href="#SEMANTICS" class="xref">SE
         <dd>
 <span class="refAuthor">Mogul, J.</span> and <span class="refAuthor">A. Van Hoff</span>, <span class="refTitle">"Instance Digests in HTTP"</span>, <span class="seriesInfo">RFC 3230</span>, <span class="seriesInfo">DOI 10.17487/RFC3230</span>, <time datetime="2002-01" class="refDate">January 2002</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3230">https://datatracker.ietf.org/doc/html/rfc3230</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC3309">[RFC3309]</dt>
-        <dd>
-<span class="refAuthor">Stone, J.</span>, <span class="refAuthor">Stewart, R.</span>, and <span class="refAuthor">D. Otis</span>, <span class="refTitle">"Stream Control Transmission Protocol (SCTP) Checksum Change"</span>, <span class="seriesInfo">RFC 3309</span>, <span class="seriesInfo">DOI 10.17487/RFC3309</span>, <time datetime="2002-09" class="refDate">September 2002</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3309">https://datatracker.ietf.org/doc/html/rfc3309</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC4648">[RFC4648]</dt>
         <dd>
 <span class="refAuthor">Josefsson, S.</span>, <span class="refTitle">"The Base16, Base32, and Base64 Data Encodings"</span>, <span class="seriesInfo">RFC 4648</span>, <span class="seriesInfo">DOI 10.17487/RFC4648</span>, <time datetime="2006-10" class="refDate">October 2006</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc4648">https://datatracker.ietf.org/doc/html/rfc4648</a>&gt;</span>. </dd>
@@ -2942,88 +2902,89 @@ Location: /authors/123
 </div>
 </section>
 </div>
-<div id="faq">
+<div id="acknowledgements">
 <section id="section-appendix.b">
-      <h2 id="name-faq">
-<a href="#section-appendix.b" class="section-number selfRef">Appendix B. </a><a href="#name-faq" class="section-name selfRef">FAQ</a>
+      <h2 id="name-acknowledgements">
+<a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<ol start="1" type="1" class="normal type-1" id="section-appendix.b-1">
-<li id="section-appendix.b-1.1">
-          <p id="section-appendix.b-1.1.1">Why remove all references to content-md5?<a href="#section-appendix.b-1.1.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.1.2">
-Those were unnecessary to understanding and using this specification.<a href="#section-appendix.b-1.1.2" class="pilcrow">¶</a></p>
+<p id="section-appendix.b-1">The vast majority of this document is inherited from <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span>, so thanks
+to J. Mogul and A. Van Hoff for their great work.
+The original idea of refreshing this document arose from an interesting
+discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing
+the MICE content coding.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="faq">
+<section id="section-appendix.c">
+      <h2 id="name-faq">
+<a href="#name-faq" class="section-name selfRef">FAQ</a>
+      </h2>
+<p id="section-appendix.c-1"><em>RFC Editor: Please remove this section before publication.</em><a href="#section-appendix.c-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-appendix.c-2">
+<li id="section-appendix.c-2.1">
+          <p id="section-appendix.c-2.1.1">Why remove all references to content-md5?<a href="#section-appendix.c-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.1.2">
+Those were unnecessary to understanding and using this specification.<a href="#section-appendix.c-2.1.2" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.2">
-          <p id="section-appendix.b-1.2.1">Why remove references to instance manipulation?<a href="#section-appendix.b-1.2.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.2.2">
+        <li id="section-appendix.c-2.2">
+          <p id="section-appendix.c-2.2.1">Why remove references to instance manipulation?<a href="#section-appendix.c-2.2.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.2.2">
 Those were unnecessary for correctly using and applying the specification. An example
 with Range Request is more than enough. This document uses the term "partial
-representation" which should group all those cases.<a href="#section-appendix.b-1.2.2" class="pilcrow">¶</a></p>
+representation" which should group all those cases.<a href="#section-appendix.c-2.2.2" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.3">
-          <p id="section-appendix.b-1.3.1">How to use <code>Digest</code> with <code>PATCH</code> method?<a href="#section-appendix.b-1.3.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.3.2">
-See <a href="#acting-on-resources" class="xref">Section 6</a>.<a href="#section-appendix.b-1.3.2" class="pilcrow">¶</a></p>
+        <li id="section-appendix.c-2.3">
+          <p id="section-appendix.c-2.3.1">How to use <code>Digest</code> with <code>PATCH</code> method?<a href="#section-appendix.c-2.3.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.3.2">
+See <a href="#acting-on-resources" class="xref">Section 6</a>.<a href="#section-appendix.c-2.3.2" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.4">
-          <p id="section-appendix.b-1.4.1">Why remove references to delta-encoding?<a href="#section-appendix.b-1.4.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.4.2">
+        <li id="section-appendix.c-2.4">
+          <p id="section-appendix.c-2.4.1">Why remove references to delta-encoding?<a href="#section-appendix.c-2.4.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.4.2">
 Unnecessary for a correct implementation of this specification. The revised specification can
 be nicely adapted to "delta encoding", but all the references here to delta
 encoding don't add anything to this RFC. Another job would be to refresh
-delta encoding.<a href="#section-appendix.b-1.4.2" class="pilcrow">¶</a></p>
+delta encoding.<a href="#section-appendix.c-2.4.2" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.5">
-          <p id="section-appendix.b-1.5.1">Why remove references to Digest Authentication?<a href="#section-appendix.b-1.5.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.5.2">
+        <li id="section-appendix.c-2.5">
+          <p id="section-appendix.c-2.5.1">Why remove references to Digest Authentication?<a href="#section-appendix.c-2.5.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.5.2">
 This specification seems to me completely unrelated to Digest Authentication but for
-the word "Digest".<a href="#section-appendix.b-1.5.2" class="pilcrow">¶</a></p>
+the word "Digest".<a href="#section-appendix.c-2.5.2" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.6">
-          <p id="section-appendix.b-1.6.1">What changes in <code>Want-Digest</code>?<a href="#section-appendix.b-1.6.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.6.2">
-The contentMD5 token defined in Section 5 of <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> is deprecated by <a href="#deprecate-contentMD5" class="xref">Section 7</a>.<a href="#section-appendix.b-1.6.2" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.6.3">
+        <li id="section-appendix.c-2.6">
+          <p id="section-appendix.c-2.6.1">What changes in <code>Want-Digest</code>?<a href="#section-appendix.c-2.6.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.6.2">
+The contentMD5 token defined in Section 5 of <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> is deprecated by <a href="#deprecate-contentMD5" class="xref">Section 7</a>.<a href="#section-appendix.c-2.6.2" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.6.3">
 To clarify that <code>Digest</code> and <code>Want-Digest</code> can be used in both requests and responses
 - <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> carefully uses <code>sender</code> and <code>receiver</code> in their definition -
 we added examples on using <code>Want-Digest</code> in responses to advertise the supported
 digest-algorithms and the inability to accept requests with unsupported
-digest-algorithms.<a href="#section-appendix.b-1.6.3" class="pilcrow">¶</a></p>
+digest-algorithms.<a href="#section-appendix.c-2.6.3" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.7">
-          <p id="section-appendix.b-1.7.1">Does this specification change supported algorithms?<a href="#section-appendix.b-1.7.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.7.2">
+        <li id="section-appendix.c-2.7">
+          <p id="section-appendix.c-2.7.1">Does this specification change supported algorithms?<a href="#section-appendix.c-2.7.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.7.2">
 Yes. This RFC updates <span>[<a href="#RFC5843" class="xref">RFC5843</a>]</span> which is still delegated for all algorithms
 updates, and adds two more algorithms: "id-sha-256" and "id-sha-512" which allows
 to send a checksum of a resource representation with no content codings
 applied.
 To simplify a future transition to Structured Fields <span>[<a href="#I-D.ietf-httpbis-header-structure" class="xref">I-D.ietf-httpbis-header-structure</a>]</span>
-we suggest to use lowercase for digest-algorithms.<a href="#section-appendix.b-1.7.2" class="pilcrow">¶</a></p>
+we suggest to use lowercase for digest-algorithms.<a href="#section-appendix.c-2.7.2" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-appendix.b-1.8">
-          <p id="section-appendix.b-1.8.1">What about mid-stream trailer fields?<a href="#section-appendix.b-1.8.1" class="pilcrow">¶</a></p>
-<p id="section-appendix.b-1.8.2">
+        <li id="section-appendix.c-2.8">
+          <p id="section-appendix.c-2.8.1">What about mid-stream trailer fields?<a href="#section-appendix.c-2.8.1" class="pilcrow">¶</a></p>
+<p id="section-appendix.c-2.8.2">
 While
 <a href="https://github.com/httpwg/http-core/issues/313#issuecomment-584389706">mid-stream trailer fields</a>
 are interesting, since this specification is a rewrite of <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span> we do not
 think we should face that. As a first thought, nothing in this document
 precludes future work that would find a use for mid-stream trailers, for
 example an incremental digest-algorithm. A document defining such a
-digest-algorithm is best positioned to describe how it is used.<a href="#section-appendix.b-1.8.2" class="pilcrow">¶</a></p>
+digest-algorithm is best positioned to describe how it is used.<a href="#section-appendix.c-2.8.2" class="pilcrow">¶</a></p>
 </li>
       </ol>
-</section>
-</div>
-<div id="acknowledgements">
-<section id="section-appendix.c">
-      <h2 id="name-acknowledgements">
-<a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
-      </h2>
-<p id="section-appendix.c-1">The vast majority of this document is inherited from <span>[<a href="#RFC3230" class="xref">RFC3230</a>]</span>, so thanks
-to J. Mogul and A. Van Hoff for their great work.
-The original idea of refreshing this document arose from an interesting
-discussion with M. Nottingham, J. Yasskin and M. Thomson when reviewing
-the MICE content coding.<a href="#section-appendix.c-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="code-samples">

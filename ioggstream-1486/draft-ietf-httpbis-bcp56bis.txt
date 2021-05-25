@@ -802,6 +802,10 @@ Table of Contents
 
                                   Table 1
 
+   The 303 See Other status code can be used to inform the client that
+   the result of an operation is available at a different location using
+   GET.
+
    As noted in [I-D.ietf-httpbis-semantics], a user agent is allowed to
    automatically follow a 3xx redirect that has a Location response
    header field, even if they don't understand the semantics of the
