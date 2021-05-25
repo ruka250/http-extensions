@@ -6,7 +6,7 @@ HTTP                                                            R. Polli
 Internet-Draft                         Team Digitale, Italian Government
 Obsoletes: 3230 (if approved)                                  L. Pardue
 Intended status: Standards Track                              Cloudflare
-Expires: 28 October 2021                                   26 April 2021
+Expires: 26 November 2021                                    25 May 2021
 
 
                              Digest Headers
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2021.
+   This Internet-Draft will expire on 26 November 2021.
 
 Copyright Notice
 
@@ -336,7 +336,7 @@ Table of Contents
    algorithm, or even knowing that the recipient will ignore it.
 
    "Digest" can be sent in a trailer section.  In this case, "Digest"
-   MAY be merged in the header section (See Section 6.5.1 of
+   MAY be merged in to the header section (See Section 6.5.1 of
    [SEMANTICS]).
 
    When an incremental digest-algorithm is used, the sender and the
